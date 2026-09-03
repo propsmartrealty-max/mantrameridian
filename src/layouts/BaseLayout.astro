@@ -44,6 +44,20 @@ const baseSchema = customSchema || {
       "url": "https://mantrameridianriverside.com",
       "telephone": projectData.contact.phone,
       "email": projectData.contact.email,
+      "foundingDate": "2007",
+      "founder": {
+        "@type": "Person",
+        "name": "Anand Gupta"
+      },
+      "taxID": "P52100045688",
+      "sameAs": [
+        "https://www.mantraproperties.in/",
+        "https://www.facebook.com/mantraproperties/",
+        "https://www.instagram.com/mantraproperties/",
+        "https://www.linkedin.com/company/mantra-properties-pune/",
+        "https://www.youtube.com/@MantraProperties",
+        "https://maharera.mahaonline.gov.in/"
+      ],
       "address": {
         "@type": "PostalAddress",
         "streetAddress": projectData.contact.siteAddress,
@@ -87,6 +101,7 @@ const baseSchema = customSchema || {
         "latitude": 18.5775,
         "longitude": 73.7745
       },
+      "hasMap": "https://maps.app.goo.gl/BYYZfgLSmqrn2UzU8",
       "numberOfBedrooms": "2, 3, 4",
       "petsAllowed": true,
       "amenityFeature": [
@@ -207,6 +222,9 @@ const baseSchema = customSchema || {
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    {/* Preload High-Priority LCP Hero Image for Instant Rendering */}
+    <link rel="preload" as="image" href="/assets/mantra-meridian-hero.webp" fetchpriority="high" type="image/webp" />
 
     {/* Google Analytics & Tag Manager Foundation Layer */}
     <script is:inline>

@@ -1,4 +1,36 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /assets/
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI Search Engines & SGE Crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# Sitemaps & LLM Discovery
 Sitemap: https://mantrameridianriverside.com/sitemap.xml
+# LLMs Index: https://mantrameridianriverside.com/llms.txt
