@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mantrameridianriverside.com/sitemap-index.xml
+Sitemap: https://mantrameridianriverside.com/sitemap.xml

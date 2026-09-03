@@ -4,11 +4,13 @@ import LuxuryFooter from '../components/Footer/LuxuryFooter.astro';
 import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro';
 import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
 import { projectData } from '../data/project';
+import { defaultMetaKeywords } from '../data/keywords';
 import '../styles/global.css';
 
 interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
   ogImage?: string;
   canonicalUrl?: string;
   schemaType?: string;
@@ -16,14 +18,15 @@ interface Props {
 }
 
 const {
-  title = "Mantra Meridian Riverside | Luxury 2, 3, 4 BHK & Duplexes Balewadi, Pune",
-  description = "Experience Mantra Meridian Riverside in Balewadi, Pune. An 8-acre architectural sanctuary offering 2, 3, 4 BHK homes and 3 BHK Duplexes beside the Mula River. MahaRERA P52100045688.",
+  title = "Mantra Meridian Riverside Balewadi | Luxury 2, 3, 4 BHK & Duplexes Pune",
+  description = "Mantra Meridian Riverside in Balewadi, Pune by Mantra Properties. 8-acre riverside development offering 2, 3, 4 BHK homes & 3 BHK Duplexes along the Mula River. MahaRERA P52100045688.",
+  keywords = defaultMetaKeywords,
   ogImage = projectData.ogImage,
   canonicalUrl = Astro.url.href,
   customSchema
 } = Astro.props;
 
-// Global Organization & RealEstateAgent Schema
+// Global Organization, ApartmentComplex & RealEstateAgent Schema
 const baseSchema = customSchema || {
   "@context": "https://schema.org",
   "@graph": [
@@ -31,13 +34,19 @@ const baseSchema = customSchema || {
       "@type": "RealEstateAgent",
       "@id": "https://mantrameridianriverside.com/#organization",
       "name": "Mantra Meridian Riverside",
+      "alternateName": [
+        "Meridian at Riverside Balewadi",
+        "Mantra Meridian",
+        "Mantra Meridian Balewadi",
+        "Mantra Properties Meridian"
+      ],
       "legalName": "Mantra Properties",
       "url": "https://mantrameridianriverside.com",
       "telephone": projectData.contact.phone,
       "email": projectData.contact.email,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Survey No. 42/1, Beside Mula River Promenade, Balewadi Village Road",
+        "streetAddress": projectData.contact.siteAddress,
         "addressLocality": "Balewadi",
         "addressRegion": "Maharashtra",
         "postalCode": "411045",
@@ -48,22 +57,70 @@ const baseSchema = customSchema || {
         "latitude": 18.5775,
         "longitude": 73.7745
       },
-      "priceRange": "$$$$"
+      "priceRange": "₹ 85 Lakhs - ₹ 3.50 Cr",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "09:30",
+          "closes": "19:30"
+        }
+      ]
     },
     {
       "@type": "ApartmentComplex",
       "@id": "https://mantrameridianriverside.com/#complex",
       "name": "Mantra Meridian Riverside",
-      "description": projectData.tagline,
+      "alternateName": "Meridian at Riverside Balewadi",
+      "description": `${projectData.name} - ${projectData.tagline}. 8-acre luxury residential community in Balewadi, Pune offering 2, 3, 4 BHK apartments and signature 3 BHK duplexes. MahaRERA P52100045688.`,
+      "tourBookingPage": "https://mantrameridianriverside.com/#virtual-tour",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Balewadi Village Road, beside Mula River",
+        "streetAddress": projectData.contact.siteAddress,
         "addressLocality": "Balewadi",
         "addressRegion": "Maharashtra",
         "postalCode": "411045",
         "addressCountry": "IN"
       },
-      "numberOfBedrooms": "2, 3, 4"
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5775,
+        "longitude": 73.7745
+      },
+      "numberOfBedrooms": "2, 3, 4",
+      "petsAllowed": true,
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Temperature-Controlled Infinity Lap Pool",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "500-Metre Mula River Boardwalk",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "The Grand Pavilion 20,000 sq.ft. Clubhouse",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Championship Tennis & Pickleball Court",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Dolby Atmos 4K Private Screening Cinema",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Botanical Reflexology Sensory Gardens",
+          "value": true
+        }
+      ]
     },
     {
       "@type": "WebSite",
@@ -89,8 +146,15 @@ const baseSchema = customSchema || {
     {/* Primary SEO Meta Tags */}
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    {/* Local SEO Geo Tags for Balewadi, Pune */}
+    <meta name="geo.region" content="IN-MH" />
+    <meta name="geo.placename" content="Balewadi, Pune" />
+    <meta name="geo.position" content="18.5775;73.7745" />
+    <meta name="ICBM" content="18.5775, 73.7745" />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
@@ -98,7 +162,7 @@ const baseSchema = customSchema || {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:site_name" content="Mantra Meridian Riverside" />
+    <meta property="og:site_name" content="Mantra Meridian Riverside Balewadi" />
 
     {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
@@ -106,7 +170,7 @@ const baseSchema = customSchema || {
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    {/* Structured Data */}
+    {/* Structured Data Schema */}
     <script type="application/ld+json" is:inline set:html={JSON.stringify(baseSchema)} />
 
     {/* Preconnect fonts */}

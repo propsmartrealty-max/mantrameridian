@@ -28,18 +28,31 @@ const residenceSchema = {
   },
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Balewadi Village Road, beside Mula River",
-    "addressLocality": "Balewadi",
+    "streetAddress": "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi",
+    "addressLocality": "Balewadi, Pune",
     "addressRegion": "Maharashtra",
     "postalCode": "411045",
     "addressCountry": "IN"
   }
 };
+
+const residenceKeywords = [
+  `${residence.type} flats in Balewadi`,
+  `${residence.type} in Balewadi Mantra Meridian`,
+  `Mantra Meridian ${residence.type} floor plans`,
+  `Mantra Meridian ${residence.name}`,
+  `Mantra Meridian carpet area`,
+  `Mantra Meridian Riverside Balewadi`,
+  `luxury apartments in Balewadi`,
+  `MahaRERA P52100045688`
+].join(", ");
 ---
 
 <BaseLayout
-  title={`${residence.name} | Mantra Meridian Riverside, Balewadi`}
-  description={`${residence.name} at Mantra Meridian Riverside, Balewadi. Carpet Area: ${residence.carpetAreaRange}. ${residence.subtitle} MahaRERA: P52100045688.`}
+  title={`${residence.type} Flats in Balewadi | ${residence.name} | Mantra Meridian Riverside`}
+  description={`${residence.name} at Mantra Meridian Riverside, Balewadi (${residence.carpetAreaRange}). ${residence.subtitle} MahaRERA P52100045688.`}
+  keywords={residenceKeywords}
+  ogImage={residence.renderImage}
   customSchema={residenceSchema}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-20">
