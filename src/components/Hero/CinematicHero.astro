@@ -20,38 +20,41 @@ import { projectData } from '../../data/project';
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-6 md:space-y-8 pt-20">
     
     {/* Architectural Location & Accreditation Tag */}
-    <div class="inline-flex items-center gap-3 px-4 py-1.5 border border-champagne/35 bg-obsidian-deep/80 backdrop-blur-md shadow-glow">
-      <span class="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />
-      <span class="label-architectural text-[10px] sm:text-xs text-champagne tracking-[0.24em]">
+    <div class="glass-pill inline-flex items-center gap-3 px-5 py-2 border border-champagne/35 text-champagne shadow-glow">
+      <span class="w-2 h-2 rounded-full bg-champagne animate-pulse" />
+      <span class="label-architectural text-[10px] sm:text-xs tracking-[0.24em] text-champagne">
         MANTRA PROPERTIES • RIVERSIDE SANCTUARY • BALEWADI
       </span>
     </div>
 
-    {/* Monumental Typography */}
-    <div class="space-y-3">
-      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-architectural-white font-normal tracking-[0.09em] leading-none">
+    {/* Monumental Typography with Ambient Backglow */}
+    <div class="relative space-y-3">
+      {/* Ambient Gold Radial Bloom behind heading */}
+      <div class="absolute -inset-x-20 -inset-y-10 bg-radial-dusk opacity-70 blur-2xl pointer-events-none -z-10" />
+
+      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl tracking-[0.12em] leading-none text-gradient-pearl font-normal drop-shadow-2xl">
         MERIDIAN
       </h1>
-      <div class="flex items-center justify-center gap-3 text-champagne/80 font-mono text-[11px] sm:text-xs tracking-[0.35em] uppercase">
-        <span class="h-[1px] w-6 sm:w-12 bg-champagne/40" />
-        <span>RIVERSIDE RESIDENCES</span>
-        <span class="h-[1px] w-6 sm:w-12 bg-champagne/40" />
+      <div class="flex items-center justify-center gap-3 text-champagne font-mono text-[11px] sm:text-xs tracking-[0.35em] uppercase">
+        <span class="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent via-champagne to-transparent" />
+        <span class="font-medium tracking-[0.28em]">RIVERSIDE RESIDENCES</span>
+        <span class="h-[1px] w-8 sm:w-16 bg-gradient-to-r from-transparent via-champagne to-transparent" />
       </div>
       <p class="font-serif text-2xl sm:text-3xl md:text-4xl text-champagne-light italic font-light tracking-wide pt-2">
-        Life, Reimagined by the Riverside.
+        Life, Reimagined by the Living Waters.
       </p>
     </div>
 
     {/* Restrained Project Subtitle */}
     <p class="max-w-2xl text-xs sm:text-sm text-concrete leading-relaxed font-normal">
-      An 8-acre contemporary architectural address in Balewadi. Offering 2, 3, 4 BHK luxury residences and signature 3 BHK sky duplexes beside the living waters of the Mula river.
+      An 8-acre contemporary architectural address in Balewadi. Offering 2, 3, 4 BHK luxury residences and signature 3 BHK sky duplexes beside the permanent serenity of the Mula river.
     </p>
 
-    {/* Hero Actions */}
-    <div class="flex flex-col sm:flex-row items-center gap-3 pt-4 w-full sm:w-auto">
+    {/* Hero Actions with Glassmorphism */}
+    <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
       <a
         href="#experience-manifesto"
-        class="px-5 py-2.5 text-xs tracking-[0.16em] uppercase font-medium bg-architectural-white text-obsidian hover:bg-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2"
+        class="btn-luxury w-full sm:w-auto text-xs glass-sheen"
       >
         <span>DISCOVER MERIDIAN</span>
         <span>↓</span>
@@ -59,7 +62,7 @@ import { projectData } from '../../data/project';
 
       <button
         id="hero-presentation-btn"
-        class="px-5 py-2.5 text-xs tracking-[0.16em] uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 hover:border-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2 backdrop-blur-sm"
+        class="btn-luxury-outline w-full sm:w-auto text-xs glass-sheen"
       >
         <span>PRIVATE PRESENTATION</span>
         <span class="text-champagne">↗</span>

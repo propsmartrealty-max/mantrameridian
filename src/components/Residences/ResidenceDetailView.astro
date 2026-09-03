@@ -66,12 +66,12 @@ const residenceKeywords = [
     {/* Hero Presentation */}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
       <div class="lg:col-span-8 space-y-4">
-        <div class="inline-flex items-center gap-2 px-3 py-1 border border-champagne/30 bg-obsidian-surface text-champagne text-xs uppercase tracking-widest font-mono">
+        <div class="glass-pill inline-flex items-center gap-2 px-3.5 py-1.5 border border-champagne/35 text-champagne text-xs uppercase tracking-widest font-mono">
           <span>{residence.type} CONFIGURATION</span>
-          <span>•</span>
+          <span class="text-white/20">•</span>
           <span>{residence.carpetAreaRange} CARPET</span>
         </div>
-        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-architectural-white leading-tight">
+        <h1 class="font-display text-5xl sm:text-6xl md:text-7xl text-gradient-pearl leading-tight font-normal">
           {residence.name}
         </h1>
         <p class="text-xs sm:text-sm text-champagne font-mono">
@@ -82,17 +82,20 @@ const residenceKeywords = [
         </p>
       </div>
 
-      <div class="lg:col-span-4 bg-obsidian-card border border-champagne/30 p-6 space-y-4">
+      <div class="lg:col-span-4 glass-card-luxury p-6 sm:p-8 space-y-5 border border-champagne/35 shadow-luxury-gold">
         <div class="flex items-center justify-between text-xs">
-          <span class="text-concrete/70 uppercase">Starting Price</span>
-          <span class="text-champagne font-mono font-medium">Price On Request</span>
+          <span class="text-concrete/70 uppercase font-mono">Starting Price</span>
+          <span class="text-champagne font-mono font-semibold">Price On Request</span>
         </div>
         <div class="flex items-center justify-between text-xs">
-          <span class="text-concrete/70 uppercase">MahaRERA Status</span>
-          <span class="text-emerald-400 font-mono">P52100045688</span>
+          <span class="text-concrete/70 uppercase font-mono">MahaRERA Status</span>
+          <span class="text-emerald-400 font-mono font-medium flex items-center gap-1.5">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>P52100045688</span>
+          </span>
         </div>
         <button
-          class="residence-cta-btn btn-luxury w-full text-xs"
+          class="residence-cta-btn btn-luxury w-full text-xs glass-sheen"
           data-config={residence.name}
         >
           REQUEST PRICING &amp; AVAILABILITY →
@@ -186,28 +189,28 @@ const residenceKeywords = [
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Flooring &amp; Deck Finishes</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Flooring &amp; Deck Finishes</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.flooring}</p>
         </div>
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Doors &amp; Fenestration</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Doors &amp; Fenestration</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.doorsWindows}</p>
         </div>
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Kitchen &amp; Utility</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Kitchen &amp; Utility</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.kitchen}</p>
         </div>
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Bathrooms &amp; Sanitaries</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Bathrooms &amp; Sanitaries</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.bathrooms}</p>
         </div>
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Electrical &amp; EV Provision</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Electrical &amp; EV Provision</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.electrical}</p>
         </div>
-        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
-          <span class="text-[10px] uppercase font-mono text-champagne">Home Automation &amp; Biometrics</span>
+        <div class="p-6 glass-card-luxury space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne tracking-wider">Home Automation &amp; Biometrics</span>
           <p class="text-xs text-concrete leading-relaxed">{residence.specifications.homeAutomation}</p>
         </div>
       </div>
