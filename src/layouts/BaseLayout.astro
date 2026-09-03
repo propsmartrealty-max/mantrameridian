@@ -5,6 +5,7 @@ import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro'
 import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
 import { projectData } from '../data/project';
 import { defaultMetaKeywords } from '../data/keywords';
+import { aggregateRatingData, verifiedReviews } from '../data/reviews';
 import '../styles/global.css';
 
 interface Props {
@@ -74,6 +75,14 @@ const baseSchema = customSchema || {
         "longitude": projectData.coordinates.longitude
       },
       "priceRange": "₹ 85 Lakhs - ₹ 3.50 Cr",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -109,6 +118,30 @@ const baseSchema = customSchema || {
       "hasMap": projectData.googleMapsUrl,
       "numberOfBedrooms": "2, 3, 4",
       "petsAllowed": true,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
+      "review": verifiedReviews.map((rev) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": rev.author
+        },
+        "datePublished": rev.date,
+        "name": rev.title,
+        "reviewBody": rev.body,
+        "reviewRating": {
+          "@type": "Rating",
+          "bestRating": 5,
+          "ratingValue": rev.rating,
+          "worstRating": 1
+        }
+      })),
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",

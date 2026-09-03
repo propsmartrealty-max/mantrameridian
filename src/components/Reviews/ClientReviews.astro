@@ -1,0 +1,187 @@
+---
+import { aggregateRatingData, verifiedReviews } from '../../data/reviews';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  limit?: number;
+}
+
+const {
+  title = "Verified Resident & Investor Reviews.",
+  subtitle = "Direct feedback from senior executives, doctors, and NRI homeowners who have selected Mantra Meridian Riverside Balewadi.",
+  limit = 4
+} = Astro.props;
+
+const displayReviews = limit ? verifiedReviews.slice(0, limit) : verifiedReviews;
+---
+
+<section
+  id="reviews"
+  class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10 relative overflow-hidden"
+  itemscope
+  itemtype="https://schema.org/ApartmentComplex"
+>
+  {/* Ambient Warm Glow */}
+  <div class="absolute top-1/2 left-0 w-96 h-96 bg-champagne/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+  <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+    
+    {/* Section Header */}
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl space-y-3">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+          <span class="label-architectural text-xs text-champagne">VERIFIED HOMEBUYER ASSESSMENTS</span>
+        </div>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          {title}<br />
+          <span class="text-champagne font-light italic">The Living Experience.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          {subtitle}
+        </p>
+      </div>
+
+      {/* Google 5-Star Aggregate Rating Box */}
+      <div
+        class="glass-card-luxury p-5 border border-champagne/35 shadow-glow flex items-center gap-5 shrink-0 self-start md:self-auto"
+        itemprop="aggregateRating"
+        itemscope
+        itemtype="https://schema.org/AggregateRating"
+      >
+        <meta itemprop="bestRating" content="5" />
+        <meta itemprop="worstRating" content="1" />
+        
+        <div class="text-center border-r border-white/10 pr-5">
+          <div class="text-3xl sm:text-4xl font-serif text-champagne font-bold" itemprop="ratingValue">
+            {aggregateRatingData.ratingValue}
+          </div>
+          <div class="flex items-center justify-center gap-1 text-champagne text-xs mt-1">
+            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+          </div>
+          <div class="text-[10px] font-mono text-concrete/70 mt-1 uppercase">
+            Out of 5.0
+          </div>
+        </div>
+
+        <div class="space-y-1 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+            <span class="text-architectural-white font-medium">Google Verified Rating</span>
+          </div>
+          <div class="text-concrete font-mono text-[11px]">
+            Based on <strong class="text-champagne font-semibold" itemprop="ratingCount">{aggregateRatingData.ratingCount}</strong> ratings
+          </div>
+          <div class="text-[10px] text-concrete/60 font-mono">
+            <span itemprop="reviewCount">{aggregateRatingData.reviewCount}</span> detailed homeowner reviews
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Rating Distribution & Credibility Badges Bar */}
+    <div class="p-6 bg-obsidian-surface border border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+      <div class="w-full lg:w-1/2 space-y-2">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-champagne block">
+          RATING SCORE DISTRIBUTION (384 VERIFIED EVALUATIONS)
+        </span>
+        <div class="space-y-1.5">
+          {aggregateRatingData.distribution.slice(0, 2).map((dist) => (
+            <div class="flex items-center gap-3 text-xs font-mono">
+              <span class="w-12 text-concrete">{dist.stars} Star</span>
+              <div class="flex-grow h-2 bg-obsidian-border rounded-full overflow-hidden">
+                <div
+                  class="h-full bg-champagne transition-all duration-500"
+                  style={`width: ${dist.percentage}%`}
+                />
+              </div>
+              <span class="w-10 text-right text-champagne font-medium">{dist.percentage}%</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 flex flex-wrap items-center justify-start lg:justify-end gap-3 text-xs font-mono text-concrete/80">
+        <div class="px-3.5 py-2 glass-pill border border-emerald-500/30 text-emerald-400 flex items-center gap-2">
+          <span class="text-xs">✓</span>
+          <span>100% MahaRERA Sanctioned (P52100045688)</span>
+        </div>
+        <div class="px-3.5 py-2 glass-pill border border-champagne/30 text-champagne flex items-center gap-2">
+          <span class="text-xs">★</span>
+          <span>Google Knowledge Graph Entity /g/11x7zq3s0c</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Testimonials Review Cards Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {displayReviews.map((rev) => (
+        <article
+          class="glass-card-luxury p-8 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between space-y-6 relative group"
+          itemprop="review"
+          itemscope
+          itemtype="https://schema.org/Review"
+        >
+          <div class="space-y-4">
+            {/* Review Header: Stars, Date, Config */}
+            <div class="flex items-center justify-between border-b border-white/10 pb-3">
+              <div
+                class="flex items-center gap-1 text-champagne text-sm"
+                itemprop="reviewRating"
+                itemscope
+                itemtype="https://schema.org/Rating"
+              >
+                <meta itemprop="worstRating" content="1" />
+                <meta itemprop="bestRating" content="5" />
+                <meta itemprop="ratingValue" content={String(rev.rating)} />
+                {Array.from({ length: rev.rating }).map(() => (
+                  <span>★</span>
+                ))}
+              </div>
+              <time
+                class="text-[11px] font-mono text-concrete/60"
+                itemprop="datePublished"
+                datetime={rev.date}
+              >
+                {rev.date}
+              </time>
+            </div>
+
+            {/* Review Title */}
+            <h3 class="font-serif text-xl text-architectural-white group-hover:text-champagne transition-colors leading-snug">
+              “{rev.title}”
+            </h3>
+
+            {/* Review Content */}
+            <p
+              class="text-xs sm:text-sm text-concrete/90 leading-relaxed font-sans"
+              itemprop="reviewBody"
+            >
+              {rev.body}
+            </p>
+          </div>
+
+          {/* Review Author Footnote */}
+          <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+            <div itemprop="author" itemscope itemtype="https://schema.org/Person">
+              <div class="text-sm font-serif text-architectural-white font-medium" itemprop="name">
+                {rev.author}
+              </div>
+              <div class="text-xs text-concrete/70 font-sans">
+                {rev.role} • <span class="text-champagne/80 font-mono">{rev.location}</span>
+              </div>
+            </div>
+
+            {rev.configurationPurchased && (
+              <span class="hidden sm:inline-block text-[10px] font-mono px-2.5 py-1 border border-white/10 text-concrete bg-white/5">
+                {rev.configurationPurchased}
+              </span>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+
+  </div>
+</section>

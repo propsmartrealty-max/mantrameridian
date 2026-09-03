@@ -17,6 +17,7 @@ import VirtualWalkthrough from '../components/VirtualTour/VirtualWalkthrough';
 import EMICalculator from '../components/Finance/EMICalculator';
 import ConstructionTracker from '../components/Construction/ConstructionTracker.astro';
 import InfrastructureGrowthRadar from '../components/Location/InfrastructureGrowthRadar.astro';
+import ClientReviews from '../components/Reviews/ClientReviews.astro';
 import { residencesData } from '../data/residences';
 import { journalArticles } from '../data/journal';
 import { projectData } from '../data/project';
@@ -393,6 +394,9 @@ export const prerender = true;
 
     </div>
   </section>
+
+  {/* 14B. Verified Resident & Investor Reviews (Google 5-Star Snippet Source) */}
+  <ClientReviews />
 
   {/* 15. Contextual FAQ Section with Schema */}
   <section class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">

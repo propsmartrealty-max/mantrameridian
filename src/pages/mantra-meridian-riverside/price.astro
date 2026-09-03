@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
 import EMICalculator from '../../components/Finance/EMICalculator';
+import ClientReviews from '../../components/Reviews/ClientReviews.astro';
 
 export const prerender = true;
 
@@ -274,6 +275,13 @@ const priceFaqSchema = {
         ))}
       </div>
     </div>
+
+    {/* Verified Resident Reviews on Pricing & Delivery */}
+    <ClientReviews
+      limit={2}
+      title="Homebuyer Reviews on Value & Delivery."
+      subtitle="Transparent assessments from verified purchasers across 2, 3, and 4 BHK configurations."
+    />
 
     {/* Statutory RERA Verification Card */}
     <ReraVerificationCard />
