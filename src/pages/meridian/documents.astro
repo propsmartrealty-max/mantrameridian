@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DocumentCentre from '../../components/Documents/DocumentCentre.astro';
+import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Project Document Library | Mantra Meridian Riverside, Balewadi"
+  description="Access verified architectural brochures, floor plan books, MahaRERA certificates, and technical specifications for Mantra Meridian Riverside, Balewadi."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">DOCUMENT ARCHIVE</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Project Documentation<br />
+        <span class="text-champagne font-light italic">&amp; Technical Schedules.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Download verified architectural monographs, environmental compliance approvals, and high-definition measured drawing portfolios.
+      </p>
+    </div>
+
+    <DocumentCentre />
+    <ReraVerificationCard />
+  </div>
+</BaseLayout>

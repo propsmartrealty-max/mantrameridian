@@ -1,0 +1,10 @@
+---
+import ResidenceDetailView from '../../components/Residences/ResidenceDetailView.astro';
+import { residencesData } from '../../data/residences';
+
+export const prerender = true;
+
+const residence = residencesData.find(r => r.slug === '2-bhk')!;
+---
+
+<ResidenceDetailView residence={residence} />

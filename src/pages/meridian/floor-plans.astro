@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FloorPlanViewer from '../../components/FloorPlan/FloorPlanViewer';
+import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+import FAQAccordion from '../../components/FAQ/FAQAccordion.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Architectural Floor Plans | Mantra Meridian Riverside, Balewadi"
+  description="Explore interactive 2D blueprints & 3D volumes for 2, 3, 4 BHK & 3 BHK Duplex residences at Mantra Meridian Riverside, Balewadi. Verified MahaRERA carpet dimensions."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">ARCHITECTURAL BLUEPRINTS</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Designed for Elegance,<br />
+        <span class="text-champagne font-light italic">Built for Comfort.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Spacious 2, 3 and 4 BHK residences and exclusive 3 BHK duplex apartments nestled along the Mula River. Explore interactive architectural room dimensions and official MahaRERA sanctioned unit plans.
+      </p>
+    </div>
+
+    {/* Interactive Floor Plan Viewer Island */}
+    <FloorPlanViewer client:load defaultResidenceId="3bhk" />
+
+    {/* Statutory RERA Notice */}
+    <ReraVerificationCard />
+
+    {/* FAQ */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">MEASUREMENT QUESTIONS</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Floor Plan FAQs</h2>
+      </div>
+      <FAQAccordion category="configurations" />
+    </div>
+
+  </div>
+</BaseLayout>

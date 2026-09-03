@@ -1,0 +1,16 @@
+name = "mantra-meridian-riverside"
+main = "./dist/_worker.js/index.js"
+compatibility_date = "2024-11-12"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+binding = "ASSETS"
+directory = "./dist"
+
+[observability]
+enabled = true
+
+[vars]
+PROJECT_NAME = "Mantra Meridian Riverside"
+PROJECT_RERA = "P52100045688"
+PROJECT_LOCATION = "Balewadi, Pune"

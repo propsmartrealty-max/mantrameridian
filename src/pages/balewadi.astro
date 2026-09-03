@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LocationIntelligence from '../components/Location/LocationIntelligence';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Balewadi Real Estate Hub | Luxury Apartments & Living in West Pune"
+  description="Comprehensive guide to Balewadi real estate, Balewadi High Street, infrastructure, Metro Line 3, and luxury riverside homes at Mantra Meridian."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-20">
+    
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">WEST PUNE MICROMARKET AUTHORITY</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Balewadi.<br />
+        <span class="text-champagne font-light italic">The Evolution of West Pune.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Balewadi has matured into West Pune’s most coveted residential zip code. Built around wider masterplanned avenues, high-street culture, and natural river borders, it offers a refined lifestyle distinct from congested commercial corridors.
+      </p>
+    </div>
+
+    {/* Key Balewadi Metrics Grid */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">1.2 KM</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">High Street Access</span>
+        <p class="text-[11px] text-concrete/70">Minutes to premier dining, cafes &amp; artisanal bistros.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">14 MIN</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Hinjewadi Phase 1</span>
+        <p class="text-[11px] text-concrete/70">Rapid commute to 400,000+ tech executive workforce.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">LINE 3</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">PMRDA Metro</span>
+        <p class="text-[11px] text-concrete/70">Elevated high-speed transit interchange station.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">75%+</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Open Space Ratio</span>
+        <p class="text-[11px] text-concrete/70">Rare 8-acre riverside estate density at Meridian.</p>
+      </div>
+    </div>
+
+    {/* Editorial Section: The Case for Balewadi */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <div class="lg:col-span-5 space-y-4 sticky top-28">
+        <span class="label-architectural text-xs text-champagne">INVESTMENT INTELLIGENCE</span>
+        <h2 class="font-serif text-4xl text-architectural-white leading-tight">
+          Why Discerning Buyers Choose Balewadi
+        </h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Balewadi stands at the intersection of executive employment, elite education, and cosmopolitan leisure, creating sustained capital demand.
+        </p>
+        <div class="pt-4">
+          <a href="/meridian/residences" class="btn-luxury text-xs">
+            EXPLORE RESIDENCES IN BALEWADI →
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7 space-y-8 text-concrete leading-relaxed text-sm">
+        <div class="p-6 bg-obsidian-card border border-white/10 space-y-2">
+          <h3 class="font-serif text-xl text-architectural-white">1. Masterplanned Infrastructure &amp; Road Widths</h3>
+          <p class="text-xs text-concrete/80">
+            Unlike legacy pockets developed without long-term foresight, Balewadi features 24- to 36-metre arterial roads, well-planned stormwater drainage, and underground utility conduits.
+          </p>
+        </div>
+
+        <div class="p-6 bg-obsidian-card border border-white/10 space-y-2">
+          <h3 class="font-serif text-xl text-architectural-white">2. Balewadi High Street: Cultural Center of West Pune</h3>
+          <p class="text-xs text-concrete/80">
+            A celebrated boulevard of culinary innovation hosting international gastronomic concepts, specialty coffee roasters, and luxury boutiques, providing a walking lifestyle rare in Pune.
+          </p>
+        </div>
+
+        <div class="p-6 bg-obsidian-card border border-white/10 space-y-2">
+          <h3 class="font-serif text-xl text-architectural-white">3. The Riverside Advantage at Mantra Meridian</h3>
+          <p class="text-xs text-concrete/80">
+            Positioned along Balewadi Village Road directly beside the Mula river, Meridian offers an irreplaceable riparian buffer ensuring permanent natural vistas and microclimatic cooling.
+          </p>
+        </div>
+
+        <div class="p-6 bg-obsidian-card border border-white/10 space-y-2">
+          <h3 class="font-serif text-xl text-architectural-white">4. Planned Wakad Bridge &amp; Metro Line 3</h3>
+          <p class="text-xs text-concrete/80">
+            The planned bridge linking Balewadi to Wakad across the river corridor, coupled with PMRDA Metro Line 3, delivers seamless multi-directional transit to Hinjewadi and Baner while preserving the seclusion of an 8-acre riverside estate.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Location Intelligence Component */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">TRANSIT MAPPING</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Balewadi Transit Radar</h2>
+      </div>
+      <LocationIntelligence client:visible />
+    </div>
+
+    {/* Contextual FAQs */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">MICROMARKET QUESTIONS</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Balewadi Real Estate FAQs</h2>
+      </div>
+      <FAQAccordion category="location" />
+    </div>
+
+  </div>
+</BaseLayout>

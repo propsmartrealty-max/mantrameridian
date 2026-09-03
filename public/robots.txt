@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://mantrameridianriverside.com/sitemap-index.xml

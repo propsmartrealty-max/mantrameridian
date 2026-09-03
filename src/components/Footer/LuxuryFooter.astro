@@ -1,0 +1,149 @@
+---
+import { projectData } from '../../data/project';
+import DualBrandLockup from '../Brand/DualBrandLockup.astro';
+---
+
+<footer class="bg-obsidian-deep border-t border-white/10 pt-20 pb-32 lg:pb-20 text-concrete">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    {/* Upper Brand Section */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-16 border-b border-white/10">
+      
+      {/* Brand Column (Cols 1-5) */}
+      <div class="lg:col-span-5 space-y-6">
+        <div>
+          <DualBrandLockup variant="footer" showSubtitle={true} />
+        </div>
+
+        <p class="text-xs text-concrete/80 leading-relaxed max-w-md">
+          A rare 8-acre contemporary residential sanctuary conceived along the tranquil banks of the Mula river. Curated for those who seek space, light, and architectural stillness in West Pune.
+        </p>
+
+        <div class="pt-2">
+          <button
+            id="footer-presentation-trigger"
+            class="px-5 py-2.5 text-xs tracking-[0.14em] uppercase font-medium bg-architectural-white text-obsidian hover:bg-champagne transition-all duration-300 inline-flex items-center gap-2 shadow-sm"
+          >
+            <span>REQUEST A PRIVATE PRESENTATION</span>
+            <span>→</span>
+          </button>
+        </div>
+      </div>
+
+      {/* Nav Cluster 1: Residences & Spaces (Cols 6-8) */}
+      <div class="lg:col-span-3 space-y-4">
+        <h4 class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Residences</h4>
+        <ul class="space-y-2.5 text-xs text-concrete/70">
+          <li><a href="/meridian/2-bhk" class="hover:text-champagne transition-colors">2 BHK Contemporary Homes</a></li>
+          <li><a href="/meridian/3-bhk" class="hover:text-champagne transition-colors">3 BHK Riverside Residences</a></li>
+          <li><a href="/meridian/3-bhk-duplex" class="hover:text-champagne transition-colors">3 BHK Signature Sky Duplexes</a></li>
+          <li><a href="/meridian/4-bhk" class="hover:text-champagne transition-colors">4 BHK Grand Riverside Estates</a></li>
+          <li><a href="/meridian/floor-plans" class="hover:text-champagne transition-colors">Complete Floor Plan Portfolio</a></li>
+          <li><a href="/meridian/masterplan" class="hover:text-champagne transition-colors">8-Acre Estate Masterplan</a></li>
+        </ul>
+      </div>
+
+      {/* Nav Cluster 2: Lifestyle & SEO Hubs (Cols 9-10) */}
+      <div class="lg:col-span-2 space-y-4">
+        <h4 class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Discovery</h4>
+        <ul class="space-y-2.5 text-xs text-concrete/70">
+          <li><a href="/meridian/riverside" class="hover:text-champagne transition-colors">The Riverside Story</a></li>
+          <li><a href="/meridian/amenities" class="hover:text-champagne transition-colors">Amenity Atlas (30+ Spaces)</a></li>
+          <li><a href="/meridian/location" class="hover:text-champagne transition-colors">Location Intelligence</a></li>
+          <li><a href="/meridian/gallery" class="hover:text-champagne transition-colors">Visual Archive</a></li>
+          <li><a href="/meridian/journal" class="hover:text-champagne transition-colors">The Meridian Journal</a></li>
+          <li><a href="/balewadi" class="hover:text-champagne transition-colors">Balewadi Real Estate Hub</a></li>
+          <li><a href="/west-pune" class="hover:text-champagne transition-colors">West Pune Luxury Guide</a></li>
+        </ul>
+      </div>
+
+      {/* Nav Cluster 3: Documentation & Compliance (Cols 11-12) */}
+      <div class="lg:col-span-2 space-y-4">
+        <h4 class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Verification</h4>
+        <ul class="space-y-2.5 text-xs text-concrete/70">
+          <li><a href="/meridian/rera" class="hover:text-champagne transition-colors">MahaRERA: {projectData.reraNumber}</a></li>
+          <li><a href="/meridian/documents" class="hover:text-champagne transition-colors">Document Library</a></li>
+          <li><a href={projectData.reraRegistrationUrl} target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors">Official MahaRERA Portal ↗</a></li>
+          <li><a href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`} class="hover:text-champagne transition-colors">Concierge Desk: {projectData.contact.phone}</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    {/* Verified RERA & Legal Compliance Strip with Official QR Code */}
+    <div class="py-10 border-b border-white/10 space-y-6 text-xs text-concrete/60 leading-relaxed">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 p-6 bg-obsidian-surface/60 border border-champagne/20">
+        
+        <div class="flex items-center gap-5">
+          {/* Official MahaRERA QR Code */}
+          <div class="w-20 h-20 bg-white p-1.5 shrink-0 border border-champagne/40 flex items-center justify-center">
+            <img
+              src="/assets/mantra-meridian-rera-qr.webp"
+              alt={`MahaRERA QR ${projectData.reraNumber}`}
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <div class="flex items-center gap-2">
+              <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              <span class="text-architectural-white font-semibold tracking-wider font-mono uppercase text-sm">
+                MAHARERA: {projectData.reraNumber}
+              </span>
+            </div>
+            <p class="text-xs text-concrete/80">Scan QR or verify project details on the Maharashtra Real Estate Regulatory Authority portal.</p>
+          </div>
+        </div>
+
+        <a 
+          href={projectData.reraRegistrationUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="btn-luxury-outline text-xs whitespace-nowrap"
+        >
+          <span>VERIFY AT MAHARERA PORTAL</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      {/* Corporate Offices Address Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+        {projectData.offices.map((office) => (
+          <div class="p-4 bg-obsidian-card/40 border border-white/5 space-y-1">
+            <span class="text-[10px] font-mono text-champagne uppercase block">{office.city}</span>
+            <div class="text-xs text-architectural-white font-medium">{office.name}</div>
+            <p class="text-[11px] text-concrete/70 leading-snug">{office.address}</p>
+          </div>
+        ))}
+      </div>
+
+      <p class="text-[11px] pt-2 leading-relaxed text-concrete/70">
+        <strong class="text-concrete/90">Statutory Legal Disclaimer:</strong> {projectData.disclaimer}
+      </p>
+    </div>
+
+    {/* Bottom Copyright & Colophon */}
+    <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-concrete/50">
+      <div>
+        © {new Date().getFullYear()} Mantra Properties. All Rights Reserved. Mantra Meridian Riverside (`MMR-BL-001`).
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="/meridian/documents" class="hover:text-concrete transition-colors">Privacy Policy</a>
+        <a href="/meridian/documents" class="hover:text-concrete transition-colors">Terms of Use</a>
+        <a href="/meridian/rera" class="hover:text-concrete transition-colors">RERA Compliance</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<script>
+  const footerBtn = document.getElementById('footer-presentation-trigger');
+  footerBtn?.addEventListener('click', () => {
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config: 'General Inquiries', intent: 'PRIVATE PRESENTATION' }
+      })
+    );
+  });
+</script>

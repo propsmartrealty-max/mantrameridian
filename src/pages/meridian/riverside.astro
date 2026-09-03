@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import RiversideExperience from '../../components/Riverside/RiversideExperience.astro';
+import DesignPhilosophy from '../../components/Architecture/DesignPhilosophy.astro';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="The Riverside Experience | Mantra Meridian Riverside, Balewadi"
+  description="Discover riverside luxury at Mantra Meridian, Balewadi. 500m private boardwalk along the Mula river, microclimatic cooling, and permanent riparian green views."
+>
+  <div class="pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">WHERE NATURE MEETS URBAN SOPHISTICATION</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Life Beside<br />
+        <span class="text-champagne font-light italic">Something Timeless.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Nestled steps from the Mula River in Balewadi. Meridian at Riverside Balewadi is an 8-acre premium development designed for those who seek a perfect blend of natural serenity and urban convenience.
+      </p>
+    </div>
+  </div>
+
+  <RiversideExperience />
+  <DesignPhilosophy />
+</BaseLayout>

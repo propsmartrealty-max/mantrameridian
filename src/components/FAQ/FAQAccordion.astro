@@ -1,0 +1,55 @@
+---
+import { faqsData, type FAQItem } from '../../data/faqs';
+
+interface Props {
+  category?: string;
+  limit?: number;
+}
+
+const { category, limit } = Astro.props;
+
+let displayFaqs: FAQItem[] = category
+  ? faqsData.filter((f) => f.category === category)
+  : faqsData;
+
+if (limit) {
+  displayFaqs = displayFaqs.slice(0, limit);
+}
+
+// JSON-LD Schema for FAQPage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": displayFaqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }))
+};
+---
+
+<section class="w-full space-y-6">
+  {/* Inject JSON-LD Schema */}
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(faqSchema)} />
+
+  <div class="space-y-3">
+    {displayFaqs.map((faq) => (
+      <details class="group bg-obsidian-card border border-white/10 hover:border-champagne/30 transition-all">
+        <summary class="flex items-center justify-between p-5 md:p-6 cursor-pointer list-none select-none text-architectural-white group-hover:text-champagne-light transition-colors">
+          <span class="font-serif text-lg md:text-xl pr-4">
+            {faq.question}
+          </span>
+          <span class="text-champagne transition-transform duration-300 group-open:rotate-45 text-xl font-light shrink-0">
+            +
+          </span>
+        </summary>
+        <div class="px-5 pb-6 md:px-6 md:pb-6 text-xs text-concrete leading-relaxed border-t border-white/5 pt-4">
+          <p>{faq.answer}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+</section>

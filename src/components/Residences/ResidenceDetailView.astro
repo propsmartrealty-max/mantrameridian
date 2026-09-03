@@ -1,0 +1,259 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FloorPlanViewer from '../FloorPlan/FloorPlanViewer';
+import ReraVerificationCard from '../Trust/ReraVerificationCard.astro';
+import FAQAccordion from '../FAQ/FAQAccordion.astro';
+import type { ResidenceConfig } from '../../data/residences';
+import { residencesData } from '../../data/residences';
+
+interface Props {
+  residence: ResidenceConfig;
+}
+
+const { residence } = Astro.props;
+
+const otherResidences = residencesData.filter(r => r.id !== residence.id);
+
+// SEO Schema for this Residence
+const residenceSchema = {
+  "@context": "https://schema.org",
+  "@type": "SingleFamilyResidence",
+  "name": `${residence.name} - Mantra Meridian Riverside`,
+  "description": residence.overview,
+  "numberOfBedrooms": residence.type,
+  "numberOfBathroomsTotal": residence.bathrooms,
+  "floorSize": {
+    "@type": "QuantitativeValue",
+    "value": residence.carpetAreaRange
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Balewadi Village Road, beside Mula River",
+    "addressLocality": "Balewadi",
+    "addressRegion": "Maharashtra",
+    "postalCode": "411045",
+    "addressCountry": "IN"
+  }
+};
+---
+
+<BaseLayout
+  title={`${residence.name} | Mantra Meridian Riverside, Balewadi`}
+  description={`${residence.name} at Mantra Meridian Riverside, Balewadi. Carpet Area: ${residence.carpetAreaRange}. ${residence.subtitle} MahaRERA: P52100045688.`}
+  customSchema={residenceSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-20">
+    
+    {/* Hero Presentation */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+      <div class="lg:col-span-8 space-y-4">
+        <div class="inline-flex items-center gap-2 px-3 py-1 border border-champagne/30 bg-obsidian-surface text-champagne text-xs uppercase tracking-widest font-mono">
+          <span>{residence.type} CONFIGURATION</span>
+          <span>•</span>
+          <span>{residence.carpetAreaRange} CARPET</span>
+        </div>
+        <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl text-architectural-white leading-tight">
+          {residence.name}
+        </h1>
+        <p class="text-xs sm:text-sm text-champagne font-mono">
+          {residence.balconyType} • {residence.aspect}
+        </p>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed max-w-2xl pt-2">
+          {residence.overview}
+        </p>
+      </div>
+
+      <div class="lg:col-span-4 bg-obsidian-card border border-champagne/30 p-6 space-y-4">
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-concrete/70 uppercase">Starting Price</span>
+          <span class="text-champagne font-mono font-medium">Price On Request</span>
+        </div>
+        <div class="flex items-center justify-between text-xs">
+          <span class="text-concrete/70 uppercase">MahaRERA Status</span>
+          <span class="text-emerald-400 font-mono">P52100045688</span>
+        </div>
+        <button
+          class="residence-cta-btn btn-luxury w-full text-xs"
+          data-config={residence.name}
+        >
+          REQUEST PRICING &amp; AVAILABILITY →
+        </button>
+      </div>
+    </div>
+
+    {/* Authentic Residence Render Banner */}
+    <div class="relative w-full aspect-[16/9] sm:aspect-[21/9] min-h-[280px] sm:min-h-[400px] overflow-hidden border border-white/10 group shadow-luxury">
+      <img
+        src={residence.renderImage}
+        alt={`${residence.name} Architectural Render`}
+        class="w-full h-full object-cover filter brightness-95 group-hover:scale-105 transition-transform duration-700"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-transparent opacity-80" />
+      
+      <div class="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 flex flex-wrap items-center gap-3">
+        <div class="glass-dark px-4 py-2 border border-champagne/30">
+          <span class="label-architectural text-[10px] text-champagne">
+            ARCHITECTURAL RENDER • {residence.type.toUpperCase()}
+          </span>
+        </div>
+        {residence.virtualTourUrl && (
+          <a
+            href={residence.virtualTourUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-luxury text-xs inline-flex items-center gap-2"
+          >
+            <span>LAUNCH 3D / VIDEO TOUR</span>
+            <span>↗</span>
+          </a>
+        )}
+      </div>
+    </div>
+
+    {/* Architectural Floor Plan Viewer */}
+    <div class="space-y-6">
+      <div class="border-b border-white/10 pb-4 flex items-center justify-between">
+        <div>
+          <span class="label-architectural text-xs text-champagne">VERIFIED BLUEPRINT</span>
+          <h2 class="font-serif text-3xl text-architectural-white mt-1">Interactive Floor Plan</h2>
+        </div>
+        <button
+          class="residence-download-btn btn-luxury-outline text-xs hidden sm:inline-flex"
+          data-config={residence.name}
+        >
+          DOWNLOAD BLUEPRINT PDF ↓
+        </button>
+      </div>
+
+      <FloorPlanViewer client:load defaultResidenceId={residence.id} />
+    </div>
+
+    {/* Room by Room Dimensions Table */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">CHAMBER SCHEDULE</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Measured Room Dimensions</h2>
+      </div>
+
+      <div class="overflow-x-auto border border-white/10 bg-obsidian-card">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-obsidian-surface border-b border-white/10 text-concrete/70 uppercase font-mono text-[10px]">
+            <tr>
+              <th class="p-4">Chamber</th>
+              <th class="p-4">Dimensions</th>
+              <th class="p-4">Area (Sq.Ft.)</th>
+              <th class="p-4">Spatial Character</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-concrete">
+            {residence.rooms.map((room) => (
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="p-4 font-medium text-architectural-white">{room.name}</td>
+                <td class="p-4 font-mono text-champagne">{room.dimensions}</td>
+                <td class="p-4 font-mono">{room.areaSqFt} sq.ft.</td>
+                <td class="p-4 text-concrete/80">{room.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Technical Specifications Schedule */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">MATERIALS &amp; FIXTURES</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Technical Specifications</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Flooring &amp; Deck Finishes</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.flooring}</p>
+        </div>
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Doors &amp; Fenestration</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.doorsWindows}</p>
+        </div>
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Kitchen &amp; Utility</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.kitchen}</p>
+        </div>
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Bathrooms &amp; Sanitaries</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.bathrooms}</p>
+        </div>
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Electrical &amp; EV Provision</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.electrical}</p>
+        </div>
+        <div class="p-5 bg-obsidian-card border border-white/10 space-y-2">
+          <span class="text-[10px] uppercase font-mono text-champagne">Home Automation &amp; Biometrics</span>
+          <p class="text-xs text-concrete leading-relaxed">{residence.specifications.homeAutomation}</p>
+        </div>
+      </div>
+    </div>
+
+    {/* RERA Card */}
+    <ReraVerificationCard />
+
+    {/* Contextual FAQs */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">RESIDENCE QUESTIONS</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Frequently Asked Questions</h2>
+      </div>
+      <FAQAccordion category="configurations" />
+    </div>
+
+    {/* Other Configurations Navigation */}
+    <div class="space-y-6 pt-12 border-t border-white/10">
+      <div class="flex justify-between items-end">
+        <div>
+          <span class="label-architectural text-xs text-champagne">PORTFOLIO EXPLORATION</span>
+          <h3 class="font-serif text-3xl text-architectural-white mt-1">Other Available Residences</h3>
+        </div>
+        <a href="/meridian/residences" class="text-xs text-champagne hover:underline uppercase tracking-wider font-mono">
+          All Configurations →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {otherResidences.map((other) => (
+          <a
+            href={`/meridian/${other.slug}`}
+            class="group p-6 bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all flex flex-col justify-between"
+          >
+            <div>
+              <span class="label-architectural text-[9px] text-champagne">{other.type}</span>
+              <h4 class="font-serif text-xl text-architectural-white group-hover:text-champagne-light transition-colors mt-1">
+                {other.name}
+              </h4>
+              <p class="text-xs text-concrete/70 mt-2 line-clamp-2">{other.subtitle}</p>
+            </div>
+            <div class="pt-4 border-t border-white/5 mt-4 flex justify-between items-center text-xs">
+              <span class="font-mono text-concrete/60">{other.carpetAreaRange}</span>
+              <span class="text-champagne font-medium">Explore →</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>
+
+<script>
+  const handlePresentation = (e: Event) => {
+    const target = e.currentTarget as HTMLElement;
+    const config = target.getAttribute('data-config') || 'Residence';
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config, intent: 'RESIDENCE PAGE ENQUIRY' }
+      })
+    );
+  };
+
+  document.querySelectorAll('.residence-cta-btn').forEach(btn => btn.addEventListener('click', handlePresentation));
+  document.querySelectorAll('.residence-download-btn').forEach(btn => btn.addEventListener('click', handlePresentation));
+</script>

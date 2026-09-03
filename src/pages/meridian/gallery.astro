@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VisualArchive from '../../components/Gallery/VisualArchive';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="The Visual Archive | Mantra Meridian Riverside, Balewadi"
+  description="Immersive architectural photography, interior living voids, riverside dusk perspectives, and landscape monographs for Mantra Meridian Riverside, Balewadi."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">AN ADDRESS THAT SAYS YOU HAVE ARRIVED</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        The Meridian<br />
+        <span class="text-champagne font-light italic">Visual Archive.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        A photographic monograph of light, volume, and riverside living. Explore 23 official project renders showcasing tower elevations, double-height duplex salons, master suites, and the 8-acre riverside podium.
+      </p>
+    </div>
+
+    <VisualArchive client:load />
+  </div>
+</BaseLayout>

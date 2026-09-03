@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { journalArticles } from '../../../data/journal';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="The Meridian Journal | Architecture, Living & West Pune Real Estate"
+  description="Essays, architectural criticism, and market intelligence on Balewadi luxury real estate, riverside biophilic living, and West Pune property investment."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">ESSAYS &amp; INTELLIGENCE</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        The Meridian<br />
+        <span class="text-champagne font-light italic">Journal.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Critical perspectives on contemporary architecture, urban mobility along the Hinjewadi-Balewadi corridor, and the psychological value of waterside living.
+      </p>
+    </div>
+
+    {/* Articles Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {journalArticles.map((art) => (
+        <a
+          href={`/meridian/journal/${art.slug}`}
+          class="group bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-500 flex flex-col justify-between overflow-hidden"
+        >
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img
+              src={art.heroImage}
+              alt={art.title}
+              class="w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute top-3 left-3 text-[9px] font-mono text-champagne px-2 py-0.5 bg-black/70 border border-champagne/20">
+              {art.category.toUpperCase()}
+            </div>
+          </div>
+
+          <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] text-concrete/60 font-mono">{art.publishDate} • {art.readTime}</div>
+              <h2 class="font-serif text-xl text-architectural-white group-hover:text-champagne-light transition-colors mt-1 leading-snug">
+                {art.title}
+              </h2>
+              <p class="text-xs text-concrete/80 leading-relaxed mt-2">
+                {art.summary}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-white/5 flex items-center gap-1.5 text-xs text-champagne font-medium">
+              <span>READ ESSAY</span>
+              <span>→</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+
+  </div>
+</BaseLayout>

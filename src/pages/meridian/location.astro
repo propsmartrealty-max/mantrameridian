@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import LocationIntelligence from '../../components/Location/LocationIntelligence';
+import { locationDestinations } from '../../data/location';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Balewadi Location Intelligence | Mantra Meridian Riverside"
+  description="Explore Balewadi location intelligence for Mantra Meridian Riverside. 3 mins to Balewadi High Street, 14 mins to Hinjewadi IT Park Phase 1, 5 mins to Metro."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">WEST PUNE CONNECTIVITY</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        At the Crossroads of<br />
+        <span class="text-champagne font-light italic">Nature &amp; Connectivity.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Nestled along Balewadi Village Road steps away from the Mula River. Meridian at Riverside Balewadi is an 8-acre premium development situated 5 minutes from Balewadi High Street, close to the proposed metro, and seamlessly linked to Wakad via a planned bridge.
+      </p>
+    </div>
+
+    {/* Location Intelligence Interactive Map Island */}
+    <LocationIntelligence client:load />
+
+    {/* Complete Connectivity Grid */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">VERIFIED TRANSIT MATRIX</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Distances &amp; Travel Times</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {locationDestinations.map((dest) => (
+          <div class="p-5 bg-obsidian-card border border-white/10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="label-architectural text-[9px] text-champagne">{dest.categoryLabel}</span>
+              <span class="text-xs font-mono text-champagne font-semibold">{dest.driveTimeMins}</span>
+            </div>
+            <h3 class="font-serif text-lg text-architectural-white">{dest.name}</h3>
+            <p class="text-xs text-concrete/80 leading-relaxed">{dest.description}</p>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-[10px] font-mono text-concrete/60">
+              <span>Distance: {dest.distanceKm}</span>
+              <span>Updated: {dest.lastUpdated}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</BaseLayout>

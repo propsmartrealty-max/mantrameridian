@@ -1,0 +1,77 @@
+---
+import { projectDocuments } from '../../data/documents';
+---
+
+<div class="w-full bg-obsidian border border-white/10 p-6 md:p-10 space-y-8">
+  <div class="max-w-2xl">
+    <span class="label-architectural text-xs text-champagne">TRANSPARENCY &amp; COMPLIANCE</span>
+    <h3 class="font-serif text-3xl text-architectural-white mt-1">Project Document Centre</h3>
+    <p class="text-xs text-concrete mt-2 leading-relaxed">
+      We believe true architectural luxury is anchored in complete statutory clarity. Inspect certified government filings, technical specification catalogs, and high-resolution layout portfolios without friction.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    {projectDocuments.map((doc) => (
+      <div class="p-5 bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all flex flex-col justify-between space-y-4">
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="label-architectural text-[9px] text-champagne">
+              {doc.category.toUpperCase()}
+            </span>
+            <span class="text-[10px] font-mono text-concrete/60">
+              {doc.fileSize}
+            </span>
+          </div>
+
+          <h4 class="font-serif text-lg text-architectural-white">
+            {doc.title}
+          </h4>
+
+          <p class="text-xs text-concrete/80 leading-relaxed">
+            {doc.description}
+          </p>
+        </div>
+
+        <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+          <span class="text-[10px] text-concrete/60 font-mono">
+            {doc.lastUpdated}
+          </span>
+
+          {doc.externalVerificationUrl ? (
+            <a
+              href={doc.externalVerificationUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-1 text-champagne hover:underline font-medium uppercase tracking-wider text-[11px]"
+            >
+              <span>Verify Portal</span>
+              <span>↗</span>
+            </a>
+          ) : (
+            <button
+              class="doc-request-btn inline-flex items-center gap-1 text-champagne hover:underline font-medium uppercase tracking-wider text-[11px]"
+              data-title={doc.title}
+            >
+              <span>Download PDF</span>
+              <span>↓</span>
+            </button>
+          )}
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.doc-request-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const docTitle = btn.getAttribute('data-title') || 'Project Document';
+      window.dispatchEvent(
+        new CustomEvent('open-private-presentation', {
+          detail: { config: docTitle, intent: 'DOWNLOAD DOCUMENTATION' }
+        })
+      );
+    });
+  });
+</script>

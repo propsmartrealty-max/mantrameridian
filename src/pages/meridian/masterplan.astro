@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import MasterplanExplorer from '../../components/Masterplan/MasterplanExplorer';
+import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+import { masterplanZones } from '../../data/masterplan';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="8-Acre Masterplan | Mantra Meridian Riverside, Balewadi"
+  description="Explore the 8-acre riverside masterplan of Mantra Meridian in Balewadi, Pune. Staggered residential towers, central clubhouse, and 500m Mula promenade."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">ESTATE BLUEPRINT</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        A Community<br />
+        <span class="text-champagne font-light italic">Designed as a Whole.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        The masterplan for Mantra Meridian Riverside coordinates four iconic living towers, a 20,000 sq.ft. multi-level clubhouse, tournament sports facilities, and 75%+ open green landscapes along the banks of the Mula river.
+      </p>
+    </div>
+
+    {/* Masterplan Explorer Island */}
+    <MasterplanExplorer client:load />
+
+    {/* Zoning Breakdown */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-6">
+      {masterplanZones.slice(0, 4).map((zone) => (
+        <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
+          <span class="label-architectural text-[9px] text-champagne">{zone.category.toUpperCase()}</span>
+          <h3 class="font-serif text-xl text-architectural-white">{zone.name}</h3>
+          <p class="text-xs text-concrete/80 leading-relaxed">{zone.tagline}</p>
+          <div class="pt-2 text-[10px] font-mono text-champagne">
+            {zone.details.availableUnits || zone.details.completionPhase}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,152 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { journalArticles, type JournalArticle } from '../../../data/journal';
+
+export const prerender = true;
+
+export async function getStaticPaths() {
+  return journalArticles.map((article) => ({
+    params: { slug: article.slug },
+    props: { article }
+  }));
+}
+
+interface Props {
+  article: JournalArticle;
+}
+
+const { article } = Astro.props;
+
+const relatedArticles = journalArticles.filter((a) =>
+  article.relatedSlugs.includes(a.slug)
+);
+
+// Structured Data for Article
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": article.title,
+  "description": article.summary,
+  "image": [article.heroImage],
+  "datePublished": "2026-08-01T08:00:00+05:30",
+  "dateModified": "2026-08-15T12:00:00+05:30",
+  "author": [{
+    "@type": "Organization",
+    "name": article.author,
+    "url": "https://mantrameridianriverside.com"
+  }],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Mantra Meridian Riverside",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mantrameridianriverside.com/favicon.svg"
+    }
+  }
+};
+---
+
+<BaseLayout
+  title={`${article.title} | The Meridian Journal`}
+  description={article.summary}
+  ogImage={article.heroImage}
+  customSchema={articleSchema}
+>
+  <article class="pt-32 pb-24 px-6 md:px-12 max-w-4xl mx-auto space-y-12">
+    
+    {/* Article Header */}
+    <div class="space-y-4">
+      <div class="flex items-center gap-3 text-xs font-mono text-champagne uppercase tracking-widest">
+        <span>{article.category}</span>
+        <span>•</span>
+        <span>{article.publishDate}</span>
+        <span>•</span>
+        <span>{article.readTime}</span>
+      </div>
+
+      <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl text-architectural-white font-normal leading-tight">
+        {article.title}
+      </h1>
+
+      <p class="font-serif text-xl sm:text-2xl text-champagne-light italic font-light leading-relaxed">
+        {article.subtitle}
+      </p>
+
+      <div class="pt-2 text-xs text-concrete/70 font-mono">
+        Authored by {article.author}
+      </div>
+    </div>
+
+    {/* Lead Image */}
+    <div class="w-full aspect-[16/9] overflow-hidden border border-white/10 shadow-luxury">
+      <img
+        src={article.heroImage}
+        alt={article.title}
+        class="w-full h-full object-cover object-center"
+      />
+    </div>
+
+    {/* Key Takeaways Box */}
+    <div class="p-6 md:p-8 bg-obsidian-card border border-champagne/30 space-y-4">
+      <span class="label-architectural text-xs text-champagne block">ESSENTIAL TAKEAWAYS</span>
+      <ul class="space-y-2.5 text-xs sm:text-sm text-concrete">
+        {article.keyTakeaways.map((takeaway) => (
+          <li class="flex items-start gap-3">
+            <span class="text-champagne font-bold">•</span>
+            <span>{takeaway}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    {/* Article Body */}
+    <div class="space-y-6 text-concrete/90 leading-relaxed text-sm sm:text-base font-light">
+      {article.content.map((paragraph) => (
+        <p class="leading-relaxed">{paragraph}</p>
+      ))}
+    </div>
+
+    {/* In-article CTA */}
+    <div class="p-8 bg-obsidian-surface border border-champagne/30 text-center space-y-4 my-12">
+      <span class="label-architectural text-xs text-champagne">EXPLORE THE DEVELOPMENT</span>
+      <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+        Experience Mantra Meridian Riverside Firsthand
+      </h3>
+      <p class="text-xs text-concrete max-w-lg mx-auto">
+        Discover how riverside positioning, double-height volumes, and Balewadi connectivity unite at Meridian.
+      </p>
+      <div class="pt-2">
+        <a href="/meridian/residences" class="btn-luxury text-xs">
+          EXPLORE RESIDENCES &amp; PLANS →
+        </a>
+      </div>
+    </div>
+
+    {/* Related Articles */}
+    {relatedArticles.length > 0 && (
+      <div class="pt-12 border-t border-white/10 space-y-6">
+        <span class="label-architectural text-xs text-champagne">CONTINUE READING</span>
+        <h3 class="font-serif text-2xl text-architectural-white">Related Essays</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {relatedArticles.map((rel) => (
+            <a
+              href={`/meridian/journal/${rel.slug}`}
+              class="p-6 bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all flex flex-col justify-between"
+            >
+              <div>
+                <span class="label-architectural text-[9px] text-champagne">{rel.category}</span>
+                <h4 class="font-serif text-lg text-architectural-white mt-1">{rel.title}</h4>
+                <p class="text-xs text-concrete/70 mt-2 line-clamp-2">{rel.summary}</p>
+              </div>
+              <div class="pt-4 text-xs text-champagne font-medium mt-4">
+                Read Article →
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
+
+  </article>
+</BaseLayout>

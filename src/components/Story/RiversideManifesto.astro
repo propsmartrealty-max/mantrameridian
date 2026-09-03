@@ -1,0 +1,122 @@
+---
+import { projectData } from '../../data/project';
+---
+
+<section id="experience-manifesto" class="relative w-full bg-obsidian py-24 md:py-36 overflow-hidden">
+  
+  {/* The Emotional Transition Statement */}
+  <div class="max-w-6xl mx-auto px-6 mb-24 md:mb-36">
+    <div class="border-l-2 border-champagne pl-6 md:pl-12 py-4 space-y-4">
+      <span class="label-architectural text-xs tracking-luxury text-champagne">THE RIVERSIDE MANIFESTO</span>
+      <h2 class="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-architectural-white font-normal leading-[1.05]">
+        Not just an address.<br />
+        <span class="text-champagne font-light italic">Something timeless.</span>
+      </h2>
+    </div>
+
+    {/* Panoramic Landscape Break */}
+    <div class="relative w-full aspect-[21/9] mt-12 overflow-hidden border border-white/10 shadow-luxury">
+      <img
+        src={projectData.heroSliderImages[1]}
+        alt="Mula River Natural Riparian Canopy Balewadi"
+        class="w-full h-full object-cover object-center filter brightness-90 contrast-105 hover:scale-105 transition-transform duration-1000"
+      />
+      <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+      <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 glass-dark px-4 py-2 border border-champagne/30">
+        <span class="text-[10px] font-mono tracking-widest text-champagne uppercase">500-METRE LIVING RIVER FRONTAGE • PERMANENT GREEN BUFFER</span>
+      </div>
+    </div>
+  </div>
+
+  {/* Split Screen: Architectural Pillars & Project Narrative */}
+  <div class="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+    
+    {/* Left Column: Monumental Triad */}
+    <div class="lg:col-span-5 space-y-8 sticky top-28">
+      <div>
+        <span class="label-architectural text-xs text-champagne">DESIGN PHILOSOPHY</span>
+        <h3 class="font-serif text-5xl sm:text-6xl text-architectural-white tracking-tight mt-2 leading-[0.95]">
+          SPACE.<br />
+          LIGHT.<br />
+          FLOW.
+        </h3>
+      </div>
+
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Meridian is envisioned as a contemporary residential address that brings together architecture, landscape, and the evolving energy of Balewadi.
+      </p>
+
+      <div class="pt-2">
+        <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-3">
+          <div class="text-[10px] uppercase font-mono tracking-widest text-champagne">VERIFIED PROJECT SCALE</div>
+          <div class="font-serif text-2xl text-architectural-white">8 Acres Masterplanned Sanctuary</div>
+          <p class="text-xs text-concrete leading-relaxed">
+            75%+ of the ground plane is dedicated to continuous landscaped botanical gardens, water features, and vehicular-free pedestrian boulevards.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* Right Column: Editorial Chapters */}
+    <div class="lg:col-span-7 space-y-12 text-concrete leading-relaxed text-sm">
+      
+      <div class="space-y-4 border-b border-white/10 pb-10">
+        <span class="text-xs font-mono text-champagne tracking-widest">01 / ARCHITECTURAL CALM</span>
+        <h4 class="font-serif text-2xl text-architectural-white">
+          A Departure from Congested City Living
+        </h4>
+        <p>
+          While conventional urban developments pack towers tightly together, Meridian utilizes its expansive 8-acre footprint to celebrate breathing room. The residential towers are staggered to maximize diagonal sightlines, ensuring that homes look upon the sweeping curves of the river rather than another resident’s window.
+        </p>
+      </div>
+
+      <div class="space-y-4 border-b border-white/10 pb-10">
+        <span class="text-xs font-mono text-champagne tracking-widest">02 / NATURAL THERMAL BALANCE</span>
+        <h4 class="font-serif text-2xl text-architectural-white">
+          The Cooling Influence of the Mula River
+        </h4>
+        <p>
+          Living beside water creates a distinct microclimate. The steady river breeze naturally circulates through the cantilevered balconies and open floor layouts, lowering ambient temperatures by 2 to 3°C compared to dense downtown Pune corridors.
+        </p>
+      </div>
+
+      <div class="space-y-4 border-b border-white/10 pb-10">
+        <span class="text-xs font-mono text-champagne tracking-widest">03 / CURATED SPATIAL VOLUME</span>
+        <h4 class="font-serif text-2xl text-architectural-white">
+          From 2 BHK to Double-Height Sky Duplexes
+        </h4>
+        <p>
+          Every home at Meridian is planned with zero dead corridors. For those who seek elevated distinction, the 3 BHK Signature Sky Duplex offers monumental 20-foot double-height living ceilings and floating cantilevered staircases that evoke the grandeur of an independent villa.
+        </p>
+      </div>
+
+      <div class="space-y-4 border-b border-white/10 pb-10">
+        <span class="text-xs font-mono text-champagne tracking-widest">04 / UNMATCHED CONNECTIVITY</span>
+        <h4 class="font-serif text-2xl text-architectural-white">
+          At the Crossroads of Nature & Connectivity
+        </h4>
+        <p>
+          Experience unmatched transit convenience—situated just 5 minutes from Balewadi High Street, close to the proposed PMRDA Metro Line 3, and seamlessly linked to Wakad via a planned connectivity bridge across the river corridor. Meridian is more than just a residence; it is an enduring lifestyle statement.
+        </p>
+      </div>
+
+      {/* RERA Assurance Stamp */}
+      <div class="p-6 bg-obsidian-surface border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+        <div>
+          <span class="label-architectural text-[10px] text-champagne">STATUTORY REGISTRATION</span>
+          <div class="font-serif text-lg text-architectural-white mt-1">MahaRERA: {projectData.reraNumber}</div>
+          <span class="text-xs text-concrete/70">Verified ongoing development under Mantra Properties</span>
+        </div>
+        <a
+          href="/meridian/rera"
+          class="btn-luxury-outline text-xs whitespace-nowrap"
+        >
+          VIEW CERTIFICATE
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

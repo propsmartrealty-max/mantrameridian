@@ -1,0 +1,99 @@
+---
+import { projectData } from '../../data/project';
+---
+
+<section class="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-obsidian-deep">
+  
+  {/* Cinematic Ambient Background Image / Video Backdrop */}
+  <div class="absolute inset-0 z-0 select-none">
+    <img
+      src={projectData.heroSliderImages[0]}
+      alt="Mantra Meridian Riverside Balewadi Architecture"
+      class="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.05] scale-105"
+    />
+    {/* Cinematic Multi-layered Vignette & Dark Veil */}
+    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-obsidian/70" />
+    <div class="absolute inset-0 bg-radial-vignette" />
+  </div>
+
+  {/* Hero Content Container */}
+  <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-6 md:space-y-8 pt-20">
+    
+    {/* Architectural Location & Accreditation Tag */}
+    <div class="inline-flex items-center gap-3 px-4 py-1.5 border border-champagne/35 bg-obsidian-deep/80 backdrop-blur-md shadow-glow">
+      <span class="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse" />
+      <span class="label-architectural text-[10px] sm:text-xs text-champagne tracking-[0.24em]">
+        MANTRA PROPERTIES • RIVERSIDE SANCTUARY • BALEWADI
+      </span>
+    </div>
+
+    {/* Monumental Typography */}
+    <div class="space-y-3">
+      <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-architectural-white font-normal tracking-[0.09em] leading-none">
+        MERIDIAN
+      </h1>
+      <div class="flex items-center justify-center gap-3 text-champagne/80 font-mono text-[11px] sm:text-xs tracking-[0.35em] uppercase">
+        <span class="h-[1px] w-6 sm:w-12 bg-champagne/40" />
+        <span>RIVERSIDE RESIDENCES</span>
+        <span class="h-[1px] w-6 sm:w-12 bg-champagne/40" />
+      </div>
+      <p class="font-serif text-2xl sm:text-3xl md:text-4xl text-champagne-light italic font-light tracking-wide pt-2">
+        Life, Reimagined by the Riverside.
+      </p>
+    </div>
+
+    {/* Restrained Project Subtitle */}
+    <p class="max-w-2xl text-xs sm:text-sm text-concrete leading-relaxed font-normal">
+      An 8-acre contemporary architectural address in Balewadi. Offering 2, 3, 4 BHK luxury residences and signature 3 BHK sky duplexes beside the living waters of the Mula river.
+    </p>
+
+    {/* Hero Actions */}
+    <div class="flex flex-col sm:flex-row items-center gap-3 pt-4 w-full sm:w-auto">
+      <a
+        href="#experience-manifesto"
+        class="px-5 py-2.5 text-xs tracking-[0.16em] uppercase font-medium bg-architectural-white text-obsidian hover:bg-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2"
+      >
+        <span>DISCOVER MERIDIAN</span>
+        <span>↓</span>
+      </a>
+
+      <button
+        id="hero-presentation-btn"
+        class="px-5 py-2.5 text-xs tracking-[0.16em] uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 hover:border-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2 backdrop-blur-sm"
+      >
+        <span>PRIVATE PRESENTATION</span>
+        <span class="text-champagne">↗</span>
+      </button>
+    </div>
+
+    {/* MahaRERA Statutory Pill */}
+    <div class="pt-6">
+      <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-concrete/60">
+        MAHARERA: {projectData.reraNumber} • 8 ACRES ESTATE
+      </span>
+    </div>
+
+  </div>
+
+  {/* Bottom Scroll Indicator */}
+  <div class="absolute bottom-8 left-8 hidden md:flex items-center gap-3 text-concrete/50 text-[10px] font-mono tracking-widest uppercase">
+    <div class="w-8 h-[1px] bg-champagne/40" />
+    <span>SCROLL TO DISCOVER</span>
+  </div>
+
+  <div class="absolute bottom-8 right-8 hidden md:flex items-center gap-3 text-concrete/50 text-[10px] font-mono tracking-widest uppercase">
+    <span>LAT 18.5775° N • LONG 73.7745° E</span>
+  </div>
+
+</section>
+
+<script>
+  const heroBtn = document.getElementById('hero-presentation-btn');
+  heroBtn?.addEventListener('click', () => {
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config: 'All Residences', intent: 'HERO DISCOVERY' }
+      })
+    );
+  });
+</script>

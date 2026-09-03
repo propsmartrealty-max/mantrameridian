@@ -1,0 +1,122 @@
+---
+const riversidePillars = [
+  {
+    step: "01",
+    title: "LANDSCAPE",
+    subtitle: "Indigenous Riparian Flora & Shaded Canopy",
+    description: "Centuries-old trees along the river bank preserved as a protected ecological green buffer, sheltering the estate from dust and urban heat.",
+    image: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-63028088.webp"
+  },
+  {
+    step: "02",
+    title: "WATER",
+    subtitle: "The Living Rhythms of the Mula",
+    description: "A continuous sensory connection to natural flowing water that reflects sunrise pastels and sunset twilights across the river horizon.",
+    image: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-170408229.webp"
+  },
+  {
+    step: "03",
+    title: "ARCHITECTURE",
+    subtitle: "Cantilevered Decks & Glass Façades",
+    description: "Engineered with expansive acoustic double-glazing and deep shaded observation decks, bringing nature inside without heat or urban noise.",
+    image: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-106076887.webp"
+  },
+  {
+    step: "04",
+    title: "PRIVATE SPACES",
+    subtitle: "Sky Sanctuaries & Double-Height Voids",
+    description: "Interiors designed as tranquil personal retreats, oriented to maximize daylight, river breeze, and acoustic privacy.",
+    image: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-475996847.webp"
+  },
+  {
+    step: "05",
+    title: "COMMUNITY",
+    subtitle: "20,000 sq.ft. of Curated Indulgence",
+    description: "The Grand Pavilion clubhouse and infinity pool suspended over the greenery, fostering effortless camaraderie among like-minded residents.",
+    image: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-533930309.webp"
+  }
+];
+---
+
+<section class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10 overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 md:px-12">
+    
+    {/* Section Header */}
+    <div class="max-w-3xl mb-16 md:mb-20 space-y-4">
+      <span class="label-architectural text-xs text-champagne">SIGNATURE EXPERIENCE</span>
+      <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+        Live beside<br />
+        <span class="text-champagne font-light italic">something timeless.</span>
+      </h2>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed pt-2">
+        At Meridian, water is not an ornamental backdrop; it is an active architectural participant that calms the senses, cools the air, and defines everyday life.
+      </p>
+    </div>
+
+    {/* Horizontal Narrative Flow */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+      {riversidePillars.map((pillar) => (
+        <div class="group bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-500 flex flex-col justify-between overflow-hidden">
+          
+          <div class="relative aspect-[4/3] overflow-hidden">
+            <img
+              src={pillar.image}
+              alt={pillar.title}
+              class="w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent" />
+            <div class="absolute top-3 left-3 text-[10px] font-mono text-champagne px-2 py-0.5 bg-black/60 border border-champagne/20">
+              {pillar.step}
+            </div>
+          </div>
+
+          <div class="p-5 space-y-2 flex-grow flex flex-col justify-between">
+            <div>
+              <h3 class="font-serif text-xl text-architectural-white group-hover:text-champagne-light transition-colors">
+                {pillar.title}
+              </h3>
+              <p class="text-[11px] font-mono text-champagne/80 mt-1">
+                {pillar.subtitle}
+              </p>
+              <p class="text-xs text-concrete/80 leading-relaxed mt-3">
+                {pillar.description}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-white/5 flex items-center gap-1.5 text-[10px] uppercase tracking-widest text-concrete/60 font-mono">
+              <span>EXPLORE CHAPTER</span>
+              <span class="text-champagne">→</span>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    {/* Riverside CTA */}
+    <div class="mt-16 p-8 bg-obsidian-deep border border-champagne/20 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div>
+        <h4 class="font-serif text-2xl text-architectural-white">Experience the Riverside in Person</h4>
+        <p class="text-xs text-concrete mt-1">Schedule a private guided walk through the 500-metre Mula promenade and sample suites.</p>
+      </div>
+      <button
+        id="riverside-tour-trigger"
+        class="btn-luxury text-xs whitespace-nowrap"
+      >
+        SCHEDULE RIVERSIDE VISIT
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const tourBtn = document.getElementById('riverside-tour-trigger');
+  tourBtn?.addEventListener('click', () => {
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config: 'Riverside Walk', intent: 'PRIVATE SITE VISIT' }
+      })
+    );
+  });
+</script>

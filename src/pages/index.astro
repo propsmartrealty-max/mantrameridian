@@ -1,0 +1,394 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CinematicHero from '../components/Hero/CinematicHero.astro';
+import RiversideManifesto from '../components/Story/RiversideManifesto.astro';
+import ArchitecturalDataStrip from '../components/Stats/ArchitecturalDataStrip.astro';
+import RiversideExperience from '../components/Riverside/RiversideExperience.astro';
+import DesignPhilosophy from '../components/Architecture/DesignPhilosophy.astro';
+import FloorPlanViewer from '../components/FloorPlan/FloorPlanViewer';
+import AmenityAtlas from '../components/Amenity/AmenityAtlas';
+import MasterplanExplorer from '../components/Masterplan/MasterplanExplorer';
+import LocationIntelligence from '../components/Location/LocationIntelligence';
+import VisualArchive from '../components/Gallery/VisualArchive';
+import DocumentCentre from '../components/Documents/DocumentCentre.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import VirtualWalkthrough from '../components/VirtualTour/VirtualWalkthrough';
+import { residencesData } from '../data/residences';
+import { journalArticles } from '../data/journal';
+import { projectData } from '../data/project';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Mantra Meridian Riverside | Luxury 2, 3, 4 BHK & Duplexes Balewadi, Pune"
+  description="Mantra Meridian Riverside, Balewadi. An 8-acre architectural riverside development offering 2, 3, 4 BHK residences & signature 3 BHK Duplexes along the Mula River. MahaRERA P52100045688."
+>
+  
+  {/* 01. 100vh Cinematic Hero */}
+  <CinematicHero />
+
+  {/* 02. Architectural Data Strip */}
+  <ArchitecturalDataStrip />
+
+  {/* 03. Emotional Manifesto & Project Story */}
+  <RiversideManifesto />
+
+  {/* 04. Residence Explorer */}
+  <section id="residences" class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <span class="label-architectural text-xs text-champagne">CURATED LIVING FORMATS</span>
+          <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+            Designed for Elegance,<br />
+            <span class="text-champagne font-light italic">Built for Comfort.</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+            Spacious 2, 3 &amp; 4 BHK riverside residences and exclusive 3 BHK sky duplexes nestled steps from the Mula river in Balewadi.
+          </p>
+        </div>
+
+        <a
+          href="/meridian/residences"
+          class="btn-luxury-outline text-xs whitespace-nowrap self-start md:self-auto"
+        >
+          EXPLORE ALL CONFIGURATIONS →
+        </a>
+      </div>
+
+      {/* Grid of Residence Cards */}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {residencesData.map((res) => (
+          <div class="group bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-500 overflow-hidden flex flex-col justify-between">
+            
+            {/* Card Image */}
+            <div class="relative aspect-[16/10] overflow-hidden">
+              <img
+                src={res.renderImage}
+                alt={`${res.name} - Mantra Meridian Riverside`}
+                class="w-full h-full object-cover object-center filter brightness-95 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/20 to-transparent" />
+              
+              <div class="absolute top-4 left-4 glass-dark px-3 py-1 border border-champagne/30">
+                <span class="label-architectural text-[9px] text-champagne">{res.type}</span>
+              </div>
+
+              <div class="absolute bottom-4 right-4 text-xs font-mono text-architectural-white glass-dark px-3 py-1 border border-white/10">
+                {res.carpetAreaRange}
+              </div>
+            </div>
+
+            {/* Card Body */}
+            <div class="p-6 md:p-8 space-y-4 flex-grow flex flex-col justify-between">
+              <div>
+                <h3 class="font-serif text-2xl text-architectural-white group-hover:text-champagne-light transition-colors">
+                  {res.name}
+                </h3>
+                <p class="text-xs text-champagne font-mono mt-1">
+                  {res.balconyType}
+                </p>
+                <p class="text-xs text-concrete/80 leading-relaxed mt-3">
+                  {res.subtitle}
+                </p>
+
+                {/* Micro specs */}
+                <div class="pt-4 border-t border-white/10 mt-4 grid grid-cols-2 gap-2 text-[11px] text-concrete">
+                  <div>
+                    <span class="text-concrete/60 block text-[9px] uppercase">Bathrooms</span>
+                    <span class="text-architectural-white font-medium">{res.bathrooms} Luxury Baths</span>
+                  </div>
+                  <div>
+                    <span class="text-concrete/60 block text-[9px] uppercase">Levels</span>
+                    <span class="text-architectural-white font-medium">{res.levels === 2 ? 'Two Tiers (Duplex)' : 'Single Level'}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-6 border-t border-white/5 flex items-center justify-between">
+                <a
+                  href={`/meridian/${res.slug}`}
+                  class="btn-luxury text-xs w-full text-center"
+                >
+                  EXPLORE {res.type} RESIDENCE →
+                </a>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 05. The Riverside Experience */}
+  <RiversideExperience />
+
+  {/* 06. Interactive Floor Plan Experience Island */}
+  <section id="floor-plans" class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="max-w-2xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">SPATIAL PRECISION</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          Interactive<br />
+          <span class="text-champagne font-light italic">Floor Plan Suite.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Switch between architectural 2D blueprints and spatial volumes. Inspect individual chambers, dimensions, and riverfront orientations.
+        </p>
+      </div>
+
+      <FloorPlanViewer client:visible defaultResidenceId="3bhk" />
+
+    </div>
+  </section>
+
+  {/* 07. Architecture In Dialogue With Nature */}
+  <DesignPhilosophy />
+
+  {/* 08. Virtual Walkthrough & 3D Immersion Island */}
+  <section id="virtual-tour" class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">3D SPATIAL IMMERSION</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          Virtual Walkthrough.<br />
+          <span class="text-champagne font-light italic">Experience Meridian in 3D.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Step inside the official Matterport 3D digital twin or watch high-definition video walkthroughs of the living towers and sky duplexes.
+        </p>
+      </div>
+
+      <VirtualWalkthrough client:visible />
+    </div>
+  </section>
+
+  {/* 09. Amenity Atlas Island */}
+  <section id="amenities" class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">A LIFE WELL CURATED</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          The Amenity Atlas.<br />
+          <span class="text-champagne font-light italic">Over 30 Curated Spaces.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Forget generic amenity checklists. Discover eight visual chapters dedicated to restorative wellness, private entertaining, competitive sport, and riverside nature.
+        </p>
+      </div>
+
+      <AmenityAtlas client:visible />
+
+    </div>
+  </section>
+
+  {/* 09. Masterplan Explorer Island */}
+  <section id="masterplan" class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">ESTATE ARCHITECTURE</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          An 8-Acre Sanctuary<br />
+          <span class="text-champagne font-light italic">Designed as a Whole.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Explore the master zoning of living towers, open landscaped spaces, the central clubhouse, and the 500-metre Mula riverfront boardwalk.
+        </p>
+      </div>
+
+      <MasterplanExplorer client:visible />
+
+    </div>
+  </section>
+
+  {/* 10. Location Intelligence Island */}
+  <section id="location" class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">BALEWADI • WEST PUNE</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          At the Crossroads of<br />
+          <span class="text-champagne font-light italic">Nature &amp; Connectivity.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Situated along the Mula river on Balewadi Village Road, just 5 minutes from Balewadi High Street, close to the proposed metro, and seamlessly linked to Wakad via a planned bridge.
+        </p>
+      </div>
+
+      <LocationIntelligence client:visible />
+
+    </div>
+  </section>
+
+  {/* 11. Visual Archive Island */}
+  <section id="gallery" class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">VISUAL CURATION</span>
+        <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+          The Meridian Archive.<br />
+          <span class="text-champagne font-light italic">A Photographic Monograph.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Immerse yourself in architectural dusk elevations, double-height interior void perspectives, and peaceful riverside vistas.
+        </p>
+      </div>
+
+      <VisualArchive client:visible />
+
+    </div>
+  </section>
+
+  {/* 12. Document Centre */}
+  <section id="documents" class="w-full bg-obsidian py-20 px-6 md:px-12 border-b border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <DocumentCentre />
+    </div>
+  </section>
+
+  {/* 13. RERA Card Verification */}
+  <section id="rera" class="w-full bg-obsidian-deep py-16 px-6 md:px-12 border-b border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <ReraVerificationCard />
+    </div>
+  </section>
+
+  {/* 14. The Meridian Journal Editorial Teaser */}
+  <section id="journal" class="w-full bg-obsidian py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-16">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="max-w-2xl space-y-3">
+          <span class="label-architectural text-xs text-champagne">INTELLIGENCE &amp; PERSPECTIVE</span>
+          <h2 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.05]">
+            The Meridian Journal.<br />
+            <span class="text-champagne font-light italic">Essays on Architecture &amp; Living.</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+            Thought leadership exploring West Pune urban mobility, biophilic riverside design, and comparative micro-market analyses.
+          </p>
+        </div>
+
+        <a
+          href="/meridian/journal"
+          class="btn-luxury-outline text-xs whitespace-nowrap self-start md:self-auto"
+        >
+          VIEW ALL ESSAYS →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {journalArticles.slice(0, 3).map((art) => (
+          <a
+            href={`/meridian/journal/${art.slug}`}
+            class="group bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-500 flex flex-col justify-between overflow-hidden"
+          >
+            <div class="aspect-[16/10] overflow-hidden relative">
+              <img
+                src={art.heroImage}
+                alt={art.title}
+                class="w-full h-full object-cover object-center filter brightness-90 group-hover:scale-105 transition-transform duration-700"
+              />
+              <div class="absolute top-3 left-3 text-[9px] font-mono text-champagne px-2 py-0.5 bg-black/70 border border-champagne/20">
+                {art.category.toUpperCase()}
+              </div>
+            </div>
+
+            <div class="p-6 space-y-3 flex-grow flex flex-col justify-between">
+              <div>
+                <div class="text-[10px] text-concrete/60 font-mono">{art.publishDate} • {art.readTime}</div>
+                <h3 class="font-serif text-xl text-architectural-white group-hover:text-champagne-light transition-colors mt-1 leading-snug">
+                  {art.title}
+                </h3>
+                <p class="text-xs text-concrete/80 leading-relaxed mt-2 line-clamp-2">
+                  {art.summary}
+                </p>
+              </div>
+
+              <div class="pt-4 border-t border-white/5 flex items-center gap-1.5 text-xs text-champagne font-medium">
+                <span>READ ARTICLE</span>
+                <span>→</span>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  {/* 15. Contextual FAQ Section with Schema */}
+  <section class="w-full bg-obsidian-deep py-24 md:py-32 border-b border-white/10">
+    <div class="max-w-4xl mx-auto px-6 md:px-12 space-y-12">
+      
+      <div class="text-center space-y-3">
+        <span class="label-architectural text-xs text-champagne">FREQUENTLY ASKED QUESTIONS</span>
+        <h2 class="font-serif text-4xl sm:text-5xl text-architectural-white font-normal">
+          Answers &amp; Verification.
+        </h2>
+        <p class="text-xs text-concrete max-w-lg mx-auto">
+          Clear, factual answers regarding project status, configurations, MahaRERA registration, and Balewadi connectivity.
+        </p>
+      </div>
+
+      <FAQAccordion limit={6} />
+
+    </div>
+  </section>
+
+  {/* 16. Final Call to Action */}
+  <section class="relative w-full bg-obsidian py-32 px-6 md:px-12 text-center overflow-hidden">
+    <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+      <span class="label-architectural text-xs tracking-luxury text-champagne">PRIVATE RESERVATIONS</span>
+      <h2 class="font-serif text-5xl sm:text-6xl md:text-7xl text-architectural-white font-normal leading-tight">
+        Life, Reimagined<br />
+        <span class="text-champagne font-light italic">by the Riverside.</span>
+      </h2>
+      <p class="text-xs sm:text-sm text-concrete max-w-xl mx-auto leading-relaxed">
+        Experience the serenity of the Mula river and contemporary architectural luxury in Balewadi. Schedule an exclusive private tour with our relationship director.
+      </p>
+
+      <div class="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <button
+          id="final-presentation-trigger"
+          class="px-5 py-2.5 text-xs tracking-[0.14em] uppercase font-medium bg-architectural-white text-obsidian hover:bg-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2 shadow-sm"
+        >
+          <span>REQUEST A PRIVATE PRESENTATION</span>
+          <span>→</span>
+        </button>
+        <a
+          href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`}
+          class="px-5 py-2.5 text-xs tracking-[0.14em] uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 hover:border-champagne transition-all duration-300 w-full sm:w-auto inline-flex items-center justify-center gap-2 backdrop-blur-sm"
+        >
+          CALL CONCIERGE: {projectData.contact.phone}
+        </a>
+      </div>
+
+      <div class="pt-6 text-[10px] font-mono text-concrete/50">
+        MAHARERA: {projectData.reraNumber} • {projectData.contact.siteAddress.toUpperCase()}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script>
+  const finalBtn = document.getElementById('final-presentation-trigger');
+  finalBtn?.addEventListener('click', () => {
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config: 'All Configurations', intent: 'FINAL CTA PRESENTATION' }
+      })
+    );
+  });
+</script>

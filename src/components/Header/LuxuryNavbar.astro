@@ -1,0 +1,145 @@
+---
+import DualBrandLockup from '../Brand/DualBrandLockup.astro';
+import { projectData } from '../../data/project';
+
+interface Props {
+  currentPath?: string;
+}
+
+const { currentPath = '/' } = Astro.props;
+
+const navLinks = [
+  { label: 'RESIDENCES', href: '/meridian/residences' },
+  { label: 'RIVERSIDE', href: '/meridian/riverside' },
+  { label: 'FLOOR PLANS', href: '/meridian/floor-plans' },
+  { label: 'AMENITIES', href: '/meridian/amenities' },
+  { label: 'MASTERPLAN', href: '/meridian/masterplan' },
+  { label: 'LOCATION', href: '/meridian/location' },
+  { label: 'GALLERY', href: '/meridian/gallery' },
+  { label: 'JOURNAL', href: '/meridian/journal' },
+];
+---
+
+<header id="luxury-navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-6 px-6 md:px-12">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    
+    {/* Intelligent Dual Brand Lockup: Mantra Properties sitting across Meridian */}
+    <DualBrandLockup variant="navbar" />
+
+    {/* Center Navigation Links (Desktop) */}
+    <nav class="hidden xl:flex items-center gap-7 text-[11px] font-medium tracking-[0.2em] text-concrete">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class={`transition-colors duration-300 hover:text-architectural-white relative py-1 ${
+            currentPath.startsWith(link.href) ? 'text-architectural-white font-semibold' : ''
+          }`}
+        >
+          {link.label}
+          {currentPath.startsWith(link.href) && (
+            <span class="absolute bottom-0 left-0 right-0 h-[1px] bg-champagne" />
+          )}
+        </a>
+      ))}
+    </nav>
+
+    {/* Right Action CTA & Mobile Menu Toggle */}
+    <div class="flex items-center gap-4">
+      <button
+        id="desktop-enquire-btn"
+        class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] font-medium tracking-[0.14em] uppercase border border-champagne/40 bg-obsidian-surface/70 text-architectural-white hover:bg-champagne hover:text-obsidian transition-all duration-300 shadow-sm"
+      >
+        <span>PRIVATE PRESENTATION</span>
+        <span class="text-champagne group-hover:text-obsidian text-xs">↗</span>
+      </button>
+
+      {/* Mobile Hamburger */}
+      <button
+        id="mobile-menu-toggle"
+        class="xl:hidden p-2.5 text-architectural-white border border-white/10 bg-obsidian-surface/80"
+        aria-label="Toggle navigation menu"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+  </div>
+
+  {/* Mobile Menu Slide-down Overlay */}
+  <div id="mobile-menu" class="hidden fixed inset-0 top-[88px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-8 border-t border-white/10 overflow-y-auto">
+    <div class="space-y-6 max-w-md mx-auto py-6">
+      <div class="text-[10px] tracking-widest text-champagne uppercase font-mono">ESTATE NAVIGATION</div>
+      <div class="flex flex-col space-y-4">
+        {navLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-serif text-2xl text-architectural-white hover:text-champagne transition-colors border-b border-white/5 pb-2"
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+
+      <div class="pt-6 space-y-3">
+        <button
+          id="mobile-enquire-trigger"
+          class="btn-luxury w-full text-xs"
+        >
+          REQUEST PRIVATE PRESENTATION ↗
+        </button>
+        <a
+          href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`}
+          class="btn-luxury-outline w-full text-xs"
+        >
+          CALL CONCIERGE: {projectData.contact.phone}
+        </a>
+      </div>
+
+      <div class="pt-8 text-center text-xs text-concrete/60 font-mono">
+        MAHARERA: {projectData.reraNumber} • BALEWADI, PUNE
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  // Dynamic scroll glassmorphism
+  const navbar = document.getElementById('luxury-navbar');
+  const mobileToggle = document.getElementById('mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const desktopEnquire = document.getElementById('desktop-enquire-btn');
+  const mobileEnquire = document.getElementById('mobile-enquire-trigger');
+
+  const onScroll = () => {
+    if (window.scrollY > 40) {
+      navbar?.classList.add('bg-obsidian/90', 'backdrop-blur-xl', 'py-3.5', 'border-b', 'border-champagne/15', 'shadow-luxury');
+      navbar?.classList.remove('py-6');
+    } else {
+      navbar?.classList.remove('bg-obsidian/90', 'backdrop-blur-xl', 'py-3.5', 'border-b', 'border-champagne/15', 'shadow-luxury');
+      navbar?.classList.add('py-6');
+    }
+  };
+
+  window.addEventListener('scroll', onScroll);
+  onScroll();
+
+  // Mobile menu toggle
+  mobileToggle?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Open presentation drawer event triggers
+  const triggerPresentation = () => {
+    mobileMenu?.classList.add('hidden');
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: { config: 'All Configurations', intent: 'PRIVATE PRESENTATION' }
+      })
+    );
+  };
+
+  desktopEnquire?.addEventListener('click', triggerPresentation);
+  mobileEnquire?.addEventListener('click', triggerPresentation);
+</script>

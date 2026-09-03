@@ -1,0 +1,111 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FloorPlanViewer from '../../components/FloorPlan/FloorPlanViewer';
+import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+import { residencesData } from '../../data/residences';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Residences | Mantra Meridian Riverside, Balewadi"
+  description="Explore luxury 2, 3, 4 BHK residences and 3 BHK Sky Duplexes at Mantra Meridian Riverside, Balewadi. Verified carpet areas and architectural floor plans."
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    {/* Page Header */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">RESIDENCES &amp; SKY DUPLEXES</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Your Space.<br />
+        <span class="text-champagne font-light italic">Your Meridian.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Conceived as private sanctuaries of acoustic calm, every home at Meridian balances column-free living halls, natural river cross-ventilation, and generous cantilevered sky decks.
+      </p>
+    </div>
+
+    {/* Residences Cards Detailed Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {residencesData.map((res) => (
+        <div class="bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all overflow-hidden flex flex-col justify-between group shadow-luxury">
+          
+          <div class="relative aspect-[16/9] overflow-hidden">
+            <img
+              src={res.renderImage}
+              alt={`${res.name} - Mantra Meridian Riverside`}
+              class="w-full h-full object-cover filter brightness-95 group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent opacity-80" />
+            <div class="absolute top-3 left-3 glass-dark px-2.5 py-0.5 border border-champagne/30">
+              <span class="label-architectural text-[9px] text-champagne">{res.type}</span>
+            </div>
+            <div class="absolute bottom-3 right-3 text-xs font-mono text-architectural-white glass-dark px-2.5 py-0.5 border border-white/10">
+              {res.carpetAreaRange}
+            </div>
+          </div>
+
+          <div class="p-6 md:p-8 space-y-6 flex-grow flex flex-col justify-between">
+            <div class="space-y-4">
+              <h2 class="font-serif text-3xl text-architectural-white group-hover:text-champagne-light transition-colors">{res.name}</h2>
+              <p class="text-xs text-champagne font-mono">{res.balconyType}</p>
+              <p class="text-xs text-concrete/80 leading-relaxed">{res.overview}</p>
+
+              {/* Architectural Highlights */}
+              <div class="space-y-2 pt-2">
+                <span class="text-[10px] uppercase font-mono tracking-widest text-concrete/60">Architectural Highlights</span>
+                <ul class="space-y-1.5 text-xs text-concrete">
+                  {res.architecturalHighlights.slice(0, 3).map((h) => (
+                    <li class="flex items-start gap-2">
+                      <span class="text-champagne mt-0.5">•</span>
+                      <span>{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+
+            <div class="pt-6 border-t border-white/10 flex items-center gap-3">
+              <a href={`/meridian/${res.slug}`} class="btn-luxury text-xs flex-1 text-center">
+                EXPLORE {res.type} →
+              </a>
+              <button 
+                class="residence-book-tour btn-luxury-outline text-xs px-4"
+                data-config={res.type}
+              >
+                TOUR PLAN
+              </button>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+
+    {/* Integrated Interactive Floor Plan Suite */}
+    <div class="pt-12 space-y-8 border-t border-white/10">
+      <div>
+        <span class="label-architectural text-xs text-champagne">ARCHITECTURAL MEASUREMENTS</span>
+        <h2 class="font-serif text-4xl text-architectural-white mt-1">Interactive Floor Plan Suite</h2>
+      </div>
+      <FloorPlanViewer client:visible />
+    </div>
+
+    {/* RERA Card */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>
+
+<script>
+  document.querySelectorAll('.residence-book-tour').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const cfg = btn.getAttribute('data-config') || 'Residence';
+      window.dispatchEvent(
+        new CustomEvent('open-private-presentation', {
+          detail: { config: cfg, intent: 'RESIDENCE TOUR' }
+        })
+      );
+    });
+  });
+</script>

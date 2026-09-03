@@ -1,0 +1,136 @@
+---
+import LuxuryNavbar from '../components/Header/LuxuryNavbar.astro';
+import LuxuryFooter from '../components/Footer/LuxuryFooter.astro';
+import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro';
+import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
+import { projectData } from '../data/project';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  schemaType?: string;
+  customSchema?: object;
+}
+
+const {
+  title = "Mantra Meridian Riverside | Luxury 2, 3, 4 BHK & Duplexes Balewadi, Pune",
+  description = "Experience Mantra Meridian Riverside in Balewadi, Pune. An 8-acre architectural sanctuary offering 2, 3, 4 BHK homes and 3 BHK Duplexes beside the Mula River. MahaRERA P52100045688.",
+  ogImage = projectData.ogImage,
+  canonicalUrl = Astro.url.href,
+  customSchema
+} = Astro.props;
+
+// Global Organization & RealEstateAgent Schema
+const baseSchema = customSchema || {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateAgent",
+      "@id": "https://mantrameridianriverside.com/#organization",
+      "name": "Mantra Meridian Riverside",
+      "legalName": "Mantra Properties",
+      "url": "https://mantrameridianriverside.com",
+      "telephone": projectData.contact.phone,
+      "email": projectData.contact.email,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Survey No. 42/1, Beside Mula River Promenade, Balewadi Village Road",
+        "addressLocality": "Balewadi",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5775,
+        "longitude": 73.7745
+      },
+      "priceRange": "$$$$"
+    },
+    {
+      "@type": "ApartmentComplex",
+      "@id": "https://mantrameridianriverside.com/#complex",
+      "name": "Mantra Meridian Riverside",
+      "description": projectData.tagline,
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Balewadi Village Road, beside Mula River",
+        "addressLocality": "Balewadi",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "numberOfBedrooms": "2, 3, 4"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://mantrameridianriverside.com/#website",
+      "url": "https://mantrameridianriverside.com",
+      "name": "Mantra Meridian Riverside Balewadi",
+      "publisher": {
+        "@id": "https://mantrameridianriverside.com/#organization"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    {/* Primary SEO Meta Tags */}
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+
+    {/* Open Graph / Facebook */}
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="Mantra Meridian Riverside" />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* Structured Data */}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(baseSchema)} />
+
+    {/* Preconnect fonts */}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen">
+    
+    {/* Global Luxury Navigation */}
+    <LuxuryNavbar currentPath={Astro.url.pathname} />
+
+    {/* Main Page Slot */}
+    <main class="flex-grow">
+      <slot />
+    </main>
+
+    {/* Persistent Mobile Concierge Dock */}
+    <PersistentMobileBar />
+
+    {/* 3-Step Luxury Private Presentation Modal Island */}
+    <PrivatePresentationDrawer client:load />
+
+    {/* Luxury Architectural Footer */}
+    <LuxuryFooter />
+
+  </body>
+</html>
