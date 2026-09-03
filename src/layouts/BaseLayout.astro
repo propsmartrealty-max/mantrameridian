@@ -194,7 +194,10 @@ const baseSchema = customSchema || {
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="en-IN" href={canonicalUrl} />
+    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     {/* Google Search Central & Console Verification */}
     <meta name="google-site-verification" content="G-VERIFY-MANTRA-MERIDIAN" />
@@ -245,6 +248,26 @@ const baseSchema = customSchema || {
           presentation_intent: e.detail?.intent || 'Discovery'
         });
       });
+    </script>
+
+    {/* Google Chrome & Cloudflare Speculation Rules API for Instant Prerendering */}
+    <script type="speculationrules" is:inline>
+      {
+        "prerender": [
+          {
+            "source": "list",
+            "urls": [
+              "/mantra-meridian-riverside/residences",
+              "/mantra-meridian-riverside/price",
+              "/mantra-meridian-riverside/floor-plans",
+              "/mantra-meridian-riverside/location",
+              "/mantra-meridian-riverside/3-bhk-duplex",
+              "/mantra-meridian-riverside/amenities"
+            ],
+            "eagerness": "moderate"
+          }
+        ]
+      }
     </script>
   </head>
   <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen">

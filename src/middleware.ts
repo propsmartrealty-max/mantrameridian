@@ -95,5 +95,27 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
   }
 
+  // 6. Cloudflare Flagship HTMLRewriter: Edge HTML Streaming SEO Transformation
+  const contentType = response.headers.get('content-type') || '';
+  if (contentType.includes('text/html') && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
+    const RewriterClass = (globalThis as any).HTMLRewriter;
+    const rewriter = new RewriterClass()
+      .on('head', {
+        element(head: any) {
+          head.append(
+            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n`,
+            { html: true }
+          );
+        }
+      })
+      .on('.legal-disclaimer, [data-nosnippet-candidate]', {
+        element(el: any) {
+          el.setAttribute('data-nosnippet', 'true');
+        }
+      });
+
+    return rewriter.transform(response);
+  }
+
   return response;
 });
