@@ -128,36 +128,39 @@ const priceFaqSchema = {
       </p>
     </div>
 
-    {/* Pricing Cards Grid */}
+    {/* Animated Luminous Divider */}
+    <div class="animated-divider-line" />
+
+    {/* Pricing Cards Grid with Warm Beige Luxury & Animated Beams */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {pricingTiers.map((tier) => (
-        <div class="bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-300 p-6 flex flex-col justify-between space-y-6">
+        <div class="card-beige-luxury border-animated-beam p-7 flex flex-col justify-between space-y-6">
           <div class="space-y-3">
             <div class="flex items-center justify-between">
-              <span class="label-architectural text-[10px] text-champagne">{tier.type}</span>
-              <span class="text-[10px] font-mono text-concrete/60">{tier.carpetArea}</span>
+              <span class="badge-beige text-[10px]">{tier.type}</span>
+              <span class="text-[10px] font-mono text-beige-stone">{tier.carpetArea}</span>
             </div>
 
             <h2 class="font-serif text-2xl text-architectural-white">{tier.name}</h2>
 
             <div class="pt-2">
-              <span class="text-[10px] uppercase text-concrete/60 block font-mono">Indicative Starting Price</span>
-              <div class="text-xl font-serif text-champagne font-semibold mt-0.5">{tier.indicativePrice}</div>
-              <span class="text-[9px] text-concrete/50 block mt-0.5">*Excludes Govt. taxes &amp; registration</span>
+              <span class="text-[10px] uppercase text-beige-stone block font-mono">Indicative Starting Price</span>
+              <div class="text-2xl font-serif text-gradient-beige font-semibold mt-0.5">{tier.indicativePrice}</div>
+              <span class="text-[9px] text-concrete block mt-0.5">*Excludes Govt. taxes &amp; registration</span>
             </div>
 
-            <div class="pt-3 border-t border-white/10 space-y-1.5 text-xs text-concrete/80">
-              <span class="text-[10px] font-mono text-concrete/60 uppercase block">Configuration Highlights</span>
+            <div class="pt-3 border-t border-beige-border space-y-1.5 text-xs text-concrete">
+              <span class="text-[10px] font-mono text-beige-stone uppercase block">Configuration Highlights</span>
               {tier.highlights.map((h) => (
                 <div class="flex items-center gap-2 text-[11px]">
-                  <span class="w-1 h-1 rounded-full bg-champagne shrink-0" />
-                  <span>{h}</span>
+                  <span class="w-1.5 h-1.5 rounded-full bg-champagne shrink-0" />
+                  <span class="text-beige-warm/90">{h}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          <div class="space-y-2.5 pt-4 border-t border-white/10">
+          <div class="space-y-2.5 pt-4 border-t border-beige-border">
             <button
               class="btn-luxury text-xs w-full text-center py-2.5 open-price-enquiry-btn"
               data-config={tier.type}
@@ -166,7 +169,7 @@ const priceFaqSchema = {
             </button>
             <a
               href={`/mantra-meridian-riverside/${tier.slug}`}
-              class="block text-center text-[11px] text-concrete hover:text-champagne transition-colors font-mono"
+              class="block text-center text-[11px] text-beige-stone hover:text-champagne transition-colors font-mono"
             >
               View Floor Plan Blueprints →
             </a>
@@ -174,6 +177,9 @@ const priceFaqSchema = {
         </div>
       ))}
     </div>
+
+    {/* Animated Luminous Divider */}
+    <div class="animated-divider-line" />
  
     {/* Interactive Glassmorphic EMI & Affordability Calculator */}
     <EMICalculator client:load />

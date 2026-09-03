@@ -2,14 +2,17 @@
 import { projectData } from '../../data/project';
 ---
 
-<section class="w-full relative py-16 px-6 md:px-12 overflow-hidden border-y border-white/10 bg-obsidian-deep/80 backdrop-blur-2xl">
+<section class="w-full relative py-16 px-6 md:px-12 overflow-hidden bg-obsidian-surface/60 backdrop-blur-2xl">
+  {/* Top Animated Luminous Divider Line */}
+  <div class="animated-divider-line mb-12" />
+
   {/* Ambient Lighting Orbs */}
-  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-champagne/5 rounded-full blur-3xl pointer-events-none -z-10" />
-  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-landscape-emerald/10 rounded-full blur-3xl pointer-events-none -z-10" />
+  <div class="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 bg-beige/10 rounded-full blur-3xl pointer-events-none -z-10" />
+  <div class="absolute top-1/2 right-1/4 -translate-y-1/2 w-96 h-96 bg-champagne/10 rounded-full blur-3xl pointer-events-none -z-10" />
 
   <div class="max-w-7xl mx-auto relative z-10">
     
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6 p-6 sm:p-10 glass-card-luxury divide-y md:divide-y-0 md:divide-x divide-white/10">
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6 p-6 sm:p-10 card-beige-luxury border-animated-beam divide-y md:divide-y-0 md:divide-x divide-beige-border">
       {projectData.keyHighlights.map((stat, idx) => {
         const isRera = stat.label.includes('RERA') || stat.value.startsWith('P52');
         const isMultiConfig = stat.value.includes('/');
@@ -19,25 +22,25 @@ import { projectData } from '../../data/project';
             <div>
               {isRera ? (
                 <div class="min-h-[44px] sm:min-h-[52px] lg:min-h-[56px] flex flex-col justify-end">
-                  <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-champagne/10 border border-champagne/35 w-fit mb-1.5 glass-pill">
+                  <div class="badge-beige mb-1.5 w-fit">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-[9px] uppercase tracking-[0.16em] text-champagne font-mono font-medium">REGISTERED</span>
+                    <span class="text-[9px] uppercase tracking-[0.16em] text-beige-warm font-mono font-medium">REGISTERED</span>
                   </div>
                   <a
                     href={projectData.reraRegistrationUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="font-mono text-xs sm:text-sm lg:text-[15px] text-architectural-white font-semibold tracking-[0.12em] hover:text-champagne transition-colors block break-all"
+                    class="font-mono text-xs sm:text-sm lg:text-[15px] text-beige-warm font-semibold tracking-[0.12em] hover:text-champagne transition-colors block break-all"
                   >
                     {stat.value} ↗
                   </a>
                 </div>
               ) : isMultiConfig ? (
-                <span class="font-display text-2xl sm:text-3xl lg:text-[36px] text-gradient-pearl font-normal tracking-tight block leading-tight">
+                <span class="font-display text-2xl sm:text-3xl lg:text-[36px] text-gradient-beige font-normal tracking-tight block leading-tight">
                   {stat.value}
                 </span>
               ) : (
-                <span class="font-display text-3xl sm:text-4xl lg:text-5xl text-gradient-pearl font-normal tracking-tight block">
+                <span class="font-display text-3xl sm:text-4xl lg:text-5xl text-gradient-beige font-normal tracking-tight block">
                   {stat.value}
                 </span>
               )}
@@ -46,7 +49,7 @@ import { projectData } from '../../data/project';
                 {stat.label}*
               </span>
             </div>
-            <p class="text-[11px] text-concrete/70 leading-snug mt-3 font-light">
+            <p class="text-[11px] text-concrete leading-snug mt-3 font-light">
               {stat.sublabel}
             </p>
           </div>
@@ -54,7 +57,10 @@ import { projectData } from '../../data/project';
       })}
     </div>
 
-    <div class="pt-8 mt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-concrete/60 font-sans">
+    {/* Bottom Animated Luminous Divider Line */}
+    <div class="animated-divider-line mt-12" />
+
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-concrete font-sans">
       <span>*Subject to current project documentation &amp; sanctioned statutory approvals</span>
       <span class="mt-2 sm:mt-0 flex items-center gap-2">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>

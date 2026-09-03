@@ -25,6 +25,16 @@ export default {
           border: '#353A49',
           muted: '#9E9A8E',
         },
+        beige: {
+          DEFAULT: '#E7DFD5',
+          warm: '#F5F0EB',
+          silk: '#ECE5DB',
+          stone: '#DDD3C4',
+          dark: '#C4B59F',
+          muted: '#A89982',
+          glow: 'rgba(231, 223, 213, 0.22)',
+          border: 'rgba(231, 223, 213, 0.35)',
+        },
         landscape: {
           DEFAULT: '#253B25',
           dark: '#162316',
@@ -59,6 +69,8 @@ export default {
         'glass-sheen': 'sheen 5s ease-in-out infinite',
         'shimmer-gold': 'shimmer 3s ease-in-out infinite',
         'border-pulse': 'borderPulse 4s ease-in-out infinite',
+        'line-sweep': 'lineSweep 4s ease-in-out infinite',
+        'border-glow-slow': 'borderGlow 5s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -74,8 +86,17 @@ export default {
           '50%': { opacity: '1', filter: 'brightness(1.15)' },
         },
         borderPulse: {
-          '0%, 100%': { borderColor: 'rgba(212, 175, 55, 0.18)' },
-          '50%': { borderColor: 'rgba(212, 175, 55, 0.45)' },
+          '0%, 100%': { borderColor: 'rgba(231, 223, 213, 0.2)' },
+          '50%': { borderColor: 'rgba(223, 183, 90, 0.6)' },
+        },
+        lineSweep: {
+          '0%': { transform: 'translateX(-100%)', opacity: '0.2' },
+          '50%': { opacity: '1' },
+          '100%': { transform: 'translateX(100%)', opacity: '0.2' },
+        },
+        borderGlow: {
+          '0%, 100%': { borderColor: 'rgba(231, 223, 213, 0.25)', boxShadow: '0 0 15px rgba(231, 223, 213, 0.08)' },
+          '50%': { borderColor: 'rgba(223, 183, 90, 0.65)', boxShadow: '0 0 25px rgba(223, 183, 90, 0.25)' },
         },
       },
       letterSpacing: {
