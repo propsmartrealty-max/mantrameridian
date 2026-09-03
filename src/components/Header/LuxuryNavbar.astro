@@ -8,47 +8,91 @@ interface Props {
 
 const { currentPath = '/' } = Astro.props;
 
-const navLinks = [
+// Curated 6 primary links for clean, spacious desktop breathing room
+const primaryNavLinks = [
   { label: 'RESIDENCES', href: '/meridian/residences' },
-  { label: 'PRICING', href: '/meridian/price' },
-  { label: 'RIVERSIDE', href: '/meridian/riverside' },
   { label: 'FLOOR PLANS', href: '/meridian/floor-plans' },
+  { label: 'PRICING', href: '/meridian/price' },
   { label: 'AMENITIES', href: '/meridian/amenities' },
-  { label: 'MASTERPLAN', href: '/meridian/masterplan' },
   { label: 'LOCATION', href: '/meridian/location' },
   { label: 'GALLERY', href: '/meridian/gallery' },
-  { label: 'JOURNAL', href: '/meridian/journal' },
+];
+
+// Secondary exploration links housed in an elegant luxury dropdown
+const exploreDropdownLinks = [
+  { label: 'The Riverside Story', href: '/meridian/riverside', desc: '500m river boardwalk & biophilic calm' },
+  { label: '8-Acre Masterplan', href: '/meridian/masterplan', desc: 'Podium layout & tower zoning' },
+  { label: 'Balewadi Real Estate Hub', href: '/balewadi', desc: 'Micromarket guide & High Street' },
+  { label: 'West Pune Luxury Guide', href: '/west-pune', desc: 'Baner & Hinjewadi corridor analysis' },
+  { label: 'The Meridian Journal', href: '/meridian/journal', desc: 'Architectural essays & market insights' },
+  { label: 'MahaRERA Compliance', href: '/meridian/rera', desc: 'Registration P52100045688 & filings' },
+  { label: 'Document Library', href: '/meridian/documents', desc: 'Download official brochure PDF' },
 ];
 ---
 
-<header id="luxury-navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-6 px-6 md:px-12">
+<header id="luxury-navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-5 px-6 md:px-12">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     
-    {/* Intelligent Dual Brand Lockup: Mantra Properties sitting across Meridian */}
+    {/* Intelligent Dual Brand Lockup: Mantra Properties & Meridian Riverside */}
     <DualBrandLockup variant="navbar" />
 
-    {/* Center Navigation Links (Desktop) */}
-    <nav class="hidden xl:flex items-center gap-7 text-[11px] font-medium tracking-[0.2em] text-concrete">
-      {navLinks.map((link) => (
+    {/* Center Navigation Links (Clean, Uncluttered Desktop Row) */}
+    <nav class="hidden lg:flex items-center gap-5 xl:gap-7 text-[11px] font-mono tracking-[0.14em] text-concrete/80">
+      {primaryNavLinks.map((link) => (
         <a
           href={link.href}
-          class={`transition-colors duration-300 hover:text-architectural-white relative py-1 ${
-            currentPath.startsWith(link.href) ? 'text-architectural-white font-semibold' : ''
+          class={`transition-colors duration-300 hover:text-champagne relative py-1 ${
+            currentPath.startsWith(link.href) ? 'text-champagne font-semibold' : ''
           }`}
         >
           {link.label}
           {currentPath.startsWith(link.href) && (
-            <span class="absolute bottom-0 left-0 right-0 h-[1px] bg-champagne" />
+            <span class="absolute bottom-0 left-0 right-0 h-[1.5px] bg-champagne" />
           )}
         </a>
       ))}
+
+      {/* Discover Dropdown */}
+      <div class="relative group py-1">
+        <button
+          id="discover-menu-trigger"
+          class="flex items-center gap-1 text-concrete/80 hover:text-champagne transition-colors duration-300 uppercase focus:outline-none"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          <span>EXPLORE</span>
+          <span class="text-[9px] text-champagne transition-transform duration-300 group-hover:rotate-180">▾</span>
+        </button>
+
+        {/* Dropdown Menu Glass Panel */}
+        <div class="absolute top-full right-0 mt-2 w-72 bg-obsidian-deep/95 border border-champagne/25 shadow-2xl backdrop-blur-2xl p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <div class="text-[9px] uppercase tracking-[0.2em] text-champagne/70 font-mono px-3 py-1.5 border-b border-white/5">
+            ESTATE DIRECTORY
+          </div>
+          <div class="py-1 space-y-0.5">
+            {exploreDropdownLinks.map((item) => (
+              <a
+                href={item.href}
+                class="block px-3 py-2 hover:bg-white/5 transition-colors group/item"
+              >
+                <div class="text-xs text-architectural-white group-hover/item:text-champagne transition-colors font-medium">
+                  {item.label}
+                </div>
+                <div class="text-[10px] text-concrete/60 font-sans line-clamp-1">
+                  {item.desc}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
     </nav>
 
     {/* Right Action CTA & Mobile Menu Toggle */}
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-3">
       <button
         id="desktop-enquire-btn"
-        class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] font-medium tracking-[0.14em] uppercase border border-champagne/40 bg-obsidian-surface/70 text-architectural-white hover:bg-champagne hover:text-obsidian transition-all duration-300 shadow-sm"
+        class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 text-[10px] font-mono tracking-[0.14em] uppercase border border-champagne/40 bg-obsidian-surface/80 text-architectural-white hover:bg-champagne hover:text-obsidian transition-all duration-300 shadow-sm"
       >
         <span>PRIVATE PRESENTATION</span>
         <span class="text-champagne group-hover:text-obsidian text-xs">↗</span>
@@ -57,10 +101,10 @@ const navLinks = [
       {/* Mobile Hamburger */}
       <button
         id="mobile-menu-toggle"
-        class="xl:hidden p-2.5 text-architectural-white border border-white/10 bg-obsidian-surface/80"
+        class="lg:hidden p-2 text-architectural-white border border-white/10 bg-obsidian-surface/80 hover:border-champagne/40 transition-colors"
         aria-label="Toggle navigation menu"
       >
-        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <svg id="hamburger-icon" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -69,21 +113,68 @@ const navLinks = [
   </div>
 
   {/* Mobile Menu Slide-down Overlay */}
-  <div id="mobile-menu" class="hidden fixed inset-0 top-[88px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-8 border-t border-white/10 overflow-y-auto">
-    <div class="space-y-6 max-w-md mx-auto py-6">
-      <div class="text-[10px] tracking-widest text-champagne uppercase font-mono">ESTATE NAVIGATION</div>
-      <div class="flex flex-col space-y-4">
-        {navLinks.map((link) => (
-          <a
-            href={link.href}
-            class="font-serif text-2xl text-architectural-white hover:text-champagne transition-colors border-b border-white/5 pb-2"
-          >
-            {link.label}
+  <div id="mobile-menu" class="hidden fixed inset-0 top-[76px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-6 sm:p-8 border-t border-white/10 overflow-y-auto">
+    <div class="space-y-8 max-w-lg mx-auto py-4">
+      
+      {/* Group 1: Residences & Blueprints */}
+      <div class="space-y-3">
+        <span class="text-[10px] tracking-widest text-champagne uppercase font-mono block">RESIDENCES &amp; PRICING</span>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <a href="/meridian/residences" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            All Configurations
           </a>
-        ))}
+          <a href="/meridian/price" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Pricing &amp; Cost Sheet
+          </a>
+          <a href="/meridian/floor-plans" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Floor Plans Portfolio
+          </a>
+          <a href="/meridian/3-bhk-duplex" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Signature Sky Duplex
+          </a>
+        </div>
       </div>
 
-      <div class="pt-6 space-y-3">
+      {/* Group 2: The Estate & Lifestyle */}
+      <div class="space-y-3">
+        <span class="text-[10px] tracking-widest text-champagne uppercase font-mono block">THE ESTATE &amp; LIFESTYLE</span>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <a href="/meridian/amenities" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Amenity Atlas (30+)
+          </a>
+          <a href="/meridian/riverside" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Riverside Experience
+          </a>
+          <a href="/meridian/masterplan" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            8-Acre Masterplan
+          </a>
+          <a href="/meridian/gallery" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Visual Archive &amp; 3D
+          </a>
+        </div>
+      </div>
+
+      {/* Group 3: Location & Verification */}
+      <div class="space-y-3">
+        <span class="text-[10px] tracking-widest text-champagne uppercase font-mono block">LOCATION &amp; VERIFICATION</span>
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <a href="/meridian/location" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Location Radar
+          </a>
+          <a href="/balewadi" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            Balewadi Real Estate
+          </a>
+          <a href="/west-pune" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            West Pune Guide
+          </a>
+          <a href="/meridian/journal" class="p-3 bg-obsidian-card border border-white/5 text-architectural-white hover:text-champagne transition-colors">
+            The Meridian Journal
+          </a>
+        </div>
+      </div>
+
+      {/* Action Buttons */}
+      <div class="pt-4 space-y-3 border-t border-white/10">
         <button
           id="mobile-enquire-trigger"
           class="btn-luxury w-full text-xs"
@@ -92,15 +183,17 @@ const navLinks = [
         </button>
         <a
           href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`}
-          class="btn-luxury-outline w-full text-xs"
+          class="btn-luxury-outline w-full text-xs text-center block"
         >
           CALL CONCIERGE: {projectData.contact.phone}
         </a>
       </div>
 
-      <div class="pt-8 text-center text-xs text-concrete/60 font-mono">
-        MAHARERA: {projectData.reraNumber} • BALEWADI, PUNE
+      {/* Statutory Footer Badge */}
+      <div class="pt-2 text-center text-[11px] text-concrete/60 font-mono">
+        MAHARERA: <span class="text-champagne">{projectData.reraNumber}</span> • BALEWADI, PUNE
       </div>
+
     </div>
   </div>
 </header>
@@ -114,12 +207,12 @@ const navLinks = [
   const mobileEnquire = document.getElementById('mobile-enquire-trigger');
 
   const onScroll = () => {
-    if (window.scrollY > 40) {
-      navbar?.classList.add('bg-obsidian/90', 'backdrop-blur-xl', 'py-3.5', 'border-b', 'border-champagne/15', 'shadow-luxury');
-      navbar?.classList.remove('py-6');
+    if (window.scrollY > 30) {
+      navbar?.classList.add('bg-obsidian/95', 'backdrop-blur-xl', 'py-3', 'border-b', 'border-champagne/15', 'shadow-luxury');
+      navbar?.classList.remove('py-5');
     } else {
-      navbar?.classList.remove('bg-obsidian/90', 'backdrop-blur-xl', 'py-3.5', 'border-b', 'border-champagne/15', 'shadow-luxury');
-      navbar?.classList.add('py-6');
+      navbar?.classList.remove('bg-obsidian/95', 'backdrop-blur-xl', 'py-3', 'border-b', 'border-champagne/15', 'shadow-luxury');
+      navbar?.classList.add('py-5');
     }
   };
 
