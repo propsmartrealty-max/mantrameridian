@@ -1,0 +1,364 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+
+export const prerender = true;
+
+const marketZones = [
+  {
+    region: "West Pune (Balewadi & Baner)",
+    status: "Top Investment Growth & Liveability Corridor",
+    cagr: "11.5% - 13.2%",
+    rentalYield: "4.0% - 4.4%",
+    avgPsf: "₹9,200 - ₹13,500",
+    profile: "Centroid of corporate headquarters, upscale dining on Balewadi High Street, and pristine riverfront calm along the Mula River. Driven by CXOs, tech founders, and NRI investors.",
+    spotlight: "Mantra Meridian Riverside leads with 8-acre scale, 75%+ open spaces, and starting rates from ₹85L*."
+  },
+  {
+    region: "East Pune (Kharadi & Viman Nagar)",
+    status: "IT SEZ & High-Density Commercial Hub",
+    cagr: "9.2% - 10.8%",
+    rentalYield: "3.7% - 4.1%",
+    avgPsf: "₹10,500 - ₹15,000",
+    profile: "Major IT SEZs (EON, World Trade Center). Strong tenant demand, but faces increasing traffic bottlenecks on Nagar Road and higher entry ticket sizes.",
+    spotlight: "High density with limited natural green buffers compared to West Pune's riparian river corridors."
+  },
+  {
+    region: "Prestige Central (Koregaon Park & Kalyani Nagar)",
+    status: "Heritage Ultra-Luxury Core",
+    cagr: "6.8% - 8.2%",
+    rentalYield: "2.8% - 3.2%",
+    avgPsf: "₹18,000 - ₹28,000",
+    profile: "Legacy heritage addresses with established canopy roads, premium nightspots, and German Bakery enclave. High barrier to entry with limited new parcel supply.",
+    spotlight: "Older inventory; premium buyers seek new-generation luxury sky villas like Meridian's Duplexes at 50% better value."
+  },
+  {
+    region: "Hinjewadi Tech Hub",
+    status: "Global IT Employment Engine",
+    cagr: "8.5% - 9.8%",
+    rentalYield: "3.8% - 4.2%",
+    avgPsf: "₹7,200 - ₹9,000",
+    profile: "400+ MNC software campuses employing 400,000+ professionals. High commuter population, with mid-tier residential townships.",
+    spotlight: "Senior leadership chooses to reside in Balewadi (7 mins away) for superior social infrastructure and luxury lifestyle."
+  }
+];
+
+const comparativeMetrics = [
+  {
+    parameter: "Contiguous Land Parcel",
+    meridian: "8 Acres Masterplanned Estate",
+    banerAvg: "1.5 - 3 Acres (Fragmented)",
+    kharadiAvg: "3 - 5 Acres (High Density)",
+    koregaonParkAvg: "0.5 - 2 Acres (Infill)"
+  },
+  {
+    parameter: "Open Space & Green Cover",
+    meridian: "75%+ Landscaped Biophilic Buffer",
+    banerAvg: "45% - 55%",
+    kharadiAvg: "50% - 60%",
+    koregaonParkAvg: "35% - 50%"
+  },
+  {
+    parameter: "Natural Water Frontage",
+    meridian: "500m Direct Mula River Boardwalk",
+    banerAvg: "None (Landlocked)",
+    kharadiAvg: "Partial Canal / River Distance",
+    koregaonParkAvg: "Partial River Frontage"
+  },
+  {
+    parameter: "Starting Capital Entry",
+    meridian: "₹ 85 Lakhs* onwards (2 BHK)",
+    banerAvg: "₹ 1.15 Cr+ onwards",
+    kharadiAvg: "₹ 1.10 Cr+ onwards",
+    koregaonParkAvg: "₹ 2.50 Cr+ onwards"
+  },
+  {
+    parameter: "Ceiling Heights & Formats",
+    meridian: "Sky Duplexes (20ft Voids) & 2-4 BHK",
+    banerAvg: "Standard Single-Level Flats",
+    kharadiAvg: "Standard Single-Level Flats",
+    koregaonParkAvg: "Bungalows / Sky Penthouses"
+  },
+  {
+    parameter: "Upcoming Transit Catalyst",
+    meridian: "Metro Line 3 Station + RFD Promenade",
+    banerAvg: "Metro Line 3 (High Street / Baner)",
+    kharadiAvg: "Metro Line 2 Extension (Planned)",
+    koregaonParkAvg: "Metro Line 2 (Ruby Hall / Bund Garden)"
+  }
+];
+
+const infrastructurePillars = [
+  {
+    title: "Pune Metro Line 3 (Hinjewadi – Shivajinagar)",
+    status: "Advanced Structural Commissioning",
+    impact: "Cuts transit time from Hinjewadi IT Park to Balewadi and Central Pune to under 15 minutes, boosting capital values across Balewadi corridor by an estimated 18-22%."
+  },
+  {
+    title: "Mula Riverfront Development (RFD) Project",
+    status: "PMRDA & Smart City Approved",
+    impact: "Modeled after European riverfront promenades, creating flood-resilient green belts, walking boulevards, and ecological parks directly fronting Mantra Meridian Riverside."
+  },
+  {
+    title: "128-km High-Speed Pune Ring Road",
+    status: "Land Acquisition & Phase 1 Execution",
+    impact: "Decouples heavy intercity transit from city arterial roads, offering seamless connectivity from West Pune to the upcoming Purandar International Airport and Mumbai Expressway."
+  },
+  {
+    title: "Balewadi-Wakad Bridge & Road Widening",
+    status: "Operational & Enhanced",
+    impact: "Eliminates highway choke points, linking Balewadi High Street directly to Phoenix Mall of the Millennium in Wakad within 5 minutes."
+  }
+];
+
+const puneFaqs = [
+  {
+    question: "Which is the best area to buy a luxury flat in Pune in 2026?",
+    answer: "Balewadi in West Pune is currently ranked as the #1 luxury residential destination in Pune. It combines wider planned avenues, proximity to Balewadi High Street dining, immediate connectivity to Hinjewadi IT Park (7 mins), and tranquil riverfront developments like Mantra Meridian Riverside that offer 75%+ open green space."
+  },
+  {
+    question: "How does Balewadi compare with Kharadi and Baner for real estate investment?",
+    answer: "Balewadi offers higher rental yields (4.0%-4.4%) and superior liveability compared to Baner, which has reached high commercial density and traffic congestion. Compared to Kharadi in East Pune, Balewadi provides faster access to Mumbai via the Expressway and direct benefit from the Hinjewadi-Shivajinagar Metro Line 3."
+  },
+  {
+    question: "Why is Mantra Meridian Riverside considered Pune's benchmark luxury project?",
+    answer: "Mantra Meridian Riverside stands out as an 8-acre masterplanned riverfront estate featuring 75%+ open green spaces and an exclusive 500-metre riverwalk along the Mula River. It offers unique 3 BHK Sky Duplexes with 20ft double-height living salons, starting at ₹85 Lakhs* for 2 BHKs up to ₹2.40 Cr* for 4 BHK Grand Estates, backed by MahaRERA registration P52100045688."
+  },
+  {
+    question: "What is the capital appreciation forecast for Pune riverfront properties?",
+    answer: "Riverfront real estate in Pune commands an estimated 15-25% price premium over landlocked properties due to limited riparian land parcels and the ongoing Mula Riverfront Development (RFD) initiative. Properties along the Balewadi river corridor are forecasted to deliver 11.5% to 13.2% CAGR through 2030."
+  },
+  {
+    question: "Are home loans approved by national banks for Mantra Meridian Riverside in Pune?",
+    answer: "Yes. Mantra Meridian Riverside is fully approved for retail home mortgages by leading financial institutions including State Bank of India (SBI), HDFC Bank, ICICI Bank, Axis Bank, and Bank of Baroda with competitive rates starting from 8.5% p.a."
+  }
+];
+---
+
+<BaseLayout
+  title="Pune Real Estate Market Report & Luxury Investment Index 2026–2030 | Mantra Meridian Balewadi"
+  description="Authoritative Pune real estate market intelligence 2026–2030. Compare Balewadi, Baner, Kharadi, Hinjewadi & Koregaon Park. Why Mantra Meridian Riverside leads Pune luxury real estate."
+  keywords="Pune real estate, Pune real estate market, luxury flats in Pune, best projects in Pune 2026, Balewadi vs Kharadi, Balewadi vs Baner, Pune property investment, 2 BHK in Pune, 3 BHK in Pune, 4 BHK in Pune, duplex flats in Pune, Mantra Properties Pune, MahaRERA P52100045688"
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Pune Real Estate Authority Index" }]} />
+
+    {/* Hero Section */}
+    <div class="max-w-4xl space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-champagne animate-pulse"></span>
+        <span class="label-architectural text-xs text-champagne">PUNE REAL ESTATE INTELLIGENCE CELL (2026–2030)</span>
+      </div>
+      <h1 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-[1.08]">
+        The Pune Luxury Real Estate<br />
+        <span class="text-champagne font-light italic">Benchmark &amp; Market Index.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        An exhaustive citywide analysis comparing micro-market yields, capital appreciation, infrastructure catalysts, and why Mantra Meridian Riverside in Balewadi has emerged as Pune’s definitive luxury residential asset.
+      </p>
+    </div>
+
+    {/* Macro Real Estate Stats Strip */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="glass-card-luxury p-5 border border-white/10 space-y-1">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-concrete/70">Top Rental Yield</span>
+        <div class="text-2xl sm:text-3xl font-serif text-champagne font-semibold">4.4%</div>
+        <span class="text-[11px] text-concrete font-sans">Balewadi Riverside Corridor</span>
+      </div>
+      <div class="glass-card-luxury p-5 border border-white/10 space-y-1">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-concrete/70">5-Yr Projected CAGR</span>
+        <div class="text-2xl sm:text-3xl font-serif text-champagne font-semibold">12.8%</div>
+        <span class="text-[11px] text-concrete font-sans">Metro Line 3 Influence Zone</span>
+      </div>
+      <div class="glass-card-luxury p-5 border border-white/10 space-y-1">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-concrete/70">Open Space Benchmark</span>
+        <div class="text-2xl sm:text-3xl font-serif text-champagne font-semibold">75%+</div>
+        <span class="text-[11px] text-concrete font-sans">Mantra Meridian 8-Acre Estate</span>
+      </div>
+      <div class="glass-card-luxury p-5 border border-white/10 space-y-1">
+        <span class="text-[10px] font-mono uppercase tracking-wider text-concrete/70">Starting Entry Value</span>
+        <div class="text-2xl sm:text-3xl font-serif text-champagne font-semibold">₹ 85L*</div>
+        <span class="text-[11px] text-concrete font-sans">2 BHK Luxury Residences</span>
+      </div>
+    </div>
+
+    {/* Section 1: Pune Micro-Market Matrix */}
+    <div class="space-y-8">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">GEOGRAPHIC YIELD SPECTRUM</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Pune Micro-Market Comparative Review</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Evaluating capital value trajectories, tenancy demand drivers, and livability scores across Pune's key residential sub-markets.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {marketZones.map((zone) => (
+          <div class="glass-card-luxury p-6 border border-white/10 hover:border-champagne/40 transition-all duration-300 space-y-4 flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <h3 class="font-serif text-xl text-architectural-white">{zone.region}</h3>
+                <span class="text-[10px] font-mono px-2 py-0.5 border border-champagne/30 text-champagne bg-champagne/5">
+                  {zone.avgPsf}
+                </span>
+              </div>
+              <div class="flex items-center gap-4 text-xs font-mono">
+                <span class="text-concrete">CAGR: <strong class="text-champagne">{zone.cagr}</strong></span>
+                <span class="text-concrete/40">•</span>
+                <span class="text-concrete">Yield: <strong class="text-emerald-400">{zone.rentalYield}</strong></span>
+              </div>
+              <p class="text-xs text-concrete/80 leading-relaxed font-sans">
+                {zone.profile}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-white/5 text-[11px] text-champagne/90 font-mono">
+              ✦ {zone.spotlight}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Section 2: Detailed Head-to-Head Architectural Comparator */}
+    <div class="bg-obsidian-surface border border-white/10 p-6 sm:p-10 space-y-8">
+      <div class="max-w-3xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">HEAD-TO-HEAD BENCHMARK</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Mantra Meridian vs Citywide Luxury Standards</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          How Mantra Meridian Riverside in Balewadi outclasses conventional high-density residential developments in Baner, Kharadi, and Koregaon Park.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-concrete">
+          <thead>
+            <tr class="border-b border-white/10 text-[10px] uppercase font-mono text-champagne tracking-wider">
+              <th class="py-3 px-4">Evaluation Parameter</th>
+              <th class="py-3 px-4 text-champagne font-semibold">Mantra Meridian Riverside</th>
+              <th class="py-3 px-4">Baner Commercial Core</th>
+              <th class="py-3 px-4">Kharadi IT SEZ</th>
+              <th class="py-3 px-4">Koregaon Park (Legacy)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-sans">
+            {comparativeMetrics.map((row) => (
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 px-4 font-medium text-architectural-white">{row.parameter}</td>
+                <td class="py-3.5 px-4 font-mono text-champagne font-semibold bg-champagne/5">{row.meridian}</td>
+                <td class="py-3.5 px-4 text-concrete/70">{row.banerAvg}</td>
+                <td class="py-3.5 px-4 text-concrete/70">{row.kharadiAvg}</td>
+                <td class="py-3.5 px-4 text-concrete/70">{row.koregaonParkAvg}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Section 3: Macro Infrastructure Growth Catalysts */}
+    <div class="space-y-8">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">CIVIC INFRASTRUCTURE MULTIPLIERS</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Pune Megaprojects Propelling West Pune Values</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Major state and municipal infrastructure initiatives transforming connectivity, capital velocity, and environmental livability in Balewadi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {infrastructurePillars.map((infra) => (
+          <div class="glass-card-luxury p-6 border border-white/10 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono uppercase tracking-wider text-champagne">
+                {infra.status}
+              </span>
+              <span class="w-1.5 h-1.5 rounded-full bg-champagne"></span>
+            </div>
+            <h3 class="font-serif text-xl text-architectural-white">{infra.title}</h3>
+            <p class="text-xs text-concrete leading-relaxed">
+              {infra.impact}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Section 4: Why Mantra Meridian Dominates Pune */}
+    <div class="glass-card-luxury p-8 sm:p-12 border border-champagne/30 shadow-luxury-gold space-y-8 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-96 h-96 bg-champagne/5 rounded-full blur-3xl pointer-events-none -z-10"></div>
+      
+      <div class="max-w-3xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">THE DEFINITIVE PUNE LUXURY ASSET</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-architectural-white font-normal">
+          Why Discerning Pune Buyers Choose Mantra Meridian Riverside.
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          A rare combination of masterplanned scale, riverside serenity, and immediate urban proximity that cannot be replicated elsewhere in Pune.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+        <div class="space-y-2 p-5 bg-obsidian-surface border border-white/10">
+          <div class="text-champagne font-mono text-xs">01 • THE RIVERFRONT ADVANTAGE</div>
+          <h4 class="font-serif text-lg text-architectural-white">500m Mula River Boardwalk</h4>
+          <p class="text-xs text-concrete leading-relaxed">
+            Permanent natural buffer guaranteeing unhindered views, riparian breeze, and 3-5°C cooler microclimate compared to concrete city cores.
+          </p>
+        </div>
+
+        <div class="space-y-2 p-5 bg-obsidian-surface border border-white/10">
+          <div class="text-champagne font-mono text-xs">02 • ARCHITECTURAL SCALE</div>
+          <h4 class="font-serif text-lg text-architectural-white">Signature Sky Duplexes</h4>
+          <p class="text-xs text-concrete leading-relaxed">
+            20ft double-height architectural voids, dual-tier privacy, and expansive entertaining terraces offering bungalow-grade living in the sky.
+          </p>
+        </div>
+
+        <div class="space-y-2 p-5 bg-obsidian-surface border border-white/10">
+          <div class="text-champagne font-mono text-xs">03 • INVESTMENT SECURITY</div>
+          <h4 class="font-serif text-lg text-architectural-white">MahaRERA &amp; Bank Backed</h4>
+          <p class="text-xs text-concrete leading-relaxed">
+            MahaRERA P52100045688 sanctioned with construction-linked payment milestones and pre-approvals from SBI, HDFC, ICICI, and Axis Bank.
+          </p>
+        </div>
+      </div>
+
+      <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div>
+          <div class="text-sm font-serif text-architectural-white">Ready to explore Pune's premier riverside residences?</div>
+          <div class="text-xs text-concrete font-mono mt-0.5">Indicative pricing from ₹85 Lakhs* to ₹2.40 Cr*</div>
+        </div>
+        <div class="flex items-center gap-4 w-full sm:w-auto">
+          <a
+            href="/mantra-meridian-riverside/price"
+            class="btn-luxury text-xs text-center flex-1 sm:flex-initial py-3 px-6 whitespace-nowrap"
+          >
+            VIEW DETAILED PRICE MATRIX ↗
+          </a>
+          <a
+            href="/mantra-meridian-riverside/floor-plans"
+            class="btn-luxury-outline text-xs text-center flex-1 sm:flex-initial py-3 px-6 whitespace-nowrap"
+          >
+            EXPLORE BLUEPRINTS →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Section 5: Citywide Real Estate FAQs */}
+    <div class="space-y-6">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">KNOWLEDGE BASE</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Pune Real Estate Investment FAQs</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Critical clarifications for home buyers, NRIs, and institutional investors evaluating the Pune real estate landscape.
+        </p>
+      </div>
+
+      <FAQAccordion customFaqs={puneFaqs} />
+    </div>
+
+  </div>
+</BaseLayout>

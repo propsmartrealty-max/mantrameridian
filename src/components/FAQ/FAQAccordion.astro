@@ -4,13 +4,14 @@ import { faqsData, type FAQItem } from '../../data/faqs';
 interface Props {
   category?: string;
   limit?: number;
+  customFaqs?: { question: string; answer: string; category?: string }[];
 }
 
-const { category, limit } = Astro.props;
+const { category, limit, customFaqs } = Astro.props;
 
-let displayFaqs: FAQItem[] = category
-  ? faqsData.filter((f) => f.category === category)
-  : faqsData;
+let displayFaqs: (FAQItem | { question: string; answer: string; category?: string })[] = customFaqs
+  ? customFaqs
+  : (category ? faqsData.filter((f) => f.category === category) : faqsData);
 
 if (limit) {
   displayFaqs = displayFaqs.slice(0, limit);

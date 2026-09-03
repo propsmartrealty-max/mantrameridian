@@ -25,7 +25,8 @@ const PRIORITY_URLS = [
   `https://${HOST}/mantra-meridian-riverside/gallery`,
   `https://${HOST}/mantra-meridian-riverside/rera`,
   `https://${HOST}/mantra-meridian-riverside/documents`,
-  `https://${HOST}/mantra-meridian-riverside/journal`
+  `https://${HOST}/mantra-meridian-riverside/journal`,
+  `https://${HOST}/pune-real-estate`
 ];
 
 export const POST: APIRoute = async () => {
