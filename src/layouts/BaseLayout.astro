@@ -56,7 +56,9 @@ const baseSchema = customSchema || {
         "https://www.instagram.com/mantraproperties/",
         "https://www.linkedin.com/company/mantra-properties-pune/",
         "https://www.youtube.com/@MantraProperties",
-        "https://maharera.mahaonline.gov.in/"
+        "https://maharera.mahaonline.gov.in/",
+        projectData.googleMapsUrl,
+        `https://maps.google.com/?cid=${projectData.googleMapsCid}`
       ],
       "address": {
         "@type": "PostalAddress",
@@ -68,8 +70,8 @@ const baseSchema = customSchema || {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 18.5775,
-        "longitude": 73.7745
+        "latitude": projectData.coordinates.latitude,
+        "longitude": projectData.coordinates.longitude
       },
       "priceRange": "₹ 85 Lakhs - ₹ 3.50 Cr",
       "openingHoursSpecification": [
@@ -85,7 +87,10 @@ const baseSchema = customSchema || {
       "@type": "ApartmentComplex",
       "@id": "https://mantrameridianriverside.com/#complex",
       "name": "Mantra Meridian Riverside",
-      "alternateName": "Meridian at Riverside Balewadi",
+      "alternateName": [
+        "Meridian at Riverside Balewadi",
+        "Site - Mantra Riverside"
+      ],
       "description": `${projectData.name} - ${projectData.tagline}. 8-acre luxury residential community in Balewadi, Pune offering 2, 3, 4 BHK apartments and signature 3 BHK duplexes. MahaRERA P52100045688.`,
       "tourBookingPage": "https://mantrameridianriverside.com/#virtual-tour",
       "address": {
@@ -98,10 +103,10 @@ const baseSchema = customSchema || {
       },
       "geo": {
         "@type": "GeoCoordinates",
-        "latitude": 18.5775,
-        "longitude": 73.7745
+        "latitude": projectData.coordinates.latitude,
+        "longitude": projectData.coordinates.longitude
       },
-      "hasMap": "https://maps.app.goo.gl/BYYZfgLSmqrn2UzU8",
+      "hasMap": projectData.googleMapsUrl,
       "numberOfBedrooms": "2, 3, 4",
       "petsAllowed": true,
       "amenityFeature": [
@@ -197,8 +202,8 @@ const baseSchema = customSchema || {
     {/* Local SEO Geo Tags for Balewadi, Pune */}
     <meta name="geo.region" content="IN-MH" />
     <meta name="geo.placename" content="Balewadi, Pune" />
-    <meta name="geo.position" content="18.5775;73.7745" />
-    <meta name="ICBM" content="18.5775, 73.7745" />
+    <meta name="geo.position" content={`${projectData.coordinates.latitude};${projectData.coordinates.longitude}`} />
+    <meta name="ICBM" content={`${projectData.coordinates.latitude}, ${projectData.coordinates.longitude}`} />
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />

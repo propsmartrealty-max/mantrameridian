@@ -14,6 +14,12 @@ export interface ProjectData {
   reraRegistrationUrl: string;
   officialPropertyUrl: string;
   googleMapsUrl: string;
+  googleMapsCid: string;
+  googleMapsKgId: string;
+  coordinates: {
+    latitude: number;
+    longitude: number;
+  };
   projectScale: string;
   openSpacePercentage: string;
   towers: string;
@@ -56,7 +62,13 @@ export const projectData: ProjectData = {
   reraNumber: "P52100045688",
   reraRegistrationUrl: "https://maharera.mahaonline.gov.in/",
   officialPropertyUrl: "https://www.mantraproperties.in/properties/residential/mantra-meridian",
-  googleMapsUrl: "https://maps.app.goo.gl/BYYZfgLSmqrn2UzU8",
+  googleMapsUrl: "https://www.google.com/maps/place/Site+-+Mantra+Riverside/@18.5839181,73.7747366,17z/data=!4m6!3m5!1s0x3bc2b90046a5808b:0xd7087df3d2222d59!8m2!3d18.5839181!4d73.7747366!16s%2Fg%2F11x7zq3s0c",
+  googleMapsCid: "15494874017770876249",
+  googleMapsKgId: "/g/11x7zq3s0c",
+  coordinates: {
+    latitude: 18.5839181,
+    longitude: 73.7747366
+  },
   projectScale: "8-Acre Premium Development",
   openSpacePercentage: "75%+",
   towers: "Iconic High-Rise Towers",

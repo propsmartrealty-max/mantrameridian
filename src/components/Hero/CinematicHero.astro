@@ -96,7 +96,15 @@ import { projectData } from '../../data/project';
   </div>
 
   <div class="absolute bottom-8 right-8 hidden md:flex items-center gap-3 text-concrete/50 text-[10px] font-mono tracking-widest uppercase">
-    <span>LAT 18.5775° N • LONG 73.7745° E</span>
+    <a
+      href={projectData.googleMapsUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hover:text-champagne transition-colors flex items-center gap-1.5"
+    >
+      <span>LAT 18.5839° N • LONG 73.7747° E</span>
+      <span class="text-champagne">↗</span>
+    </a>
   </div>
 
 </section>
