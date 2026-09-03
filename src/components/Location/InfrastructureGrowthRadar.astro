@@ -1,0 +1,136 @@
+---
+import { projectData } from '../../data/project';
+
+const infrastructureCatalysts = [
+  {
+    tag: "TRANSFORMATIVE RIVER LINK",
+    title: "Proposed Mula River Bridge (Balewadi ↔ Wakad)",
+    timeline: "Sanctioned Infrastructure",
+    impact: "Reduces Wakad commute from 25 mins to 5 mins",
+    description: "The planned civic bridge across the Mula River directly connects Balewadi Village Road to Wakad, creating an immediate bypass to Bhumkar Chowk and connecting residents directly to Hinjewadi Phase 1.",
+    highlight: true,
+  },
+  {
+    tag: "RAPID TRANSIT ARTERY",
+    title: "Pune Metro Line 3 (Hinjewadi – Shivajinagar)",
+    timeline: "Near Operational",
+    impact: "Elevated station 3-4 mins from Meridian",
+    description: "The 23.3 km elevated metro line links the Hinjewadi tech corridor to central Pune. Residents enjoy effortless traffic-free transit to Shivaji Nagar, Pune University, and Megapolis.",
+    highlight: false,
+  },
+  {
+    tag: "COMMERCIAL & LIFESTYLE",
+    title: "Balewadi High Street Expansion",
+    timeline: "5 Minutes Away",
+    impact: "Pune's premier dining & Grade-A office hub",
+    description: "Home to global IT GCCs, luxury fine dining, and boutique retail. Meridian balances immediate 5-minute proximity with serene riverside sanctuary calm.",
+    highlight: false,
+  },
+  {
+    tag: "REGIONAL MOBILITY",
+    title: "Western Ring Road & Katraj-Dehu Bypass",
+    timeline: "Continuous Upgrades",
+    impact: "Direct Mumbai-Pune Expressway access",
+    description: "Seamless transit to Mumbai, Baner CBD, Kothrud, and the industrial automotive corridors of Chakan & Talegaon without urban congestion.",
+    highlight: false,
+  },
+];
+---
+
+<section id="infrastructure-radar" class="w-full relative py-20 px-6 md:px-12 border-b border-white/10 overflow-hidden">
+  {/* Ambient glowing radial orbs */}
+  <div class="absolute top-1/2 right-0 w-[500px] h-[500px] bg-landscape-emerald/10 rounded-full blur-3xl pointer-events-none -z-10" />
+
+  <div class="max-w-7xl mx-auto space-y-14 relative z-10">
+    
+    {/* Header */}
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-3xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 glass-pill border border-champagne/30 text-champagne text-xs font-mono uppercase tracking-widest">
+          <span class="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse"></span>
+          <span>LOCATION INTELLIGENCE &amp; APPRECIATION CATALYSTS</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-gradient-pearl font-normal leading-tight">
+          Infrastructure Growth Radar.<br />
+          <span class="text-champagne font-light italic font-serif">Why Meridian Balewadi Appreciates.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Capital values in West Pune are catalyzed by major civic infrastructure. Discover the multi-modal transit links transforming Balewadi Village Road into a premier luxury enclave.
+        </p>
+      </div>
+
+      <div class="glass-card-luxury p-5 border border-champagne/30 space-y-2 text-xs font-mono min-w-[260px]">
+        <div class="text-[10px] text-concrete/70 uppercase">Rental Yield in Balewadi</div>
+        <div class="text-gradient-pearl font-display text-2xl font-semibold">3.8% – 4.2%</div>
+        <div class="text-[11px] text-champagne">High Tech Expat Tenant Demand</div>
+      </div>
+    </div>
+
+    {/* Catalysts Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {infrastructureCatalysts.map((cat) => (
+        <div class={`glass-card-luxury p-7 sm:p-8 space-y-4 flex flex-col justify-between transition-all duration-300 ${
+          cat.highlight ? 'border-champagne/50 shadow-luxury-gold' : ''
+        }`}>
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="text-champagne font-semibold tracking-wider text-[11px]">{cat.tag}</span>
+              <span class="px-2.5 py-0.5 glass-pill text-concrete text-[10px]">{cat.timeline}</span>
+            </div>
+
+            <h3 class="font-serif text-2xl text-architectural-white font-medium">
+              {cat.title}
+            </h3>
+
+            <p class="text-xs text-concrete leading-relaxed">
+              {cat.description}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-white/10 flex items-center gap-2 text-xs font-mono text-emerald-400">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <span>{cat.impact}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* NRI Investment & Global Desk Callout */}
+    <div class="glass-card-luxury p-8 sm:p-10 border border-champagne/35 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl text-center lg:text-left">
+        <div class="inline-flex items-center gap-2 px-3 py-1 glass-pill text-champagne text-[11px] font-mono uppercase tracking-widest">
+          <span>GLOBAL &amp; NRI INVESTOR DESK • DUBAI &amp; PUNE</span>
+        </div>
+        <h3 class="font-display text-2xl sm:text-3xl text-architectural-white font-normal">
+          Direct Assistance for Overseas Investors
+        </h3>
+        <p class="text-xs text-concrete leading-relaxed">
+          Comprehensive NRI assistance with FEMA regulations, NRE/NRO banking channels, digital documentation, and rental tenancy management. Meet our direct representative in Business Bay, Dubai or connect via video consultation.
+        </p>
+        <div class="pt-2 flex flex-wrap items-center gap-4 text-xs font-mono text-concrete/80 justify-center lg:justify-start">
+          <span>📍 Dubai Office: {projectData.contact.uaeContact.office}</span>
+          <span>👤 Lead Rep: {projectData.contact.uaeContact.representative}</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 w-full sm:w-auto">
+        <a
+          href={`https://wa.me/${projectData.contact.uaeContact.phone.replace(/[^0-9]/g, '')}?text=Hello%20Mantra%20Meridian%20Dubai%20Desk,%20I%20am%20an%20NRI%20investor%20interested%20in%20Mantra%20Meridian%20Riverside%20Balewadi.`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-luxury text-xs px-6 py-3 min-h-[48px] text-center flex items-center justify-center gap-2 glass-sheen"
+        >
+          <span>CHAT WITH DUBAI DESK</span>
+          <span>↗</span>
+        </a>
+        <a
+          href={`tel:${projectData.contact.uaeContact.phone.replace(/[^0-9+]/g, '')}`}
+          class="btn-luxury-outline text-xs px-6 py-3 min-h-[48px] text-center flex items-center justify-center gap-2 glass-sheen"
+        >
+          <span>CALL UAE: {projectData.contact.uaeContact.phone}</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

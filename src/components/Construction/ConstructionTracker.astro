@@ -1,0 +1,189 @@
+---
+import { projectData } from '../../data/project';
+
+const milestones = [
+  {
+    stage: "01",
+    title: "Statutory & MahaRERA Sanctions",
+    status: "Completed",
+    date: "Sanctioned",
+    description: "MahaRERA Registration P52100045688 issued, IOD & Commencement Certificate (CC) obtained from PMC/PMRDA.",
+    progress: 100,
+  },
+  {
+    stage: "02",
+    title: "Site Excavation & Deep Shoring",
+    status: "Completed",
+    date: "Completed",
+    description: "Multi-level basement excavation, retaining wall stabilization, and earthwork finalized along Mula river setback.",
+    progress: 100,
+  },
+  {
+    stage: "03",
+    title: "Plinth & Lower Basements",
+    status: "Completed",
+    date: "Completed",
+    description: "Heavy raft foundation poured, subterranean waterproofing, and parking levels structural grid cast.",
+    progress: 100,
+  },
+  {
+    stage: "04",
+    title: "Tower Superstructure & Podium",
+    status: "In Progress",
+    date: "Active Stage",
+    description: "RCC casting of residential tower slabs progressing systematically with aluminum shuttering technology.",
+    progress: 65,
+    active: true,
+  },
+  {
+    stage: "05",
+    title: "Facade, Fenestration & MEP",
+    status: "Upcoming",
+    date: "Q3 2026 - Q2 2027",
+    description: "High-performance double-glazed fenestration, Otis/Schindler high-speed elevators, and fire-fighting MEP systems.",
+    progress: 0,
+  },
+  {
+    stage: "06",
+    title: "Possession & Handover",
+    status: "Target",
+    date: "June 2028",
+    description: "Sanctioned MahaRERA project completion date and handover of riverside residences & signature sky duplexes.",
+    progress: 0,
+    highlight: true,
+  },
+];
+---
+
+<section id="construction-tracker" class="w-full relative py-20 px-6 md:px-12 border-b border-white/10 overflow-hidden">
+  {/* Ambient background glow */}
+  <div class="absolute top-1/2 left-0 w-96 h-96 bg-champagne/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+  <div class="max-w-7xl mx-auto space-y-12 relative z-10">
+    
+    {/* Section Header */}
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+      <div class="max-w-2xl space-y-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 glass-pill border border-champagne/30 text-champagne text-xs font-mono uppercase tracking-widest">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>CONSTRUCTION MILESTONES &amp; STATUTORY COMPLIANCE</span>
+        </div>
+        <h2 class="font-display text-4xl sm:text-5xl text-gradient-pearl font-normal leading-tight">
+          Structural Progress.<br />
+          <span class="text-champagne font-light italic font-serif">MahaRERA Sanctioned Timeline.</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Track verified progress across the 8-acre estate. Mantra Properties executes all casting in accordance with approved PMC structural blueprints.
+        </p>
+      </div>
+
+      <div class="p-4 glass-card-luxury border border-champagne/35 text-xs font-mono space-y-2">
+        <div class="flex items-center justify-between gap-4">
+          <span class="text-concrete/70 uppercase">MahaRERA Target:</span>
+          <span class="text-champagne font-semibold text-sm">June 2028</span>
+        </div>
+        <div class="flex items-center justify-between gap-4">
+          <span class="text-concrete/70 uppercase">Project Reg:</span>
+          <a
+            href={projectData.reraRegistrationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-emerald-400 hover:underline flex items-center gap-1 font-semibold"
+          >
+            <span>{projectData.reraNumber}</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* Stage Progress Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {milestones.map((m) => (
+        <div class={`glass-card-luxury p-6 flex flex-col justify-between relative overflow-hidden transition-all duration-300 ${
+          m.active ? 'border-champagne/50 shadow-luxury-gold' : ''
+        }`}>
+          {m.active && (
+            <div class="absolute top-0 right-0 bg-champagne text-obsidian text-[9px] font-mono font-semibold uppercase px-3 py-1 tracking-wider">
+              ACTIVE STAGE
+            </div>
+          )}
+          {m.highlight && (
+            <div class="absolute top-0 right-0 bg-emerald-500 text-obsidian text-[9px] font-mono font-semibold uppercase px-3 py-1 tracking-wider">
+              TARGET POSSESSION
+            </div>
+          )}
+
+          <div class="space-y-3">
+            <div class="flex items-center justify-between text-xs font-mono">
+              <span class="text-champagne font-semibold text-sm">STAGE {m.stage}</span>
+              <span class={`px-2 py-0.5 text-[10px] font-mono uppercase ${
+                m.status === 'Completed'
+                  ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30'
+                  : m.active
+                  ? 'bg-champagne/15 text-champagne border border-champagne/40'
+                  : 'bg-white/5 text-concrete/60 border border-white/10'
+              }`}>
+                {m.status}
+              </span>
+            </div>
+
+            <h3 class="font-serif text-xl text-architectural-white font-medium">
+              {m.title}
+            </h3>
+
+            <p class="text-xs text-concrete leading-relaxed">
+              {m.description}
+            </p>
+          </div>
+
+          <div class="pt-6 mt-4 border-t border-white/10 space-y-2">
+            <div class="flex justify-between text-[11px] font-mono">
+              <span class="text-concrete/70">Timeline: <strong class="text-architectural-white">{m.date}</strong></span>
+              <span class="text-champagne">{m.progress}%</span>
+            </div>
+            <div class="h-1.5 w-full bg-obsidian-surface rounded-full overflow-hidden">
+              <div
+                style={{ width: `${m.progress}%` }}
+                class={`h-full transition-all duration-500 ${
+                  m.status === 'Completed' ? 'bg-emerald-400' : 'bg-champagne'
+                }`}
+              />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Verification Footer Pill */}
+    <div class="p-4 sm:p-5 glass-card-luxury flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <div class="flex items-center gap-3">
+        <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+        <span class="text-concrete">
+          Quarterly progress reports (QPR) registered with MahaRERA authority. Site inspection tours available by prior appointment.
+        </span>
+      </div>
+      <button
+        id="schedule-site-inspection-btn"
+        class="btn-luxury-outline text-xs whitespace-nowrap min-h-[40px] px-4 py-2 glass-sheen"
+      >
+        SCHEDULE PHYSICAL SITE VISIT →
+      </button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const inspectBtn = document.getElementById('schedule-site-inspection-btn');
+  inspectBtn?.addEventListener('click', () => {
+    window.dispatchEvent(
+      new CustomEvent('open-private-presentation', {
+        detail: {
+          config: 'Mantra Meridian Construction Site',
+          intent: 'SCHEDULE PHYSICAL SITE INSPECTION TOUR',
+        },
+      })
+    );
+  });
+</script>

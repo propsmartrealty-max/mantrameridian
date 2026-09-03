@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+import EMICalculator from '../../components/Finance/EMICalculator';
 
 export const prerender = true;
 
@@ -172,6 +173,9 @@ const priceFaqSchema = {
         </div>
       ))}
     </div>
+ 
+    {/* Interactive Glassmorphic EMI & Affordability Calculator */}
+    <EMICalculator client:load />
 
     {/* Payment Schedule Table */}
     <div class="bg-obsidian-surface border border-white/10 p-6 md:p-10 space-y-8">

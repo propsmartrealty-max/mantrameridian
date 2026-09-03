@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import LocationIntelligence from '../../components/Location/LocationIntelligence';
+import InfrastructureGrowthRadar from '../../components/Location/InfrastructureGrowthRadar.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { locationDestinations } from '../../data/location';
 
@@ -54,6 +55,9 @@ export const prerender = true;
         ))}
       </div>
     </div>
+
+    {/* Transformational Infrastructure & Appreciation Radar */}
+    <InfrastructureGrowthRadar />
 
   </div>
 </BaseLayout>
