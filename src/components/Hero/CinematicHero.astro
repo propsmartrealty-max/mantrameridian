@@ -67,10 +67,21 @@ import { projectData } from '../../data/project';
     </div>
 
     {/* MahaRERA Statutory Pill */}
-    <div class="pt-6">
-      <span class="text-[10px] uppercase font-mono tracking-[0.25em] text-concrete/60">
-        MAHARERA: {projectData.reraNumber} • 8 ACRES ESTATE
-      </span>
+    <div class="pt-6 flex justify-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-obsidian-card/70 border border-white/10 backdrop-blur-md text-xs text-concrete/80 font-sans">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="text-[11px] tracking-wider uppercase text-concrete/70">MahaRERA:</span>
+        <a 
+          href={projectData.reraRegistrationUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="font-mono text-champagne tracking-[0.14em] font-semibold text-xs hover:underline"
+        >
+          {projectData.reraNumber}
+        </a>
+        <span class="text-white/20 mx-1">•</span>
+        <span class="text-[11px] tracking-wider uppercase text-concrete/70">8-Acre Riverside Estate</span>
+      </div>
     </div>
 
   </div>
