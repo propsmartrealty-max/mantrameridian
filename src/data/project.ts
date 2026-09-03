@@ -123,7 +123,7 @@ export const projectData: ProjectData = {
     phone: "+91 92281 56408",
     secondaryPhone: "+91 92281 53866",
     whatsapp: "+91 89568 98460",
-    email: "connect@mantraproperties.in",
+    email: "propsmartrealty@gmail.com",
     siteAddress: "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi, Pune, Maharashtra 411045",
     uaeContact: {
       representative: "Mr. Henry Martin",
