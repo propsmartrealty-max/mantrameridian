@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import DocumentCentre from '../../components/Documents/DocumentCentre.astro';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 
 export const prerender = true;
 ---
@@ -12,6 +13,9 @@ export const prerender = true;
   keywords="Mantra Meridian brochure PDF, Mantra Meridian floor plan PDF, Mantra Meridian price sheet, Mantra Meridian documents, MahaRERA certificate P52100045688"
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Document Library" }]} />
+
     <div class="max-w-3xl space-y-4">
       <span class="label-architectural text-xs text-champagne">DOCUMENT ARCHIVE</span>
       <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">

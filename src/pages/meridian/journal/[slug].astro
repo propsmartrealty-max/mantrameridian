@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Navigation/Breadcrumbs.astro';
 import { journalArticles, type JournalArticle } from '../../../data/journal';
 
 export const prerender = true;
@@ -55,6 +56,11 @@ const articleSchema = {
 >
   <article class="pt-32 pb-24 px-6 md:px-12 max-w-4xl mx-auto space-y-12">
     
+    <Breadcrumbs items={[
+      { name: "Journal", url: "/meridian/journal" },
+      { name: article.title }
+    ]} />
+
     {/* Article Header */}
     <div class="space-y-4">
       <div class="flex items-center gap-3 text-xs font-mono text-champagne uppercase tracking-widest">

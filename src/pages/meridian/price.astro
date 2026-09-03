@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
+import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
+
+export const prerender = true;
+
+// Indicative Pricing Framework & Configurations
+const pricingTiers = [
+  {
+    type: "2 BHK",
+    name: "The Urban Canvas",
+    carpetArea: "785 – 845 sq.ft.",
+    indicativePrice: "₹ 85 Lakhs* onwards",
+    bookingAmount: "₹ 2,00,000",
+    slug: "2-bhk",
+    highlights: ["Compact luxury layout", "Zero dead-corridors", "Deep river-breeze balcony", "Master suite with dressing nook"]
+  },
+  {
+    type: "3 BHK",
+    name: "The Meridian Signature",
+    carpetArea: "1,120 – 1,240 sq.ft.",
+    indicativePrice: "₹ 1.28 Cr* onwards",
+    bookingAmount: "₹ 3,00,000",
+    slug: "3-bhk",
+    highlights: ["Panoramic living salon", "Continuous corner deck", "3 luxury bathrooms", "Dedicated kitchen utility space"]
+  },
+  {
+    type: "3 BHK Duplex",
+    name: "The Signature Sky Duplex",
+    carpetArea: "1,580 – 1,740 sq.ft.",
+    indicativePrice: "₹ 1.85 Cr* onwards",
+    bookingAmount: "₹ 5,00,000",
+    slug: "3-bhk-duplex",
+    highlights: ["20ft double-height ceiling", "Two-tier living privacy", "Internal architectural staircase", "Expansive riparian view terrace"]
+  },
+  {
+    type: "4 BHK",
+    name: "The Grand Estate",
+    carpetArea: "1,920 – 2,180 sq.ft.",
+    indicativePrice: "₹ 2.40 Cr* onwards",
+    bookingAmount: "₹ 5,00,000",
+    slug: "4-bhk",
+    highlights: ["Private elevator lobby", "Dual master suites", "Wraparound riparian deck", "Formal & informal entertainment zones"]
+  }
+];
+
+const paymentMilestones = [
+  { stage: "At Booking / Application", percentage: "10%", description: "Initial token & application deposit upon flat selection." },
+  { stage: "Execution of Agreement for Sale", percentage: "10%", description: "Registration of formal MahaRERA agreement." },
+  { stage: "Completion of Plinth / Foundation", percentage: "15%", description: "Structural foundation and sub-grade completion." },
+  { stage: "Casting of Respective Floor Slabs", percentage: "40%", description: "Staggered payments linked to structural slab progress." },
+  { stage: "Internal Finishing & MEP Work", percentage: "15%", description: "Brickwork, plaster, flooring, and electrical conduit completion." },
+  { stage: "Notice of Possession / Fit-Out", percentage: "10%", description: "Handover of keys and physical possession." }
+];
+
+const homeLoanPartners = [
+  "State Bank of India (SBI)",
+  "HDFC Bank",
+  "ICICI Bank",
+  "Axis Bank",
+  "Bank of Baroda",
+  "Punjab National Bank"
+];
+
+// Google Rich Results FAQPage Schema
+const priceFaqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the starting price of Mantra Meridian Riverside in Balewadi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Indicative starting prices for Mantra Meridian Riverside begin at approximately ₹ 85 Lakhs* for 2 BHK residences, ₹ 1.28 Cr* for 3 BHK homes, ₹ 1.85 Cr* for 3 BHK Sky Duplexes, and ₹ 2.40 Cr* for 4 BHK Grand Estates. Contact the sales concierge for customized floor-wise cost sheets."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What additional charges apply above the base agreement value in Pune?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Maharashtra, statutory charges include 7% Stamp Duty (6% standard + 1% Local Body Tax for Pune), 1% Registration fee (capped at ₹ 30,000 for residential purchases), and 5% GST on ongoing under-construction residential properties, along with nominal society maintenance deposits."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are flexible payment plans and bank loans approved for Mantra Meridian?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Mantra Meridian Riverside is an approved project with leading nationalized and private financial institutions including SBI, HDFC, ICICI, and Axis Bank. Flexible construction-linked payment plans (CLP) and customized home loan assistance are available."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the booking token amount for a residence at Mantra Meridian?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The initial booking amount typically ranges from ₹ 2,00,000 for 2 BHK to ₹ 5,00,000 for 3 BHK Duplex and 4 BHK residences, fully creditable against the 10% agreement amount upon formal booking."
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Mantra Meridian Price List & Cost Sheet | 2, 3, 4 BHK & Duplex Balewadi"
+  description="Official indicative pricing, cost breakdown, payment plans, stamp duty & home loan details for Mantra Meridian Riverside, Balewadi. MahaRERA P52100045688."
+  keywords="Mantra Meridian price, Mantra Meridian price list, Mantra Meridian 2 BHK price, Mantra Meridian 3 BHK price, Mantra Meridian duplex price, Mantra Meridian 4 BHK price, Mantra Meridian cost sheet, Mantra Meridian payment plan"
+  customSchema={priceFaqSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Pricing & Investment" }]} />
+
+    {/* Header */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">INVESTMENT &amp; COMMERCIAL MATRIX</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Pricing &amp; Cost<br />
+        <span class="text-champagne font-light italic">Breakdown.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Transparent indicative pricing schedules for 2, 3, 4 BHK and 3 BHK Sky Duplex residences at Mantra Meridian Riverside, Balewadi. Engineered to offer unparalleled value along the Mula river corridor.
+      </p>
+    </div>
+
+    {/* Pricing Cards Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {pricingTiers.map((tier) => (
+        <div class="bg-obsidian-card border border-white/10 hover:border-champagne/40 transition-all duration-300 p-6 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="label-architectural text-[10px] text-champagne">{tier.type}</span>
+              <span class="text-[10px] font-mono text-concrete/60">{tier.carpetArea}</span>
+            </div>
+
+            <h2 class="font-serif text-2xl text-architectural-white">{tier.name}</h2>
+
+            <div class="pt-2">
+              <span class="text-[10px] uppercase text-concrete/60 block font-mono">Indicative Starting Price</span>
+              <div class="text-xl font-serif text-champagne font-semibold mt-0.5">{tier.indicativePrice}</div>
+              <span class="text-[9px] text-concrete/50 block mt-0.5">*Excludes Govt. taxes &amp; registration</span>
+            </div>
+
+            <div class="pt-3 border-t border-white/10 space-y-1.5 text-xs text-concrete/80">
+              <span class="text-[10px] font-mono text-concrete/60 uppercase block">Configuration Highlights</span>
+              {tier.highlights.map((h) => (
+                <div class="flex items-center gap-2 text-[11px]">
+                  <span class="w-1 h-1 rounded-full bg-champagne shrink-0" />
+                  <span>{h}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="space-y-2.5 pt-4 border-t border-white/10">
+            <button
+              class="btn-luxury text-xs w-full text-center py-2.5 open-price-enquiry-btn"
+              data-config={tier.type}
+            >
+              REQUEST DETAILED COST SHEET ↗
+            </button>
+            <a
+              href={`/meridian/${tier.slug}`}
+              class="block text-center text-[11px] text-concrete hover:text-champagne transition-colors font-mono"
+            >
+              View Floor Plan Blueprints →
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Payment Schedule Table */}
+    <div class="bg-obsidian-surface border border-white/10 p-6 md:p-10 space-y-8">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">CONSTRUCTION-LINKED PAYMENT FRAMEWORK</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Standard Milestones Schedule</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Payments are indexed strictly to verified on-site structural stages under MahaRERA oversight, safeguarding homebuyer capital at every phase.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-concrete">
+          <thead>
+            <tr class="border-b border-white/10 text-[10px] uppercase font-mono text-champagne tracking-wider">
+              <th class="py-3 px-4">Milestone Stage</th>
+              <th class="py-3 px-4">Proportion (%)</th>
+              <th class="py-3 px-4">Structural Trigger Description</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-sans">
+            {paymentMilestones.map((m) => (
+              <tr class="hover:bg-white/5 transition-colors">
+                <td class="py-3.5 px-4 font-medium text-architectural-white">{m.stage}</td>
+                <td class="py-3.5 px-4 font-mono text-champagne font-semibold">{m.percentage}</td>
+                <td class="py-3.5 px-4 text-concrete/80">{m.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Statutory Taxes & Home Loan Section */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      
+      {/* Statutory Government Duties */}
+      <div class="p-6 md:p-8 bg-obsidian-card border border-white/10 space-y-4">
+        <span class="label-architectural text-xs text-champagne">STATUTORY TAX ESTIMATES (PUNE / MH)</span>
+        <h3 class="font-serif text-2xl text-architectural-white">Government Levies &amp; Duties</h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Payable to the Government of Maharashtra and revenue authorities at the time of Agreement for Sale:
+        </p>
+        <ul class="space-y-2.5 text-xs text-concrete">
+          <li class="flex justify-between border-b border-white/5 pb-2">
+            <span>Stamp Duty (Pune Municipal Jurisdiction)</span>
+            <span class="font-mono text-champagne">7% (6% + 1% Local Body Cess)</span>
+          </li>
+          <li class="flex justify-between border-b border-white/5 pb-2">
+            <span>Registration Fee</span>
+            <span class="font-mono text-champagne">1% (Capped at ₹ 30,000)</span>
+          </li>
+          <li class="flex justify-between border-b border-white/5 pb-2">
+            <span>Goods &amp; Services Tax (GST)</span>
+            <span class="font-mono text-champagne">5% (Under-construction)</span>
+          </li>
+          <li class="flex justify-between border-b border-white/5 pb-2">
+            <span>Society Maintenance &amp; Sinking Deposit</span>
+            <span class="font-mono text-champagne">As per developer schedule</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* Banking & Home Loan Approvals */}
+      <div class="p-6 md:p-8 bg-obsidian-card border border-white/10 space-y-4">
+        <span class="label-architectural text-xs text-champagne">FINANCIAL PARTNERS</span>
+        <h3 class="font-serif text-2xl text-architectural-white">Approved Lending Institutions</h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Mantra Meridian Riverside is pre-cleared for expedited retail mortgage loans by leading national banking institutions:
+        </p>
+        <div class="grid grid-cols-2 gap-2.5 pt-2">
+          {homeLoanPartners.map((bank) => (
+            <div class="p-3 bg-obsidian-surface border border-white/5 text-xs text-architectural-white flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 shrink-0" />
+              <span>{bank}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6">
+      <div>
+        <span class="label-architectural text-xs text-champagne">COMMERCIAL CLARIFICATIONS</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Frequently Asked Pricing Questions</h2>
+      </div>
+
+      <div class="space-y-4">
+        {priceFaqSchema.mainEntity.map((item) => (
+          <div class="p-6 bg-obsidian-card border border-white/10 space-y-2">
+            <h3 class="font-serif text-xl text-architectural-white">{item.name}</h3>
+            <p class="text-xs text-concrete/80 leading-relaxed">{item.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Statutory RERA Verification Card */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>
+
+<script>
+  const priceBtns = document.querySelectorAll('.open-price-enquiry-btn');
+  priceBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const config = btn.getAttribute('data-config') || 'All Configurations';
+      window.dispatchEvent(
+        new CustomEvent('open-private-presentation', {
+          detail: { config, intent: 'COST SHEET & PRICING' }
+        })
+      );
+    });
+  });
+</script>

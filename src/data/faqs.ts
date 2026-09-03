@@ -53,5 +53,29 @@ export const faqsData: FAQItem[] = [
     category: "pricing",
     question: "How can I obtain the detailed pricing, floor plan kit, and schedule a private visit?",
     answer: "Discerning homebuyers can schedule a private presentation or request the digital architectural brochure by utilizing our confidential 3-step 'Private Presentation' digital concierge on this website, or by calling our concierge line at +91 92281 56408."
+  },
+  {
+    id: "is-meridian-good-investment",
+    category: "pricing",
+    question: "Is Mantra Meridian good for real estate investment in Pune?",
+    answer: "Yes. Mantra Meridian Riverside represents high capital appreciation potential in West Pune due to its irreplaceable Mula river frontage, low-density 8-acre estate planning, proximity to Balewadi High Street (5 mins), and rapid transit to Hinjewadi via the upcoming Wakad bridge and PMRDA Metro Line 3."
+  },
+  {
+    id: "what-is-the-price-of-mantra-meridian",
+    category: "pricing",
+    question: "What is the price of apartments at Mantra Meridian Riverside?",
+    answer: "Indicative starting prices begin from approximately ₹ 85 Lakhs* for 2 BHK residences, ₹ 1.28 Cr* for 3 BHK homes, ₹ 1.85 Cr* for 3 BHK Sky Duplexes, and ₹ 2.40 Cr* for 4 BHK Grand Estates (excluding statutory taxes and registration). Detailed unit-wise cost sheets are available upon request."
+  },
+  {
+    id: "distance-to-balewadi-high-street",
+    category: "location",
+    question: "How far is Mantra Meridian from Balewadi High Street?",
+    answer: "Mantra Meridian is situated approximately 1.2 km (a 3 to 5-minute drive) from Balewadi High Street, offering effortless walking and vehicle access to Pune's premier dining, specialty roaster cafes, and cosmopolitan retail boulevards."
+  },
+  {
+    id: "planned-wakad-bridge-benefit",
+    category: "location",
+    question: "What is the planned Balewadi–Wakad river bridge and how does it benefit residents?",
+    answer: "The planned bridge across the Mula River corridor directly links Balewadi Village Road to Wakad, providing a high-speed bypass that reduces transit times to Hinjewadi IT Park and Phoenix Mall of the Millennium to under 10 minutes."
   }
 ];

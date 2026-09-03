@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import FloorPlanViewer from '../FloorPlan/FloorPlanViewer';
 import ReraVerificationCard from '../Trust/ReraVerificationCard.astro';
 import FAQAccordion from '../FAQ/FAQAccordion.astro';
+import Breadcrumbs from '../Navigation/Breadcrumbs.astro';
 import type { ResidenceConfig } from '../../data/residences';
 import { residencesData } from '../../data/residences';
 
@@ -55,8 +56,13 @@ const residenceKeywords = [
   ogImage={residence.renderImage}
   customSchema={residenceSchema}
 >
-  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-20">
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
+    <Breadcrumbs items={[
+      { name: "Residences", url: "/meridian/residences" },
+      { name: residence.name }
+    ]} />
+
     {/* Hero Presentation */}
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
       <div class="lg:col-span-8 space-y-4">

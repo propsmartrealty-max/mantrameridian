@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import RiversideExperience from '../../components/Riverside/RiversideExperience.astro';
 import DesignPhilosophy from '../../components/Architecture/DesignPhilosophy.astro';
+import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 
 export const prerender = true;
 ---
@@ -12,6 +13,9 @@ export const prerender = true;
   keywords="riverside apartments Balewadi, Mula river flats Pune, Mantra Meridian riverside, nature living Balewadi, riverside homes Pune"
 >
   <div class="pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "The Riverside Story" }]} />
+
     <div class="max-w-3xl space-y-4">
       <span class="label-architectural text-xs text-champagne">WHERE NATURE MEETS URBAN SOPHISTICATION</span>
       <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">

@@ -30,6 +30,7 @@ const micromarkets = [
     profile: "Densely populated residential hub with strong commercial retail."
   }
 ];
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
 ---
 
 <BaseLayout
@@ -37,8 +38,10 @@ const micromarkets = [
   description="Authoritative guide to West Pune real estate. Compare Balewadi, Baner, Hinjewadi, and Wakad. Why Mantra Meridian Riverside is West Pune's premier address."
   keywords="West Pune real estate, Balewadi vs Baner, luxury flats in West Pune, flats near Hinjewadi, flats in Balewadi, Mantra Meridian Riverside, Wakad bridge Balewadi"
 >
-  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-20">
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
+    <Breadcrumbs items={[{ name: "West Pune Luxury Guide" }]} />
+
     <div class="max-w-3xl space-y-4">
       <span class="label-architectural text-xs text-champagne">REGIONAL INTELLIGENCE</span>
       <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
