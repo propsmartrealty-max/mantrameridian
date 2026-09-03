@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  {/* Homepage & Master Project Elevation */}
+  <url>
+    <loc>https://mantrameridianriverside.com/</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image:loc>
+      <image:title>Mantra Meridian Riverside Balewadi Architectural Elevation</image:title>
+      <image:caption>Mantra Meridian Riverside 8-Acre Development on Mula River Balewadi, Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-rera-qr.webp</image:loc>
+      <image:title>Mantra Meridian Riverside MahaRERA P52100045688 Official QR Code</image:title>
+      <image:caption>Official MahaRERA statutory registration QR code for Mantra Meridian Riverside Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp</image:loc>
+      <image:title>Mantra Meridian Balewadi Riverside Sanctuary Perspective</image:title>
+      <image:caption>8-Acre sanctuary masterplan with 75%+ landscaped open spaces in Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  {/* Residences Portfolio */}
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/residences</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-215259293.webp</image:loc>
+      <image:title>2 BHK Luxury Residences at Mantra Meridian Riverside Balewadi</image:title>
+      <image:caption>The Urban Canvas 2 BHK flats with deep river-breeze balcony in Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-467045184.webp</image:loc>
+      <image:title>3 BHK Signature Residences at Mantra Meridian Balewadi</image:title>
+      <image:caption>The Meridian Signature 3 BHK apartments with continuous corner river deck</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp</image:loc>
+      <image:title>Signature 3 BHK Sky Duplex at Mantra Meridian Riverside</image:title>
+      <image:caption>Two-tier sky duplex living with 20ft double-height ceiling in Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-873008650.webp</image:loc>
+      <image:title>4 BHK Grand Estate Residences at Mantra Meridian Riverside Balewadi</image:title>
+      <image:caption>Palatial 4 BHK apartments with dual master suites and private elevator lobby</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  {/* Individual Configuration Pages */}
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/2-bhk</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-215259293.webp</image:loc>
+      <image:title>2 BHK Floor Plan &amp; Layout at Mantra Meridian Balewadi</image:title>
+      <image:caption>785 to 845 sq.ft. carpet area 2 BHK residence layout in Balewadi Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/3-bhk</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-467045184.webp</image:loc>
+      <image:title>3 BHK Floor Plan &amp; Blueprint at Mantra Meridian Riverside</image:title>
+      <image:caption>1,120 to 1,240 sq.ft. carpet area 3 BHK residence layout in Balewadi Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/3-bhk-duplex</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp</image:loc>
+      <image:title>Signature 3 BHK Sky Duplex Double Height Living Room Balewadi</image:title>
+      <image:caption>1,580 to 1,740 sq.ft. two-level luxury duplex residence in Balewadi Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/4-bhk</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-873008650.webp</image:loc>
+      <image:title>4 BHK Grand Estate Floor Plan &amp; Luxury Specifications</image:title>
+      <image:caption>1,920 to 2,180 sq.ft. 4 BHK riverfront residence in Balewadi Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  {/* Visual Gallery Archive */}
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/gallery</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-106076887.webp</image:loc>
+      <image:title>Mantra Meridian Architectural Tower Elevation Framing Mula River</image:title>
+      <image:caption>Iconic high-rise tower elevation framing panoramic river views in Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-7690160.webp</image:loc>
+      <image:title>Riverside Promenade &amp; Landscaped Water Cascade Balewadi</image:title>
+      <image:caption>Atmospheric perspective along the Mula riverside promenade and podium</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-597544078.webp</image:loc>
+      <image:title>The Grand Pavilion 20,000 sq.ft. Clubhouse at Mantra Meridian</image:title>
+      <image:caption>Double-height architectural clubhouse atrium and resident lounge in Balewadi</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-346764516.webp</image:loc>
+      <image:title>Temperature-Controlled Infinity Lap Pool Overlooking Mula River</image:title>
+      <image:caption>25-metre infinity swimming pool with sun lounger deck in Balewadi Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  {/* Masterplan */}
+  <url>
+    <loc>https://mantrameridianriverside.com/meridian/masterplan</loc>
+    <lastmod>2026-09-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp</image:loc>
+      <image:title>8-Acre Sanctioned Masterplan Layout Mantra Meridian Balewadi</image:title>
+      <image:caption>Master zoning plan showing towers, podium, central park, and 500m riverwalk</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+</urlset>

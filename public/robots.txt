@@ -1,24 +1,70 @@
+# ==============================================================================
+# MANTRA MERIDIAN RIVERSIDE — OFFICIAL ROBOTS.TXT
+# Optimized for Google Search Central, Bing Webmaster, AI Overviews, & Social Bots
+# ==============================================================================
+
+# Default Rules for All Web Crawlers
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /_worker.js
 
+# Google Primary Search Bots
 User-agent: Googlebot
 Allow: /
 
 User-agent: Googlebot-Image
 Allow: /assets/
+Allow: /*.webp$
+Allow: /*.png$
+Allow: /*.jpg$
+Allow: /*.svg$
 Allow: /
 
 User-agent: Googlebot-Mobile
 Allow: /
 
+User-agent: Mediapartners-Google
+Allow: /
+
+User-agent: AdsBot-Google
+Allow: /
+
+# Microsoft Bing & Yahoo Bots
 User-agent: Bingbot
 Allow: /
 
+User-agent: msnbot-media
+Allow: /
+
+# Apple Search & Siri Suggestions
 User-agent: Applebot
 Allow: /
 
-# AI Search Engines & SGE Crawlers
+# DuckDuckGo & Yandex Search
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Social Media Link Unfurling & Rich Preview Crawlers
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+User-agent: WhatsApp
+Allow: /
+
+User-agent: Slackbot
+Allow: /
+
+# AI Search Engines, LLM Indexes & Generative Engine Optimization (GEO)
 User-agent: GPTBot
 Allow: /
 
@@ -28,9 +74,26 @@ Allow: /
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
 User-agent: Google-Extended
 Allow: /
 
-# Sitemaps & LLM Discovery
+User-agent: Bytespider
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Host Directive for Canonical Domain Authority
+Host: https://mantrameridianriverside.com
+
+# XML Sitemaps & AI Monograph Index
+Sitemap: https://mantrameridianriverside.com/sitemap-index.xml
 Sitemap: https://mantrameridianriverside.com/sitemap.xml
-# LLMs Index: https://mantrameridianriverside.com/llms.txt
+Sitemap: https://mantrameridianriverside.com/image-sitemap.xml
+# LLM Knowledge Monograph: https://mantrameridianriverside.com/llms.txt
