@@ -1,7 +1,9 @@
-# Cloudflare Pages Edge Headers Configuration
-# https://developers.cloudflare.com/pages/configuration/headers/
+# ==============================================================================
+# CLOUDFLARE EDGE PERFORMANCE & GOOGLE ECOSYSTEM HARDENING HEADERS
+# Cloudflare Pages Global Edge Deployment
+# ==============================================================================
 
-# Global Security & Caching Defaults
+# 1. Global Defaults Across All Routes
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
@@ -9,34 +11,66 @@
   Permissions-Policy: accelerometer=(), camera=(), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
   Cross-Origin-Opener-Policy: same-origin-allow-popups
+  Timing-Allow-Origin: *
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
+  Link: </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
   Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
 
-# Immutable Long-Term Edge Cache for Astro Build Bundles (Hashed)
+# 2. Immutable Long-Term Edge Cache for Hashed Astro Assets
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  Cross-Origin-Resource-Policy: cross-origin
 
-# Immutable Static Assets (Images, SVGs, WebP)
+# 3. Static Media Assets (WebP, SVGs, Images)
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  Cross-Origin-Resource-Policy: cross-origin
 
-# Fonts Preloading & Caching
+# 4. Typography & Font Files
 /fonts/*
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
+  Timing-Allow-Origin: *
+  Cross-Origin-Resource-Policy: cross-origin
 
-# Static Metadata & Crawler Files
-/robots.txt
-  Cache-Control: public, max-age=86400, s-maxage=86400
-/sitemap.xml
-  Cache-Control: public, max-age=86400, s-maxage=86400
+# 5. Search Engine Sitemaps & Feeds
+/sitemap-index.xml
   Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  X-Robots-Tag: noindex, follow
+
+/sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  X-Robots-Tag: noindex, follow
+
+/image-sitemap.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  X-Robots-Tag: noindex, follow
+
+# 6. Web Bot Discovery & LLM Monograph
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400
+
+/llms.txt
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  Access-Control-Allow-Origin: *
+
 /favicon.svg
+  Content-Type: image/svg+xml
   Cache-Control: public, max-age=604800, s-maxage=604800
 
-# API Edge Route Headers
+# 7. Cloudflare Edge API Endpoints
 /api/*
   Cache-Control: no-store, no-cache, must-revalidate
-  Access-Control-Allow-Methods: POST, OPTIONS
-  Access-Control-Allow-Headers: Content-Type
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, POST, OPTIONS
+  Access-Control-Allow-Headers: Content-Type, Authorization
