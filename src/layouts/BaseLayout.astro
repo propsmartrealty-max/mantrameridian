@@ -129,6 +129,28 @@ const baseSchema = customSchema || {
       "name": "Mantra Meridian Riverside Balewadi",
       "publisher": {
         "@id": "https://mantrameridianriverside.com/#organization"
+      },
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://mantrameridianriverside.com/meridian/residences?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": `${canonicalUrl}#webpage`,
+      "url": canonicalUrl,
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": "https://mantrameridianriverside.com/#website"
+      },
+      "speakable": {
+        "@type": "SpeakableSpecification",
+        "cssSelector": ["h1", "h2", ".speakable-summary", "[data-speakable]"]
       }
     }
   ]
@@ -148,7 +170,10 @@ const baseSchema = customSchema || {
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
     <link rel="canonical" href={canonicalUrl} />
-    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    {/* Google Search Central & Console Verification */}
+    <meta name="google-site-verification" content="G-VERIFY-MANTRA-MERIDIAN" />
 
     {/* Local SEO Geo Tags for Balewadi, Pune */}
     <meta name="geo.region" content="IN-MH" />
@@ -173,9 +198,27 @@ const baseSchema = customSchema || {
     {/* Structured Data Schema */}
     <script type="application/ld+json" is:inline set:html={JSON.stringify(baseSchema)} />
 
-    {/* Preconnect fonts */}
+    {/* DNS Prefetching & Preconnect for Core Web Vitals */}
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    {/* Google Analytics & Tag Manager Foundation Layer */}
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      // Forward architectural presentation inquiries into dataLayer
+      window.addEventListener('open-private-presentation', function(e) {
+        window.dataLayer.push({
+          event: 'private_presentation_open',
+          presentation_config: e.detail?.config || 'All',
+          presentation_intent: e.detail?.intent || 'Discovery'
+        });
+      });
+    </script>
   </head>
   <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen">
     

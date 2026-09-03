@@ -10,7 +10,11 @@ directory = "./dist"
 [observability]
 enabled = true
 
+[placement]
+mode = "smart"
+
 [vars]
 PROJECT_NAME = "Mantra Meridian Riverside"
 PROJECT_RERA = "P52100045688"
 PROJECT_LOCATION = "Balewadi, Pune"
+CANONICAL_URL = "https://mantrameridianriverside.com"

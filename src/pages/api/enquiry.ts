@@ -42,9 +42,12 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
-    // Edge request metadata
+    // Edge request metadata via Cloudflare headers
     const userAgent = request.headers.get('user-agent') || 'unknown';
     const cfCountry = request.headers.get('cf-ipcountry') || 'IN';
+    const cfCity = request.headers.get('cf-ipcity') || 'Pune';
+    const cfRegion = request.headers.get('cf-region') || 'Maharashtra';
+    const cfTimezone = request.headers.get('cf-timezone') || 'Asia/Kolkata';
     const cfRay = request.headers.get('cf-ray') || '';
 
     // Sanitized Lead Payload
@@ -61,8 +64,13 @@ export const POST: APIRoute = async ({ request }) => {
       preferredSlot: preferredSlot || 'Anytime',
       landingPage: landingPage || '/',
       referrer: referrer || 'direct',
-      clientCountry: cfCountry,
-      cfRay: cfRay,
+      edgeMetadata: {
+        country: cfCountry,
+        city: cfCity,
+        region: cfRegion,
+        timezone: cfTimezone,
+        cfRay: cfRay
+      },
       userAgent: userAgent.substring(0, 150)
     };
 

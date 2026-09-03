@@ -1,0 +1,29 @@
+# Cloudflare Pages Edge Redirects (301 Permanent SEO Redirects)
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
+/pricing              /meridian/price          301
+/prices               /meridian/price          301
+/cost-sheet           /meridian/price          301
+/residences           /meridian/residences     301
+/floor-plans          /meridian/floor-plans    301
+/floorplans           /meridian/floor-plans    301
+/amenities            /meridian/amenities      301
+/location             /meridian/location       301
+/connectivity         /meridian/location       301
+/masterplan           /meridian/masterplan     301
+/master-plan          /meridian/masterplan     301
+/gallery              /meridian/gallery        301
+/virtual-tour         /meridian/gallery        301
+/rera                 /meridian/rera           301
+/documents            /meridian/documents      301
+/brochure             /meridian/documents      301
+/riverside            /meridian/riverside      301
+/journal              /meridian/journal        301
+/blog                 /meridian/journal        301
+
+# Short Configuration Aliases
+/2bhk                 /meridian/2-bhk          301
+/3bhk                 /meridian/3-bhk          301
+/3bhk-duplex          /meridian/3-bhk-duplex   301
+/duplex               /meridian/3-bhk-duplex   301
+/4bhk                 /meridian/4-bhk          301
