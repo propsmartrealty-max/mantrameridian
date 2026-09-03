@@ -1,29 +1,53 @@
 # Cloudflare Pages Edge Redirects (301 Permanent SEO Redirects)
 # https://developers.cloudflare.com/pages/configuration/redirects/
 
-/pricing              /meridian/price          301
-/prices               /meridian/price          301
-/cost-sheet           /meridian/price          301
-/residences           /meridian/residences     301
-/floor-plans          /meridian/floor-plans    301
-/floorplans           /meridian/floor-plans    301
-/amenities            /meridian/amenities      301
-/location             /meridian/location       301
-/connectivity         /meridian/location       301
-/masterplan           /meridian/masterplan     301
-/master-plan          /meridian/masterplan     301
-/gallery              /meridian/gallery        301
-/virtual-tour         /meridian/gallery        301
-/rera                 /meridian/rera           301
-/documents            /meridian/documents      301
-/brochure             /meridian/documents      301
-/riverside            /meridian/riverside      301
-/journal              /meridian/journal        301
-/blog                 /meridian/journal        301
+# 1. Primary Migration: Legacy /meridian/ URLs to Canonical /mantra-meridian-riverside/
+/meridian/*                             /mantra-meridian-riverside/:splat         301
 
-# Short Configuration Aliases
-/2bhk                 /meridian/2-bhk          301
-/3bhk                 /meridian/3-bhk          301
-/3bhk-duplex          /meridian/3-bhk-duplex   301
-/duplex               /meridian/3-bhk-duplex   301
-/4bhk                 /meridian/4-bhk          301
+# 2. Hyphenated Long-Tail Keyword Slugs
+/mantra-meridian-riverside-residences   /mantra-meridian-riverside/residences     301
+/mantra-meridian-riverside-price        /mantra-meridian-riverside/price          301
+/mantra-meridian-riverside-pricing      /mantra-meridian-riverside/price          301
+/mantra-meridian-riverside-cost-sheet   /mantra-meridian-riverside/price          301
+/mantra-meridian-riverside-floor-plans  /mantra-meridian-riverside/floor-plans    301
+/mantra-meridian-riverside-2-bhk        /mantra-meridian-riverside/2-bhk          301
+/mantra-meridian-riverside-3-bhk        /mantra-meridian-riverside/3-bhk          301
+/mantra-meridian-riverside-3-bhk-duplex /mantra-meridian-riverside/3-bhk-duplex   301
+/mantra-meridian-riverside-duplex       /mantra-meridian-riverside/3-bhk-duplex   301
+/mantra-meridian-riverside-4-bhk        /mantra-meridian-riverside/4-bhk          301
+/mantra-meridian-riverside-amenities    /mantra-meridian-riverside/amenities      301
+/mantra-meridian-riverside-location     /mantra-meridian-riverside/location       301
+/mantra-meridian-riverside-masterplan   /mantra-meridian-riverside/masterplan     301
+/mantra-meridian-riverside-gallery      /mantra-meridian-riverside/gallery        301
+/mantra-meridian-riverside-rera         /mantra-meridian-riverside/rera           301
+/mantra-meridian-riverside-documents    /mantra-meridian-riverside/documents      301
+/mantra-meridian-riverside-brochure     /mantra-meridian-riverside/documents      301
+/mantra-meridian-riverside-journal      /mantra-meridian-riverside/journal        301
+
+# 3. Short Navigation Aliases
+/pricing                                /mantra-meridian-riverside/price          301
+/prices                                 /mantra-meridian-riverside/price          301
+/cost-sheet                             /mantra-meridian-riverside/price          301
+/residences                             /mantra-meridian-riverside/residences     301
+/floor-plans                            /mantra-meridian-riverside/floor-plans    301
+/floorplans                             /mantra-meridian-riverside/floor-plans    301
+/amenities                              /mantra-meridian-riverside/amenities      301
+/location                               /mantra-meridian-riverside/location       301
+/connectivity                           /mantra-meridian-riverside/location       301
+/masterplan                             /mantra-meridian-riverside/masterplan     301
+/master-plan                            /mantra-meridian-riverside/masterplan     301
+/gallery                                /mantra-meridian-riverside/gallery        301
+/virtual-tour                           /mantra-meridian-riverside/gallery        301
+/rera                                   /mantra-meridian-riverside/rera           301
+/documents                              /mantra-meridian-riverside/documents      301
+/brochure                               /mantra-meridian-riverside/documents      301
+/riverside                              /mantra-meridian-riverside/riverside      301
+/journal                                /mantra-meridian-riverside/journal        301
+/blog                                   /mantra-meridian-riverside/journal        301
+
+# 4. Short Configuration Aliases
+/2bhk                                   /mantra-meridian-riverside/2-bhk          301
+/3bhk                                   /mantra-meridian-riverside/3-bhk          301
+/3bhk-duplex                            /mantra-meridian-riverside/3-bhk-duplex   301
+/duplex                                 /mantra-meridian-riverside/3-bhk-duplex   301
+/4bhk                                   /mantra-meridian-riverside/4-bhk          301

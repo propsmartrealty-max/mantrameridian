@@ -71,10 +71,10 @@
 
 ## Official Canonical Web Links
 - Homepage: https://mantrameridianriverside.com/
-- Residences: https://mantrameridianriverside.com/meridian/residences
-- Pricing & Cost Sheet: https://mantrameridianriverside.com/meridian/price
-- Floor Plans: https://mantrameridianriverside.com/meridian/floor-plans
-- Amenities: https://mantrameridianriverside.com/meridian/amenities
-- Location: https://mantrameridianriverside.com/meridian/location
-- MahaRERA Verification: https://mantrameridianriverside.com/meridian/rera
-- 8-Acre Masterplan: https://mantrameridianriverside.com/meridian/masterplan
+- Residences: https://mantrameridianriverside.com/mantra-meridian-riverside/residences
+- Pricing & Cost Sheet: https://mantrameridianriverside.com/mantra-meridian-riverside/price
+- Floor Plans: https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans
+- Amenities: https://mantrameridianriverside.com/mantra-meridian-riverside/amenities
+- Location: https://mantrameridianriverside.com/mantra-meridian-riverside/location
+- MahaRERA Verification: https://mantrameridianriverside.com/mantra-meridian-riverside/rera
+- 8-Acre Masterplan: https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan
