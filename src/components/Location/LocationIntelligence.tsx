@@ -203,7 +203,7 @@ export default function LocationIntelligence() {
               
               <div>
                 <span className="label-architectural text-xs text-champagne">{selectedDestination.categoryLabel}</span>
-                <h3 className="font-serif text-2xl md:text-3xl text-architectural-white mt-1">{selectedDestination.name}</h3>
+                <h2 className="font-serif text-2xl md:text-3xl text-architectural-white mt-1">{selectedDestination.name}</h2>
               </div>
 
               {/* Transit Metrics Card */}
@@ -274,7 +274,7 @@ export default function LocationIntelligence() {
           <div className="max-w-3xl mx-auto space-y-8">
             <div>
               <span className="label-architectural text-xs text-champagne">LIFESTYLE PROPOSITION</span>
-              <h3 className="font-serif text-3xl text-architectural-white mt-1">A Curated Day at Meridian</h3>
+              <h2 className="font-serif text-3xl text-architectural-white mt-1">A Curated Day at Meridian</h2>
               <p className="text-xs text-concrete mt-2">Balewadi is not merely an address; it is a fluid rhythm of nature, executive productivity, and evening celebration.</p>
             </div>
 

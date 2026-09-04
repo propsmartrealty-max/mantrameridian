@@ -89,7 +89,7 @@ export default function AmenityAtlas() {
           <div className="space-y-6">
             <div>
               <p className="label-architectural text-xs text-champagne">CHAPTER OVERVIEW</p>
-              <h3 className="font-serif text-3xl text-architectural-white mt-1">{activeChapter.title}</h3>
+              <h2 className="font-serif text-3xl text-architectural-white mt-1">{activeChapter.title}</h2>
               <p className="text-xs text-concrete mt-2 leading-relaxed">{activeChapter.description}</p>
             </div>
 
@@ -118,7 +118,7 @@ export default function AmenityAtlas() {
             <div className="p-5 bg-obsidian-surface border border-white/10 space-y-3">
               <div>
                 <span className="label-architectural text-[10px] text-champagne">FEATURED AMENITY</span>
-                <h4 className="font-serif text-xl text-architectural-white mt-0.5">{activeItem.name}</h4>
+                <h3 className="font-serif text-xl text-architectural-white mt-0.5">{activeItem.name}</h3>
                 <p className="text-xs text-concrete/80 italic mt-0.5">{activeItem.tagline}</p>
               </div>
 

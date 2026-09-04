@@ -24,7 +24,7 @@ export default function MasterplanExplorer() {
         
         <div>
           <span className="label-architectural text-xs text-champagne">8-ACRE RIVERSIDE ESTATE</span>
-          <h3 className="font-serif text-2xl text-architectural-white mt-1">Interactive Masterplan</h3>
+          <h2 className="font-serif text-2xl text-architectural-white mt-1">Interactive Masterplan</h2>
         </div>
 
         {/* Filter Badges */}

@@ -15,7 +15,9 @@ const allItems: BreadcrumbItem[] = [
   ...items
 ];
 
-// Schema.org BreadcrumbList for Google SERP Rich Results
+const currentUrl = Astro.url.href;
+
+// Schema.org BreadcrumbList for Google SERP Rich Results (Google Search Central requires item on all entries)
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -23,7 +25,9 @@ const breadcrumbSchema = {
     "@type": "ListItem",
     "position": index + 1,
     "name": item.name,
-    ...(item.url ? { "item": `https://mantrameridianriverside.com${item.url.startsWith('/') ? item.url : `/${item.url}`}` } : {})
+    "item": item.url 
+      ? (item.url === '/' ? 'https://mantrameridianriverside.com/' : `https://mantrameridianriverside.com${item.url.startsWith('/') ? item.url : `/${item.url}`}`)
+      : currentUrl
   }))
 };
 ---

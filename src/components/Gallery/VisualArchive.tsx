@@ -76,9 +76,9 @@ export default function VisualArchive() {
               </div>
 
               <div>
-                <h4 className="font-serif text-lg text-architectural-white group-hover:text-champagne-light transition-colors">
+                <h3 className="font-serif text-lg text-architectural-white group-hover:text-champagne-light transition-colors">
                   {img.title}
-                </h4>
+                </h3>
                 <div className="flex items-center gap-1.5 text-[10px] text-concrete/70 font-mono mt-1">
                   <Compass className="w-3 h-3 text-champagne/60" />
                   <span>{img.locationContext}</span>

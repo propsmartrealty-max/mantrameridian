@@ -249,7 +249,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
               <div className="w-20 h-20 rounded-full bg-champagne/10 border border-champagne/30 flex items-center justify-center mb-4 text-champagne">
                 <Layers className="w-8 h-8" />
               </div>
-              <h4 className="font-serif text-2xl text-architectural-white mb-2">3D Spatial Volume Model</h4>
+              <h3 className="font-serif text-2xl text-architectural-white mb-2">3D Spatial Volume Model</h3>
               <p className="text-xs text-concrete max-w-sm leading-relaxed mb-6">
                 Experience full 3D spatial volumes, ceiling heights (up to 20ft in duplexes), and acoustic light penetration.
               </p>
@@ -278,7 +278,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
             {/* Header info */}
             <div>
               <span className="label-architectural text-xs text-champagne">SPACE SPECIFICATIONS</span>
-              <h3 className="font-serif text-2xl text-architectural-white mt-1">{currentConfig.name}</h3>
+              <h2 className="font-serif text-2xl text-architectural-white mt-1">{currentConfig.name}</h2>
               <p className="text-xs text-concrete mt-1.5 leading-relaxed">{currentConfig.subtitle}</p>
             </div>
 
@@ -315,7 +315,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
                   <span className="text-[10px] uppercase tracking-widest text-champagne font-semibold">SELECTED CHAMBER</span>
                   <span className="text-xs font-mono text-architectural-white">{activeRoom.areaSqFt} SQ.FT.</span>
                 </div>
-                <h4 className="font-serif text-lg text-architectural-white">{activeRoom.name}</h4>
+                <h3 className="font-serif text-lg text-architectural-white">{activeRoom.name}</h3>
                 <div className="text-xs text-champagne font-mono">Dimensions: {activeRoom.dimensions}</div>
                 <p className="text-xs text-concrete leading-relaxed pt-1">{activeRoom.description}</p>
               </div>

@@ -119,9 +119,9 @@ const articleSchema = {
     {/* In-article CTA */}
     <div class="p-8 bg-obsidian-surface border border-champagne/30 text-center space-y-4 my-12">
       <span class="label-architectural text-xs text-champagne">EXPLORE THE DEVELOPMENT</span>
-      <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+      <h2 class="font-serif text-2xl md:text-3xl text-architectural-white">
         Experience Mantra Meridian Riverside Firsthand
-      </h3>
+      </h2>
       <p class="text-xs text-concrete max-w-lg mx-auto">
         Discover how riverside positioning, double-height volumes, and Balewadi connectivity unite at Meridian.
       </p>
@@ -136,7 +136,7 @@ const articleSchema = {
     {relatedArticles.length > 0 && (
       <div class="pt-12 border-t border-white/10 space-y-6">
         <span class="label-architectural text-xs text-champagne">CONTINUE READING</span>
-        <h3 class="font-serif text-2xl text-architectural-white">Related Essays</h3>
+        <h2 class="font-serif text-2xl text-architectural-white">Related Essays</h2>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {relatedArticles.map((rel) => (
@@ -146,7 +146,7 @@ const articleSchema = {
             >
               <div>
                 <span class="label-architectural text-[9px] text-champagne">{rel.category}</span>
-                <h4 class="font-serif text-lg text-architectural-white mt-1">{rel.title}</h4>
+                <h3 class="font-serif text-lg text-architectural-white mt-1">{rel.title}</h3>
                 <p class="text-xs text-concrete/70 mt-2 line-clamp-2">{rel.summary}</p>
               </div>
               <div class="pt-4 text-xs text-champagne font-medium mt-4">
