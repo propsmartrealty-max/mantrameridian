@@ -1,0 +1,26 @@
+{
+  "name": "Mantra Meridian Riverside Balewadi",
+  "short_name": "Mantra Meridian",
+  "description": "8-acre luxury residential development along Mula River in Balewadi, Pune by Mantra Properties. 2, 3, 4 BHK & Sky Duplexes.",
+  "start_url": "/",
+  "id": "/",
+  "display": "standalone",
+  "background_color": "#07080A",
+  "theme_color": "#07080A",
+  "orientation": "portrait-primary",
+  "categories": ["real estate", "lifestyle", "business"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

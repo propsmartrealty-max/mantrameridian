@@ -74,7 +74,7 @@ export const projectData: ProjectData = {
   towers: "Iconic High-Rise Towers",
   floors: "G + Podium + 28 Floors",
   disclaimer: "All the designs, images, specifications and other details are purely indicative in nature and the intended recipient should note that these are to be treated as purely provisional and informative. We reserve the right to modify / amend / alter any of the aforesaid in the best interest of the development and as per RERA regulations. The contents herein should not be construed as an offer / invitation to offer / contract. Any party desirous / interested in the project needs to enter into an Agreement to Sale. MahaRERA No. P52100045688.",
-  ogImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-873008650.webp",
+  ogImage: "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
   heroSliderImages: [
     "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-215259293.webp",
     "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-467045184.webp",

@@ -62,10 +62,8 @@ const structuredReviews = verifiedReviews.map((rev) => ({
   }
 }));
 
-// Global Organization, ApartmentComplex & RealEstateAgent Schema
-const baseSchema = customSchema || {
-  "@context": "https://schema.org",
-  "@graph": [
+// Global Organization, ApartmentComplex & RealEstateAgent Core Graph
+const coreGraph: any[] = [
     {
       "@type": "RealEstateAgent",
       "@id": "https://mantrameridianriverside.com/#organization",
@@ -216,8 +214,27 @@ const baseSchema = customSchema || {
         "cssSelector": ["h1", "h2", ".speakable-summary", "[data-speakable]"]
       }
     }
-  ]
+  ];
+
+// Seamlessly merge page-specific schemas (e.g. SingleFamilyResidence, Offer, Article, FAQPage)
+if (customSchema) {
+  if (Array.isArray((customSchema as any)['@graph'])) {
+    coreGraph.push(...(customSchema as any)['@graph']);
+  } else {
+    const { '@context': _context, ...schemaObj } = customSchema as any;
+    coreGraph.push(schemaObj);
+  }
+}
+
+const unifiedSchema = {
+  "@context": "https://schema.org",
+  "@graph": coreGraph
 };
+
+// Normalize ogImage to ensure absolute URL for social scrapers
+const absoluteOgImage = ogImage.startsWith('http')
+  ? ogImage
+  : `https://mantrameridianriverside.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 ---
 
 <!doctype html>
@@ -225,11 +242,13 @@ const baseSchema = customSchema || {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#0C0D10" />
+    <meta name="theme-color" content="#07080A" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="format-detection" content="telephone=no" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
 
     {/* Primary SEO Meta Tags */}
@@ -256,17 +275,24 @@ const baseSchema = customSchema || {
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:image:secure_url" content={absoluteOgImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Mantra Meridian Riverside Balewadi Architecture" />
+    <meta property="og:image:type" content="image/webp" />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:site_name" content="Mantra Meridian Riverside Balewadi" />
 
     {/* Twitter */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+    <meta name="twitter:image:alt" content="Mantra Meridian Riverside Balewadi Architecture" />
 
     {/* Structured Data Schema */}
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(baseSchema)} />
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(unifiedSchema)} />
 
     {/* DNS Prefetching & Preconnect for Core Web Vitals */}
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

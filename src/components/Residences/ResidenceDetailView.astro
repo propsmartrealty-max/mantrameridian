@@ -15,10 +15,12 @@ const { residence } = Astro.props;
 
 const otherResidences = residencesData.filter(r => r.id !== residence.id);
 
-// SEO Schema for this Residence
+// SEO Schema for this Residence with Offer & Apartment specs
+const numericPrice = residence.id === '2bhk' ? 8500000 : residence.id === '3bhk' ? 12800000 : residence.id === '3bhk-duplex' ? 18500000 : 24000000;
+
 const residenceSchema = {
   "@context": "https://schema.org",
-  "@type": "SingleFamilyResidence",
+  "@type": ["SingleFamilyResidence", "Apartment"],
   "name": `${residence.name} - Mantra Meridian Riverside`,
   "description": residence.overview,
   "numberOfBedrooms": residence.type,
@@ -26,6 +28,19 @@ const residenceSchema = {
   "floorSize": {
     "@type": "QuantitativeValue",
     "value": residence.carpetAreaRange
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "INR",
+    "price": numericPrice,
+    "priceSpecification": {
+      "@type": "UnitPriceSpecification",
+      "price": numericPrice,
+      "priceCurrency": "INR",
+      "name": "Starting Base Consideration"
+    },
+    "availability": "https://schema.org/InStock",
+    "validFrom": "2026-01-01"
   },
   "address": {
     "@type": "PostalAddress",
