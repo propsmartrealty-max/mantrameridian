@@ -152,16 +152,6 @@ const baseSchema = customSchema || {
       },
       "hasMap": projectData.googleMapsUrl,
       "numberOfBedrooms": "2, 3, 4",
-      "petsAllowed": true,
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregateRatingData.ratingValue,
-        "bestRating": aggregateRatingData.bestRating,
-        "worstRating": aggregateRatingData.worstRating,
-        "ratingCount": aggregateRatingData.ratingCount,
-        "reviewCount": aggregateRatingData.reviewCount
-      },
-      "review": structuredReviews,
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
