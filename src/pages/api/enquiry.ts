@@ -5,6 +5,29 @@ export const prerender = false; // Cloudflare Workers Edge Execution
 const PRIMARY_NOTIFICATION_EMAIL = 'propsmartrealty@gmail.com';
 
 /**
+ * Escapes HTML characters to prevent XSS/injection attacks in email rendering
+ */
+function escapeHtml(str: string): string {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+/**
+ * Sanitizes arbitrary string inputs: strips control characters, trims, and truncates length
+ */
+function sanitizeString(val: unknown, maxLen = 100): string {
+  if (typeof val !== 'string') return '';
+  return val
+    .replace(/[\x00-\x1F\x7F]/g, '')
+    .trim()
+    .slice(0, maxLen);
+}
+
+/**
  * Builds an ultra-clean, mobile-responsive HTML email template optimized for Gmail
  */
 function buildLeadEmailHtml(lead: {
@@ -23,7 +46,19 @@ function buildLeadEmailHtml(lead: {
   isNRI: boolean;
   timestamp: string;
 }) {
-  const whatsappUrl = `https://wa.me/91${lead.cleanPhone}?text=${encodeURIComponent(
+  const safeFullName = escapeHtml(lead.fullName);
+  const safePhone = escapeHtml(lead.phone);
+  const safeEmail = lead.email ? escapeHtml(lead.email) : undefined;
+  const safeConfig = escapeHtml(lead.configuration);
+  const safeIntent = escapeHtml(lead.intent);
+  const safeSlot = escapeHtml(lead.preferredSlot);
+  const safeCity = escapeHtml(lead.city);
+  const safeCountry = escapeHtml(lead.country);
+  const safeLandingPage = escapeHtml(lead.landingPage);
+  const safeLeadId = escapeHtml(lead.leadId);
+  const safeTimestamp = escapeHtml(lead.timestamp);
+
+  const whatsappUrl = `https://wa.me/91${encodeURIComponent(lead.cleanPhone)}?text=${encodeURIComponent(
     `Hello ${lead.fullName}, thank you for your interest in Mantra Meridian Riverside, Balewadi. Regarding your enquiry for ${lead.configuration}:`
   )}`;
 
@@ -75,19 +110,19 @@ function buildLeadEmailHtml(lead: {
                 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td width="35%" style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Lead ID</td>
-                  <td style="color: #FFFFFF; font-family: monospace; font-weight: 600;">${lead.leadId}</td>
+                  <td style="color: #FFFFFF; font-family: monospace; font-weight: 600;">${safeLeadId}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Buyer Name</td>
-                  <td style="color: #FFFFFF; font-size: 16px; font-weight: 600;">${lead.fullName}</td>
+                  <td style="color: #FFFFFF; font-size: 16px; font-weight: 600;">${safeFullName}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Phone Number</td>
                   <td>
-                    <a href="tel:${lead.phone}" style="color: #DFB75A; font-size: 16px; font-weight: 700; text-decoration: none;">
-                      ${lead.phone}
+                    <a href="tel:${safePhone}" style="color: #DFB75A; font-size: 16px; font-weight: 700; text-decoration: none;">
+                      ${safePhone}
                     </a>
                   </td>
                 </tr>
@@ -96,8 +131,8 @@ function buildLeadEmailHtml(lead: {
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Email Address</td>
                   <td>
                     ${
-                      lead.email
-                        ? `<a href="mailto:${lead.email}" style="color: #FFFFFF; text-decoration: none;">${lead.email}</a>`
+                      safeEmail
+                        ? `<a href="mailto:${safeEmail}" style="color: #FFFFFF; text-decoration: none;">${safeEmail}</a>`
                         : '<span style="color: #717688; font-style: italic;">Not Provided</span>'
                     }
                   </td>
@@ -105,32 +140,32 @@ function buildLeadEmailHtml(lead: {
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Configuration</td>
-                  <td style="color: #FFFFFF; font-weight: 600; font-size: 15px;">${lead.configuration}</td>
+                  <td style="color: #FFFFFF; font-weight: 600; font-size: 15px;">${safeConfig}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Client Intent</td>
-                  <td style="color: #C8C4B8;">${lead.intent}</td>
+                  <td style="color: #C8C4B8;">${safeIntent}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Preferred Slot</td>
-                  <td style="color: #C8C4B8;">${lead.preferredSlot}</td>
+                  <td style="color: #C8C4B8;">${safeSlot}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Visitor Location</td>
-                  <td style="color: #C8C4B8;">${lead.city}, ${lead.country}</td>
+                  <td style="color: #C8C4B8;">${safeCity}, ${safeCountry}</td>
                 </tr>
 
                 <tr style="border-bottom: 1px solid rgba(255,255,255,0.08);">
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Origin Page</td>
-                  <td style="color: #C8C4B8; font-family: monospace; font-size: 12px;">${lead.landingPage}</td>
+                  <td style="color: #C8C4B8; font-family: monospace; font-size: 12px;">${safeLandingPage}</td>
                 </tr>
 
                 <tr>
                   <td style="color: #DFB75A; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.1em;">Submission Time</td>
-                  <td style="color: #C8C4B8; font-size: 12px;">${lead.timestamp}</td>
+                  <td style="color: #C8C4B8; font-size: 12px;">${safeTimestamp}</td>
                 </tr>
 
               </table>
@@ -139,7 +174,7 @@ function buildLeadEmailHtml(lead: {
               <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 30px;">
                 <tr>
                   <td align="center" style="padding-right: 8px;">
-                    <a href="tel:${lead.phone}" style="display: block; background-color: #DFB75A; color: #0C0D10; text-decoration: none; padding: 14px 20px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; text-align: center; border-radius: 2px;">
+                    <a href="tel:${safePhone}" style="display: block; background-color: #DFB75A; color: #0C0D10; text-decoration: none; padding: 14px 20px; font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.12em; text-align: center; border-radius: 2px;">
                       📞 Call Buyer Now
                     </a>
                   </td>
@@ -201,12 +236,43 @@ export const POST: APIRoute = async ({ request }) => {
       );
     }
 
+    // Sanitize text inputs
+    const cleanFullName = sanitizeString(fullName, 80);
+    const cleanRawPhone = sanitizeString(phone, 25);
+    const cleanEmail = email ? sanitizeString(email, 100) : undefined;
+    const cleanResidence = sanitizeString(selectedResidence, 50);
+    const cleanIntent = sanitizeString(selectedIntent, 60);
+    const cleanSlot = sanitizeString(preferredSlot, 60);
+    const cleanLandingPage = sanitizeString(landingPage, 120);
+    const cleanReferrer = sanitizeString(referrer, 120);
+
     // Required fields validation
-    if (!fullName || !phone) {
+    if (!cleanFullName || !cleanRawPhone) {
       return new Response(
         JSON.stringify({ success: false, error: 'Full name and phone number are required.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
+    }
+
+    // Phone number validation: extract digits, must be between 10 and 15 digits
+    const rawDigits = cleanRawPhone.replace(/\D/g, '');
+    if (rawDigits.length < 10 || rawDigits.length > 15) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Please provide a valid contact number (at least 10 digits).' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+    const cleanPhone = rawDigits.slice(-10);
+
+    // Email validation (if provided)
+    if (cleanEmail) {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(cleanEmail)) {
+        return new Response(
+          JSON.stringify({ success: false, error: 'Please enter a valid email address.' }),
+          { status: 400, headers: { 'Content-Type': 'application/json' } }
+        );
+      }
     }
 
     // Edge request metadata via Cloudflare headers
@@ -218,10 +284,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     // Check NRI status
     const isNRI = ['AE', 'US', 'GB', 'SG', 'QA', 'SA', 'CA', 'AU'].includes(cfCountry.toUpperCase());
-
-    // Clean Phone number (strip all non-digits, keep last 10 digits for India)
-    const rawDigits = String(phone).replace(/\D/g, '');
-    const cleanPhone = rawDigits.length >= 10 ? rawDigits.slice(-10) : rawDigits;
 
     const leadId = `MMR-${Date.now().toString().slice(-6)}-${Math.random().toString(36).substring(2, 5).toUpperCase()}`;
     const formattedTimestamp = new Date().toLocaleString('en-IN', {
@@ -236,15 +298,15 @@ export const POST: APIRoute = async ({ request }) => {
       rera: 'P52100045688',
       leadId,
       timestamp: formattedTimestamp,
-      fullName: String(fullName).trim(),
-      phone: String(phone).trim(),
+      fullName: cleanFullName,
+      phone: cleanRawPhone,
       cleanPhone,
-      email: email ? String(email).trim() : undefined,
-      configuration: selectedResidence || 'Not Specified',
-      intent: selectedIntent || 'Private Presentation',
-      preferredSlot: preferredSlot || 'Immediate Assistance',
-      landingPage: landingPage || '/',
-      referrer: referrer || 'direct',
+      email: cleanEmail || undefined,
+      configuration: cleanResidence || 'Not Specified',
+      intent: cleanIntent || 'Private Presentation',
+      preferredSlot: cleanSlot || 'Immediate Assistance',
+      landingPage: cleanLandingPage || '/',
+      referrer: cleanReferrer || 'direct',
       city: cfCity,
       country: cfCountry,
       region: cfRegion,

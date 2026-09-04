@@ -80,9 +80,9 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          fullName,
-          phone,
-          email,
+          fullName: fullName.trim(),
+          phone: phone.trim(),
+          email: email.trim() || undefined,
           selectedResidence,
           selectedIntent,
           preferredSlot,
@@ -326,7 +326,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="vikram@example.com"
+                    placeholder="name@domain.com"
                     className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
                   />
                 </div>
