@@ -1,0 +1,29 @@
+name: Programmatic Cloudflare & Search Engine Indexing Workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
+  schedule:
+    # Runs daily at 04:00 UTC (09:30 AM IST)
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+jobs:
+  broadcast-indexing:
+    name: Broadcast Canonical URLs to Search Engines
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Run Programmatic Indexing Broadcast
+        run: npm run index:broadcast
