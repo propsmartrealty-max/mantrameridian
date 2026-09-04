@@ -387,8 +387,7 @@ export const POST: APIRoute = async ({ request }) => {
       JSON.stringify({
         success: true,
         message: 'Your presentation request has been registered with the Senior Meridian Concierge.',
-        leadId: leadRecord.leadId,
-        recipient: PRIMARY_NOTIFICATION_EMAIL
+        leadId: leadRecord.leadId
       }),
       {
         status: 200,

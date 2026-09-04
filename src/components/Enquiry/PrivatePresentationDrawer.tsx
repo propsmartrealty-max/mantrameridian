@@ -326,7 +326,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@domain.com"
+                    placeholder="Enter email address (optional)"
                     className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
                   />
                 </div>

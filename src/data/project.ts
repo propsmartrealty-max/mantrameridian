@@ -44,7 +44,6 @@ export interface ProjectData {
     secondaryPhone: string;
     whatsapp: string;
     whatsappEnquiryText: string;
-    email: string;
     siteAddress: string;
     uaeContact: {
       representative: string;
@@ -125,7 +124,6 @@ export const projectData: ProjectData = {
     secondaryPhone: "+91 77440 09295",
     whatsapp: "+91 77440 09295",
     whatsappEnquiryText: "Hello Meridian Concierge, I would like to receive details, floor plans, and pricing for Mantra Meridian Riverside Balewadi.",
-    email: "propsmartrealty@gmail.com",
     siteAddress: "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi, Pune, Maharashtra 411045",
     uaeContact: {
       representative: "International NRI Desk",
