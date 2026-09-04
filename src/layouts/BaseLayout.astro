@@ -86,7 +86,8 @@ const coreGraph: any[] = [
         "https://www.youtube.com/@MantraProperties",
         "https://maharera.mahaonline.gov.in/",
         projectData.googleMapsUrl,
-        `https://maps.google.com/?cid=${projectData.googleMapsCid}`
+        `https://maps.google.com/?cid=${projectData.googleMapsCid}`,
+        `https://www.google.com/search?kgmid=${projectData.googleMapsKgId}`
       ],
       "address": {
         "@type": "PostalAddress",
@@ -127,6 +128,14 @@ const coreGraph: any[] = [
       "alternateName": meridianKeywordEcosystem.brandKeywords,
       "description": `${projectData.name} - ${projectData.tagline}. 8-acre luxury residential community in Balewadi, Pune offering 2, 3, 4 BHK apartments and signature 3 BHK duplexes. MahaRERA P52100045688.`,
       "tourBookingPage": "https://mantrameridianriverside.com/#virtual-tour",
+      "sameAs": [
+        projectData.googleMapsUrl,
+        projectData.officialPropertyUrl,
+        `https://www.google.com/search?kgmid=${projectData.googleMapsKgId}`,
+        `https://maps.google.com/?cid=${projectData.googleMapsCid}`,
+        projectData.reraRegistrationUrl
+      ],
+      "photo": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": projectData.contact.siteAddress,
@@ -142,6 +151,98 @@ const coreGraph: any[] = [
       },
       "hasMap": projectData.googleMapsUrl,
       "numberOfBedrooms": "2, 3, 4",
+      "potentialAction": [
+        {
+          "@type": "ReserveAction",
+          "name": "Book Private Site Tour & Presentation",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://mantrameridianriverside.com/#enquire",
+            "actionPlatform": [
+              "http://schema.org/DesktopWebPlatform",
+              "http://schema.org/MobileWebPlatform"
+            ]
+          },
+          "result": {
+            "@type": "Reservation",
+            "name": "Private VIP Site Presentation"
+          }
+        }
+      ],
+      "containsPlace": [
+        {
+          "@type": "SingleFamilyResidence",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk#residence",
+          "name": "2 BHK Contemporary Residence",
+          "numberOfBedrooms": 2,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 815,
+            "unitCode": "FTK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "8500000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk"
+          }
+        },
+        {
+          "@type": "SingleFamilyResidence",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk#residence",
+          "name": "3 BHK Riverside Residence",
+          "numberOfBedrooms": 3,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1180,
+            "unitCode": "FTK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "12800000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk"
+          }
+        },
+        {
+          "@type": "SingleFamilyResidence",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex#residence",
+          "name": "3 BHK Signature Sky Duplex",
+          "numberOfBedrooms": 3,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1660,
+            "unitCode": "FTK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "18500000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex"
+          }
+        },
+        {
+          "@type": "SingleFamilyResidence",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk#residence",
+          "name": "4 BHK Grand Riverside Estate",
+          "numberOfBedrooms": 4,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2050,
+            "unitCode": "FTK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": "24000000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk"
+          }
+        }
+      ],
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",

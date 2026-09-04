@@ -255,7 +255,17 @@ export default function LocationIntelligence() {
             </div>
 
             {/* CTA */}
-            <div className="pt-6 border-t border-white/10 mt-6">
+            <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=18.5839181,73.7747366"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full text-xs py-3 px-4 border border-champagne/40 bg-champagne/10 hover:bg-champagne/20 text-champagne font-mono flex items-center justify-center gap-2 transition-colors uppercase tracking-wider group"
+              >
+                <Navigation className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
+                <span>Navigate via Google Maps</span>
+              </a>
+
               <button
                 onClick={handleOpenConcierge}
                 className="btn-luxury w-full text-xs"
