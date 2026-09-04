@@ -27,6 +27,40 @@ const {
   customSchema
 } = Astro.props;
 
+// Prepare Google Search Central compliant Review objects with explicit itemReviewed
+const structuredReviews = verifiedReviews.map((rev) => ({
+  "@type": "Review",
+  "itemReviewed": {
+    "@type": "RealEstateAgent",
+    "@id": "https://mantrameridianriverside.com/#organization",
+    "name": "Mantra Meridian Riverside",
+    "image": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+    "telephone": projectData.contact.phone,
+    "priceRange": "₹ 85 Lakhs - ₹ 3.50 Cr",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": projectData.contact.siteAddress,
+      "addressLocality": "Balewadi",
+      "addressRegion": "Maharashtra",
+      "postalCode": "411045",
+      "addressCountry": "IN"
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": rev.author
+  },
+  "datePublished": rev.date,
+  "name": rev.title,
+  "reviewBody": rev.body,
+  "reviewRating": {
+    "@type": "Rating",
+    "bestRating": 5,
+    "ratingValue": rev.rating,
+    "worstRating": 1
+  }
+}));
+
 // Global Organization, ApartmentComplex & RealEstateAgent Schema
 const baseSchema = customSchema || {
   "@context": "https://schema.org",
@@ -83,6 +117,7 @@ const baseSchema = customSchema || {
         "ratingCount": aggregateRatingData.ratingCount,
         "reviewCount": aggregateRatingData.reviewCount
       },
+      "review": structuredReviews,
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -126,22 +161,7 @@ const baseSchema = customSchema || {
         "ratingCount": aggregateRatingData.ratingCount,
         "reviewCount": aggregateRatingData.reviewCount
       },
-      "review": verifiedReviews.map((rev) => ({
-        "@type": "Review",
-        "author": {
-          "@type": "Person",
-          "name": rev.author
-        },
-        "datePublished": rev.date,
-        "name": rev.title,
-        "reviewBody": rev.body,
-        "reviewRating": {
-          "@type": "Rating",
-          "bestRating": 5,
-          "ratingValue": rev.rating,
-          "worstRating": 1
-        }
-      })),
+      "review": structuredReviews,
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
