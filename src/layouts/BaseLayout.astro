@@ -5,7 +5,7 @@ import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro'
 import FloatingWhatsApp from '../components/Navigation/FloatingWhatsApp.astro';
 import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
 import { projectData } from '../data/project';
-import { defaultMetaKeywords } from '../data/keywords';
+import { defaultMetaKeywords, meridianKeywordEcosystem } from '../data/keywords';
 import { aggregateRatingData, verifiedReviews } from '../data/reviews';
 import '../styles/global.css';
 
@@ -68,12 +68,7 @@ const coreGraph: any[] = [
       "@type": "RealEstateAgent",
       "@id": "https://mantrameridianriverside.com/#organization",
       "name": "Mantra Meridian Riverside",
-      "alternateName": [
-        "Meridian at Riverside Balewadi",
-        "Mantra Meridian",
-        "Mantra Meridian Balewadi",
-        "Mantra Properties Meridian"
-      ],
+      "alternateName": meridianKeywordEcosystem.brandKeywords,
       "legalName": "Mantra Properties",
       "url": "https://mantrameridianriverside.com",
       "telephone": projectData.contact.phone,
@@ -129,10 +124,7 @@ const coreGraph: any[] = [
       "@type": "ApartmentComplex",
       "@id": "https://mantrameridianriverside.com/#complex",
       "name": "Mantra Meridian Riverside",
-      "alternateName": [
-        "Meridian at Riverside Balewadi",
-        "Site - Mantra Riverside"
-      ],
+      "alternateName": meridianKeywordEcosystem.brandKeywords,
       "description": `${projectData.name} - ${projectData.tagline}. 8-acre luxury residential community in Balewadi, Pune offering 2, 3, 4 BHK apartments and signature 3 BHK duplexes. MahaRERA P52100045688.`,
       "tourBookingPage": "https://mantrameridianriverside.com/#virtual-tour",
       "address": {

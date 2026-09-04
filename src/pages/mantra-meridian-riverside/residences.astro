@@ -4,6 +4,7 @@ import FloorPlanViewer from '../../components/FloorPlan/FloorPlanViewer';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { residencesData } from '../../data/residences';
+import { residencesKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
 ---
@@ -11,7 +12,7 @@ export const prerender = true;
 <BaseLayout
   title="Luxury 2, 3, 4 BHK & Duplex Flats in Balewadi | Mantra Meridian Riverside"
   description="Explore luxury 2, 3, 4 BHK flats and 3 BHK Sky Duplexes at Mantra Meridian Riverside in Balewadi, Pune. Verified MahaRERA carpet dimensions and price details."
-  keywords="2 BHK flats in Balewadi, 3 BHK flats in Balewadi, 3 BHK Duplex in Balewadi, 4 BHK apartments Balewadi, Mantra Meridian residences, luxury flats Balewadi Pune"
+  keywords={residencesKeywordsList}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

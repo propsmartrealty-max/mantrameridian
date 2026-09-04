@@ -21,6 +21,7 @@ import ClientReviews from '../components/Reviews/ClientReviews.astro';
 import { residencesData } from '../data/residences';
 import { journalArticles } from '../data/journal';
 import { projectData } from '../data/project';
+import { defaultMetaKeywords } from '../data/keywords';
 
 export const prerender = true;
 ---
@@ -28,7 +29,7 @@ export const prerender = true;
 <BaseLayout
   title="Mantra Meridian Riverside Balewadi | Luxury 2, 3, 4 BHK & Duplexes Pune"
   description="Official portal of Mantra Meridian Riverside in Balewadi, Pune by Mantra Properties. 8-acre development along Mula River offering 2, 3, 4 BHK flats & Duplexes. MahaRERA P52100045688."
-  keywords="Mantra Meridian, Mantra Meridian Riverside, Mantra Meridian Balewadi, Meridian at Riverside Balewadi, Mantra Properties Balewadi, 2 BHK flats in Balewadi, 3 BHK flats in Balewadi, 3 BHK Duplex Balewadi, 4 BHK apartments Balewadi, MahaRERA P52100045688"
+  keywords={defaultMetaKeywords}
 >
   
   {/* 01. 100vh Cinematic Hero */}

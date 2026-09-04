@@ -6,6 +6,7 @@ import FAQAccordion from '../FAQ/FAQAccordion.astro';
 import Breadcrumbs from '../Navigation/Breadcrumbs.astro';
 import type { ResidenceConfig } from '../../data/residences';
 import { residencesData } from '../../data/residences';
+import { getConfigurationKeywords } from '../../data/keywords';
 
 interface Props {
   residence: ResidenceConfig;
@@ -52,16 +53,7 @@ const residenceSchema = {
   }
 };
 
-const residenceKeywords = [
-  `${residence.type} flats in Balewadi`,
-  `${residence.type} in Balewadi Mantra Meridian`,
-  `Mantra Meridian ${residence.type} floor plans`,
-  `Mantra Meridian ${residence.name}`,
-  `Mantra Meridian carpet area`,
-  `Mantra Meridian Riverside Balewadi`,
-  `luxury apartments in Balewadi`,
-  `MahaRERA P52100045688`
-].join(", ");
+const residenceKeywords = getConfigurationKeywords(residence.slug, residence.name);
 ---
 
 <BaseLayout

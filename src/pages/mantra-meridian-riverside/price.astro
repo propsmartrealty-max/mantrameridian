@@ -4,6 +4,7 @@ import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
 import EMICalculator from '../../components/Finance/EMICalculator';
 import ClientReviews from '../../components/Reviews/ClientReviews.astro';
+import { pricingKeywords } from '../../data/keywords';
 
 export const prerender = true;
 
@@ -109,7 +110,7 @@ const priceFaqSchema = {
 <BaseLayout
   title="Mantra Meridian Price List & Cost Sheet | 2, 3, 4 BHK & Duplex Balewadi"
   description="Official indicative pricing, cost breakdown, payment plans, stamp duty & home loan details for Mantra Meridian Riverside, Balewadi. MahaRERA P52100045688."
-  keywords="Mantra Meridian price, Mantra Meridian price list, Mantra Meridian 2 BHK price, Mantra Meridian 3 BHK price, Mantra Meridian duplex price, Mantra Meridian 4 BHK price, Mantra Meridian cost sheet, Mantra Meridian payment plan"
+  keywords={pricingKeywords}
   customSchema={priceFaqSchema}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">

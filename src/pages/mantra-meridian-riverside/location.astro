@@ -4,6 +4,7 @@ import LocationIntelligence from '../../components/Location/LocationIntelligence
 import InfrastructureGrowthRadar from '../../components/Location/InfrastructureGrowthRadar.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { locationDestinations } from '../../data/location';
+import { locationKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
 ---
@@ -11,7 +12,7 @@ export const prerender = true;
 <BaseLayout
   title="Mantra Meridian Location & Distance Radar | Balewadi High Street Pune"
   description="Explore location intelligence for Mantra Meridian Riverside. Situated along Mula River, 5 mins from Balewadi High Street, planned Wakad bridge & Hinjewadi IT Park."
-  keywords="Mantra Meridian location, Balewadi Village Road apartments, flats near Balewadi High Street, flats near Wakad bridge, apartments near Hinjewadi, West Pune connectivity"
+  keywords={locationKeywordsList}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

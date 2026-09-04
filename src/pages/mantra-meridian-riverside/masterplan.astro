@@ -4,6 +4,7 @@ import MasterplanExplorer from '../../components/Masterplan/MasterplanExplorer';
 import ReraVerificationCard from '../../components/Trust/ReraVerificationCard.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { masterplanZones } from '../../data/masterplan';
+import { masterplanKeywords } from '../../data/keywords';
 
 export const prerender = true;
 ---
@@ -11,7 +12,7 @@ export const prerender = true;
 <BaseLayout
   title="Mantra Meridian 8-Acre Masterplan | Riverside Towers Balewadi Pune"
   description="Explore the 8-acre riverside masterplan of Mantra Meridian in Balewadi, Pune. Iconic high-rise towers, 75%+ landscaped open spaces, and 500m Mula promenade."
-  keywords="Mantra Meridian masterplan, 8 acre project Balewadi, riverside towers Balewadi, gated community Balewadi Pune, Mantra Properties masterplan"
+  keywords={masterplanKeywords}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

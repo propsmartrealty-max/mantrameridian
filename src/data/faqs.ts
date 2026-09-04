@@ -77,5 +77,29 @@ export const faqsData: FAQItem[] = [
     category: "location",
     question: "What is the planned Balewadi–Wakad river bridge and how does it benefit residents?",
     answer: "The planned bridge across the Mula River corridor directly links Balewadi Village Road to Wakad, providing a high-speed bypass that reduces transit times to Hinjewadi IT Park and Phoenix Mall of the Millennium to under 10 minutes."
+  },
+  {
+    id: "possession-date-mantra-meridian",
+    category: "rera",
+    question: "What is the official possession date for Mantra Meridian Balewadi?",
+    answer: "The sanctioned completion and target handover date for Mantra Meridian Riverside is June 2028, as formally registered under MahaRERA certificate P52100045688."
+  },
+  {
+    id: "approved-home-loan-banks",
+    category: "pricing",
+    question: "Which banks have approved home loans for Mantra Meridian Riverside?",
+    answer: "Mantra Meridian has received formal project approvals from leading financial institutions including State Bank of India (SBI), HDFC Bank, ICICI Bank, Axis Bank, and Bank of Baroda, offering attractive interest rates and flexible construction-linked disbursement schemes."
+  },
+  {
+    id: "carpet-area-dimensions-breakdown",
+    category: "configurations",
+    question: "What are the exact RERA carpet areas for Mantra Meridian residences?",
+    answer: "Sanctioned MahaRERA usable carpet areas are: 2 BHK Contemporary Homes from 785 to 845 sq.ft., 3 BHK Riverside Residences from 1,120 to 1,240 sq.ft., 3 BHK Signature Sky Duplexes from 1,580 to 1,740 sq.ft., and 4 BHK Grand Estates from 1,920 to 2,180 sq.ft."
+  },
+  {
+    id: "comparative-luxury-edge",
+    category: "overview",
+    question: "How does Mantra Meridian compare with other luxury projects in Balewadi?",
+    answer: "Mantra Meridian Riverside stands out as an 8-acre low-density sanctuary featuring over 75% landscaped open green areas, a dedicated 500-metre Mula river promenade, rare two-tier sky duplexes with 20ft double-height living ceilings, and a 20,000 sq.ft. clubhouse pavilion—delivering lower density and superior riparian views compared to crowded high-density towers."
   }
 ];
