@@ -5,81 +5,190 @@ export interface KeywordCluster {
   semanticPhrases: string[];
 }
 
+// 01. Comprehensive Brand Entity Permutations (Tokens: Mantra, Meridian, Riverside, Balewadi, Pune, Properties)
+export const brandPermutations: string[] = [
+  // 4-token natural permutations
+  "Mantra Meridian Riverside Balewadi",
+  "Mantra Meridian Balewadi Riverside",
+  "Mantra Riverside Meridian Balewadi",
+  "Mantra Riverside Balewadi Meridian",
+  "Mantra Balewadi Meridian Riverside",
+  "Mantra Balewadi Riverside Meridian",
+  "Meridian Riverside Balewadi Mantra",
+  "Meridian Balewadi Riverside Mantra",
+  "Meridian Mantra Riverside Balewadi",
+  "Meridian Mantra Balewadi Riverside",
+  "Riverside Meridian Balewadi Mantra",
+  "Riverside Mantra Meridian Balewadi",
+  "Balewadi Mantra Meridian Riverside",
+  "Balewadi Meridian Riverside Mantra",
+  "Balewadi Riverside Mantra Meridian",
+
+  // 3-token essential permutations
+  "Mantra Meridian Balewadi",
+  "Mantra Meridian Riverside",
+  "Mantra Riverside Balewadi",
+  "Meridian Riverside Balewadi",
+  "Meridian Balewadi Pune",
+  "Mantra Balewadi Pune",
+  "Mantra Riverside Pune",
+  "Mantra Meridian Pune",
+  "Meridian at Riverside Balewadi",
+  "Meridian at Riverside Pune",
+  "Meridian Riverside Pune",
+  "Site Mantra Riverside",
+  "Site Mantra Balewadi",
+  "Mantra Meridian High Street",
+  "Meridian Balewadi High Street",
+  "Mantra Balewadi Riverside",
+  "Riverside Balewadi Mantra",
+
+  // Developer authority permutations
+  "Mantra Properties Meridian Balewadi",
+  "Mantra Properties Meridian Riverside",
+  "Mantra Properties Riverside Balewadi",
+  "Mantra Properties Balewadi Pune",
+  "Mantra Properties Meridian Riverside Balewadi",
+  "Meridian by Mantra Properties",
+  "Meridian by Mantra Properties Balewadi",
+  "Riverside by Mantra Properties",
+  "Mantra Properties Ongoing Projects Balewadi",
+  "Mantra Properties New Launch Balewadi",
+  "Mantra Properties Balewadi Village Road"
+];
+
+// 02. Configuration & Typology Search Permutations
+export const typologyPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi 2 BHK",
+  "Mantra Meridian Balewadi 2 BHK price",
+  "Mantra Meridian 2 BHK carpet area Balewadi",
+  "Mantra Meridian Riverside 2 BHK floor plan",
+  "2 BHK flats in Balewadi Mantra Meridian",
+  "2 BHK in Balewadi Mantra Riverside",
+  "Mantra Properties Meridian 2 BHK price",
+  "2 BHK flats near Balewadi High Street Mantra",
+  
+  "Mantra Meridian Riverside Balewadi 3 BHK",
+  "Mantra Meridian Balewadi 3 BHK price",
+  "Mantra Meridian 3 BHK carpet area Balewadi",
+  "Mantra Meridian Riverside 3 BHK floor plan",
+  "3 BHK flats in Balewadi Mantra Meridian",
+  "3 BHK in Balewadi Mantra Riverside",
+  "Mantra Properties Meridian 3 BHK price",
+  "3 BHK river facing apartments Balewadi Mantra",
+
+  "Mantra Meridian Riverside Balewadi 3 BHK Duplex",
+  "Mantra Meridian Balewadi Duplex price",
+  "Signature Sky Duplex Balewadi Mantra Meridian",
+  "Mantra Meridian 3 BHK Duplex floor plan",
+  "Duplex flats in Balewadi Mantra Meridian",
+  "Two tier sky homes Balewadi Mantra Properties",
+  "Double height ceiling flats Balewadi Mantra",
+
+  "Mantra Meridian Riverside Balewadi 4 BHK",
+  "Mantra Meridian Balewadi 4 BHK price",
+  "Mantra Meridian 4 BHK carpet area Balewadi",
+  "Mantra Meridian Riverside 4 BHK floor plan",
+  "4 BHK luxury apartments Balewadi Mantra Meridian",
+  "4 BHK flats in Balewadi Mantra Riverside",
+  "Grand Riverside Estates Mantra Meridian Balewadi"
+];
+
+// 03. Pricing, Commercial & Cost Sheet Permutations
+export const pricingPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi price",
+  "Mantra Meridian Balewadi price list 2026",
+  "Mantra Meridian Riverside cost sheet",
+  "Mantra Meridian Balewadi cost sheet PDF",
+  "Mantra Riverside Balewadi pricing breakdown",
+  "Meridian Riverside Balewadi payment plan",
+  "Mantra Properties Meridian Balewadi all inclusive price",
+  "Mantra Meridian Balewadi booking amount",
+  "Mantra Meridian Riverside maintenance charges",
+  "Mantra Meridian Balewadi price per square foot",
+  "Mantra Meridian stamp duty registration Pune",
+  "Mantra Meridian home loan approved banks SBI HDFC ICICI",
+  "Mantra Meridian installment schedule Balewadi",
+  "Mantra Properties Meridian Riverside payment schedule"
+];
+
+// 04. Location, Transit & Proximity Permutations
+export const locationPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi exact location",
+  "Mantra Meridian Balewadi site address",
+  "Mantra Meridian Balewadi Village Road address",
+  "Mantra Meridian Google Maps location",
+  "Mantra Meridian location near Balewadi High Street",
+  "Riverside flats near Balewadi High Street Mantra Meridian",
+  "Properties near Mula River Balewadi Mantra Meridian",
+  "Flats near proposed Wakad Balewadi bridge Mantra Meridian",
+  "Apartments near PMRDA Metro Line 3 Balewadi Mantra Meridian",
+  "Luxury flats near Hinjewadi IT Park Phase 1 Mantra Meridian",
+  "Mantra Meridian distance from Cummins India Balewadi",
+  "Mantra Meridian distance from Jupiter Hospital Baner",
+  "Mantra Meridian distance from The Orchid School Balewadi",
+  "West Pune luxury real estate corridor Mantra Meridian"
+];
+
+// 05. Floor Plans, Masterplan & Collateral Permutations
+export const collateralPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi floor plans",
+  "Mantra Meridian Balewadi floor plans PDF download",
+  "Mantra Meridian Riverside unit layouts",
+  "Mantra Meridian 8-acre masterplan layout Balewadi",
+  "Mantra Meridian Riverside sanctioned building plans",
+  "Mantra Meridian Balewadi official brochure PDF",
+  "Mantra Meridian brochure download Balewadi",
+  "Mantra Meridian Balewadi sample flat video",
+  "Mantra Meridian 3D virtual tour Balewadi",
+  "Mantra Meridian elevation and layout drawings"
+];
+
+// 06. MahaRERA Statutory, Legal & Possession Permutations
+export const statutoryPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi MahaRERA number",
+  "MahaRERA P52100045688 Mantra Meridian",
+  "MahaRERA P52100045688 Balewadi",
+  "Mantra Meridian Balewadi RERA certificate download",
+  "Mantra Meridian Riverside possession date June 2028",
+  "Mantra Meridian Balewadi legal title clearance",
+  "Mantra Meridian construction status update 2026",
+  "Mantra Properties MahaRERA compliance Pune",
+  "Mantra Meridian sanctioned carpet area certificate"
+];
+
+// 07. Contact, Sales Office & Site Visit Permutations
+export const contactPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi contact number",
+  "Mantra Meridian Balewadi phone number +91 77440 09295",
+  "Mantra Meridian sales office Balewadi",
+  "Mantra Meridian sales gallery Balewadi Village Road",
+  "Mantra Meridian site visit booking",
+  "Mantra Meridian official enquiry WhatsApp +91 77440 09295",
+  "Mantra Meridian customer care number Pune",
+  "Mantra Properties sales office contact Pune"
+];
+
+// 08. Reviews, Credibility & Comparative Permutations
+export const reputationPermutations: string[] = [
+  "Mantra Meridian Riverside Balewadi reviews",
+  "Mantra Meridian Balewadi genuine buyer reviews",
+  "Mantra Meridian Balewadi complaints and ratings",
+  "Mantra Meridian vs 24K Altura Balewadi",
+  "Mantra Meridian vs Balmoral Riverside Balewadi",
+  "Mantra Meridian vs VTP Earth One Balewadi",
+  "Mantra Meridian vs ANP Universe Balewadi",
+  "Best luxury residential project in Balewadi Pune 2026",
+  "Is Mantra Meridian good for investment in Pune",
+  "Mantra Properties customer satisfaction track record"
+];
+
+// Master Keyword Ecosystem Object
 export const meridianKeywordEcosystem = {
-  // 01. Brand & Developer Authority Keywords
-  brandKeywords: [
-    "Mantra Meridian",
-    "Mantra Meridian Riverside",
-    "Mantra Meridian Balewadi",
-    "Meridian at Riverside Balewadi",
-    "Mantra Properties Meridian",
-    "Mantra Properties Balewadi",
-    "Mantra Riverside Pune",
-    "Mantra Meridian Pune",
-    "Site Mantra Riverside",
-    "Mantra Meridian Official Website",
-    "Mantra Meridian Contact Number",
-    "Mantra Meridian Sales Office Balewadi",
-    "Mantra Meridian Reviews",
-    "Mantra Properties Ongoing Projects Pune"
-  ],
-
-  // 02. Configuration & Typology Search Keywords
-  configurationKeywords: [
-    "2 BHK flats in Balewadi",
-    "2 BHK in Balewadi Mantra Meridian",
-    "Mantra Meridian 2 BHK price",
-    "Mantra Meridian 2 BHK carpet area",
-    "3 BHK flats in Balewadi",
-    "3 BHK in Balewadi Mantra Meridian",
-    "Mantra Meridian 3 BHK price",
-    "Mantra Meridian 3 BHK carpet area",
-    "3 BHK Duplex in Balewadi",
-    "Signature Sky Duplex Balewadi",
-    "Mantra Meridian Duplex price",
-    "Two tier sky homes Balewadi",
-    "4 BHK luxury apartments Balewadi",
-    "4 BHK flats in Balewadi",
-    "Mantra Meridian 4 BHK price",
-    "Mantra Meridian 4 BHK carpet area",
-    "Mantra Meridian floor plans",
-    "Mantra Meridian unit layouts",
-    "Mantra Meridian sample flat video",
-    "Mantra Meridian virtual tour"
-  ],
-
-  // 03. Pricing, Commercial & Cost Sheet Searches
-  commercialKeywords: [
-    "Mantra Meridian price list 2026",
-    "Mantra Meridian cost sheet",
-    "Mantra Meridian pricing breakdown",
-    "Mantra Meridian payment plan",
-    "Mantra Meridian booking amount",
-    "Mantra Meridian all inclusive price",
-    "Mantra Meridian stamp duty registration Pune",
-    "Mantra Meridian home loan approved banks SBI HDFC",
-    "Mantra Meridian maintenance charges Balewadi",
-    "Mantra Meridian price per square foot"
-  ],
-
-  // 04. Location, Transit & Connectivity Keywords
-  locationKeywords: [
-    "Mantra Meridian exact location",
-    "Mantra Meridian site address Balewadi Village Road",
-    "Riverside apartments in Balewadi",
-    "Flats near Balewadi High Street",
-    "Properties near Mula River Pune",
-    "Flats near proposed Wakad Balewadi bridge",
-    "Luxury flats near Hinjewadi IT Park Phase 1",
-    "Apartments near PMRDA Metro Line 3 Balewadi",
-    "Flats near Cummins India Balewadi",
-    "West Pune luxury real estate corridor",
-    "Balewadi Village Road apartments",
-    "Flats near The Orchid School Balewadi",
-    "Flats near Jupiter Hospital Baner"
-  ],
-
-  // 05. Lifestyle, Architecture & Masterplan Keywords
+  brandKeywords: brandPermutations,
+  configurationKeywords: typologyPermutations,
+  commercialKeywords: pricingPermutations,
+  locationKeywords: locationPermutations,
   lifestyleKeywords: [
     "8 acre luxury project in Balewadi",
     "Mantra Meridian 8 acre masterplan",
@@ -93,32 +202,8 @@ export const meridianKeywordEcosystem = {
     "Tennis court pickleball court society Balewadi",
     "Dolby Atmos private cinema society Balewadi"
   ],
-
-  // 06. Statutory, Legal & MahaRERA Compliance
-  statutoryKeywords: [
-    "Mantra Meridian MahaRERA number",
-    "MahaRERA P52100045688",
-    "Mantra Meridian RERA certificate download",
-    "Mantra Meridian possession date June 2028",
-    "Mantra Meridian legal title clearance",
-    "Mantra Meridian sanctioned building plans",
-    "Mantra Properties track record delivered projects",
-    "MahaRERA approved projects Balewadi"
-  ],
-
-  // 07. Comparative & Micromarket Dominance Searches
-  comparativeKeywords: [
-    "Mantra Meridian vs 24K Altura",
-    "Mantra Meridian vs Balmoral Riverside",
-    "Mantra Meridian vs VTP Earth One",
-    "Mantra Meridian vs ANP Universe",
-    "Best luxury projects in Balewadi Pune 2026",
-    "Top residential developers in West Pune",
-    "Balewadi vs Baner real estate investment",
-    "Riverfront apartments vs city apartments Pune"
-  ],
-
-  // 08. NRI & High-Yield Investment Searches
+  statutoryKeywords: statutoryPermutations,
+  comparativeKeywords: reputationPermutations,
   investmentKeywords: [
     "NRI property investment in Pune Balewadi",
     "Rental yield Balewadi High Street tech corridor",
@@ -128,25 +213,38 @@ export const meridianKeywordEcosystem = {
   ]
 };
 
+// All combined search permutations
+export const allSearchPermutations: string[] = [
+  ...brandPermutations,
+  ...typologyPermutations,
+  ...pricingPermutations,
+  ...locationPermutations,
+  ...collateralPermutations,
+  ...statutoryPermutations,
+  ...contactPermutations,
+  ...reputationPermutations
+];
+
 // Curated default meta keywords string for general pages
 export const defaultMetaKeywords = [
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 8),
-  ...meridianKeywordEcosystem.configurationKeywords.slice(0, 6),
-  ...meridianKeywordEcosystem.commercialKeywords.slice(0, 4),
-  ...meridianKeywordEcosystem.locationKeywords.slice(0, 4),
+  ...brandPermutations.slice(0, 10),
+  ...typologyPermutations.slice(0, 6),
+  ...pricingPermutations.slice(0, 4),
+  ...locationPermutations.slice(0, 4),
   "MahaRERA P52100045688",
   "Mantra Properties Pune"
 ].join(", ");
 
-// Configuration-specific keyword builders
 export function getConfigurationKeywords(configSlug: string, configName: string): string {
   const base = [
-    `${configName} Mantra Meridian Riverside`,
-    `${configSlug.toUpperCase()} flats in Balewadi`,
+    `${configName} Mantra Meridian Riverside Balewadi`,
     `Mantra Meridian ${configSlug.toUpperCase()} price`,
     `Mantra Meridian ${configSlug.toUpperCase()} floor plans`,
     `Mantra Meridian ${configSlug.toUpperCase()} carpet area`,
     `Mantra Meridian ${configName} cost sheet`,
+    `${configSlug.toUpperCase()} flats in Balewadi Mantra Meridian`,
+    `Mantra Riverside ${configSlug.toUpperCase()} Balewadi`,
+    `Meridian Riverside ${configSlug.toUpperCase()} layout`,
     `luxury ${configSlug.toUpperCase()} apartments near Balewadi High Street`,
     `Mula river facing ${configSlug.toUpperCase()} flats Pune`,
     "Mantra Properties Balewadi",
@@ -158,19 +256,16 @@ export function getConfigurationKeywords(configSlug: string, configName: string)
 
 // Commercial / Pricing keyword builder
 export const pricingKeywords = [
-  ...meridianKeywordEcosystem.commercialKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
-  "Mantra Meridian price list 2026",
-  "Mantra Meridian cost sheet PDF",
-  "Mantra Meridian 2 BHK 3 BHK 4 BHK prices",
+  ...pricingPermutations,
+  ...brandPermutations.slice(0, 6),
   "Balewadi flat rates 2026",
   "MahaRERA P52100045688"
 ].join(", ");
 
 // Location / Connectivity keyword builder
 export const locationKeywordsList = [
-  ...meridianKeywordEcosystem.locationKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 4),
+  ...locationPermutations,
+  ...brandPermutations.slice(0, 5),
   "flats near proposed Wakad river bridge",
   "Balewadi High Street luxury apartments",
   "properties near Pune Metro Line 3",
@@ -179,18 +274,17 @@ export const locationKeywordsList = [
 
 // Architectural & Floor Plan keyword builder
 export const floorPlanKeywords = [
-  ...meridianKeywordEcosystem.configurationKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 4),
-  "Mantra Meridian floor plans PDF",
+  ...collateralPermutations,
+  ...typologyPermutations.slice(0, 6),
+  ...brandPermutations.slice(0, 4),
   "MahaRERA carpet area Balewadi",
-  "zero dead space floor plans Pune",
-  "Mantra Meridian unit layouts"
+  "zero dead space floor plans Pune"
 ].join(", ");
 
 // Lifestyle & Amenities keyword builder
 export const amenityKeywords = [
   ...meridianKeywordEcosystem.lifestyleKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 4),
+  ...brandPermutations.slice(0, 4),
   "luxury project amenities Balewadi",
   "apartments with infinity pool Pune",
   "clubhouse Balewadi Pune",
@@ -200,7 +294,7 @@ export const amenityKeywords = [
 // Masterplan & Estate Blueprint keyword builder
 export const masterplanKeywords = [
   ...meridianKeywordEcosystem.lifestyleKeywords.slice(0, 6),
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...brandPermutations.slice(0, 6),
   "Mantra Meridian 8 acre masterplan",
   "riverside masterplan Balewadi",
   "75 percent open space project Pune",
@@ -209,9 +303,8 @@ export const masterplanKeywords = [
 
 // Riverside & Natural Sanctuary keyword builder
 export const riversideKeywords = [
-  ...meridianKeywordEcosystem.locationKeywords.filter(k => k.toLowerCase().includes("river") || k.toLowerCase().includes("mula")),
-  ...meridianKeywordEcosystem.lifestyleKeywords.filter(k => k.toLowerCase().includes("river")),
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...locationPermutations.filter(k => k.toLowerCase().includes("river") || k.toLowerCase().includes("mula")),
+  ...brandPermutations.slice(0, 6),
   "riverside apartments Balewadi",
   "Mula riverfront apartments Pune",
   "river view flats Balewadi",
@@ -220,8 +313,8 @@ export const riversideKeywords = [
 
 // MahaRERA & Statutory Trust keyword builder
 export const statutoryKeywordsList = [
-  ...meridianKeywordEcosystem.statutoryKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...statutoryPermutations,
+  ...brandPermutations.slice(0, 6),
   "MahaRERA P52100045688",
   "Mantra Meridian RERA registration",
   "Mantra Meridian possession date June 2028",
@@ -230,9 +323,9 @@ export const statutoryKeywordsList = [
 
 // Balewadi Micromarket Authority keyword builder
 export const balewadiKeywordsList = [
-  ...meridianKeywordEcosystem.locationKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
-  ...meridianKeywordEcosystem.comparativeKeywords.slice(0, 4),
+  ...locationPermutations.slice(0, 6),
+  ...brandPermutations.slice(0, 6),
+  ...reputationPermutations.slice(0, 4),
   "Balewadi real estate",
   "flats in Balewadi Pune",
   "Balewadi High Street luxury apartments",
@@ -241,9 +334,9 @@ export const balewadiKeywordsList = [
 
 // West Pune Regional Intelligence keyword builder
 export const westPuneKeywordsList = [
-  ...meridianKeywordEcosystem.comparativeKeywords,
-  ...meridianKeywordEcosystem.locationKeywords.slice(0, 6),
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...reputationPermutations.slice(0, 4),
+  ...locationPermutations.slice(0, 6),
+  ...brandPermutations.slice(0, 6),
   "West Pune luxury real estate corridor",
   "Balewadi vs Baner real estate",
   "flats near Hinjewadi Phase 1",
@@ -253,9 +346,9 @@ export const westPuneKeywordsList = [
 // Pune Real Estate Macro Market keyword builder
 export const puneRealEstateKeywordsList = [
   ...meridianKeywordEcosystem.investmentKeywords,
-  ...meridianKeywordEcosystem.comparativeKeywords,
-  ...meridianKeywordEcosystem.commercialKeywords.slice(0, 4),
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...reputationPermutations.slice(0, 4),
+  ...pricingPermutations.slice(0, 4),
+  ...brandPermutations.slice(0, 6),
   "Pune real estate market 2026",
   "luxury flats in Pune",
   "property investment Pune",
@@ -264,8 +357,8 @@ export const puneRealEstateKeywordsList = [
 
 // All Residences Portfolio keyword builder
 export const residencesKeywordsList = [
-  ...meridianKeywordEcosystem.configurationKeywords,
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
+  ...typologyPermutations,
+  ...brandPermutations.slice(0, 6),
   "luxury 2 3 4 BHK flats Balewadi",
   "Mantra Meridian apartments",
   "duplex flats Balewadi Pune"
@@ -273,7 +366,7 @@ export const residencesKeywordsList = [
 
 // Visual Archive & Gallery keyword builder
 export const galleryKeywordsList = [
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 6),
+  ...brandPermutations.slice(0, 6),
   "Mantra Meridian photos",
   "Mantra Meridian 3D virtual tour",
   "Mantra Meridian sample flat video",
@@ -283,11 +376,10 @@ export const galleryKeywordsList = [
 
 // Journal & Editorial Intelligence keyword builder
 export const journalKeywordsList = [
-  ...meridianKeywordEcosystem.brandKeywords.slice(0, 5),
-  ...meridianKeywordEcosystem.comparativeKeywords.slice(0, 4),
+  ...brandPermutations.slice(0, 6),
+  ...reputationPermutations.slice(0, 4),
   ...meridianKeywordEcosystem.investmentKeywords.slice(0, 3),
   "Balewadi real estate analysis",
   "Pune real estate news 2026",
   "Mantra Meridian news and updates"
 ].join(", ");
-

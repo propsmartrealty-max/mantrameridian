@@ -101,5 +101,17 @@ export const faqsData: FAQItem[] = [
     category: "overview",
     question: "How does Mantra Meridian compare with other luxury projects in Balewadi?",
     answer: "Mantra Meridian Riverside stands out as an 8-acre low-density sanctuary featuring over 75% landscaped open green areas, a dedicated 500-metre Mula river promenade, rare two-tier sky duplexes with 20ft double-height living ceilings, and a 20,000 sq.ft. clubhouse pavilion—delivering lower density and superior riparian views compared to crowded high-density towers."
+  },
+  {
+    id: "names-permutations-meridian",
+    category: "overview",
+    question: "Is Mantra Riverside Balewadi the same project as Mantra Meridian Riverside?",
+    answer: "Yes. Mantra Meridian Riverside is commonly searched and referred to by homebuyers and investors as Mantra Meridian, Mantra Riverside Balewadi, Meridian Riverside Balewadi, Mantra Properties Meridian, and Site Mantra Riverside. It is the flagship 8-acre riverside residential estate developed by Mantra Properties along the Mula River corridor in Balewadi, West Pune under MahaRERA P52100045688."
+  },
+  {
+    id: "contact-sales-office-details",
+    category: "location",
+    question: "What is the official contact number and sales gallery address for Mantra Meridian Balewadi?",
+    answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached by phone or WhatsApp at +91 77440 09295. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
   }
 ];
