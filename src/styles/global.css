@@ -6,12 +6,12 @@
 
 @layer base {
   :root {
-    --color-obsidian: #121317;
-    --color-obsidian-deep: #0C0D10;
-    --color-obsidian-card: #191B22;
-    --color-obsidian-surface: #20232D;
+    --color-obsidian: #0D0E12;
+    --color-obsidian-deep: #07080A;
+    --color-obsidian-card: #14161F;
+    --color-obsidian-surface: #1B1E29;
     --color-architectural-white: #FFFFFF;
-    --color-concrete: #C8C4B8;
+    --color-concrete: #E6E2D8;
     --color-champagne: #DFB75A;
     --color-champagne-light: #F7E7B4;
     --color-landscape-green: #253B25;
@@ -19,7 +19,7 @@
 
   html {
     scroll-behavior: smooth;
-    background-color: #0C0D10;
+    background-color: #07080A;
     color: #FFFFFF;
     font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -28,14 +28,14 @@
 
   body {
     overflow-x: hidden;
-    background-color: #14161B;
-    /* Elevated warm atmospheric canvas: Warm travertine beige with radiant dusk gold & riparian emerald highlights */
+    background-color: #090A0D;
+    /* High-contrast luxury atmospheric canvas: Deep obsidian black with radiant champagne gold & riparian highlights */
     background-image: 
-      radial-gradient(ellipse 90% 55% at 50% -10%, rgba(231, 223, 213, 0.22), transparent 70%),
-      radial-gradient(ellipse 75% 50% at 100% 25%, rgba(223, 183, 90, 0.18), transparent 60%),
-      radial-gradient(ellipse 80% 60% at 0% 60%, rgba(231, 223, 213, 0.16), transparent 65%),
-      radial-gradient(ellipse 75% 50% at 85% 90%, rgba(53, 84, 53, 0.18), transparent 65%),
-      linear-gradient(180deg, #181A22 0%, #111318 100%);
+      radial-gradient(ellipse 90% 55% at 50% -10%, rgba(223, 183, 90, 0.15), transparent 70%),
+      radial-gradient(ellipse 75% 50% at 100% 25%, rgba(223, 183, 90, 0.12), transparent 60%),
+      radial-gradient(ellipse 80% 60% at 0% 60%, rgba(231, 223, 213, 0.10), transparent 65%),
+      radial-gradient(ellipse 75% 50% at 85% 90%, rgba(53, 84, 53, 0.15), transparent 65%),
+      linear-gradient(180deg, #0D0E13 0%, #07080A 100%);
     background-attachment: fixed;
     min-height: 100vh;
   }
@@ -87,27 +87,27 @@
      EXHAUSTIVE LUXURY GLASSMORPHISM SYSTEM (WARM BEIGE CONTRAST)
      ========================================================================= */
 
-  /* Ultra-Refined Core Glass Card (High contrast against warm slate) */
+  /* Ultra-Refined Core Glass Card (High contrast against obsidian canvas) */
   .glass-card-luxury {
-    background: linear-gradient(135deg, rgba(34, 38, 48, 0.92) 0%, rgba(24, 27, 34, 0.88) 100%);
+    background: linear-gradient(135deg, rgba(25, 28, 38, 0.96) 0%, rgba(16, 18, 25, 0.94) 100%);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
-    border: 1px solid rgba(231, 223, 213, 0.22);
+    border: 1px solid rgba(223, 183, 90, 0.35);
     box-shadow: 
-      inset 0 1px 1px 0 rgba(231, 223, 213, 0.30),
-      0 18px 40px -12px rgba(0, 0, 0, 0.55);
+      inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+      0 20px 45px -12px rgba(0, 0, 0, 0.8);
     position: relative;
     overflow: hidden;
     transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .glass-card-luxury:hover {
-    background: linear-gradient(135deg, rgba(42, 47, 60, 0.96) 0%, rgba(30, 34, 44, 0.92) 100%);
-    border-color: rgba(231, 223, 213, 0.65);
+    background: linear-gradient(135deg, rgba(32, 36, 48, 0.98) 0%, rgba(20, 23, 32, 0.96) 100%);
+    border-color: rgba(223, 183, 90, 0.85);
     box-shadow: 
-      inset 0 1px 2px 0 rgba(255, 255, 255, 0.45),
-      0 25px 55px -10px rgba(0, 0, 0, 0.75),
-      0 0 35px -5px rgba(231, 223, 213, 0.32);
+      inset 0 1px 2px 0 rgba(255, 255, 255, 0.6),
+      0 28px 60px -10px rgba(0, 0, 0, 0.9),
+      0 0 35px -5px rgba(223, 183, 90, 0.45);
     transform: translateY(-3px);
   }
 

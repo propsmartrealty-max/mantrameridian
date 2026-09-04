@@ -8,16 +8,6 @@ interface Props {
 
 const { currentPath = '/' } = Astro.props;
 
-// Curated 6 primary links for clean, spacious desktop breathing room
-const primaryNavLinks = [
-  { label: 'RESIDENCES', href: '/mantra-meridian-riverside/residences' },
-  { label: 'FLOOR PLANS', href: '/mantra-meridian-riverside/floor-plans' },
-  { label: 'PRICING', href: '/mantra-meridian-riverside/price' },
-  { label: 'AMENITIES', href: '/mantra-meridian-riverside/amenities' },
-  { label: 'LOCATION', href: '/mantra-meridian-riverside/location' },
-  { label: 'GALLERY', href: '/mantra-meridian-riverside/gallery' },
-];
-
 // Secondary exploration links housed in an elegant luxury dropdown
 const exploreDropdownLinks = [
   { label: 'The Riverside Story', href: '/mantra-meridian-riverside/riverside', desc: '500m river boardwalk & biophilic calm' },
@@ -31,33 +21,88 @@ const exploreDropdownLinks = [
 ];
 ---
 
-<header id="luxury-navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-500 py-4 sm:py-5 px-5 sm:px-8 md:px-12">
-  <div class="max-w-7xl mx-auto flex items-center justify-between">
+<header id="luxury-navbar" class="fixed top-0 left-0 right-0 z-40 transition-all duration-300 bg-obsidian-deep/95 backdrop-blur-2xl border-b border-champagne/30 shadow-[0_4px_30px_rgba(0,0,0,0.85)] px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto h-20 flex items-center justify-between gap-4">
     
     {/* Intelligent Dual Brand Lockup: Mantra Properties & Meridian Riverside */}
-    <DualBrandLockup variant="navbar" />
+    <div class="shrink-0 flex items-center">
+      <DualBrandLockup variant="navbar" />
+    </div>
 
-    {/* Center Navigation Links (Google Standard Font Sizes: text-[13px]) */}
-    <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-[13px] font-mono tracking-[0.12em] text-concrete font-medium">
-      {primaryNavLinks.map((link) => (
-        <a
-          href={link.href}
-          class={`transition-colors duration-300 hover:text-champagne relative py-1.5 ${
-            currentPath.startsWith(link.href) ? 'text-champagne font-semibold' : ''
-          }`}
-        >
-          {link.label}
-          {currentPath.startsWith(link.href) && (
-            <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
-          )}
-        </a>
-      ))}
+    {/* Center Navigation Links (High-Contrast Pearl & Gold typography) */}
+    <nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] font-mono tracking-[0.12em] font-semibold shrink-0">
+      <a
+        href="/mantra-meridian-riverside/residences"
+        class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/residences') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        RESIDENCES
+        {currentPath.startsWith('/mantra-meridian-riverside/residences') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
+      <a
+        href="/mantra-meridian-riverside/floor-plans"
+        class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/floor-plans') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        FLOOR PLANS
+        {currentPath.startsWith('/mantra-meridian-riverside/floor-plans') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
+      <a
+        href="/mantra-meridian-riverside/price"
+        class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/price') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        PRICING
+        {currentPath.startsWith('/mantra-meridian-riverside/price') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
+      <a
+        href="/mantra-meridian-riverside/amenities"
+        class={`hidden xl:block transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/amenities') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        AMENITIES
+        {currentPath.startsWith('/mantra-meridian-riverside/amenities') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
+      <a
+        href="/mantra-meridian-riverside/location"
+        class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/location') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        LOCATION
+        {currentPath.startsWith('/mantra-meridian-riverside/location') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
+      <a
+        href="/mantra-meridian-riverside/gallery"
+        class={`hidden xl:block transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
+          currentPath.startsWith('/mantra-meridian-riverside/gallery') ? 'text-champagne font-bold' : 'text-architectural-pearl'
+        }`}
+      >
+        GALLERY
+        {currentPath.startsWith('/mantra-meridian-riverside/gallery') && (
+          <span class="absolute bottom-0 left-0 right-0 h-[2px] bg-champagne shadow-glow" />
+        )}
+      </a>
 
       {/* Discover Dropdown */}
       <div class="relative group py-1.5">
         <button
           id="discover-menu-trigger"
-          class="flex items-center gap-1.5 text-concrete hover:text-champagne transition-colors duration-300 uppercase focus:outline-none text-[13px] font-medium"
+          class="flex items-center gap-1.5 text-architectural-pearl hover:text-champagne transition-colors duration-200 uppercase focus:outline-none text-[13px] font-semibold whitespace-nowrap"
           aria-haspopup="true"
           aria-expanded="false"
         >
@@ -66,21 +111,21 @@ const exploreDropdownLinks = [
         </button>
 
         {/* Dropdown Menu Glass Panel */}
-        <div class="absolute top-full right-0 mt-2 w-80 bg-obsidian-deep/98 border border-champagne/30 shadow-2xl backdrop-blur-2xl p-3.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
-          <div class="text-[10px] uppercase tracking-[0.22em] text-champagne font-mono px-3 py-1.5 border-b border-white/10 font-semibold">
+        <div class="absolute top-full right-0 mt-2 w-80 bg-obsidian-deep/98 border border-champagne/40 shadow-[0_20px_50px_rgba(0,0,0,0.95)] backdrop-blur-2xl p-3.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-50">
+          <div class="text-[10px] uppercase tracking-[0.22em] text-champagne font-mono px-3 py-1.5 border-b border-champagne/20 font-bold">
             ESTATE DIRECTORY
           </div>
           <div class="py-1.5 space-y-1">
             {exploreDropdownLinks.map((item) => (
               <a
                 href={item.href}
-                class="block px-3 py-2.5 hover:bg-white/5 transition-colors group/item"
+                class="block px-3 py-2.5 rounded hover:bg-white/10 transition-colors group/item"
               >
-                <div class="text-sm text-architectural-white group-hover/item:text-champagne transition-colors font-medium flex items-center justify-between">
+                <div class="text-sm text-white group-hover/item:text-champagne transition-colors font-medium flex items-center justify-between">
                   <span>{item.label}</span>
                   <span class="text-xs text-champagne opacity-0 group-hover/item:opacity-100 transition-opacity">→</span>
                 </div>
-                <div class="text-xs text-concrete/70 font-sans line-clamp-1 mt-0.5">
+                <div class="text-xs text-concrete-light font-sans line-clamp-1 mt-0.5">
                   {item.desc}
                 </div>
               </a>
@@ -91,32 +136,32 @@ const exploreDropdownLinks = [
     </nav>
 
     {/* Right Action CTA & Mobile Menu Toggle */}
-    <div class="flex items-center gap-3 sm:gap-4">
+    <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
       <a
         href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(projectData.contact.whatsappEnquiryText)}`}
         target="_blank"
         rel="noopener noreferrer"
-        class="hidden sm:inline-flex items-center gap-2 px-3.5 py-2 text-xs font-mono tracking-[0.12em] uppercase border border-emerald-500/40 bg-obsidian-surface/90 text-emerald-400 hover:bg-emerald-500 hover:text-obsidian transition-all duration-300 shadow-sm min-h-[42px]"
+        title="Chat with Concierge on WhatsApp (+91 77440 09295)"
+        class="hidden md:inline-flex items-center gap-2 px-3 py-2 text-xs font-mono tracking-[0.12em] uppercase border border-emerald-400/60 bg-emerald-950/60 hover:bg-emerald-500 hover:text-obsidian text-emerald-300 font-semibold transition-all duration-300 shadow-sm min-h-[42px] shrink-0 rounded"
       >
-        <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
           <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
         </svg>
-        <span>WHATSAPP</span>
-        <span>↗</span>
+        <span class="hidden 2xl:inline">WHATSAPP</span>
       </a>
 
       <button
         id="desktop-enquire-btn"
-        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono tracking-[0.14em] uppercase border border-champagne/40 bg-obsidian-surface/90 text-architectural-white hover:bg-champagne hover:text-obsidian transition-all duration-300 shadow-sm min-h-[42px]"
+        class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-mono tracking-[0.14em] uppercase border border-champagne bg-champagne text-obsidian font-bold hover:bg-champagne-light transition-all duration-300 shadow-[0_0_20px_rgba(223,183,90,0.35)] min-h-[42px] shrink-0"
       >
-        <span>PRIVATE PRESENTATION</span>
-        <span class="text-champagne group-hover:text-obsidian text-sm font-semibold">↗</span>
+        <span>PRESENTATION</span>
+        <span class="text-sm font-bold">↗</span>
       </button>
 
       {/* Mobile Hamburger (Google Standard 48x48px Touch Target) */}
       <button
         id="mobile-menu-toggle"
-        class="lg:hidden min-w-[48px] min-h-[48px] flex items-center justify-center p-3 text-architectural-white border border-white/15 bg-obsidian-card/90 hover:border-champagne/50 transition-colors"
+        class="lg:hidden min-w-[44px] min-h-[44px] flex items-center justify-center p-2.5 text-white border border-champagne/40 bg-obsidian-card/90 hover:border-champagne transition-colors shrink-0"
         aria-label="Toggle navigation menu"
       >
         <svg id="hamburger-icon" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -128,7 +173,7 @@ const exploreDropdownLinks = [
   </div>
 
   {/* Mobile Menu Slide-down Overlay (Google Standard Typography & Touch Targets) */}
-  <div id="mobile-menu" class="hidden fixed inset-0 top-[72px] sm:top-[76px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-5 sm:p-8 border-t border-white/10 overflow-y-auto pb-36">
+  <div id="mobile-menu" class="hidden fixed inset-0 top-[80px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-5 sm:p-8 border-t border-champagne/30 overflow-y-auto pb-36">
     <div class="space-y-8 max-w-lg mx-auto py-2">
       
       {/* Group 1: Residences & Blueprints */}

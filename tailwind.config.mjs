@@ -19,11 +19,11 @@ export default {
           subtle: '#D4CFBE',
         },
         concrete: {
-          DEFAULT: '#C8C4B8',
-          light: '#DDD9CF',
-          dark: '#22252F',
-          border: '#353A49',
-          muted: '#9E9A8E',
+          DEFAULT: '#E6E2D8',
+          light: '#F8F7F4',
+          dark: '#1C1F28',
+          border: '#4A5064',
+          muted: '#B8B3A4',
         },
         beige: {
           DEFAULT: '#E7DFD5',
