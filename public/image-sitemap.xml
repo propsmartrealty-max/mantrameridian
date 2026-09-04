@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  {/* Homepage & Master Project Elevation */}
+  <!-- Homepage & Master Project Elevation -->
   <url>
     <loc>https://mantrameridianriverside.com/</loc>
     <lastmod>2026-09-04</lastmod>
@@ -28,7 +28,7 @@
     </image:image>
   </url>
 
-  {/* Residences Portfolio */}
+  <!-- Residences Portfolio -->
   <url>
     <loc>https://mantrameridianriverside.com/mantra-meridian-riverside/residences</loc>
     <lastmod>2026-09-04</lastmod>
@@ -60,7 +60,7 @@
     </image:image>
   </url>
 
-  {/* Individual Configuration Pages */}
+  <!-- Individual Configuration Pages -->
   <url>
     <loc>https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk</loc>
     <lastmod>2026-09-04</lastmod>
@@ -113,7 +113,7 @@
     </image:image>
   </url>
 
-  {/* Visual Gallery Archive */}
+  <!-- Visual Gallery Archive -->
   <url>
     <loc>https://mantrameridianriverside.com/mantra-meridian-riverside/gallery</loc>
     <lastmod>2026-09-04</lastmod>
@@ -145,7 +145,7 @@
     </image:image>
   </url>
 
-  {/* Masterplan */}
+  <!-- Masterplan -->
   <url>
     <loc>https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan</loc>
     <lastmod>2026-09-04</lastmod>
