@@ -103,14 +103,31 @@ export const onRequest = defineMiddleware(async (context, next) => {
       .on('head', {
         element(head: any) {
           head.append(
-            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n`,
+            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n`,
             { html: true }
           );
         }
       })
-      .on('.legal-disclaimer, [data-nosnippet-candidate]', {
+      .on('.legal-disclaimer, [data-nosnippet-candidate], footer small', {
         element(el: any) {
           el.setAttribute('data-nosnippet', 'true');
+        }
+      })
+      .on('a[href^="http"]', {
+        element(el: any) {
+          const href = el.getAttribute('href') || '';
+          if (!href.includes('mantrameridianriverside.com')) {
+            const rel = el.getAttribute('rel') || '';
+            if (!rel.includes('noopener')) {
+              el.setAttribute('rel', `${rel} noopener noreferrer`.trim());
+            }
+          }
+        }
+      })
+      .on('img:not([loading])', {
+        element(el: any) {
+          el.setAttribute('loading', 'lazy');
+          el.setAttribute('decoding', 'async');
         }
       });
 
