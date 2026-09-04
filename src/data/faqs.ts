@@ -52,7 +52,7 @@ export const faqsData: FAQItem[] = [
     id: "how-can-i-request-pricing-brochure",
     category: "pricing",
     question: "How can I obtain the detailed pricing, floor plan kit, and schedule a private visit?",
-    answer: "Discerning homebuyers can schedule a private presentation or request the digital architectural brochure by utilizing our confidential 3-step 'Private Presentation' digital concierge on this website, or by calling our concierge line at +91 92281 56408."
+    answer: "Discerning homebuyers can schedule a private presentation or request the digital architectural brochure by utilizing our confidential 3-step 'Private Presentation' digital concierge on this website, or by calling our concierge line at +91 77440 09295."
   },
   {
     id: "is-meridian-good-investment",

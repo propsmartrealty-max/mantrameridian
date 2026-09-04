@@ -43,6 +43,7 @@ export interface ProjectData {
     phone: string;
     secondaryPhone: string;
     whatsapp: string;
+    whatsappEnquiryText: string;
     email: string;
     siteAddress: string;
     uaeContact: {
@@ -120,14 +121,15 @@ export const projectData: ProjectData = {
     }
   ],
   contact: {
-    phone: "+91 92281 56408",
-    secondaryPhone: "+91 92281 53866",
-    whatsapp: "+91 89568 98460",
+    phone: "+91 77440 09295",
+    secondaryPhone: "+91 77440 09295",
+    whatsapp: "+91 77440 09295",
+    whatsappEnquiryText: "Hello Meridian Concierge, I would like to receive details, floor plans, and pricing for Mantra Meridian Riverside Balewadi.",
     email: "propsmartrealty@gmail.com",
     siteAddress: "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi, Pune, Maharashtra 411045",
     uaeContact: {
-      representative: "Mr. Henry Martin",
-      phone: "+971 54 715 3112",
+      representative: "International NRI Desk",
+      phone: "+91 77440 09295",
       office: "403, Anantara Business Tower, Business Bay, Dubai, UAE"
     }
   },

@@ -18,7 +18,7 @@ import { projectData } from '../../data/project';
 
     {/* WhatsApp Concierge */}
     <a
-      href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=Hello%20Meridian%20Concierge,%20I%20would%20like%20to%20receive%20details%20for%20Mantra%20Meridian%20Riverside%20Balewadi.`}
+      href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(projectData.contact.whatsappEnquiryText)}`}
       target="_blank"
       rel="noopener noreferrer"
       class="flex flex-col items-center justify-center min-h-[52px] py-1.5 px-1 text-center glass-card-luxury text-architectural-white hover:border-champagne transition-all"

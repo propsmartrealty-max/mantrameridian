@@ -64,8 +64,18 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
         <ul class="space-y-2.5 text-xs text-concrete/70">
           <li><a href="/mantra-meridian-riverside/rera" class="hover:text-champagne transition-colors">MahaRERA: {projectData.reraNumber}</a></li>
           <li><a href="/mantra-meridian-riverside/documents" class="hover:text-champagne transition-colors">Document Library</a></li>
-          <li><a href={projectData.reraRegistrationUrl} target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors">Official MahaRERA Portal ↗</a></li>
           <li><a href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`} class="hover:text-champagne transition-colors">Concierge Desk: {projectData.contact.phone}</a></li>
+          <li>
+            <a
+              href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(projectData.contact.whatsappEnquiryText)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-emerald-400 text-emerald-400/90 transition-colors flex items-center gap-1.5"
+            >
+              <span>WhatsApp: {projectData.contact.whatsapp}</span>
+              <span>↗</span>
+            </a>
+          </li>
         </ul>
       </div>
 

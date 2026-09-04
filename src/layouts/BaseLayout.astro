@@ -2,6 +2,7 @@
 import LuxuryNavbar from '../components/Header/LuxuryNavbar.astro';
 import LuxuryFooter from '../components/Footer/LuxuryFooter.astro';
 import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro';
+import FloatingWhatsApp from '../components/Navigation/FloatingWhatsApp.astro';
 import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
 import { projectData } from '../data/project';
 import { defaultMetaKeywords } from '../data/keywords';
@@ -325,6 +326,9 @@ const baseSchema = customSchema || {
 
     {/* Persistent Mobile Concierge Dock */}
     <PersistentMobileBar />
+
+    {/* Desktop Floating WhatsApp Concierge Widget */}
+    <FloatingWhatsApp />
 
     {/* 3-Step Luxury Private Presentation Modal Island */}
     <PrivatePresentationDrawer client:load />
