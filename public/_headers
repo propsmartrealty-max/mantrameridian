@@ -16,9 +16,9 @@
   X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
   Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
   Link: </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
-  Cache-Tag: mantra-meridian, html-pages, balewadi-real-estate
-  Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
-  CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
+  Cache-Tag: mantra-meridian, html-pages, balewadi-real-estate, edge-v8
+  Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400, stale-if-error=604800
+  CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400, stale-if-error=604800
   Surrogate-Control: max-age=604800, stale-while-revalidate=86400
   Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
 
@@ -86,7 +86,23 @@
   Cache-Control: public, max-age=86400, s-maxage=86400
   Access-Control-Allow-Origin: *
 
-# 7. Cloudflare Edge API Endpoints
+# 7. Cloudflare Edge Property Status
+/api/property-status
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: public, max-age=60, s-maxage=300, stale-while-revalidate=600
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Content-Type-Options: nosniff
+
+# 8. Cloudflare Edge Telemetry
+/api/edge-telemetry
+  Content-Type: application/json; charset=utf-8
+  Cache-Control: no-store, no-cache, must-revalidate
+  Access-Control-Allow-Origin: *
+  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+  X-Content-Type-Options: nosniff
+
+# 9. Cloudflare Edge API Catch-All
 /api/*
   Cache-Control: no-store, no-cache, must-revalidate
   Access-Control-Allow-Origin: *

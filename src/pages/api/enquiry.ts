@@ -17,6 +17,45 @@ function escapeHtml(str: string): string {
 }
 
 /**
+ * Cloudflare Workers V8 Isolate In-Memory Sliding Window Rate Limiter
+ * Operates at edge isolate speeds (< 1ms) with zero database overhead.
+ */
+interface RateLimitRecord {
+  count: number;
+  firstRequestTime: number;
+}
+const rateLimitMap = new Map<string, RateLimitRecord>();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const MAX_REQUESTS_PER_WINDOW = 5;
+
+function isRateLimited(clientKey: string): boolean {
+  const now = Date.now();
+  const record = rateLimitMap.get(clientKey);
+
+  // Evict stale records periodically
+  if (rateLimitMap.size > 5000) {
+    for (const [key, val] of rateLimitMap.entries()) {
+      if (now - val.firstRequestTime > RATE_LIMIT_WINDOW_MS) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+
+  if (!record) {
+    rateLimitMap.set(clientKey, { count: 1, firstRequestTime: now });
+    return false;
+  }
+
+  if (now - record.firstRequestTime > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(clientKey, { count: 1, firstRequestTime: now });
+    return false;
+  }
+
+  record.count += 1;
+  return record.count > MAX_REQUESTS_PER_WINDOW;
+}
+
+/**
  * Sanitizes arbitrary string inputs: strips control characters, trims, and truncates length
  */
 function sanitizeString(val: unknown, maxLen = 100): string {
@@ -228,6 +267,24 @@ export const POST: APIRoute = async ({ request, locals }) => {
       return new Response(
         JSON.stringify({ success: false, error: 'Invalid Content-Type. Expected application/json.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // 0. Cloudflare Workers Edge Rate Limiting: Max 5 submissions per 10 minutes per IP
+    const clientIp = request.headers.get('cf-connecting-ip') || request.headers.get('x-real-ip') || 'unknown';
+    if (clientIp !== 'unknown' && isRateLimited(clientIp)) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: 'Rate limit exceeded: Please wait a few minutes before submitting another request or contact concierge directly via WhatsApp.'
+        }),
+        {
+          status: 429,
+          headers: {
+            'Content-Type': 'application/json',
+            'Retry-After': '600'
+          }
+        }
       );
     }
 

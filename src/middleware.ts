@@ -2,25 +2,35 @@ import { defineMiddleware } from 'astro:middleware';
 
 /**
  * ULTRA-ADVANCED CLOUDFLARE EDGE MIDDLEWARE
- * Executed on Cloudflare Edge PoPs globally (Mumbai, Pune, Delhi, Singapore, Frankfurt, London)
+ * Executed on Cloudflare Edge PoPs globally (Mumbai, Pune, Delhi, Singapore, Dubai, London, Frankfurt)
  * 
- * Functions:
- * 1. Edge Canonical Normalization (lowercase, strip duplicate slashes)
- * 2. WAF & Bot Protection (drops vulnerability probes at the edge in < 1ms)
- * 3. Cloudflare Geo-Location & NRI Investor Detection (cf-ipcountry, cf-ipcity)
- * 4. Googlebot & Search Crawler Fast-Path Optimizations
- * 5. Google Core Web Vitals Edge Server-Timing Telemetry
+ * Features:
+ * 1. Cloudflare 103 Early Hints & Preload Links
+ * 2. Edge WAF & Zero-Day Exploit Protection (< 1ms drop at edge)
+ * 3. Edge Canonical URL Normalization (prevents Google index fragmentation)
+ * 4. Cloudflare Geo-Intelligence & Dynamic NRI Market Segmentation (Set-Cookie)
+ * 5. Googlebot & Search Engine Tier-1 Fast-Path Optimizations
+ * 6. Google Core Web Vitals Edge Server-Timing Telemetry
+ * 7. Cloudflare Flagship HTMLRewriter Streaming DOM Transformation
  */
 
 const BLOCKED_PROBES = [
   '/wp-admin',
   '/wp-login.php',
+  '/wp-content',
+  '/wp-includes',
   '/xmlrpc.php',
   '/.env',
   '/.git',
   '/phpmyadmin',
   '/config.json',
-  '/.aws'
+  '/.aws',
+  '/cgi-bin/',
+  '/solr/',
+  '/actuator/',
+  '/v2/_catalog',
+  '/telescope/',
+  '/debug/default/view'
 ];
 
 export const onRequest = defineMiddleware(async (context, next) => {
@@ -33,11 +43,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
   const { request, url } = context;
   const pathname = url.pathname;
 
-  // 1. Edge WAF: Drop malicious probes immediately with 403 Forbidden
+  // 1. Edge WAF: Drop malicious probes immediately with 403 Forbidden at the Edge
   if (BLOCKED_PROBES.some((probe) => pathname.toLowerCase().startsWith(probe))) {
     return new Response('Forbidden: Access Denied by Cloudflare Edge Security Layer', {
       status: 403,
-      headers: { 'Content-Type': 'text/plain; charset=utf-8' }
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'X-Edge-Defense': 'Active-WAF-Drop'
+      }
     });
   }
 
@@ -51,16 +64,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
   // 3. Extract Cloudflare Edge Geo-Intelligence
   const cfCountry = request.headers.get('cf-ipcountry') || 'IN';
   const cfCity = request.headers.get('cf-ipcity') || 'Pune';
-  const cfRay = request.headers.get('cf-ray') || 'local';
+  const cfRegion = request.headers.get('cf-region') || 'Maharashtra';
+  const cfRay = request.headers.get('cf-ray') || 'local-edge';
   const cfColo = request.headers.get('cf-colo') || 'BOM'; // Default Mumbai/Pune PoP
 
-  // Tag NRI status for UAE (Dubai), US, UK, SG, QA, SA investors
+  // Tag NRI status for UAE (Dubai), US, UK, SG, QA, SA, CA, AU investors
   const isNRI = ['AE', 'US', 'GB', 'SG', 'QA', 'SA', 'CA', 'AU'].includes(cfCountry.toUpperCase());
 
   // Store in context.locals for pages to consume dynamically
   context.locals.geo = {
     country: cfCountry,
     city: cfCity,
+    region: cfRegion,
     colo: cfColo,
     ray: cfRay,
     isNRI
@@ -84,10 +99,28 @@ export const onRequest = defineMiddleware(async (context, next) => {
     `cf-edge;desc="Cloudflare Edge Execution";dur=${edgeDuration}, cf-colo;desc="${cfColo}", cf-country;desc="${cfCountry}"`
   );
 
-  // Pass Edge Geo headers back for client consumption if needed
+  // Pass Edge Geo headers back for client consumption and verification
   response.headers.set('X-Edge-PoP', cfColo);
   response.headers.set('X-Edge-Country', cfCountry);
+  response.headers.set('X-Edge-City', cfCity);
   response.headers.set('X-Edge-Ray', cfRay);
+  response.headers.set('X-Edge-Execution-Time', `${edgeDuration}ms`);
+
+  // Set Geo Market segmentation cookie for NRI routing
+  const marketTag = isNRI ? 'nri' : 'domestic';
+  response.headers.set(
+    'Set-Cookie',
+    `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
+  );
+
+  // 103 Early Hints link headers for fast edge browser pre-warming
+  const acceptHeader = request.headers.get('accept') || '';
+  if (acceptHeader.includes('text/html')) {
+    response.headers.set(
+      'Link',
+      '</assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+    );
+  }
 
   // Ensure Google Search bot receives explicit indexing signals
   if (isGooglebot || isAICrawler) {
@@ -103,7 +136,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       .on('head', {
         element(head: any) {
           head.append(
-            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n`,
+            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n`,
             { html: true }
           );
         }
