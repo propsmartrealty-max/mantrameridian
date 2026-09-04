@@ -8,6 +8,7 @@
 
 function pemToBinary(pem: string): ArrayBuffer {
   const cleanPem = pem
+    .replace(/\\n/g, '\n')
     .replace(/-----BEGIN[A-Z0-9_\s-]*(?:PRIVATE)?\s*KEY-----/gi, '')
     .replace(/-----END[A-Z0-9_\s-]*(?:PRIVATE)?\s*KEY-----/gi, '')
     .replace(/\s+/g, '');

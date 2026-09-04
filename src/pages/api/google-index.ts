@@ -33,19 +33,36 @@ const ALL_CANONICAL_URLS = [
   `https://${HOST}/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide`
 ];
 
-async function handleGoogleIndexing(request: Request) {
+async function handleGoogleIndexing(request: Request, locals?: any) {
   try {
-    const env = (globalThis as any).process?.env || {};
-    let clientEmail = import.meta.env.GOOGLE_CLIENT_EMAIL || env.GOOGLE_CLIENT_EMAIL;
-    let privateKey = import.meta.env.GOOGLE_PRIVATE_KEY || env.GOOGLE_PRIVATE_KEY;
+    const runtimeEnv = locals?.runtime?.env || {};
+    const procEnv = (globalThis as any).process?.env || {};
+    const globalEnv = globalThis as any;
+
+    let clientEmail = 
+      runtimeEnv.GOOGLE_CLIENT_EMAIL || 
+      import.meta.env.GOOGLE_CLIENT_EMAIL || 
+      procEnv.GOOGLE_CLIENT_EMAIL ||
+      globalEnv.GOOGLE_CLIENT_EMAIL;
+
+    let privateKey = 
+      runtimeEnv.GOOGLE_PRIVATE_KEY || 
+      import.meta.env.GOOGLE_PRIVATE_KEY || 
+      procEnv.GOOGLE_PRIVATE_KEY ||
+      globalEnv.GOOGLE_PRIVATE_KEY;
 
     // Optional JSON config string in environment
-    const rawJson = import.meta.env.GOOGLE_SERVICE_ACCOUNT_JSON || env.GOOGLE_SERVICE_ACCOUNT_JSON;
+    const rawJson = 
+      runtimeEnv.GOOGLE_SERVICE_ACCOUNT_JSON || 
+      import.meta.env.GOOGLE_SERVICE_ACCOUNT_JSON || 
+      procEnv.GOOGLE_SERVICE_ACCOUNT_JSON ||
+      globalEnv.GOOGLE_SERVICE_ACCOUNT_JSON;
+
     if (rawJson) {
       try {
-        const parsed = JSON.parse(rawJson);
-        clientEmail = parsed.client_email;
-        privateKey = parsed.private_key;
+        const parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
+        clientEmail = parsed.client_email || clientEmail;
+        privateKey = parsed.private_key || privateKey;
       } catch (e) {
         // Continue with individual vars
       }
@@ -151,5 +168,5 @@ async function handleGoogleIndexing(request: Request) {
   }
 }
 
-export const GET: APIRoute = ({ request }) => handleGoogleIndexing(request);
-export const POST: APIRoute = ({ request }) => handleGoogleIndexing(request);
+export const GET: APIRoute = ({ request, locals }) => handleGoogleIndexing(request, locals);
+export const POST: APIRoute = ({ request, locals }) => handleGoogleIndexing(request, locals);

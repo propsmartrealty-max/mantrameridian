@@ -1,4 +1,5 @@
 import type { APIRoute } from 'astro';
+import { getGoogleEdgeAccessToken } from '../../lib/google-auth-edge';
 
 export const prerender = false; // Cloudflare Workers Edge Execution
 
@@ -34,9 +35,39 @@ const ALL_CANONICAL_URLS = [
   `https://${HOST}/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide`
 ];
 
-async function handleUnifiedBroadcast() {
+async function handleUnifiedBroadcast(locals?: any) {
   try {
     const sitemapUrl = `https://${HOST}/sitemap.xml`;
+
+    const runtimeEnv = (locals as any)?.runtime?.env || {};
+    const procEnv = (globalThis as any).process?.env || {};
+    const globalEnv = globalThis as any;
+
+    let clientEmail = 
+      runtimeEnv.GOOGLE_CLIENT_EMAIL || 
+      import.meta.env.GOOGLE_CLIENT_EMAIL || 
+      procEnv.GOOGLE_CLIENT_EMAIL ||
+      globalEnv.GOOGLE_CLIENT_EMAIL;
+
+    let privateKey = 
+      runtimeEnv.GOOGLE_PRIVATE_KEY || 
+      import.meta.env.GOOGLE_PRIVATE_KEY || 
+      procEnv.GOOGLE_PRIVATE_KEY ||
+      globalEnv.GOOGLE_PRIVATE_KEY;
+
+    const rawJson = 
+      runtimeEnv.GOOGLE_SERVICE_ACCOUNT_JSON || 
+      import.meta.env.GOOGLE_SERVICE_ACCOUNT_JSON || 
+      procEnv.GOOGLE_SERVICE_ACCOUNT_JSON ||
+      globalEnv.GOOGLE_SERVICE_ACCOUNT_JSON;
+
+    if (rawJson) {
+      try {
+        const parsed = typeof rawJson === 'string' ? JSON.parse(rawJson) : rawJson;
+        clientEmail = parsed.client_email || clientEmail;
+        privateKey = parsed.private_key || privateKey;
+      } catch (e) {}
+    }
 
     // 1. IndexNow payload (Bing, Yandex, Seznam, Naver)
     const indexNowPayload = {
@@ -46,8 +77,7 @@ async function handleUnifiedBroadcast() {
       urlList: ALL_CANONICAL_URLS
     };
 
-    // 2. Parallel dispatches to Search Engine Endpoints
-    const dispatches = await Promise.allSettled([
+    const dispatches: Promise<any>[] = [
       // Microsoft Bing IndexNow
       fetch('https://www.bing.com/indexnow', {
         method: 'POST',
@@ -64,10 +94,34 @@ async function handleUnifiedBroadcast() {
       fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`, {
         method: 'GET'
       })
-    ]);
+    ];
 
     const serviceNames = ['Microsoft Bing IndexNow', 'IndexNow Central', 'Google Sitemap Ping'];
-    const results = dispatches.map((res, i) => {
+
+    // If Google Service Account credentials exist, also dispatch to Google Indexing API
+    if (clientEmail && privateKey) {
+      serviceNames.push('Google Indexing API (Edge JWT)');
+      dispatches.push(
+        (async () => {
+          const token = await getGoogleEdgeAccessToken(clientEmail, privateKey);
+          return fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+              url: `https://${HOST}/`,
+              type: 'URL_UPDATED'
+            })
+          });
+        })()
+      );
+    }
+
+    const settled = await Promise.allSettled(dispatches);
+
+    const results = settled.map((res, i) => {
       const name = serviceNames[i];
       if (res.status === 'fulfilled') {
         return {
@@ -115,5 +169,5 @@ async function handleUnifiedBroadcast() {
   }
 }
 
-export const GET: APIRoute = handleUnifiedBroadcast;
-export const POST: APIRoute = handleUnifiedBroadcast;
+export const GET: APIRoute = ({ locals }) => handleUnifiedBroadcast(locals);
+export const POST: APIRoute = ({ locals }) => handleUnifiedBroadcast(locals);

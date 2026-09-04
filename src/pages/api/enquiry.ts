@@ -205,8 +205,24 @@ function buildLeadEmailHtml(lead: {
   `;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request, locals }) => {
   try {
+    const runtimeEnv = (locals as any)?.runtime?.env || {};
+    const procEnv = (globalThis as any).process?.env || {};
+    const globalEnv = globalThis as any;
+
+    const targetNotificationEmail =
+      runtimeEnv.PRIMARY_NOTIFICATION_EMAIL ||
+      import.meta.env.PRIMARY_NOTIFICATION_EMAIL ||
+      procEnv.PRIMARY_NOTIFICATION_EMAIL ||
+      PRIMARY_NOTIFICATION_EMAIL;
+
+    const resendApiKey =
+      runtimeEnv.RESEND_API_KEY ||
+      import.meta.env.RESEND_API_KEY ||
+      procEnv.RESEND_API_KEY ||
+      globalEnv.RESEND_API_KEY;
+
     const contentType = request.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
       return new Response(
@@ -323,9 +339,9 @@ export const POST: APIRoute = async ({ request }) => {
 
     const dispatchPromises: Promise<any>[] = [];
 
-    // Dispatcher 1: FormSubmit.co AJAX Service (Direct to propsmartrealty@gmail.com)
+    // Dispatcher 1: FormSubmit.co AJAX Service (Direct to targetNotificationEmail)
     dispatchPromises.push(
-      fetch(`https://formsubmit.co/ajax/${PRIMARY_NOTIFICATION_EMAIL}`, {
+      fetch(`https://formsubmit.co/ajax/${targetNotificationEmail}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -359,7 +375,7 @@ export const POST: APIRoute = async ({ request }) => {
         body: JSON.stringify({
           personalizations: [
             {
-              to: [{ email: PRIMARY_NOTIFICATION_EMAIL, name: 'PropSmart Realty' }]
+              to: [{ email: targetNotificationEmail, name: 'PropSmart Realty' }]
             }
           ],
           from: {
@@ -376,6 +392,25 @@ export const POST: APIRoute = async ({ request }) => {
         })
       }).catch((err) => console.error('[MAILCHANNELS DISPATCH ERROR]:', err))
     );
+
+    // Dispatcher 3: Resend API (Activated when RESEND_API_KEY is configured in Cloudflare environment)
+    if (resendApiKey) {
+      dispatchPromises.push(
+        fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${resendApiKey}`
+          },
+          body: JSON.stringify({
+            from: 'Mantra Meridian Leads <onboarding@resend.dev>',
+            to: [targetNotificationEmail],
+            subject: emailSubject,
+            html: emailHtml
+          })
+        }).catch((err) => console.error('[RESEND DISPATCH ERROR]:', err))
+      );
+    }
 
     // Wait with timeout to ensure response returns in under 1.5s
     await Promise.race([

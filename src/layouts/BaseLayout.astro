@@ -227,6 +227,8 @@ const unifiedSchema = {
 const absoluteOgImage = ogImage.startsWith('http')
   ? ogImage
   : `https://mantrameridianriverside.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
+// Support dynamic Google Search Console verification token from environment variables
+const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || import.meta.env.GOOGLE_SITE_VERIFICATION || "G-VERIFY-MANTRA-MERIDIAN").trim();
 ---
 
 <!doctype html>
@@ -254,7 +256,7 @@ const absoluteOgImage = ogImage.startsWith('http')
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
     {/* Google Search Central & Console Verification */}
-    <meta name="google-site-verification" content="G-VERIFY-MANTRA-MERIDIAN" />
+    <meta name="google-site-verification" content={googleSiteVerification} />
 
     {/* Local SEO Geo Tags for Balewadi, Pune */}
     <meta name="geo.region" content="IN-MH" />
