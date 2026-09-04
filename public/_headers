@@ -17,6 +17,8 @@
   Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
   Link: </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
   Cache-Tag: mantra-meridian, html-pages, balewadi-real-estate
+  Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
+  CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400
   Surrogate-Control: max-age=604800, stale-while-revalidate=86400
   Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
 

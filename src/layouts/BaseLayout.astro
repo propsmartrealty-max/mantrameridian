@@ -319,21 +319,33 @@ const absoluteOgImage = ogImage.startsWith('http')
       });
     </script>
 
-    {/* Google Chrome & Cloudflare Speculation Rules API for Instant Prerendering */}
+    {/* Advanced Google Chrome & Cloudflare Flagship Speculation Rules API: Predictive Instant Prerender */}
     <script type="speculationrules" is:inline>
       {
         "prerender": [
           {
-            "source": "list",
-            "urls": [
-              "/mantra-meridian-riverside/residences",
-              "/mantra-meridian-riverside/price",
-              "/mantra-meridian-riverside/floor-plans",
-              "/mantra-meridian-riverside/location",
-              "/mantra-meridian-riverside/3-bhk-duplex",
-              "/mantra-meridian-riverside/amenities"
-            ],
+            "source": "document",
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/api/*" } },
+                { "not": { "href_matches": "/*\\?*" } },
+                { "not": { "selector_matches": "[data-no-prerender]" } }
+              ]
+            },
             "eagerness": "moderate"
+          }
+        ],
+        "prefetch": [
+          {
+            "source": "document",
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/api/*" } }
+              ]
+            },
+            "eagerness": "conservative"
           }
         ]
       }
