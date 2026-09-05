@@ -251,8 +251,11 @@ export const POST: APIRoute = async ({ request, locals }) => {
     const globalEnv = globalThis as any;
 
     const targetNotificationEmail =
+      runtimeEnv.NOTIFICATION_EMAIL ||
       runtimeEnv.PRIMARY_NOTIFICATION_EMAIL ||
+      import.meta.env.NOTIFICATION_EMAIL ||
       import.meta.env.PRIMARY_NOTIFICATION_EMAIL ||
+      procEnv.NOTIFICATION_EMAIL ||
       procEnv.PRIMARY_NOTIFICATION_EMAIL ||
       PRIMARY_NOTIFICATION_EMAIL;
 
@@ -388,7 +391,7 @@ export const POST: APIRoute = async ({ request, locals }) => {
       userAgent: userAgent.substring(0, 120)
     };
 
-    console.log(`[LEAD RECEIVED] Dispatching to ${PRIMARY_NOTIFICATION_EMAIL}:`, JSON.stringify(leadRecord));
+    console.log(`[LEAD RECEIVED] Dispatching to ${targetNotificationEmail}:`, JSON.stringify(leadRecord));
 
     // Dispatch email notification to propsmartrealty@gmail.com
     const emailSubject = `🔥 [NEW LEAD] ${leadRecord.fullName} - ${leadRecord.configuration} | Mantra Meridian Riverside`;

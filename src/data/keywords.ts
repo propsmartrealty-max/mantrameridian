@@ -164,7 +164,7 @@ export const contactPermutations: string[] = [
   "Mantra Meridian sales office Balewadi",
   "Mantra Meridian sales gallery Balewadi Village Road",
   "Mantra Meridian site visit booking",
-  "Mantra Meridian official enquiry WhatsApp +91 77440 09295",
+  "Mantra Meridian official enquiry WhatsApp Concierge",
   "Mantra Meridian customer care number Pune",
   "Mantra Properties sales office contact Pune"
 ];
