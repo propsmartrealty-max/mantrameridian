@@ -7,6 +7,14 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://mantrameridianriverside.com',
   output: 'server',
+  compressHTML: true,
+  build: {
+    inlineStylesheets: 'auto'
+  },
+  prefetch: {
+    prefetchAll: true,
+    defaultStrategy: 'viewport'
+  },
   adapter: cloudflare({
     imageService: 'passthrough',
     platformProxy: {
