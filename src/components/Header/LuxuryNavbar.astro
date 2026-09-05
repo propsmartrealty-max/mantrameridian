@@ -30,7 +30,7 @@ const exploreDropdownLinks = [
     </div>
 
     {/* Center Navigation Links (High-Contrast Pearl & Gold typography) */}
-    <nav class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] font-mono tracking-[0.12em] font-semibold shrink-0">
+    <nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] font-mono tracking-[0.12em] font-semibold shrink-0">
       <a
         href="/mantra-meridian-riverside/residences"
         class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
@@ -174,7 +174,7 @@ const exploreDropdownLinks = [
 
   {/* Mobile Menu Slide-down Overlay (Google Standard Typography & Touch Targets) */}
   <div id="mobile-menu" class="hidden fixed inset-0 top-[80px] bg-obsidian-deep/98 backdrop-blur-2xl z-30 p-5 sm:p-8 border-t border-champagne/30 overflow-y-auto pb-36">
-    <div class="space-y-8 max-w-lg mx-auto py-2">
+    <nav aria-label="Mobile Navigation" class="space-y-8 max-w-lg mx-auto py-2">
       
       {/* Group 1: Residences & Blueprints */}
       <div class="space-y-3">
@@ -282,7 +282,7 @@ const exploreDropdownLinks = [
         MahaRERA: <span class="text-champagne font-semibold">{projectData.reraNumber}</span> • Balewadi, Pune
       </div>
 
-    </div>
+    </nav>
   </div>
 </header>
 

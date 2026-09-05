@@ -24,9 +24,16 @@ const {
   description = "Mantra Meridian Riverside in Balewadi, Pune by Mantra Properties. 8-acre riverside development offering 2, 3, 4 BHK homes & 3 BHK Duplexes along the Mula River. MahaRERA P52100045688.",
   keywords = defaultMetaKeywords,
   ogImage = projectData.ogImage,
-  canonicalUrl = Astro.url.href,
+  canonicalUrl,
   customSchema
 } = Astro.props;
+
+// Authoritative canonical URL normalization strictly matching official sitemap.xml
+const siteOrigin = "https://mantrameridianriverside.com";
+const cleanPathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const computedCanonical = canonicalUrl 
+  ? (canonicalUrl.replace(/\/+$/, '') || `${siteOrigin}/`)
+  : (cleanPathname === '/' ? `${siteOrigin}/` : `${siteOrigin}${cleanPathname}`);
 
 // Prepare Google Search Central compliant Review objects with explicit itemReviewed
 const structuredReviews = verifiedReviews.map((rev) => ({
@@ -296,8 +303,8 @@ const coreGraph: any[] = [
     },
     {
       "@type": "WebPage",
-      "@id": `${canonicalUrl}#webpage`,
-      "url": canonicalUrl,
+      "@id": `${computedCanonical}#webpage`,
+      "url": computedCanonical,
       "name": title,
       "description": description,
       "keywords": keywords,
@@ -355,11 +362,13 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="keywords" content={keywords} />
-    <link rel="canonical" href={canonicalUrl} />
-    <link rel="alternate" hreflang="en-IN" href={canonicalUrl} />
-    <link rel="alternate" hreflang="x-default" href={canonicalUrl} />
+    <link rel="canonical" href={computedCanonical} />
+    <link rel="alternate" hreflang="en-IN" href={computedCanonical} />
+    <link rel="alternate" hreflang="x-default" href={computedCanonical} />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="googlebot-image" content="index, follow" />
+    <meta name="googlebot-news" content="index, follow" />
 
     {/* Google Search Central & Console Verification */}
     <meta name="google-site-verification" content={googleSiteVerification} />
@@ -372,7 +381,7 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
 
     {/* Open Graph / Facebook */}
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:url" content={computedCanonical} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={absoluteOgImage} />

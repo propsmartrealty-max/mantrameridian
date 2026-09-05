@@ -9,7 +9,7 @@ Allow: /
 Disallow: /api/
 Disallow: /_worker.js
 
-# Google Primary Search Bots
+# Google Primary Search Bots & Search Console Inspection
 User-agent: Googlebot
 Allow: /
 
@@ -24,10 +24,19 @@ Allow: /
 User-agent: Googlebot-Mobile
 Allow: /
 
+User-agent: Google-InspectionTool
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
 User-agent: Mediapartners-Google
 Allow: /
 
 User-agent: AdsBot-Google
+Allow: /
+
+User-agent: AdsBot-Google-Mobile
 Allow: /
 
 # Microsoft Bing & Yahoo Bots

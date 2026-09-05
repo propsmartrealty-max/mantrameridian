@@ -55,9 +55,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // 2. Edge Canonical URL Normalization: Prevent Duplicate Content in Google Index
-  // Remove trailing duplicate slashes or malformed paths
-  if (pathname.length > 1 && pathname.endsWith('//')) {
-    const cleanPath = pathname.replace(/\/+$/, '/');
+  // Strip trailing slashes for non-root paths to match official sitemap.xml
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    const cleanPath = pathname.replace(/\/+$/, '');
     return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
   }
 
@@ -83,8 +83,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
 
   // 4. Detect Search Bots & AI Crawlers for Priority Delivery
   const userAgent = request.headers.get('user-agent') || '';
-  const isGooglebot = /Googlebot|Google-InspectionTool|Mediapartners-Google/i.test(userAgent);
-  const isAICrawler = /GPTBot|PerplexityBot|ClaudeBot|Applebot/i.test(userAgent);
+  const isGooglebot = /Googlebot|Google-InspectionTool|GoogleOther|Google-Extended|Mediapartners-Google|AdsBot-Google/i.test(userAgent);
+  const isSearchEngineBot = /Bingbot|msnbot|DuckDuckBot|YandexBot|Baiduspider/i.test(userAgent);
+  const isAICrawler = /GPTBot|ChatGPT-User|PerplexityBot|ClaudeBot|anthropic-ai|Applebot|Bytespider|CCBot/i.test(userAgent);
 
   // Execute standard Astro server handler
   const response = await next();
@@ -122,8 +123,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     );
   }
 
-  // Ensure Google Search bot receives explicit indexing signals
-  if (isGooglebot || isAICrawler) {
+  // Ensure Google Search bot and Tier-1 search engines receive explicit indexing signals
+  if (isGooglebot || isSearchEngineBot || isAICrawler) {
     response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
   }
