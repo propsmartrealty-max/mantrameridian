@@ -141,28 +141,51 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
   }
 
-  // 6. Cloudflare Flagship HTMLRewriter: Edge HTML Streaming SEO Transformation
+  // 6. Cloudflare Flagship HTMLRewriter: Ultra-Advanced Edge HTML Streaming SEO Architecture
   const contentType = response.headers.get('content-type') || '';
   if (contentType.includes('text/html') && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
     const RewriterClass = (globalThis as any).HTMLRewriter;
     const rewriter = new RewriterClass()
+      // A. Edge Metadata & Localized Geo-Intent Injections in <head>
       .on('head', {
         element(head: any) {
+          const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
           head.append(
-            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n<meta property="og:locality" content="Balewadi" />\n<meta property="og:region" content="Maharashtra" />\n<meta property="og:postal-code" content="411045" />\n<meta property="og:country-name" content="India" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n<link rel="dns-prefetch" href="//www.google-analytics.com" />\n<link rel="dns-prefetch" href="//www.googletagmanager.com" />\n`,
+            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n${nriMeta}<meta property="og:locality" content="Balewadi" />\n<meta property="og:region" content="Maharashtra" />\n<meta property="og:postal-code" content="411045" />\n<meta property="og:country-name" content="India" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n<link rel="dns-prefetch" href="//www.google-analytics.com" />\n<link rel="dns-prefetch" href="//www.googletagmanager.com" />\n`,
             { html: true }
           );
         }
       })
+      // B. Google SERP Snippet Quality Protection: Suppress boilerplate legal disclaimers
       .on('.legal-disclaimer, [data-nosnippet-candidate], footer small, .disclaimer, [data-nosnippet]', {
         element(el: any) {
           el.setAttribute('data-nosnippet', 'true');
         }
       })
-      .on('a[href^="http"]', {
+      // C. Edge Internal Link Canonicalization & External Link Hardening
+      .on('a[href]', {
         element(el: any) {
           const href = el.getAttribute('href') || '';
-          if (!href.includes('mantrameridianriverside.com')) {
+          // C1. Internal Links: Heal uppercase paths and trailing slashes on the wire before search engines read them
+          if (
+            href.startsWith('/') &&
+            !href.startsWith('/api') &&
+            !href.startsWith('/assets') &&
+            !href.startsWith('/_astro') &&
+            !href.startsWith('//')
+          ) {
+            const [pathPart, queryPart] = href.split('?');
+            let cleanPath = pathPart.toLowerCase();
+            if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
+              cleanPath = cleanPath.replace(/\/+$/, '');
+            }
+            const normalizedHref = queryPart ? `${cleanPath}?${queryPart}` : cleanPath;
+            if (normalizedHref !== href) {
+              el.setAttribute('href', normalizedHref);
+            }
+          }
+          // C2. External Links: Enforce noopener noreferrer for security and link equity defense
+          if (href.startsWith('http') && !href.includes('mantrameridianriverside.com')) {
             const rel = el.getAttribute('rel') || '';
             if (!rel.includes('noopener')) {
               el.setAttribute('rel', `${rel} noopener noreferrer`.trim());
@@ -170,11 +193,32 @@ export const onRequest = defineMiddleware(async (context, next) => {
           }
         }
       })
+      // D. Crawler-Specific Content Accessibility: Auto-expand FAQ accordions for Googlebot & AI Crawlers
+      .on('details', {
+        element(el: any) {
+          if (isGooglebot || isSearchEngineBot || isAICrawler) {
+            el.setAttribute('open', '');
+          }
+        }
+      })
+      // E. Voice Search & Speakable Heading Markers
+      .on('h1, h2, .speakable-summary', {
+        element(el: any) {
+          el.setAttribute('data-speakable', 'true');
+        }
+      })
+      // F. Core Web Vitals LCP Hero Image Prioritization & Image SEO Fallback
       .on('img', {
         element(el: any) {
           const src = el.getAttribute('src') || '';
           const className = el.getAttribute('class') || '';
           const isHero = src.includes('mantra-meridian-hero') || className.includes('hero') || el.hasAttribute('data-hero');
+
+          // Ensure 100% Image SEO score with contextual alt text fallback
+          if (!el.getAttribute('alt')) {
+            el.setAttribute('alt', 'Mantra Meridian Riverside Balewadi Pune Luxury Residences');
+          }
+
           if (isHero) {
             el.setAttribute('fetchpriority', 'high');
             el.setAttribute('decoding', 'sync');
