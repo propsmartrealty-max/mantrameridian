@@ -5,14 +5,48 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 
 /**
- * GOOGLE INDEXING API PROGRAMMATIC BROADCASTER
- * Uses Google Service Account JWT OAuth2 to publish URL_UPDATED notifications
- * directly to Google's indexing endpoint:
- * https://indexing.googleapis.com/v3/urlNotifications:publish
+ * ULTRA-ADVANCED GOOGLE INDEXING API COMMAND-LINE SUITE
+ * 
+ * Uses Google Cloud Service Account OAuth 2.0 (RS256 JWT) to programmatically publish
+ * URL_UPDATED and URL_DELETED notifications and inspect indexing metadata via:
+ * - https://indexing.googleapis.com/v3/urlNotifications:publish
+ * - https://indexing.googleapis.com/v3/urlNotifications/metadata
+ * 
+ * Usage:
+ *   node scripts/google-indexing.mjs                  # Broadcast URL_UPDATED for all 25 canonical URLs
+ *   node scripts/google-indexing.mjs --publish        # Explicitly broadcast URL_UPDATED for all URLs
+ *   node scripts/google-indexing.mjs --url <URL>      # Broadcast URL_UPDATED for a specific URL
+ *   node scripts/google-indexing.mjs --delete <URL>   # Broadcast URL_DELETED for a specific URL
+ *   node scripts/google-indexing.mjs --inspect        # Query Google Indexing metadata status for all URLs
+ *   node scripts/google-indexing.mjs --help           # Show help documentation
  */
 
 const CREDENTIALS_PATH = path.resolve(process.cwd(), 'service-account.json');
 const SITEMAP_PATH = path.resolve(process.cwd(), 'public/sitemap.xml');
+
+const args = process.argv.slice(2);
+
+if (args.includes('--help') || args.includes('-h')) {
+  console.log(`
+🌐 Mantra Meridian Riverside — Google Indexing API CLI
+
+Usage:
+  node scripts/google-indexing.mjs [options]
+
+Options:
+  --publish                 Broadcast URL_UPDATED for all sitemap URLs (default)
+  --url <url>               Broadcast URL_UPDATED for a single specific URL
+  --delete <url>            Broadcast URL_DELETED for a removed or decommissioned URL
+  --inspect, --status       Query Google's recorded metadata status for sitemap URLs
+  --help, -h                Show this help menu
+
+Examples:
+  node scripts/google-indexing.mjs
+  node scripts/google-indexing.mjs --url https://mantrameridianriverside.com/mantra-meridian-riverside/price
+  node scripts/google-indexing.mjs --inspect
+`);
+  process.exit(0);
+}
 
 if (!fs.existsSync(CREDENTIALS_PATH)) {
   console.error(`❌ Google service-account.json not found at ${CREDENTIALS_PATH}`);
@@ -33,7 +67,7 @@ if (!locMatches || locMatches.length === 0) {
   process.exit(1);
 }
 
-const urlList = locMatches.map((loc) => loc.replace(/<\/?loc>/g, '').trim());
+const allUrls = locMatches.map((loc) => loc.replace(/<\/?loc>/g, '').trim());
 
 function base64UrlEncode(str) {
   return Buffer.from(str)
@@ -44,7 +78,7 @@ function base64UrlEncode(str) {
 }
 
 /**
- * Generates an OAuth 2.0 Access Token from the Service Account private key using native Node.js crypto
+ * Generates an OAuth 2.0 Access Token from the Service Account private key using native Node.js crypto (RS256)
  */
 async function getGoogleAccessToken() {
   const now = Math.floor(Date.now() / 1000);
@@ -93,7 +127,8 @@ async function getGoogleAccessToken() {
   return tokenData.access_token;
 }
 
-async function publishUrlToGoogle(accessToken, url) {
+async function publishUrlToGoogle(accessToken, url, type = 'URL_UPDATED') {
+  const startTime = performance.now();
   const res = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
     method: 'POST',
     headers: {
@@ -102,54 +137,120 @@ async function publishUrlToGoogle(accessToken, url) {
     },
     body: JSON.stringify({
       url,
-      type: 'URL_UPDATED'
+      type
     })
   });
 
+  const elapsed = (performance.now() - startTime).toFixed(1);
   const data = await res.json();
-  return { status: res.status, ok: res.ok, data };
+  return { status: res.status, ok: res.ok, elapsed, data };
 }
 
-async function runGoogleIndexing() {
-  console.log(`📡 Discovered ${urlList.length} canonical URLs for Google Indexing API submission.`);
-  console.log(`🔑 Service Account: ${credentials.client_email} (Project: ${credentials.project_id})`);
-  console.log('🔄 Authenticating with Google OAuth 2.0...');
+async function inspectUrlMetadata(accessToken, url) {
+  const startTime = performance.now();
+  const res = await fetch(`https://indexing.googleapis.com/v3/urlNotifications/metadata?url=${encodeURIComponent(url)}`, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
 
+  const elapsed = (performance.now() - startTime).toFixed(1);
+  const data = await res.json();
+  return { status: res.status, ok: res.ok, elapsed, data };
+}
+
+async function main() {
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  console.log('⚡ ULTRA-ADVANCED GOOGLE SEARCH RANKINGS & INDEXING SUITE');
+  console.log('   Domain: https://mantrameridianriverside.com');
+  console.log(`   Service Account: ${credentials.client_email}`);
+  console.log(`   Project ID: ${credentials.project_id}`);
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
+
+  console.log('🔑 Authenticating with Google OAuth 2.0 (RS256 JWT)...');
   const accessToken = await getGoogleAccessToken();
   console.log('✅ Google OAuth 2.0 access token generated successfully!\n');
 
-  console.log('🚀 Publishing URLs to Google Indexing API:');
+  // Case 1: Inspect metadata
+  if (args.includes('--inspect') || args.includes('--status')) {
+    console.log(`🔍 Inspecting Google Indexing metadata for ${allUrls.length} canonical URLs...\n`);
+    for (let i = 0; i < allUrls.length; i++) {
+      const url = allUrls[i];
+      const res = await inspectUrlMetadata(accessToken, url);
+      if (res.ok) {
+        const latestNotify = res.data?.latestUpdate?.notifyTime || 'Unknown';
+        console.log(`   [${i + 1}/${allUrls.length}] ✅ 200 OK (${res.elapsed}ms): ${url}`);
+        console.log(`       Last Notified: ${latestNotify}`);
+      } else {
+        console.log(`   [${i + 1}/${allUrls.length}] ℹ️ ${res.status} (${res.elapsed}ms): ${url} - ${res.data?.error?.message || 'Queued / Pending Googlebot crawl'}`);
+      }
+      if (i < allUrls.length - 1) await new Promise((r) => setTimeout(r, 100));
+    }
+    console.log('\n✨ Google Indexing metadata inspection completed.');
+    return;
+  }
+
+  // Case 2: Delete specific URL
+  const deleteIdx = args.indexOf('--delete');
+  if (deleteIdx !== -1 && args[deleteIdx + 1]) {
+    const targetUrl = args[deleteIdx + 1];
+    console.log(`🗑️ Broadcasting URL_DELETED notification for: ${targetUrl}`);
+    const res = await publishUrlToGoogle(accessToken, targetUrl, 'URL_DELETED');
+    if (res.ok) {
+      console.log(`✅ ${res.status} OK (${res.elapsed}ms): Google accepted URL_DELETED for ${targetUrl}`);
+    } else {
+      console.error(`⚠️ ${res.status}: Failed to delete ${targetUrl} - ${res.data?.error?.message}`);
+    }
+    return;
+  }
+
+  // Case 3: Single URL update
+  const urlIdx = args.indexOf('--url');
+  if (urlIdx !== -1 && args[urlIdx + 1]) {
+    const targetUrl = args[urlIdx + 1];
+    console.log(`🚀 Broadcasting URL_UPDATED notification for single URL: ${targetUrl}`);
+    const res = await publishUrlToGoogle(accessToken, targetUrl, 'URL_UPDATED');
+    if (res.ok) {
+      console.log(`✅ ${res.status} OK (${res.elapsed}ms): Google accepted URL_UPDATED for ${targetUrl}`);
+    } else {
+      console.error(`⚠️ ${res.status}: Failed to publish ${targetUrl} - ${res.data?.error?.message}`);
+    }
+    return;
+  }
+
+  // Case 4: Default Batch Publish All URLs
+  console.log(`🚀 Publishing ${allUrls.length} canonical URLs to Google Indexing API (URL_UPDATED):\n`);
   const results = [];
 
-  for (let i = 0; i < urlList.length; i++) {
-    const url = urlList[i];
+  for (let i = 0; i < allUrls.length; i++) {
+    const url = allUrls[i];
     try {
-      const result = await publishUrlToGoogle(accessToken, url);
+      const result = await publishUrlToGoogle(accessToken, url, 'URL_UPDATED');
       if (result.ok) {
-        console.log(`   [${i + 1}/${urlList.length}] ✅ 200 OK: ${url}`);
-        results.push({ url, status: result.status, success: true });
+        console.log(`   [${i + 1}/${allUrls.length}] ✅ 200 OK (${result.elapsed}ms): ${url}`);
+        results.push({ url, status: result.status, success: true, elapsed: result.elapsed });
       } else {
-        console.log(`   [${i + 1}/${urlList.length}] ⚠️ ${result.status}: ${url} - ${result.data?.error?.message || 'Error'}`);
+        console.log(`   [${i + 1}/${allUrls.length}] ⚠️ ${result.status} (${result.elapsed}ms): ${url} - ${result.data?.error?.message || 'Error'}`);
         results.push({ url, status: result.status, success: false, error: result.data?.error?.message });
       }
     } catch (err) {
-      console.error(`   [${i + 1}/${urlList.length}] ❌ Network error for ${url}:`, err.message);
+      console.error(`   [${i + 1}/${allUrls.length}] ❌ Network error for ${url}:`, err.message);
       results.push({ url, success: false, error: err.message });
     }
 
-    // Gentle 100ms throttle to comply with Google rate limits
-    if (i < urlList.length - 1) {
+    // Rate-limiting pause to respect Google Indexing quota
+    if (i < allUrls.length - 1) {
       await new Promise((r) => setTimeout(r, 120));
     }
   }
 
-  console.log('\n✨ Google Indexing API submission run completed.');
-  const successfulCount = results.filter((r) => r.success).length;
-  console.log(`Summary: ${successfulCount}/${urlList.length} URLs processed.`);
-  return results;
+  console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
+  const successCount = results.filter((r) => r.success).length;
+  console.log(`✨ Google Indexing API Run Summary: ${successCount}/${allUrls.length} URLs Successfully Published!`);
+  console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n');
 }
 
-runGoogleIndexing().catch((err) => {
+main().catch((err) => {
   console.error('Fatal Google Indexing API error:', err);
   process.exit(1);
 });

@@ -126,6 +126,40 @@ const coreGraph: any[] = [
           "opens": "09:30",
           "closes": "19:30"
         }
+      ],
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "Balewadi",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Balewadi",
+            "https://www.wikidata.org/wiki/Q4850785"
+          ]
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "Baner",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Baner",
+            "https://www.wikidata.org/wiki/Q4854084"
+          ]
+        },
+        {
+          "@type": "City",
+          "name": "Pune",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Pune",
+            "https://www.wikidata.org/wiki/Q1538"
+          ]
+        },
+        {
+          "@type": "Place",
+          "name": "Hinjawadi",
+          "sameAs": [
+            "https://en.wikipedia.org/wiki/Hinjawadi",
+            "https://www.wikidata.org/wiki/Q5767664"
+          ]
+        }
       ]
     },
     {
@@ -157,6 +191,16 @@ const coreGraph: any[] = [
         "longitude": projectData.coordinates.longitude
       },
       "hasMap": projectData.googleMapsUrl,
+      "containedInPlace": {
+        "@type": "Place",
+        "name": "Balewadi, Pune",
+        "sameAs": "https://en.wikipedia.org/wiki/Balewadi",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": projectData.coordinates.latitude,
+          "longitude": projectData.coordinates.longitude
+        }
+      },
       "numberOfBedrooms": "2, 3, 4",
       "potentialAction": [
         {
@@ -280,6 +324,69 @@ const coreGraph: any[] = [
           "@type": "LocationFeatureSpecification",
           "name": "Botanical Reflexology Sensory Gardens",
           "value": true
+        }
+      ]
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://mantrameridianriverside.com/#navigation-sitelinks",
+      "name": "Google Sitelinks Directory",
+      "itemListElement": [
+        {
+          "@type": "SiteNavigationElement",
+          "position": 1,
+          "name": "Residences & Configurations",
+          "description": "Explore 2 BHK, 3 BHK, 3 BHK Duplex, and 4 BHK luxury residences at Mantra Meridian Riverside Balewadi.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 2,
+          "name": "Pricing & 2026 Cost Sheet",
+          "description": "All-inclusive pricing breakdown, installment plans, and official cost sheet for Mantra Meridian Balewadi.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 3,
+          "name": "2 BHK Contemporary Homes",
+          "description": "815 sq.ft carpet 2 BHK apartments starting from ₹85 Lakhs* along the Mula River.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 4,
+          "name": "3 BHK Riverside Residences",
+          "description": "1,180 sq.ft carpet 3 BHK apartments with wrap-around river-breeze decks.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 5,
+          "name": "3 BHK Signature Sky Duplex",
+          "description": "Signature two-tier sky homes featuring 20-foot double-height ceilings.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 6,
+          "name": "Balewadi Location Advantage",
+          "description": "Connectivity intelligence, 3 mins from Balewadi High Street, 10 mins from Hinjewadi IT Park.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/location"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 7,
+          "name": "8-Acre Masterplan & Amenities",
+          "description": "75%+ open green landscapes, 500m riverside boardwalk, and 20,000 sq.ft clubhouse.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan"
+        },
+        {
+          "@type": "SiteNavigationElement",
+          "position": 8,
+          "name": "MahaRERA Statutory Compliance",
+          "description": "Official MahaRERA P52100045688 certification, sanctioned layouts, and legal clearances.",
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/rera"
         }
       ]
     },

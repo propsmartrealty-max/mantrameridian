@@ -82,25 +82,93 @@ async function handleGoogleIndexing(request: Request, locals?: any) {
       );
     }
 
-    // Determine target URL list
+    // Determine target URL list, notification type, and action
     let targetUrls = ALL_CANONICAL_URLS;
+    let notificationType = 'URL_UPDATED';
+    let isInspectAction = false;
+
+    const requestUrl = new URL(request.url);
+    if (requestUrl.searchParams.get('action') === 'status' || requestUrl.searchParams.get('inspect') === 'true') {
+      isInspectAction = true;
+    }
+
     if (request.method === 'POST') {
       try {
         const body: any = await request.json();
         if (Array.isArray(body.urls) && body.urls.length > 0) {
           targetUrls = body.urls;
+        } else if (typeof body.url === 'string' && body.url.trim()) {
+          targetUrls = [body.url.trim()];
+        }
+        if (body.type === 'URL_DELETED') {
+          notificationType = 'URL_DELETED';
+        }
+        if (body.action === 'status' || body.action === 'inspect') {
+          isInspectAction = true;
         }
       } catch (e) {
-        // Default to all canonical URLs
+        // Default to all canonical URLs with URL_UPDATED
       }
     }
 
     // Authenticate with Google via Web Crypto RS256
     const accessToken = await getGoogleEdgeAccessToken(clientEmail, privateKey);
 
-    // Broadcast in parallel with small batches to respect Google rate limits
+    // If inspect action, query Google's recorded notification metadata
+    if (isInspectAction) {
+      const inspectResults = await Promise.allSettled(
+        targetUrls.map(async (url) => {
+          const startTime = performance.now();
+          const res = await fetch(`https://indexing.googleapis.com/v3/urlNotifications/metadata?url=${encodeURIComponent(url)}`, {
+            headers: { Authorization: `Bearer ${accessToken}` }
+          });
+          const data: any = await res.json();
+          const elapsed = (performance.now() - startTime).toFixed(1);
+          return {
+            url,
+            status: res.status,
+            ok: res.ok,
+            elapsed_ms: Number(elapsed),
+            metadata: res.ok ? data : null,
+            message: res.ok ? 'Metadata retrieved' : (data?.error?.message || 'Not yet crawled or registered')
+          };
+        })
+      );
+
+      const inspectOutcomes = inspectResults.map((r, i) => {
+        if (r.status === 'fulfilled') return r.value;
+        return {
+          url: targetUrls[i],
+          status: 500,
+          ok: false,
+          elapsed_ms: 0,
+          message: (r.reason as Error)?.message || 'Network error'
+        };
+      });
+
+      return new Response(
+        JSON.stringify({
+          status: 'completed',
+          action: 'metadata_inspection',
+          engine: 'Google Indexing API (Edge Native)',
+          inspected_urls: targetUrls.length,
+          details: inspectOutcomes,
+          timestamp: new Date().toISOString()
+        }),
+        {
+          status: 200,
+          headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache'
+          }
+        }
+      );
+    }
+
+    // Broadcast publish notifications in parallel
     const results = await Promise.allSettled(
       targetUrls.map(async (url) => {
+        const startTime = performance.now();
         const res = await fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
           method: 'POST',
           headers: {
@@ -109,16 +177,19 @@ async function handleGoogleIndexing(request: Request, locals?: any) {
           },
           body: JSON.stringify({
             url,
-            type: 'URL_UPDATED'
+            type: notificationType
           })
         });
 
         const data: any = await res.json();
+        const elapsed = (performance.now() - startTime).toFixed(1);
         return {
           url,
           status: res.status,
           ok: res.ok,
-          message: res.ok ? 'URL_UPDATED notified' : (data?.error?.message || 'Error')
+          elapsed_ms: Number(elapsed),
+          type: notificationType,
+          message: res.ok ? `${notificationType} accepted` : (data?.error?.message || 'Error')
         };
       })
     );
@@ -131,6 +202,8 @@ async function handleGoogleIndexing(request: Request, locals?: any) {
         url: targetUrls[i],
         status: 500,
         ok: false,
+        elapsed_ms: 0,
+        type: notificationType,
         message: (r.reason as Error)?.message || 'Network error'
       };
     });
@@ -140,7 +213,9 @@ async function handleGoogleIndexing(request: Request, locals?: any) {
     return new Response(
       JSON.stringify({
         status: 'completed',
+        action: 'publish',
         engine: 'Google Indexing API (Edge Native)',
+        type: notificationType,
         submitted_urls: targetUrls.length,
         successful: successCount,
         details: outcomes,

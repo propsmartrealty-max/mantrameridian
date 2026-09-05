@@ -98,23 +98,31 @@ async function handleUnifiedBroadcast(locals?: any) {
 
     const serviceNames = ['Microsoft Bing IndexNow', 'IndexNow Central', 'Google Sitemap Ping'];
 
-    // If Google Service Account credentials exist, also dispatch to Google Indexing API
+    // If Google Service Account credentials exist, also dispatch all canonical URLs to Google Indexing API
     if (clientEmail && privateKey) {
       serviceNames.push('Google Indexing API (Edge JWT)');
       dispatches.push(
         (async () => {
           const token = await getGoogleEdgeAccessToken(clientEmail, privateKey);
-          return fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`
-            },
-            body: JSON.stringify({
-              url: `https://${HOST}/`,
-              type: 'URL_UPDATED'
+          const publishPromises = ALL_CANONICAL_URLS.map((url) =>
+            fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+              },
+              body: JSON.stringify({
+                url,
+                type: 'URL_UPDATED'
+              })
             })
-          });
+          );
+          const responses = await Promise.allSettled(publishPromises);
+          const allOk = responses.every((r) => r.status === 'fulfilled' && (r.value as Response).ok);
+          return {
+            status: allOk ? 200 : 207,
+            ok: allOk
+          };
         })()
       );
     }
