@@ -7,6 +7,7 @@ import Breadcrumbs from '../Navigation/Breadcrumbs.astro';
 import type { ResidenceConfig } from '../../data/residences';
 import { residencesData } from '../../data/residences';
 import { getConfigurationKeywords } from '../../data/keywords';
+import { projectData } from '../../data/project';
 
 interface Props {
   residence: ResidenceConfig;
@@ -108,7 +109,7 @@ const residenceKeywords = getConfigurationKeywords(residence.slug, residence.nam
           REQUEST PRICING &amp; AVAILABILITY →
         </button>
         <a
-          href={`https://wa.me/917744009295?text=${encodeURIComponent(`Hello Meridian Concierge, I would like to receive pricing, floor plans, and availability for ${residence.name} (${residence.type}) at Mantra Meridian Riverside Balewadi.`)}`}
+          href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(`Hello Meridian Concierge, I would like to receive pricing, floor plans, and availability for ${residence.name} (${residence.type}) at Mantra Meridian Riverside Balewadi.`)}`}
           target="_blank"
           rel="noopener noreferrer"
           class="btn-luxury-outline w-full text-xs glass-sheen text-center flex items-center justify-center gap-2 border-emerald-500/40 text-emerald-400 hover:bg-emerald-500/10 min-h-[44px]"

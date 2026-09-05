@@ -90,7 +90,7 @@ export const GET: APIRoute = async ({ request }) => {
       },
       concierge: {
         deskPhone: projectData.contact.phone,
-        whatsapp: projectData.contact.whatsapp,
+        whatsappChannel: 'Active (Direct WhatsApp Concierge Button)',
         siteVisitBookingEndpoint: 'https://mantrameridianriverside.com/api/enquiry',
         bookingAction: 'ReserveAction',
       },

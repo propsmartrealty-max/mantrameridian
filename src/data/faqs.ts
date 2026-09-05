@@ -112,6 +112,6 @@ export const faqsData: FAQItem[] = [
     id: "contact-sales-office-details",
     category: "location",
     question: "What is the official contact number and sales gallery address for Mantra Meridian Balewadi?",
-    answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached by phone or WhatsApp at +91 77440 09295. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
+    answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached by phone at +91 77440 09295, or directly via the WhatsApp concierge button on this website. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
   }
 ];
