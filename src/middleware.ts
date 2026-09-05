@@ -54,8 +54,20 @@ export const onRequest = defineMiddleware(async (context, next) => {
     });
   }
 
-  // 2. Edge Canonical URL Normalization: Prevent Duplicate Content in Google Index
-  // Strip trailing slashes for non-root paths to match official sitemap.xml
+  // 2. Edge Canonical URL Normalization: Prevent Duplicate Content & Fragmented Equity in Google Index
+  // A. Lowercase path enforcement: Redirect any uppercase URLs (e.g. /Balewadi, /Pricing, /Mantra-Meridian-Riverside)
+  // Excludes API endpoints and Astro internal asset bundles
+  if (
+    !pathname.startsWith('/api') &&
+    !pathname.startsWith('/assets') &&
+    !pathname.startsWith('/_astro') &&
+    /[A-Z]/.test(pathname)
+  ) {
+    const cleanPath = pathname.toLowerCase().replace(/\/+$/, '') || '/';
+    return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
+  }
+
+  // B. Strip trailing slashes for non-root paths to match official sitemap.xml
   if (pathname.length > 1 && pathname.endsWith('/')) {
     const cleanPath = pathname.replace(/\/+$/, '');
     return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
@@ -137,12 +149,12 @@ export const onRequest = defineMiddleware(async (context, next) => {
       .on('head', {
         element(head: any) {
           head.append(
-            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n`,
+            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n<meta property="og:locality" content="Balewadi" />\n<meta property="og:region" content="Maharashtra" />\n<meta property="og:postal-code" content="411045" />\n<meta property="og:country-name" content="India" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n<link rel="dns-prefetch" href="//www.google-analytics.com" />\n<link rel="dns-prefetch" href="//www.googletagmanager.com" />\n`,
             { html: true }
           );
         }
       })
-      .on('.legal-disclaimer, [data-nosnippet-candidate], footer small', {
+      .on('.legal-disclaimer, [data-nosnippet-candidate], footer small, .disclaimer, [data-nosnippet]', {
         element(el: any) {
           el.setAttribute('data-nosnippet', 'true');
         }
@@ -158,10 +170,23 @@ export const onRequest = defineMiddleware(async (context, next) => {
           }
         }
       })
-      .on('img:not([loading])', {
+      .on('img', {
         element(el: any) {
-          el.setAttribute('loading', 'lazy');
-          el.setAttribute('decoding', 'async');
+          const src = el.getAttribute('src') || '';
+          const className = el.getAttribute('class') || '';
+          const isHero = src.includes('mantra-meridian-hero') || className.includes('hero') || el.hasAttribute('data-hero');
+          if (isHero) {
+            el.setAttribute('fetchpriority', 'high');
+            el.setAttribute('decoding', 'sync');
+            el.removeAttribute('loading');
+          } else {
+            if (!el.hasAttribute('loading')) {
+              el.setAttribute('loading', 'lazy');
+            }
+            if (!el.hasAttribute('decoding')) {
+              el.setAttribute('decoding', 'async');
+            }
+          }
         }
       });
 
