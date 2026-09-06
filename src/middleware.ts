@@ -55,22 +55,32 @@ export const onRequest = defineMiddleware(async (context, next) => {
   }
 
   // 2. Edge Canonical URL Normalization: Prevent Duplicate Content & Fragmented Equity in Google Index
-  // A. Lowercase path enforcement: Redirect any uppercase URLs (e.g. /Balewadi, /Pricing, /Mantra-Meridian-Riverside)
-  // Excludes API endpoints and Astro internal asset bundles
-  if (
-    !pathname.startsWith('/api') &&
-    !pathname.startsWith('/assets') &&
-    !pathname.startsWith('/_astro') &&
-    /[A-Z]/.test(pathname)
-  ) {
-    const cleanPath = pathname.toLowerCase().replace(/\/+$/, '') || '/';
-    return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
+  // A. Apex Domain Enforcement: Redirect www to apex canonical domain
+  if (url.hostname === 'www.mantrameridianriverside.com') {
+    const rawPath = pathname.replace(/\/+$/, '');
+    const isFile = /\.[a-zA-Z0-9]+$/.test(pathname);
+    const targetPath = isFile ? pathname : (rawPath === '' ? '/' : `${rawPath}/`);
+    return Response.redirect(`https://mantrameridianriverside.com${targetPath}${url.search}`, 301);
   }
 
-  // B. Strip trailing slashes for non-root paths to match official sitemap.xml
-  if (pathname.length > 1 && pathname.endsWith('/')) {
-    const cleanPath = pathname.replace(/\/+$/, '');
-    return Response.redirect(`${url.origin}${cleanPath}${url.search}`, 301);
+  const isStaticAsset = (
+    pathname.startsWith('/api') ||
+    pathname.startsWith('/assets') ||
+    pathname.startsWith('/_astro') ||
+    pathname.startsWith('/_image') ||
+    /\.[a-zA-Z0-9]+$/.test(pathname)
+  );
+
+  // B. Lowercase path enforcement with trailing slash
+  if (!isStaticAsset && /[A-Z]/.test(pathname)) {
+    const lowerPath = pathname.toLowerCase().replace(/\/+$/, '');
+    const targetPath = lowerPath === '' ? '/' : `${lowerPath}/`;
+    return Response.redirect(`${url.origin}${targetPath}${url.search}`, 301);
+  }
+
+  // C. Enforce trailing slashes on all directory routes to match Cloudflare Pages routing
+  if (!isStaticAsset && !pathname.endsWith('/')) {
+    return Response.redirect(`${url.origin}${pathname}/${url.search}`, 301);
   }
 
   // 3. Extract Cloudflare Edge Geo-Intelligence
@@ -166,7 +176,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
       .on('a[href]', {
         element(el: any) {
           const href = el.getAttribute('href') || '';
-          // C1. Internal Links: Heal uppercase paths and trailing slashes on the wire before search engines read them
+          // C1. Internal Links: Heal uppercase paths and ensure trailing slashes on the wire before search engines read them
           if (
             href.startsWith('/') &&
             !href.startsWith('/api') &&
@@ -174,14 +184,18 @@ export const onRequest = defineMiddleware(async (context, next) => {
             !href.startsWith('/_astro') &&
             !href.startsWith('//')
           ) {
-            const [pathPart, queryPart] = href.split('?');
-            let cleanPath = pathPart.toLowerCase();
-            if (cleanPath.length > 1 && cleanPath.endsWith('/')) {
-              cleanPath = cleanPath.replace(/\/+$/, '');
-            }
-            const normalizedHref = queryPart ? `${cleanPath}?${queryPart}` : cleanPath;
-            if (normalizedHref !== href) {
-              el.setAttribute('href', normalizedHref);
+            const [pathAndQuery, hashPart] = href.split('#');
+            const [pathPart, queryPart] = pathAndQuery.split('?');
+            // Only normalize directory paths (ignore static files with extensions like .pdf, .xml, .webp)
+            if (!/\.[a-zA-Z0-9]+$/.test(pathPart)) {
+              const cleanPath = pathPart.toLowerCase().replace(/\/+$/, '');
+              const normPath = cleanPath === '' ? '/' : `${cleanPath}/`;
+              let normalizedHref = normPath;
+              if (queryPart) normalizedHref += `?${queryPart}`;
+              if (hashPart) normalizedHref += `#${hashPart}`;
+              if (normalizedHref !== href) {
+                el.setAttribute('href', normalizedHref);
+              }
             }
           }
           // C2. External Links: Enforce noopener noreferrer for security and link equity defense

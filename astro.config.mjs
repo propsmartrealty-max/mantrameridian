@@ -7,6 +7,7 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://mantrameridianriverside.com',
   output: 'server',
+  trailingSlash: 'always',
   compressHTML: true,
   build: {
     inlineStylesheets: 'auto'

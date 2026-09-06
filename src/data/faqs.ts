@@ -52,7 +52,7 @@ export const faqsData: FAQItem[] = [
     id: "how-can-i-request-pricing-brochure",
     category: "pricing",
     question: "How can I obtain the detailed pricing, floor plan kit, and schedule a private visit?",
-    answer: "Discerning homebuyers can schedule a private presentation or request the digital architectural brochure by utilizing our confidential 3-step 'Private Presentation' digital concierge on this website, or by calling our concierge line at +91 77440 09295."
+    answer: "Discerning homebuyers can schedule a private presentation or request the digital architectural brochure by utilizing our confidential 3-step 'Private Presentation' digital concierge on this website, or by connecting with our VIP WhatsApp concierge directly via the interactive concierge button."
   },
   {
     id: "is-meridian-good-investment",
@@ -112,6 +112,6 @@ export const faqsData: FAQItem[] = [
     id: "contact-sales-office-details",
     category: "location",
     question: "What is the official contact number and sales gallery address for Mantra Meridian Balewadi?",
-    answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached by phone at +91 77440 09295, or directly via the WhatsApp concierge button on this website. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
+    answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached directly via the verified WhatsApp concierge button on this website or by submitting a private presentation request. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
   }
 ];

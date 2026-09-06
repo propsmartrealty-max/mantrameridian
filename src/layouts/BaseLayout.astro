@@ -28,12 +28,13 @@ const {
   customSchema
 } = Astro.props;
 
-// Authoritative canonical URL normalization strictly matching official sitemap.xml
+// Authoritative canonical URL normalization strictly matching trailing-slash routing
 const siteOrigin = "https://mantrameridianriverside.com";
-const cleanPathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
+const rawPath = Astro.url.pathname.replace(/\/+$/, '');
+const normalizedPath = rawPath === '' ? '/' : `${rawPath}/`;
 const computedCanonical = canonicalUrl 
-  ? (canonicalUrl.replace(/\/+$/, '') || `${siteOrigin}/`)
-  : (cleanPathname === '/' ? `${siteOrigin}/` : `${siteOrigin}${cleanPathname}`);
+  ? (canonicalUrl.endsWith('/') ? canonicalUrl : `${canonicalUrl}/`)
+  : `${siteOrigin}${normalizedPath}`;
 
 // Prepare Google Search Central compliant Review objects with explicit itemReviewed
 const structuredReviews = verifiedReviews.map((rev) => ({
@@ -77,7 +78,7 @@ const coreGraph: any[] = [
       "name": "Mantra Meridian Riverside",
       "alternateName": meridianKeywordEcosystem.brandKeywords,
       "legalName": "Mantra Properties",
-      "url": "https://mantrameridianriverside.com",
+      "url": "https://mantrameridianriverside.com/",
       "telephone": projectData.contact.phone,
       "foundingDate": "2007",
       "founder": {
@@ -236,7 +237,7 @@ const coreGraph: any[] = [
             "price": "8500000",
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock",
-            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk"
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/"
           }
         },
         {
@@ -254,7 +255,7 @@ const coreGraph: any[] = [
             "price": "12800000",
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock",
-            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk"
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/"
           }
         },
         {
@@ -272,7 +273,7 @@ const coreGraph: any[] = [
             "price": "18500000",
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock",
-            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex"
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/"
           }
         },
         {
@@ -290,7 +291,7 @@ const coreGraph: any[] = [
             "price": "24000000",
             "priceCurrency": "INR",
             "availability": "https://schema.org/InStock",
-            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk"
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/"
           }
         }
       ],
@@ -337,56 +338,56 @@ const coreGraph: any[] = [
           "position": 1,
           "name": "Residences & Configurations",
           "description": "Explore 2 BHK, 3 BHK, 3 BHK Duplex, and 4 BHK luxury residences at Mantra Meridian Riverside Balewadi.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 2,
           "name": "Pricing & 2026 Cost Sheet",
           "description": "All-inclusive pricing breakdown, installment plans, and official cost sheet for Mantra Meridian Balewadi.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 3,
           "name": "2 BHK Contemporary Homes",
           "description": "815 sq.ft carpet 2 BHK apartments starting from ₹85 Lakhs* along the Mula River.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 4,
           "name": "3 BHK Riverside Residences",
           "description": "1,180 sq.ft carpet 3 BHK apartments with wrap-around river-breeze decks.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 5,
           "name": "3 BHK Signature Sky Duplex",
           "description": "Signature two-tier sky homes featuring 20-foot double-height ceilings.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 6,
           "name": "Balewadi Location Advantage",
           "description": "Connectivity intelligence, 3 mins from Balewadi High Street, 10 mins from Hinjewadi IT Park.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/location"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/location/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 7,
           "name": "8-Acre Masterplan & Amenities",
           "description": "75%+ open green landscapes, 500m riverside boardwalk, and 20,000 sq.ft clubhouse.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan/"
         },
         {
           "@type": "SiteNavigationElement",
           "position": 8,
           "name": "MahaRERA Statutory Compliance",
           "description": "Official MahaRERA P52100045688 certification, sanctioned layouts, and legal clearances.",
-          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/rera"
+          "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/rera/"
         }
       ]
     },
@@ -403,7 +404,7 @@ const coreGraph: any[] = [
         "@type": "SearchAction",
         "target": {
           "@type": "EntryPoint",
-          "urlTemplate": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences?q={search_term_string}"
+          "urlTemplate": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences/?q={search_term_string}"
         },
         "query-input": "required name=search_term_string"
       }

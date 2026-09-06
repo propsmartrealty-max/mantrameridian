@@ -10,14 +10,14 @@ const { currentPath = '/' } = Astro.props;
 
 // Secondary exploration links housed in an elegant luxury dropdown
 const exploreDropdownLinks = [
-  { label: 'The Riverside Story', href: '/mantra-meridian-riverside/riverside', desc: '500m river boardwalk & biophilic calm' },
-  { label: '8-Acre Masterplan', href: '/mantra-meridian-riverside/masterplan', desc: 'Podium layout & tower zoning' },
-  { label: 'Pune Real Estate Index', href: '/pune-real-estate', desc: 'Citywide luxury benchmark & yields' },
-  { label: 'Balewadi Real Estate Hub', href: '/balewadi', desc: 'Micromarket guide & High Street' },
-  { label: 'West Pune Luxury Guide', href: '/west-pune', desc: 'Baner & Hinjewadi corridor analysis' },
-  { label: 'The Meridian Journal', href: '/mantra-meridian-riverside/journal', desc: 'Architectural essays & market insights' },
-  { label: 'MahaRERA Compliance', href: '/mantra-meridian-riverside/rera', desc: 'Registration P52100045688 & filings' },
-  { label: 'Document Library', href: '/mantra-meridian-riverside/documents', desc: 'Download official brochure PDF' },
+  { label: 'The Riverside Story', href: '/mantra-meridian-riverside/riverside/', desc: '500m river boardwalk & biophilic calm' },
+  { label: '8-Acre Masterplan', href: '/mantra-meridian-riverside/masterplan/', desc: 'Podium layout & tower zoning' },
+  { label: 'Pune Real Estate Index', href: '/pune-real-estate/', desc: 'Citywide luxury benchmark & yields' },
+  { label: 'Balewadi Real Estate Hub', href: '/balewadi/', desc: 'Micromarket guide & High Street' },
+  { label: 'West Pune Luxury Guide', href: '/west-pune/', desc: 'Baner & Hinjewadi corridor analysis' },
+  { label: 'The Meridian Journal', href: '/mantra-meridian-riverside/journal/', desc: 'Architectural essays & market insights' },
+  { label: 'MahaRERA Compliance', href: '/mantra-meridian-riverside/rera/', desc: 'Registration P52100045688 & filings' },
+  { label: 'Document Library', href: '/mantra-meridian-riverside/documents/', desc: 'Download official brochure PDF' },
 ];
 ---
 
@@ -32,7 +32,7 @@ const exploreDropdownLinks = [
     {/* Center Navigation Links (High-Contrast Pearl & Gold typography) */}
     <nav aria-label="Main Navigation" class="hidden lg:flex items-center gap-4 xl:gap-6 text-[13px] font-mono tracking-[0.12em] font-semibold shrink-0">
       <a
-        href="/mantra-meridian-riverside/residences"
+        href="/mantra-meridian-riverside/residences/"
         class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/residences') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -43,7 +43,7 @@ const exploreDropdownLinks = [
         )}
       </a>
       <a
-        href="/mantra-meridian-riverside/floor-plans"
+        href="/mantra-meridian-riverside/floor-plans/"
         class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/floor-plans') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -54,7 +54,7 @@ const exploreDropdownLinks = [
         )}
       </a>
       <a
-        href="/mantra-meridian-riverside/price"
+        href="/mantra-meridian-riverside/price/"
         class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/price') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -65,7 +65,7 @@ const exploreDropdownLinks = [
         )}
       </a>
       <a
-        href="/mantra-meridian-riverside/amenities"
+        href="/mantra-meridian-riverside/amenities/"
         class={`hidden xl:block transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/amenities') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -76,7 +76,7 @@ const exploreDropdownLinks = [
         )}
       </a>
       <a
-        href="/mantra-meridian-riverside/location"
+        href="/mantra-meridian-riverside/location/"
         class={`transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/location') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -87,7 +87,7 @@ const exploreDropdownLinks = [
         )}
       </a>
       <a
-        href="/mantra-meridian-riverside/gallery"
+        href="/mantra-meridian-riverside/gallery/"
         class={`hidden xl:block transition-colors duration-200 hover:text-champagne relative py-1.5 whitespace-nowrap ${
           currentPath.startsWith('/mantra-meridian-riverside/gallery') ? 'text-champagne font-bold' : 'text-architectural-pearl'
         }`}
@@ -180,19 +180,19 @@ const exploreDropdownLinks = [
       <div class="space-y-3">
         <span class="text-xs tracking-[0.2em] text-champagne uppercase font-mono font-semibold block">RESIDENCES &amp; PRICING</span>
         <div class="grid grid-cols-2 gap-2.5">
-          <a href="/mantra-meridian-riverside/residences" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/residences/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>All Formats</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/price" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/price/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Price List</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/floor-plans" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/floor-plans/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Floor Plans</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/3-bhk-duplex" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/3-bhk-duplex/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Sky Duplex</span>
             <span class="text-champagne text-xs">→</span>
           </a>
@@ -203,19 +203,19 @@ const exploreDropdownLinks = [
       <div class="space-y-3">
         <span class="text-xs tracking-[0.2em] text-champagne uppercase font-mono font-semibold block">THE ESTATE &amp; LIFESTYLE</span>
         <div class="grid grid-cols-2 gap-2.5">
-          <a href="/mantra-meridian-riverside/amenities" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/amenities/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>30+ Amenities</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/riverside" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/riverside/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Riverside Life</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/masterplan" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/masterplan/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>8-Acres Plan</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/gallery" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/gallery/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Photo Archive</span>
             <span class="text-champagne text-xs">→</span>
           </a>
@@ -226,23 +226,23 @@ const exploreDropdownLinks = [
       <div class="space-y-3">
         <span class="text-xs tracking-[0.2em] text-champagne uppercase font-mono font-semibold block">LOCATION &amp; VERIFICATION</span>
         <div class="grid grid-cols-2 gap-2.5">
-          <a href="/mantra-meridian-riverside/location" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/location/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Location Radar</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/balewadi" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/balewadi/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Balewadi Hub</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/rera" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/rera/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>MahaRERA Doc</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/mantra-meridian-riverside/journal" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+          <a href="/mantra-meridian-riverside/journal/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>The Journal</span>
             <span class="text-champagne text-xs">→</span>
           </a>
-          <a href="/pune-real-estate" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between col-span-2 border-champagne/30 bg-champagne/5">
+          <a href="/pune-real-estate/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between col-span-2 border-champagne/30 bg-champagne/5">
             <span>Pune Real Estate Index (2026–2030)</span>
             <span class="text-champagne text-xs font-semibold">→</span>
           </a>
@@ -273,7 +273,7 @@ const exploreDropdownLinks = [
           href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`}
           class="btn-luxury-outline w-full min-h-[50px] text-xs font-mono tracking-[0.14em] text-center flex items-center justify-center"
         >
-          CALL CONCIERGE: {projectData.contact.phone}
+          CALL CONCIERGE DESK
         </a>
       </div>
 

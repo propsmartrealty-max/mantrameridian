@@ -160,7 +160,7 @@ export const statutoryPermutations: string[] = [
 // 07. Contact, Sales Office & Site Visit Permutations
 export const contactPermutations: string[] = [
   "Mantra Meridian Riverside Balewadi contact number",
-  "Mantra Meridian Balewadi phone number +91 77440 09295",
+  "Mantra Meridian Balewadi official contact concierge",
   "Mantra Meridian sales office Balewadi",
   "Mantra Meridian sales gallery Balewadi Village Road",
   "Mantra Meridian site visit booking",

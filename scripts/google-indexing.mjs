@@ -42,7 +42,7 @@ Options:
 
 Examples:
   node scripts/google-indexing.mjs
-  node scripts/google-indexing.mjs --url https://mantrameridianriverside.com/mantra-meridian-riverside/price
+  node scripts/google-indexing.mjs --url https://mantrameridianriverside.com/mantra-meridian-riverside/price/
   node scripts/google-indexing.mjs --inspect
 `);
   process.exit(0);
