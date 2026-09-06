@@ -1,4 +1,5 @@
 import { defineMiddleware } from 'astro:middleware';
+import { identifyWhiteBot } from './utils/bot-detection';
 
 /**
  * ULTRA-ADVANCED CLOUDFLARE EDGE MIDDLEWARE
@@ -103,11 +104,9 @@ export const onRequest = defineMiddleware(async (context, next) => {
     isNRI
   };
 
-  // 4. Detect Search Bots & AI Crawlers for Priority Delivery
+  // 4. Detect Verified White Bots (Search Engines & AI Crawlers)
   const userAgent = request.headers.get('user-agent') || '';
-  const isGooglebot = /Googlebot|Google-InspectionTool|GoogleOther|Google-Extended|Mediapartners-Google|AdsBot-Google/i.test(userAgent);
-  const isSearchEngineBot = /Bingbot|msnbot|DuckDuckBot|YandexBot|Baiduspider/i.test(userAgent);
-  const isAICrawler = /GPTBot|ChatGPT-User|PerplexityBot|ClaudeBot|anthropic-ai|Applebot|Bytespider|CCBot/i.test(userAgent);
+  const botInfo = identifyWhiteBot(userAgent, (request as any).cf);
 
   // Execute standard Astro server handler
   const response = await next();
@@ -129,12 +128,14 @@ export const onRequest = defineMiddleware(async (context, next) => {
   response.headers.set('X-Edge-Ray', cfRay);
   response.headers.set('X-Edge-Execution-Time', `${edgeDuration}ms`);
 
-  // Set Geo Market segmentation cookie for NRI routing
+  // Set Geo Market segmentation cookie for NRI routing only for humans (never pollute bots)
   const marketTag = isNRI ? 'nri' : 'domestic';
-  response.headers.set(
-    'Set-Cookie',
-    `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
-  );
+  if (!botInfo.isWhiteBot) {
+    response.headers.set(
+      'Set-Cookie',
+      `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
+    );
+  }
 
   // 103 Early Hints link headers for fast edge browser pre-warming
   const acceptHeader = request.headers.get('accept') || '';
@@ -145,10 +146,11 @@ export const onRequest = defineMiddleware(async (context, next) => {
     );
   }
 
-  // Ensure Google Search bot and Tier-1 search engines receive explicit indexing signals
-  if (isGooglebot || isSearchEngineBot || isAICrawler) {
+  // Ensure Verified White Bots receive explicit indexing signals
+  if (botInfo.isWhiteBot) {
     response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
-    response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
+    response.headers.set('X-Crawler-Priority', 'Tier-1-Verified-WhiteBot');
+    response.headers.set('X-WhiteBot-Type', botInfo.botType);
   }
 
   // Edge Caching headers with Stale-While-Revalidate and Cache-Tag
@@ -214,10 +216,10 @@ export const onRequest = defineMiddleware(async (context, next) => {
           }
         }
       })
-      // D. Crawler-Specific Content Accessibility: Auto-expand FAQ accordions for Googlebot & AI Crawlers
+      // D. White Bot Content Accessibility: Auto-expand FAQ accordions for verified bots
       .on('details', {
         element(el: any) {
-          if (isGooglebot || isSearchEngineBot || isAICrawler) {
+          if (botInfo.shouldExpandDetails) {
             el.setAttribute('open', '');
           }
         }

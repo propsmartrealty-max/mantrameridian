@@ -3,7 +3,7 @@
 # Cloudflare Pages Global Edge Deployment
 # ==============================================================================
 
-# 1. Global Defaults Across All Routes
+# 1. Universal Security & Performance Directives (Applied to All Paths)
 /*
   X-Frame-Options: SAMEORIGIN
   X-Content-Type-Options: nosniff
@@ -17,11 +17,6 @@
   X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
   Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
   Link: </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
-  Cache-Tag: mantra-meridian, html-pages, balewadi-real-estate, edge-v8
-  Cloudflare-CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400, stale-if-error=604800
-  CDN-Cache-Control: max-age=604800, stale-while-revalidate=86400, stale-if-error=604800
-  Surrogate-Control: max-age=604800, stale-while-revalidate=86400
-  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=604800
 
 # 2. Immutable Long-Term Edge Cache for Hashed Astro Assets
 /_astro/*
@@ -44,47 +39,61 @@
   Timing-Allow-Origin: *
   Cross-Origin-Resource-Policy: cross-origin
 
-# 5. Search Engine Sitemaps & Feeds
+# 5. Search Engine Sitemaps & XML Feeds
 /sitemap-index.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Cache-Tag: mantra-meridian, sitemaps
 
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Cache-Tag: mantra-meridian, sitemaps
 
 /image-sitemap.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Cache-Tag: mantra-meridian, sitemaps
 
 # 6. Web Bot Discovery & LLM Monograph
 /robots.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Cache-Tag: mantra-meridian, discovery
 
 /llms.txt
   Content-Type: text/markdown; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
   Access-Control-Allow-Origin: *
+  Cache-Tag: mantra-meridian, discovery
 
+# 7. Brand Icons & Manifest
 /favicon.svg
   Content-Type: image/svg+xml
   Cache-Control: public, max-age=604800, s-maxage=604800
+  Access-Control-Allow-Origin: *
 
 /favicon.ico
   Content-Type: image/x-icon
   Cache-Control: public, max-age=604800, s-maxage=604800
+  Access-Control-Allow-Origin: *
 
 /apple-touch-icon.png
   Content-Type: image/png
   Cache-Control: public, max-age=604800, s-maxage=604800
+  Access-Control-Allow-Origin: *
 
 /site.webmanifest
   Content-Type: application/manifest+json; charset=utf-8
   Cache-Control: public, max-age=86400, s-maxage=86400
   Access-Control-Allow-Origin: *
 
-# 7. Cloudflare Edge Property Status
+# 8. Edge Verification Verification Token
+/4c7e6b0a9f1248a881335b2e3a1d95c2.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=604800, s-maxage=604800
+
+# 9. Dynamic Edge Telemetry & Property Status APIs
 /api/property-status
   Content-Type: application/json; charset=utf-8
   Cache-Control: public, max-age=60, s-maxage=300, stale-while-revalidate=600
@@ -92,7 +101,6 @@
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   X-Content-Type-Options: nosniff
 
-# 8. Cloudflare Edge Telemetry
 /api/edge-telemetry
   Content-Type: application/json; charset=utf-8
   Cache-Control: no-store, no-cache, must-revalidate
@@ -100,7 +108,7 @@
   Access-Control-Allow-Methods: GET, HEAD, OPTIONS
   X-Content-Type-Options: nosniff
 
-# 9. Cloudflare Edge API Catch-All
+# 10. Dynamic API Catch-All (Strict No-Cache)
 /api/*
   Cache-Control: no-store, no-cache, must-revalidate
   Access-Control-Allow-Origin: *

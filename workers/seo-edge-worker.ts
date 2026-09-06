@@ -6,17 +6,20 @@
  * Architecture Stages:
  * Stage 1: Edge WAF Lite (< 1ms malicious probe drop with 403 Forbidden)
  * Stage 2: Canonical & Apex URL Normalizer (301: www -> apex, uppercase -> lowercase, trailing slash)
- * Stage 3: Edge Caching Engine via caches.default (strips tracking query params, stale-while-revalidate)
- * Stage 4: HTTP 103 Early Hints (LCP hero image preload, font preconnect)
- * Stage 5: Cloudflare HTMLRewriter Zero-Buffer DOM Streaming:
+ * Stage 3: Edge White Bot Engine & Geolocation Intelligence
+ * Stage 4: Edge Caching Engine via caches.default (strips tracking query params, stale-while-revalidate)
+ * Stage 5: Origin Fetch (Assets / Pages binding with Cloudflare edge caching)
+ * Stage 6: Cloudflare HTMLRewriter Zero-Buffer DOM Streaming:
  *          - <head> Local Geo OG & DNS prefetch
- *          - details FAQ & Spec auto-expansion for Googlebot / AI Crawlers
+ *          - details FAQ & Spec auto-expansion for Verified White Bots
  *          - data-nosnippet on statutory disclaimers
  *          - data-speakable on primary headings for Voice Search / AI Overviews
  *          - a[href] wire-level internal link healer & external link hardening
  *          - img LCP fetchpriority="high", auto-alt fallback
- * Stage 6: Hardened Edge Headers (Server-Timing, X-Robots-Tag, cf_geo_market cookie)
+ * Stage 7: Hardened Edge Headers (Server-Timing, X-Robots-Tag, zero-cookie bot response)
  */
+
+import { identifyWhiteBot, type WhiteBotInfo } from '../src/utils/bot-detection.ts';
 
 export interface ExecutionContext {
   waitUntil: (promise: Promise<unknown>) => void;
@@ -74,10 +77,6 @@ const TRACKING_PARAMS: readonly string[] = [
 // Target NRI Luxury Investor countries (UAE, USA, UK, Singapore, Qatar, Saudi Arabia, Canada, Australia)
 const NRI_COUNTRIES = new Set(['AE', 'US', 'GB', 'SG', 'QA', 'SA', 'CA', 'AU']);
 
-// Bot crawlers that receive Tier-1 fast-path, open accordions, and indexing headers
-const SEARCH_BOT_REGEX = /Googlebot|Google-InspectionTool|GoogleOther|Google-Extended|Mediapartners-Google|AdsBot-Google|Bingbot|msnbot|DuckDuckBot|YandexBot|Baiduspider/i;
-const AI_CRAWLER_REGEX = /GPTBot|ChatGPT-User|PerplexityBot|ClaudeBot|anthropic-ai|Applebot|Bytespider|CCBot/i;
-
 /**
  * Normalizes a URL for edge caching by stripping marketing tracking parameters.
  */
@@ -119,6 +118,7 @@ export default {
     const url = new URL(request.url);
     const pathname = url.pathname;
     const userAgent = request.headers.get('user-agent') || '';
+    const cfData = (request as any).cf;
 
     // =========================================================================
     // STAGE 1: Edge WAF Lite - Drop malicious probes in < 1ms
@@ -163,7 +163,7 @@ export default {
     }
 
     // =========================================================================
-    // STAGE 3: Extract Edge Geo-Intelligence & Bot Signatures
+    // STAGE 3: White Bot Engine & Edge Geo-Intelligence
     // =========================================================================
     const cfCountry = request.headers.get('cf-ipcountry') || 'IN';
     const cfCity = request.headers.get('cf-ipcity') || 'Pune';
@@ -173,9 +173,8 @@ export default {
     const isNRI = NRI_COUNTRIES.has(cfCountry.toUpperCase());
     const marketTag = isNRI ? 'nri' : 'domestic';
 
-    const isSearchBot = SEARCH_BOT_REGEX.test(userAgent);
-    const isAICrawler = AI_CRAWLER_REGEX.test(userAgent);
-    const isCrawler = isSearchBot || isAICrawler;
+    // Comprehensive White Bot Taxonomy Inspection
+    const botInfo: WhiteBotInfo = identifyWhiteBot(userAgent, cfData);
 
     // =========================================================================
     // STAGE 4: Edge Caching Layer (caches.default) with Stale-While-Revalidate
@@ -191,8 +190,15 @@ export default {
       try {
         cache = (globalThis as any).caches.default;
         const normalizedUrl = getNormalizedCacheUrl(url);
-        // Vary cache by crawler vs human to cache the bot-expanded DOM safely
-        const cacheVariant = isCrawler ? 'bot' : (isNRI ? 'nri' : 'std');
+
+        // Separate cache variant for White Bots vs Humans so bots always receive pre-expanded DOM
+        let cacheVariant = 'std';
+        if (botInfo.isWhiteBot) {
+          cacheVariant = 'whitebot';
+        } else if (isNRI) {
+          cacheVariant = 'nri';
+        }
+
         normalizedUrl.searchParams.set('__edge_variant', cacheVariant);
         cacheKey = new Request(normalizedUrl.toString(), {
           method: 'GET',
@@ -204,6 +210,15 @@ export default {
           if (cachedResponse) {
             const res = new Response(cachedResponse.body, cachedResponse);
             const duration = (performance.now() - startTime).toFixed(2);
+
+            // Re-apply visitor-specific cookie only for humans (never pollute bots with cookies)
+            if (!botInfo.isWhiteBot) {
+              res.headers.set(
+                'Set-Cookie',
+                `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
+              );
+            }
+
             res.headers.set('CF-Cache-Status', 'HIT');
             res.headers.set(
               'Server-Timing',
@@ -213,30 +228,33 @@ export default {
           }
         }
       } catch (err) {
-        // Cache failure should not block request delivery
         console.error('Edge cache lookup exception:', err);
       }
     }
 
     // =========================================================================
-    // STAGE 5: Origin Fetch (Cloudflare Pages ASSETS binding or upstream fetch)
+    // STAGE 5: Origin Fetch (Assets binding or Subrequest Edge Cache)
     // =========================================================================
     let originResponse: Response;
     try {
       if (env.ASSETS && typeof env.ASSETS.fetch === 'function') {
         originResponse = await env.ASSETS.fetch(request);
       } else {
-        originResponse = await fetch(request);
+        originResponse = await fetch(request, {
+          cf: {
+            cacheEverything: true,
+            cacheTtl: 86400
+          }
+        } as any);
       }
     } catch (fetchErr) {
       console.error('Origin fetch error:', fetchErr);
       return new Response('Edge Gateway Service Unavailable', { status: 502 });
     }
 
-    // Clone response so we can modify headers and transform body
+    // Clone response so headers can be added and body can be transformed
     let response = new Response(originResponse.body, originResponse);
 
-    // If response is not 200 OK or is a redirect, pass through immediately
     if (response.status !== 200) {
       return response;
     }
@@ -254,12 +272,14 @@ export default {
         .on('head', {
           element(head: any) {
             const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
+            const botMeta = botInfo.isWhiteBot ? `<meta name="cf-bot-type" content="${botInfo.botType}" />\n` : '';
             head.append(
               `<meta name="cf-edge-pop" content="${cfColo}" />\n` +
               `<meta name="cf-edge-speed" content="sub-15ms" />\n` +
               `<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n` +
               `<meta name="cf-edge-market" content="${marketTag}" />\n` +
               nriMeta +
+              botMeta +
               `<meta property="og:locality" content="Balewadi" />\n` +
               `<meta property="og:region" content="Maharashtra" />\n` +
               `<meta property="og:postal-code" content="411045" />\n` +
@@ -273,10 +293,10 @@ export default {
             );
           }
         })
-        // 6B. Googlebot & AI Crawler Accordion Auto-Expansion
+        // 6B. White Bot Accordion Auto-Expansion (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot)
         .on('details', {
           element(el: any) {
-            if (isCrawler) {
+            if (botInfo.shouldExpandDetails) {
               el.setAttribute('open', '');
             }
           }
@@ -354,12 +374,11 @@ export default {
     }
 
     // =========================================================================
-    // STAGE 7: Response Header Hardening & Telemetry
+    // STAGE 7: Response Header Hardening & Zero-Cookie Bot Output
     // =========================================================================
     const endTime = performance.now();
     const duration = (endTime - startTime).toFixed(2);
 
-    // Server-Timing for Core Web Vitals diagnostics
     response.headers.set(
       'Server-Timing',
       `cf-edge;desc="Cloudflare Edge Execution";dur=${duration}, cf-cache;desc="MISS", cf-colo;desc="${cfColo}", cf-country;desc="${cfCountry}"`
@@ -379,22 +398,25 @@ export default {
       );
     }
 
-    // Set NRI Market segmentation cookie
-    response.headers.set(
-      'Set-Cookie',
-      `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
-    );
+    // Cookies: strictly only for human visitors (never pollute white bots with cookies)
+    if (!botInfo.isWhiteBot) {
+      response.headers.set(
+        'Set-Cookie',
+        `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
+      );
+    }
 
-    // Explicit crawler directives
-    if (isCrawler) {
+    // White Bot explicit indexing directives
+    if (botInfo.isWhiteBot) {
       response.headers.set(
         'X-Robots-Tag',
         'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'
       );
-      response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
+      response.headers.set('X-Crawler-Priority', 'Tier-1-Verified-WhiteBot');
+      response.headers.set('X-WhiteBot-Type', botInfo.botType);
     }
 
-    // Edge Caching headers with Stale-While-Revalidate and Cache-Tag
+    // Clean Edge Caching headers with Stale-While-Revalidate and Cache-Tag
     if (isHtml && !bypassCache) {
       response.headers.set(
         'Cache-Control',
@@ -403,9 +425,11 @@ export default {
       response.headers.set('Cache-Tag', 'mantra-meridian, html-pages, riverside-balewadi');
     }
 
-    // Asynchronously store into caches.default if cacheable
+    // Asynchronously store into caches.default with Set-Cookie stripped!
     if (cache && cacheKey && isHtml && !bypassCache && response.status === 200) {
-      const responseToCache = response.clone();
+      const responseToCache = new Response(response.body, response);
+      // CRITICAL: Strip Set-Cookie from cached copy so Cloudflare Cache API stores it!
+      responseToCache.headers.delete('Set-Cookie');
       ctx.waitUntil(cache.put(cacheKey, responseToCache));
     }
 
