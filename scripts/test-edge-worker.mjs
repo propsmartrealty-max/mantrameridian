@@ -17,6 +17,7 @@
 import assert from 'node:assert/strict';
 import worker, { getNormalizedCacheUrl, isStaticAssetPath } from '../workers/seo-edge-worker.ts';
 import { identifyWhiteBot } from '../src/utils/bot-detection.ts';
+import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords } from '../src/data/keywords.ts';
 
 console.log('🧪 Starting Cloudflare Edge SEO Worker & White Bot Test Suite...\n');
 
@@ -126,6 +127,30 @@ runTest('identifyWhiteBot accurately categorizes verified search engines and AI 
 });
 
 // -----------------------------------------------------------------------------
+// 3B. Core 5 Target Brand Queries Integrity Tests
+// -----------------------------------------------------------------------------
+runTest('Core 5 brand keywords are rigorously prioritized at positions #1-#5', () => {
+  const expected5 = [
+    'Mantra Meridian',
+    'Mantra Balewadi',
+    'Mantra Riverside',
+    'Mantra Riverside Balewadi',
+    'Mantra Meridian Balewadi'
+  ];
+
+  assert.deepEqual([...coreBrandQueries], expected5);
+  assert.deepEqual(brandPermutations.slice(0, 5), expected5);
+
+  const expectedLower = expected5.map((k) => k.toLowerCase());
+  assert.deepEqual([...coreBrandQueriesLower], expectedLower);
+
+  // defaultMetaKeywords must contain all 5 target phrases
+  for (const kw of expected5) {
+    assert.ok(defaultMetaKeywords.includes(kw), `defaultMetaKeywords missing "${kw}"`);
+  }
+});
+
+// -----------------------------------------------------------------------------
 // 4. Edge WAF Lite Tests
 // -----------------------------------------------------------------------------
 await runAsyncTest('Edge WAF instantly drops /wp-admin and /.env with 403 Forbidden', async () => {
@@ -203,7 +228,8 @@ await runAsyncTest('Worker delivers zero-cookie response with Tier-1 headers to 
 
   // Cache-Control & Cache-Tag
   assert.ok(res.headers.get('Cache-Control')?.includes('stale-while-revalidate'));
-  assert.equal(res.headers.get('Cache-Tag'), 'mantra-meridian, html-pages, riverside-balewadi');
+  assert.equal(res.headers.get('Cache-Tag'), 'mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, riverside-balewadi');
+  assert.equal(res.headers.get('X-Edge-Keywords'), 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
 });
 
 await runAsyncTest('Worker delivers zero-cookie response with Tier-1 headers to OpenAI GPTBot', async () => {

@@ -264,16 +264,32 @@ export default {
     // =========================================================================
     const contentType = response.headers.get('content-type') || '';
     const isHtml = contentType.includes('text/html');
-
     if (isHtml && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
+      // Target Image Alt Permutations cycling through the 5 high-priority brand queries
+      const TARGET_IMAGE_ALTS = [
+        'Mantra Meridian Balewadi Luxury Residences',
+        'Mantra Riverside Balewadi Riverfront Living',
+        'Mantra Meridian Pune 2, 3, 4 BHK Apartments',
+        'Mantra Balewadi by Mantra Properties',
+        'Mantra Riverside Luxury River-Facing Homes',
+        'Mantra Meridian Balewadi Signature Sky Duplex'
+      ];
+      let altCounter = 0;
+
       const RewriterClass = (globalThis as any).HTMLRewriter;
       const rewriter = new RewriterClass()
-        // 6A. Injects Local Geo Metadata & DNS Hints into <head>
+        // 6A. Injects Authoritative Keyword Meta, Brand Aliases, Local Geo Metadata & DNS Hints into <head>
         .on('head', {
           element(head: any) {
             const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
             const botMeta = botInfo.isWhiteBot ? `<meta name="cf-bot-type" content="${botInfo.botType}" />\n` : '';
+            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra meridian riverside balewadi, luxury 2 3 4 bhk flats pune';
+            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi';
+
             head.append(
+              `<meta name="keywords" content="${targetKeywords}" />\n` +
+              `<meta name="brand-aliases" content="${brandAliases}" />\n` +
+              `<meta name="search-authority" content="Mantra Meridian Balewadi | Mantra Riverside Balewadi" />\n` +
               `<meta name="cf-edge-pop" content="${cfColo}" />\n` +
               `<meta name="cf-edge-speed" content="sub-15ms" />\n` +
               `<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n` +
@@ -344,15 +360,21 @@ export default {
             }
           }
         })
-        // 6F. Largest Contentful Paint (LCP) Hero Prioritization & Alt Fallback
+        // 6F. Largest Contentful Paint (LCP) Hero Prioritization & Dynamic Keyword Alt Text Rotator
         .on('img', {
           element(el: any) {
             const src = el.getAttribute('src') || '';
             const className = el.getAttribute('class') || '';
             const isHero = src.includes('mantra-meridian-hero') || className.includes('hero') || el.hasAttribute('data-hero');
+            const currentAlt = el.getAttribute('alt') || '';
 
-            if (!el.getAttribute('alt')) {
-              el.setAttribute('alt', 'Mantra Meridian Riverside Balewadi Pune Luxury Residences');
+            if (!currentAlt || currentAlt === 'image' || currentAlt === 'photo' || currentAlt === 'hero') {
+              if (isHero) {
+                el.setAttribute('alt', 'Mantra Meridian Balewadi | Mantra Riverside Balewadi Architecture');
+              } else {
+                el.setAttribute('alt', TARGET_IMAGE_ALTS[altCounter % TARGET_IMAGE_ALTS.length]);
+                altCounter++;
+              }
             }
 
             if (isHero) {
@@ -424,7 +446,8 @@ export default {
         'Cache-Control',
         'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
       );
-      response.headers.set('Cache-Tag', 'mantra-meridian, html-pages, riverside-balewadi');
+      response.headers.set('Cache-Tag', 'mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, riverside-balewadi');
+      response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
     }
 
     // Asynchronously store into caches.default with Set-Cookie stripped!

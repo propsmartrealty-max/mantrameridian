@@ -162,17 +162,31 @@ export const onRequest = defineMiddleware(async (context, next) => {
       'Cache-Control',
       'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
     );
-    response.headers.set('Cache-Tag', 'mantra-meridian, html-pages, riverside-balewadi');
+    response.headers.set('Cache-Tag', 'mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, riverside-balewadi');
+    response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
   }
   if (contentType.includes('text/html') && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
+    const TARGET_IMAGE_ALTS = [
+      'Mantra Meridian Balewadi Luxury Residences',
+      'Mantra Riverside Balewadi Riverfront Living',
+      'Mantra Meridian Pune 2, 3, 4 BHK Apartments',
+      'Mantra Balewadi by Mantra Properties',
+      'Mantra Riverside Luxury River-Facing Homes',
+      'Mantra Meridian Balewadi Signature Sky Duplex'
+    ];
+    let altCounter = 0;
+
     const RewriterClass = (globalThis as any).HTMLRewriter;
     const rewriter = new RewriterClass()
-      // A. Edge Metadata & Localized Geo-Intent Injections in <head>
+      // A. Edge Metadata, 5-Keyword Cluster, Brand Aliases & Localized Geo-Intent Injections in <head>
       .on('head', {
         element(head: any) {
           const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
+          const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra meridian riverside balewadi, luxury 2 3 4 bhk flats pune';
+          const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi';
+
           head.append(
-            `<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n${nriMeta}<meta property="og:locality" content="Balewadi" />\n<meta property="og:region" content="Maharashtra" />\n<meta property="og:postal-code" content="411045" />\n<meta property="og:country-name" content="India" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n<link rel="dns-prefetch" href="//www.google-analytics.com" />\n<link rel="dns-prefetch" href="//www.googletagmanager.com" />\n`,
+            `<meta name="keywords" content="${targetKeywords}" />\n<meta name="brand-aliases" content="${brandAliases}" />\n<meta name="search-authority" content="Mantra Meridian Balewadi | Mantra Riverside Balewadi" />\n<meta name="cf-edge-pop" content="${cfColo}" />\n<meta name="cf-edge-speed" content="${edgeDuration}ms" />\n<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n<meta name="cf-edge-market" content="${marketTag}" />\n${nriMeta}<meta property="og:locality" content="Balewadi" />\n<meta property="og:region" content="Maharashtra" />\n<meta property="og:postal-code" content="411045" />\n<meta property="og:country-name" content="India" />\n<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n<link rel="dns-prefetch" href="//maps.google.com" />\n<link rel="dns-prefetch" href="//www.google.com" />\n<link rel="dns-prefetch" href="//www.google-analytics.com" />\n<link rel="dns-prefetch" href="//www.googletagmanager.com" />\n`,
             { html: true }
           );
         }
@@ -232,16 +246,22 @@ export const onRequest = defineMiddleware(async (context, next) => {
           el.setAttribute('data-speakable', 'true');
         }
       })
-      // F. Core Web Vitals LCP Hero Image Prioritization & Image SEO Fallback
+      // F. Core Web Vitals LCP Hero Image Prioritization & Dynamic Keyword Alt Text Rotator
       .on('img', {
         element(el: any) {
           const src = el.getAttribute('src') || '';
           const className = el.getAttribute('class') || '';
           const isHero = src.includes('mantra-meridian-hero') || className.includes('hero') || el.hasAttribute('data-hero');
+          const currentAlt = el.getAttribute('alt') || '';
 
-          // Ensure 100% Image SEO score with contextual alt text fallback
-          if (!el.getAttribute('alt')) {
-            el.setAttribute('alt', 'Mantra Meridian Riverside Balewadi Pune Luxury Residences');
+          // Ensure 100% Image SEO score with authoritative 5-keyword alt descriptions
+          if (!currentAlt || currentAlt === 'image' || currentAlt === 'photo' || currentAlt === 'hero') {
+            if (isHero) {
+              el.setAttribute('alt', 'Mantra Meridian Balewadi | Mantra Riverside Balewadi Architecture');
+            } else {
+              el.setAttribute('alt', TARGET_IMAGE_ALTS[altCounter % TARGET_IMAGE_ALTS.length]);
+              altCounter++;
+            }
           }
 
           if (isHero) {

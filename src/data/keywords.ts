@@ -5,8 +5,32 @@ export interface KeywordCluster {
   semanticPhrases: string[];
 }
 
+// 00. Core High-Priority Brand Search Queries (Tier-1 Ranking Targets for Google.com)
+export const coreBrandQueries: readonly string[] = [
+  "Mantra Meridian",
+  "Mantra Balewadi",
+  "Mantra Riverside",
+  "Mantra Riverside Balewadi",
+  "Mantra Meridian Balewadi"
+] as const;
+
+export const coreBrandQueriesLower: readonly string[] = [
+  "mantra meridian",
+  "mantra balewadi",
+  "mantra riverside",
+  "mantra riverside balewadi",
+  "mantra meridian balewadi"
+] as const;
+
 // 01. Comprehensive Brand Entity Permutations (Tokens: Mantra, Meridian, Riverside, Balewadi, Pune, Properties)
 export const brandPermutations: string[] = [
+  // 5 Explicit High-Priority Target Search Queries
+  "Mantra Meridian",
+  "Mantra Balewadi",
+  "Mantra Riverside",
+  "Mantra Riverside Balewadi",
+  "Mantra Meridian Balewadi",
+
   // 4-token natural permutations
   "Mantra Meridian Riverside Balewadi",
   "Mantra Meridian Balewadi Riverside",
@@ -276,7 +300,7 @@ export const locationKeywordsList = [
 export const floorPlanKeywords = [
   ...collateralPermutations,
   ...typologyPermutations.slice(0, 6),
-  ...brandPermutations.slice(0, 4),
+  ...brandPermutations.slice(0, 5),
   "MahaRERA carpet area Balewadi",
   "zero dead space floor plans Pune"
 ].join(", ");
@@ -284,7 +308,7 @@ export const floorPlanKeywords = [
 // Lifestyle & Amenities keyword builder
 export const amenityKeywords = [
   ...meridianKeywordEcosystem.lifestyleKeywords,
-  ...brandPermutations.slice(0, 4),
+  ...brandPermutations.slice(0, 5),
   "luxury project amenities Balewadi",
   "apartments with infinity pool Pune",
   "clubhouse Balewadi Pune",
