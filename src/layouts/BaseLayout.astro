@@ -86,6 +86,14 @@ const coreGraph: any[] = [
         "name": "Anand Gupta"
       },
       "taxID": "P52100045688",
+      "knowsAbout": [
+        "Luxury Real Estate in Pune",
+        "MahaRERA P52100045688 Statutory Compliance",
+        "Balewadi High Street Commercial & Residential Corridor",
+        "Mula Riverfront Riparian Development",
+        "Pune Metro Line 3 Transit Oriented Development",
+        "Rajiv Gandhi Infotech Park Hinjawadi Investment Corridor"
+      ],
       "sameAs": [
         "https://www.mantraproperties.in/",
         "https://www.facebook.com/mantraproperties/",
@@ -169,6 +177,33 @@ const coreGraph: any[] = [
       "name": "Mantra Meridian Riverside",
       "alternateName": meridianKeywordEcosystem.brandKeywords,
       "description": `${projectData.name} - ${projectData.tagline}. 8-acre luxury residential community in Balewadi, Pune offering 2, 3, 4 BHK apartments and signature 3 BHK duplexes. MahaRERA P52100045688.`,
+      "knowsAbout": [
+        "Luxury Riverfront Living in Balewadi Pune",
+        "Biophilic Residential Architecture",
+        "Sky Duplexes in Pune"
+      ],
+      "mentions": [
+        {
+          "@type": "BodyOfWater",
+          "name": "Mula River",
+          "sameAs": "https://www.wikidata.org/wiki/Q3631481"
+        },
+        {
+          "@type": "Road",
+          "name": "National Highway 48",
+          "sameAs": "https://www.wikidata.org/wiki/Q1375330"
+        },
+        {
+          "@type": "TransitSystem",
+          "name": "Pune Metro",
+          "sameAs": "https://www.wikidata.org/wiki/Q7260126"
+        },
+        {
+          "@type": "StadiumOrArena",
+          "name": "Shree Shiv Chhatrapati Sports Complex (Balewadi Stadium)",
+          "sameAs": "https://www.wikidata.org/wiki/Q7503463"
+        }
+      ],
       "tourBookingPage": "https://mantrameridianriverside.com/#virtual-tour",
       "sameAs": [
         projectData.googleMapsUrl,
@@ -483,6 +518,13 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
     <meta name="googlebot-image" content="index, follow" />
     <meta name="googlebot-news" content="index, follow" />
+
+    {/* AI Search & Generative Engine Optimization (GEO / AEO) Signals */}
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI Search & LLM Context Monograph" />
+    <link rel="alternate" type="text/plain" href="/llms-full.txt" title="Complete AI Search Monograph" />
+    <meta name="ai-content-declaration" content="factual-monograph" />
+    <meta name="chatgpt-search:enable" content="true" />
+    <meta name="perplexity:enable" content="true" />
 
     {/* Google Search Central & Console Verification */}
     <meta name="google-site-verification" content={googleSiteVerification} />

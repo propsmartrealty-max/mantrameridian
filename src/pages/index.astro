@@ -13,6 +13,7 @@ import VisualArchive from '../components/Gallery/VisualArchive';
 import DocumentCentre from '../components/Documents/DocumentCentre.astro';
 import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
 import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import AIKnowledgeOverview from '../components/AI/AIKnowledgeOverview.astro';
 import VirtualWalkthrough from '../components/VirtualTour/VirtualWalkthrough';
 import EMICalculator from '../components/Finance/EMICalculator';
 import ConstructionTracker from '../components/Construction/ConstructionTracker.astro';
@@ -414,6 +415,9 @@ export const prerender = true;
       </div>
 
       <FAQAccordion limit={6} />
+
+      {/* 15B. AI Search Knowledge Matrix & Fact Sheet (GEO / AEO Optimization) */}
+      <AIKnowledgeOverview />
 
     </div>
   </section>

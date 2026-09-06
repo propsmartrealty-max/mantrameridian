@@ -67,6 +67,7 @@ runTest('isStaticAssetPath identifies files and asset paths correctly', () => {
   assert.equal(isStaticAssetPath('/_astro/chunk.js'), true);
   assert.equal(isStaticAssetPath('/favicon.ico'), true);
   assert.equal(isStaticAssetPath('/sitemap.xml'), true);
+  assert.equal(isStaticAssetPath('/llms-full.txt'), true);
   assert.equal(isStaticAssetPath('/api/enquiry'), true);
   assert.equal(isStaticAssetPath('/balewadi/'), false);
   assert.equal(isStaticAssetPath('/mantra-meridian-riverside/2-bhk/'), false);
@@ -195,6 +196,10 @@ await runAsyncTest('Worker delivers zero-cookie response with Tier-1 headers to 
 
   // CRITICAL: White Bots must never receive Set-Cookie
   assert.equal(res.headers.has('Set-Cookie'), false);
+
+  // AI Search & Ingestion Signals
+  assert.equal(res.headers.get('Content-Signal'), 'ai-train=yes, ai-search=yes');
+  assert.equal(res.headers.get('X-AI-Context'), 'https://mantrameridianriverside.com/llms-full.txt');
 
   // Cache-Control & Cache-Tag
   assert.ok(res.headers.get('Cache-Control')?.includes('stale-while-revalidate'));

@@ -151,6 +151,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
     response.headers.set('X-Crawler-Priority', 'Tier-1-Verified-WhiteBot');
     response.headers.set('X-WhiteBot-Type', botInfo.botType);
+    response.headers.set('Content-Signal', 'ai-train=yes, ai-search=yes');
+    response.headers.set('X-AI-Context', 'https://mantrameridianriverside.com/llms-full.txt');
   }
 
   // Edge Caching headers with Stale-While-Revalidate and Cache-Tag

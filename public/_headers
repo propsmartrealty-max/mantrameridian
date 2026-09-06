@@ -67,6 +67,12 @@
   Access-Control-Allow-Origin: *
   Cache-Tag: mantra-meridian, discovery
 
+/llms-full.txt
+  Content-Type: text/markdown; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Access-Control-Allow-Origin: *
+  Cache-Tag: mantra-meridian, discovery
+
 # 7. Brand Icons & Manifest
 /favicon.svg
   Content-Type: image/svg+xml
