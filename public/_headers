@@ -94,6 +94,18 @@
   Cache-Control: public, max-age=86400, s-maxage=86400
   Access-Control-Allow-Origin: *
 
+# 7B. Progressive Web App Service Worker (Strict Immediate Revalidation)
+/sw.js
+  Content-Type: application/javascript; charset=utf-8
+  Cache-Control: public, max-age=0, must-revalidate
+  Service-Worker-Allowed: /
+
+# 7C. RFC 9116 Standard Security Disclosure Policy
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=604800, s-maxage=604800
+  Access-Control-Allow-Origin: *
+
 # 8. Edge Verification Verification Token
 /4c7e6b0a9f1248a881335b2e3a1d95c2.txt
   Content-Type: text/plain; charset=utf-8

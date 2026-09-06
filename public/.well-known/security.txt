@@ -1,0 +1,11 @@
+# ==============================================================================
+# MANTRA MERIDIAN RIVERSIDE — RFC 9116 SECURITY DISCLOSURE POLICY
+# https://mantrameridianriverside.com/.well-known/security.txt
+# ==============================================================================
+
+Contact: https://mantrameridianriverside.com/#enquire
+Canonical: https://mantrameridianriverside.com/.well-known/security.txt
+Policy: https://mantrameridianriverside.com/mantra-meridian-riverside/documents/
+Acknowledgments: https://mantrameridianriverside.com/mantra-meridian-riverside/rera/
+Preferred-Languages: en, mr, hi
+Expires: 2027-12-31T23:59:59.000Z

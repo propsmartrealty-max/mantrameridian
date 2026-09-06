@@ -15,6 +15,8 @@
  */
 
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import worker, { getNormalizedCacheUrl, isStaticAssetPath } from '../workers/seo-edge-worker.ts';
 import { identifyWhiteBot } from '../src/utils/bot-detection.ts';
 import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords } from '../src/data/keywords.ts';
@@ -69,6 +71,8 @@ runTest('isStaticAssetPath identifies files and asset paths correctly', () => {
   assert.equal(isStaticAssetPath('/favicon.ico'), true);
   assert.equal(isStaticAssetPath('/sitemap.xml'), true);
   assert.equal(isStaticAssetPath('/llms-full.txt'), true);
+  assert.equal(isStaticAssetPath('/sw.js'), true);
+  assert.equal(isStaticAssetPath('/.well-known/security.txt'), true);
   assert.equal(isStaticAssetPath('/api/enquiry'), true);
   assert.equal(isStaticAssetPath('/balewadi/'), false);
   assert.equal(isStaticAssetPath('/mantra-meridian-riverside/2-bhk/'), false);
@@ -148,6 +152,28 @@ runTest('Core 5 brand keywords are rigorously prioritized at positions #1-#5', (
   for (const kw of expected5) {
     assert.ok(defaultMetaKeywords.includes(kw), `defaultMetaKeywords missing "${kw}"`);
   }
+});
+
+// -----------------------------------------------------------------------------
+// 3C. PWA Manifest 2.0 & RFC 9116 Security Policy Tests
+// -----------------------------------------------------------------------------
+runTest('PWA Manifest 2.0 has valid shortcuts and RFC 9116 security.txt exists', () => {
+  const manifestPath = path.resolve('public/site.webmanifest');
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
+
+  assert.equal(manifest.name, 'Mantra Meridian Riverside Balewadi');
+  assert.equal(manifest.lang, 'en-IN');
+  assert.ok(Array.isArray(manifest.shortcuts) && manifest.shortcuts.length >= 4);
+
+  const securityPath = path.resolve('public/.well-known/security.txt');
+  const security = fs.readFileSync(securityPath, 'utf8');
+  assert.ok(security.includes('Contact:'));
+  assert.ok(security.includes('Canonical:'));
+  assert.ok(security.includes('Expires:'));
+
+  const swPath = path.resolve('public/sw.js');
+  const sw = fs.readFileSync(swPath, 'utf8');
+  assert.ok(sw.includes('mantra-meridian-v1'));
 });
 
 // -----------------------------------------------------------------------------

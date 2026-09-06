@@ -3,12 +3,45 @@
   "short_name": "Mantra Meridian",
   "description": "8-acre luxury residential development along Mula River in Balewadi, Pune by Mantra Properties. 2, 3, 4 BHK & Sky Duplexes.",
   "start_url": "/",
+  "scope": "/",
   "id": "/",
   "display": "standalone",
   "background_color": "#07080A",
   "theme_color": "#07080A",
   "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "prefer_related_applications": false,
   "categories": ["real estate", "lifestyle", "business"],
+  "shortcuts": [
+    {
+      "name": "Residences & Duplexes",
+      "short_name": "Residences",
+      "description": "Explore 2, 3, 4 BHK & Sky Duplex floor plans",
+      "url": "/mantra-meridian-riverside/residences/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Pricing & Cost Sheet",
+      "short_name": "Pricing",
+      "description": "2026 indicative pricing and payment milestones",
+      "url": "/mantra-meridian-riverside/price/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "Location Intelligence",
+      "short_name": "Location",
+      "description": "Connectivity and distance radar from Balewadi High Street",
+      "url": "/mantra-meridian-riverside/location/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    },
+    {
+      "name": "MahaRERA Statutory Verification",
+      "short_name": "MahaRERA",
+      "description": "Official RERA certificate and compliance",
+      "url": "/mantra-meridian-riverside/rera/",
+      "icons": [{ "src": "/favicon.svg", "sizes": "any" }]
+    }
+  ],
   "icons": [
     {
       "src": "/favicon.svg",

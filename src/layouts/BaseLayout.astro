@@ -621,6 +621,15 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
         ]
       }
     </script>
+
+    {/* Progressive Web App Service Worker Registration (Zero impact on web bots) */}
+    <script is:inline>
+      if ('serviceWorker' in navigator && !/bot|crawl|spider|slurp/i.test(navigator.userAgent)) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function() {});
+        });
+      }
+    </script>
   </head>
   <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen">
     
