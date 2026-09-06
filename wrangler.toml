@@ -3,6 +3,11 @@ main = "./dist/_worker.js/index.js"
 compatibility_date = "2025-02-01"
 compatibility_flags = ["nodejs_compat"]
 
+routes = [
+  { pattern = "mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" },
+  { pattern = "www.mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" }
+]
+
 [assets]
 binding = "ASSETS"
 directory = "./dist"
@@ -27,6 +32,11 @@ name = "mantra-meridian-edge-seo"
 main = "./workers/seo-edge-worker.ts"
 compatibility_date = "2025-02-01"
 compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" },
+  { pattern = "www.mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" }
+]
 
 [env.edge-seo.assets]
 binding = "ASSETS"
