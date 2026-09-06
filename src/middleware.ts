@@ -151,8 +151,15 @@ export const onRequest = defineMiddleware(async (context, next) => {
     response.headers.set('X-Crawler-Priority', 'Tier-1-SearchEngine');
   }
 
-  // 6. Cloudflare Flagship HTMLRewriter: Ultra-Advanced Edge HTML Streaming SEO Architecture
+  // Edge Caching headers with Stale-While-Revalidate and Cache-Tag
   const contentType = response.headers.get('content-type') || '';
+  if (contentType.includes('text/html')) {
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
+    );
+    response.headers.set('Cache-Tag', 'mantra-meridian, html-pages, riverside-balewadi');
+  }
   if (contentType.includes('text/html') && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
     const RewriterClass = (globalThis as any).HTMLRewriter;
     const rewriter = new RewriterClass()

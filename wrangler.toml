@@ -18,3 +18,29 @@ PROJECT_NAME = "Mantra Meridian Riverside"
 PROJECT_RERA = "P52100045688"
 PROJECT_LOCATION = "Balewadi, Pune"
 CANONICAL_URL = "https://mantrameridianriverside.com"
+ORIGIN_URL = "https://mantrameridianriverside.com"
+
+# Standalone Cloudflare Edge SEO Worker Environment
+# Deploy via: npx wrangler deploy --env edge-seo
+[env.edge-seo]
+name = "mantra-meridian-edge-seo"
+main = "./workers/seo-edge-worker.ts"
+compatibility_date = "2025-02-01"
+compatibility_flags = ["nodejs_compat"]
+
+[env.edge-seo.assets]
+binding = "ASSETS"
+directory = "./dist"
+
+[env.edge-seo.observability]
+enabled = true
+
+[env.edge-seo.placement]
+mode = "smart"
+
+[env.edge-seo.vars]
+PROJECT_NAME = "Mantra Meridian Riverside"
+PROJECT_RERA = "P52100045688"
+PROJECT_LOCATION = "Balewadi, Pune"
+CANONICAL_URL = "https://mantrameridianriverside.com"
+ORIGIN_URL = "https://mantrameridianriverside.com"

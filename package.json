@@ -6,12 +6,15 @@
     "node": ">=20.0.0"
   },
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro",
-    "check": "astro check",
+    "dev": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "start": "ASTRO_TELEMETRY_DISABLED=1 astro dev",
+    "build": "ASTRO_TELEMETRY_DISABLED=1 astro build",
+    "preview": "ASTRO_TELEMETRY_DISABLED=1 astro preview",
+    "astro": "ASTRO_TELEMETRY_DISABLED=1 astro",
+    "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
+    "worker:test": "node --experimental-strip-types scripts/test-edge-worker.mjs",
+    "worker:dry-run": "wrangler deploy --env edge-seo --dry-run",
+    "worker:deploy": "wrangler deploy --env edge-seo",
     "index:broadcast": "node scripts/broadcast-indexing.mjs",
     "index:google": "node scripts/google-indexing.mjs"
   },
