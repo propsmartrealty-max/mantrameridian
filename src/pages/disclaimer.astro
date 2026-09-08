@@ -1,0 +1,78 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { projectData } from '../data/project';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Statutory Disclaimer & RERA Disclosures | Mantra Meridian Balewadi"
+  description="Official Statutory Real Estate Disclaimer and MahaRERA P52100045688 compliance disclosures for Mantra Meridian Riverside Balewadi."
+  canonicalUrl="https://mantrameridianriverside.com/disclaimer/"
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
+    
+    <Breadcrumbs items={[{ name: "Statutory Disclaimer" }]} />
+
+    <header class="space-y-4 border-b border-white/10 pb-8">
+      <span class="label-architectural text-xs text-champagne">STATUTORY LEGAL DISCLOSURE</span>
+      <h1 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-tight">
+        Statutory Disclaimer
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed max-w-3xl">
+        Official transparency disclosures under the Real Estate (Regulation and Development) Act, 2016 (RERA) and Maharashtra Real Estate Regulatory Authority regulations.
+      </p>
+    </header>
+
+    <div class="space-y-10 text-xs sm:text-sm text-concrete/80 leading-relaxed font-sans">
+      
+      {/* Official MahaRERA Card */}
+      <ReraVerificationCard />
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">1. MahaRERA Statutory Registration</h2>
+        <p>
+          <strong class="text-architectural-white">Mantra Meridian Riverside</strong> (also marketed under brand permutations <em>Meridian at Riverside</em>, <em>Mantra Balewadi</em>, and <em>Mantra Riverside Balewadi</em>) is registered under the Maharashtra Real Estate Regulatory Authority under registration number:
+        </p>
+        <div class="p-4 bg-obsidian border border-champagne/30 text-champagne font-mono text-sm inline-block">
+          MahaRERA Registration No.: {projectData.reraNumber}
+        </div>
+        <p>
+          Full statutory filings, sanctioned building layouts, floor plan carpet schedules, and environmental clearances can be verified on the official MahaRERA website: <a href={projectData.reraRegistrationUrl} target="_blank" rel="noopener noreferrer" class="text-champagne hover:underline">https://maharera.mahaonline.gov.in/</a> under registered projects.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">2. Marketing &amp; Channel Partner Disclosure</h2>
+        <p>
+          This website (<strong class="text-architectural-white">mantrameridianriverside.com</strong>) is an authorized promotional and digital marketing platform operated by registered real estate advisors on behalf of Mantra Properties. It provides property intelligence, digital brochures, and site-visit scheduling services for prospective purchasers and NRI investors.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">3. Architectural Renders &amp; Artistic Impressions</h2>
+        <p>
+          All photographs, walkthrough animations, landscape depictions, interior concepts, and artistic impressions are conceptual representations meant to illustrate the design intent and lifestyle environment of Mantra Meridian Riverside. Actual specifications, fixtures, finishes, and elevation features are governed strictly by the sanctioned layouts and the formal Agreement for Sale executed between the developer and the homebuyer.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">4. Carpet Area Disclosures</h2>
+        <p>
+          The carpet areas indicated across our residences (2 BHK: ~815 sq.ft., 3 BHK: ~1,180 sq.ft., 3 BHK Duplex: ~1,660 sq.ft., 4 BHK: ~2,050 sq.ft.) are computed in strict accordance with the MahaRERA definition (the net usable floor area of an apartment, excluding the area covered by external walls, areas under services shafts, and exclusive balcony or verandah area).
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">5. Transit &amp; Infrastructure Time Disclosures</h2>
+        <p>
+          Driving times, commute durations, and infrastructure timelines (including the proposed Mula River Balewadi-Wakad bridge, Balewadi High Street proximity, and Pune Metro Line 3 stations) are estimated under normal traffic conditions and public municipal development schedules. They are subject to civic infrastructure implementation timelines.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+</BaseLayout>

@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import { projectData } from '../data/project';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Privacy Policy | Mantra Meridian Riverside Balewadi"
+  description="Official Privacy Policy for Mantra Meridian Riverside Balewadi. Learn how personal data, site visit requests, and inquiries are protected under DPDP Act 2023."
+  canonicalUrl="https://mantrameridianriverside.com/privacy-policy/"
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
+    
+    <Breadcrumbs items={[{ name: "Privacy Policy" }]} />
+
+    <header class="space-y-4 border-b border-white/10 pb-8">
+      <span class="label-architectural text-xs text-champagne">STATUTORY TRANSPARENCY &amp; E-E-A-T</span>
+      <h1 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-tight">
+        Privacy Policy
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed max-w-3xl">
+        Last Updated: September 2026. This policy outlines our standards for collecting, using, and safeguarding personal data in compliance with the Digital Personal Data Protection (DPDP) Act 2023 and global privacy guidelines.
+      </p>
+    </header>
+
+    <div class="space-y-10 text-xs sm:text-sm text-concrete/80 leading-relaxed font-sans">
+      
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">1. Data Controller &amp; Scope</h2>
+        <p>
+          This website (<strong class="text-architectural-white">mantrameridianriverside.com</strong>) is an authorized marketing and discovery portal for <strong class="text-architectural-white">{projectData.name}</strong> (MahaRERA: <strong class="text-champagne font-mono">{projectData.reraNumber}</strong>), developed by Mantra Properties. This Privacy Policy applies to all interactions across this domain, including lead capture forms, WhatsApp concierge desks, and downloadable collateral requests.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">2. Information We Collect</h2>
+        <p>We collect information strictly when you voluntarily submit it to request project details, pricing sheets, or private site presentations:</p>
+        <ul class="list-disc pl-5 space-y-2 text-concrete/75">
+          <li><strong class="text-architectural-white">Contact Credentials:</strong> Full name, telephone/mobile number, email address, and residential city or country of residence (e.g. for NRI investors).</li>
+          <li><strong class="text-architectural-white">Property Preferences:</strong> Configuration interest (2 BHK, 3 BHK, 3 BHK Duplex, 4 BHK), intended timeline for purchase, and preferred visit schedules.</li>
+          <li><strong class="text-architectural-white">Technical Telemetry:</strong> Anonymized edge metrics (country code, device class, HTTP referral) captured by Cloudflare edge servers to optimize network routing and prevent malicious automated abuse. We do not store personally identifiable IP addresses in analytics tables.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">3. Purpose of Processing &amp; Consent</h2>
+        <p>Your data is processed strictly under your explicit consent for the following real estate service objectives:</p>
+        <ul class="list-disc pl-5 space-y-2 text-concrete/75">
+          <li>Facilitating requested calls, WhatsApp communication, and verified brochure downloads regarding {projectData.name}.</li>
+          <li>Scheduling and managing authorized on-site VIP walkthroughs and sales gallery presentations at Balewadi Village Road, Pune.</li>
+          <li>Complying with statutory reporting requirements established under the Maharashtra Real Estate Regulatory Authority (MahaRERA).</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">4. No Sale or Unauthorized Disclosure of Data</h2>
+        <p>
+          We maintain a zero-tolerance policy towards unsolicited spam and third-party data brokerage. Your contact information is <strong class="text-champagne">never sold, rented, or bartered</strong> to external commercial aggregators. Information is shared solely with certified sales advisors directly managing {projectData.name} inquiries.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">5. Cookies &amp; Edge Caching Directives</h2>
+        <p>
+          Our infrastructure prioritizes privacy-first performance. Verified search crawlers (Googlebot, Bingbot) receive 100% cookie-free responses. Human visitors receive lightweight, privacy-preserving session cookies (<code class="font-mono text-champagne bg-obsidian px-1.5 py-0.5">cf_geo_market</code>) solely to present localized currency and regional concierge options (Domestic vs NRI).
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">6. Data Rights &amp; Revocation of Consent</h2>
+        <p>Under the DPDP Act 2023, you retain complete authority over your personal information. You may at any time:</p>
+        <ul class="list-disc pl-5 space-y-2 text-concrete/75">
+          <li>Request a copy of the contact data currently associated with your mobile number or email.</li>
+          <li>Request immediate erasure or rectification of your contact record from our consultation database.</li>
+          <li>Opt out of future WhatsApp or telephonic project updates by replying with "STOP" or notifying our concierge desk.</li>
+        </ul>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">7. Contact &amp; Grievance Redressal</h2>
+        <p>For data protection questions, compliance verifications, or consent revocation, please reach our administrative desk:</p>
+        <div class="p-4 bg-obsidian border border-white/5 space-y-1 font-mono text-xs">
+          <p class="text-architectural-white font-medium">{projectData.developer}</p>
+          <p class="text-concrete/70">{projectData.contact.siteAddress}</p>
+          <p class="text-champagne">MahaRERA: {projectData.reraNumber}</p>
+        </div>
+      </section>
+
+    </div>
+
+  </div>
+</BaseLayout>

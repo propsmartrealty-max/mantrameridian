@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import { projectData } from '../data/project';
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Terms of Use | Mantra Meridian Riverside Balewadi"
+  description="Official Terms of Use for Mantra Meridian Riverside Balewadi. Guidelines governing website use, intellectual property, and real estate disclosures."
+  canonicalUrl="https://mantrameridianriverside.com/terms/"
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-5xl mx-auto space-y-12">
+    
+    <Breadcrumbs items={[{ name: "Terms of Use" }]} />
+
+    <header class="space-y-4 border-b border-white/10 pb-8">
+      <span class="label-architectural text-xs text-champagne">LEGAL &amp; STATUTORY TERMS</span>
+      <h1 class="font-serif text-4xl sm:text-6xl text-architectural-white font-normal leading-tight">
+        Terms of Use
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed max-w-3xl">
+        Last Updated: September 2026. Please review these Terms of Use carefully prior to navigating or requesting consultations through mantrameridianriverside.com.
+      </p>
+    </header>
+
+    <div class="space-y-10 text-xs sm:text-sm text-concrete/80 leading-relaxed font-sans">
+      
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">1. Acceptance of Terms</h2>
+        <p>
+          By accessing or using <strong class="text-architectural-white">mantrameridianriverside.com</strong>, you agree to be bound by these Terms of Use and our Privacy Policy. If you do not agree with any provision herein, you are advised to refrain from using this website.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">2. Informational &amp; Promotional Nature</h2>
+        <p>
+          All content, imagery, 3D renderings, floor layouts, dimensions, amenities, and pricing details published on this website are for general informational and marketing purposes regarding <strong class="text-architectural-white">{projectData.name}</strong> (MahaRERA: <strong class="text-champagne font-mono">{projectData.reraNumber}</strong>). Nothing on this site constitutes a formal legal offer, binding contract, or warranty of delivery unless specifically incorporated into an executed Agreement for Sale.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">3. Intellectual Property Rights</h2>
+        <p>
+          The architectural blueprints, brand lockups ("Mantra Meridian", "Mantra Riverside", "Mantra Properties"), photography, digital renderings, layout designs, and text monographs displayed on this website are protected under Indian copyright, trademark, and intellectual property laws. Unauthorized reproduction, mirroring, or commercial exploitation is strictly prohibited without prior written consent from Mantra Properties.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">4. Pricing &amp; Unit Availability Modifications</h2>
+        <p>
+          Real estate market considerations, floor-rise variations, statutory stamp duty and registration fees, and inventory status are subject to revision without prior notice. Indicative starting base prices (e.g. ₹ 85 Lakhs* for 2 BHK, ₹ 1.28 Cr* for 3 BHK) do not include government levies, GST, or maintenance charges unless explicitly stated in a certified cost sheet issued by our sales desk.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">5. Limitation of Liability</h2>
+        <p>
+          While we strive for 100% data fidelity, neither Mantra Properties nor its authorized channel partners shall be liable for indirect, incidental, or consequential damages resulting from reliance on website content, temporary server unavailability, or transmission inaccuracies.
+        </p>
+      </section>
+
+      <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">6. Governing Law &amp; Jurisdiction</h2>
+        <p>
+          These Terms of Use and any disputes arising from website interactions are governed by the laws of India and subject to the exclusive jurisdiction of the competent courts in <strong class="text-architectural-white">Pune, Maharashtra</strong>.
+        </p>
+      </section>
+
+    </div>
+
+  </div>
+</BaseLayout>
