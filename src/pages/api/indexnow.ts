@@ -15,6 +15,11 @@ const KEY_LOCATION = `https://${HOST}/4c7e6b0a9f1248a881335b2e3a1d95c2.txt`;
 
 const ALL_CANONICAL_URLS = [
   `https://${HOST}/`,
+  `https://${HOST}/mantra-meridian/`,
+  `https://${HOST}/mantra-balewadi/`,
+  `https://${HOST}/mantra-riverside/`,
+  `https://${HOST}/mantra-riverside-balewadi/`,
+  `https://${HOST}/mantra-meridian-balewadi/`,
   `https://${HOST}/mantra-meridian-riverside/residences/`,
   `https://${HOST}/mantra-meridian-riverside/2-bhk/`,
   `https://${HOST}/mantra-meridian-riverside/3-bhk/`,

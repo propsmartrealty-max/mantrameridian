@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import CinematicHero from '../components/Hero/CinematicHero.astro';
 import RiversideManifesto from '../components/Story/RiversideManifesto.astro';
 import ArchitecturalDataStrip from '../components/Stats/ArchitecturalDataStrip.astro';
+import ProjectSnapshotMatrix from '../components/Project/ProjectSnapshotMatrix.astro';
 import RiversideExperience from '../components/Riverside/RiversideExperience.astro';
 import DesignPhilosophy from '../components/Architecture/DesignPhilosophy.astro';
 import FloorPlanViewer from '../components/FloorPlan/FloorPlanViewer';
@@ -38,6 +39,9 @@ export const prerender = true;
 
   {/* 02. Architectural Data Strip */}
   <ArchitecturalDataStrip />
+
+  {/* 02b. Authoritative Above-the-Fold Project Snapshot Factsheet */}
+  <ProjectSnapshotMatrix />
 
   {/* 03. Emotional Manifesto & Project Story */}
   <RiversideManifesto />

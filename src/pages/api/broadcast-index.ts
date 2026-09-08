@@ -9,6 +9,11 @@ const KEY_LOCATION = `https://${HOST}/4c7e6b0a9f1248a881335b2e3a1d95c2.txt`;
 
 const ALL_CANONICAL_URLS = [
   `https://${HOST}/`,
+  `https://${HOST}/mantra-meridian/`,
+  `https://${HOST}/mantra-balewadi/`,
+  `https://${HOST}/mantra-riverside/`,
+  `https://${HOST}/mantra-riverside-balewadi/`,
+  `https://${HOST}/mantra-meridian-balewadi/`,
   `https://${HOST}/mantra-meridian-riverside/residences/`,
   `https://${HOST}/mantra-meridian-riverside/2-bhk/`,
   `https://${HOST}/mantra-meridian-riverside/3-bhk/`,
@@ -37,8 +42,6 @@ const ALL_CANONICAL_URLS = [
 
 async function handleUnifiedBroadcast(locals?: any) {
   try {
-    const sitemapUrl = `https://${HOST}/sitemap.xml`;
-
     const runtimeEnv = (locals as any)?.runtime?.env || {};
     const procEnv = (globalThis as any).process?.env || {};
     const globalEnv = globalThis as any;
@@ -89,14 +92,10 @@ async function handleUnifiedBroadcast(locals?: any) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json; charset=utf-8' },
         body: JSON.stringify(indexNowPayload)
-      }),
-      // Google Search Console Sitemap Ping
-      fetch(`https://www.google.com/ping?sitemap=${encodeURIComponent(sitemapUrl)}`, {
-        method: 'GET'
       })
     ];
 
-    const serviceNames = ['Microsoft Bing IndexNow', 'IndexNow Central', 'Google Sitemap Ping'];
+    const serviceNames = ['Microsoft Bing IndexNow', 'IndexNow Central'];
 
     // If Google Service Account credentials exist, also dispatch all canonical URLs to Google Indexing API
     if (clientEmail && privateKey) {

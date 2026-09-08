@@ -1,0 +1,88 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import ProjectSnapshotMatrix from '../components/Project/ProjectSnapshotMatrix.astro';
+import FloorPlanViewer from '../components/FloorPlan/FloorPlanViewer';
+import LocationIntelligence from '../components/Location/LocationIntelligence';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+export const prerender = true;
+
+const pageKeywords = [
+  "Mantra Meridian Balewadi",
+  "Mantra Meridian",
+  "Mantra Balewadi",
+  "Mantra Riverside Balewadi",
+  "Mantra Properties Balewadi",
+  "Mantra Meridian Balewadi Price",
+  "Mantra Meridian Balewadi Floor Plan",
+  "Mantra Meridian Balewadi RERA",
+  "2 BHK Mantra Meridian Balewadi",
+  "3 BHK Mantra Meridian Balewadi",
+  "Flats near Balewadi High Street"
+];
+---
+
+<BaseLayout
+  title="Mantra Meridian Balewadi | Official Project Website | MahaRERA P52100045688"
+  description="Official project website for Mantra Meridian Balewadi by Mantra Properties. 8 acres of luxury riverfront residences, 2, 3, 4 BHK apartments, price lists, and floor plans in Balewadi, Pune. MahaRERA P52100045688."
+  keywords={pageKeywords}
+>
+  <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
+    <Breadcrumbs items={[{ name: "Mantra Meridian Balewadi" }]} />
+
+    <div class="max-w-4xl space-y-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-champagne/10 border border-champagne/30 text-champagne text-xs font-mono tracking-widest uppercase">
+        <span class="w-2 h-2 rounded-full bg-champagne animate-pulse"></span>
+        <span>OFFICIAL ADDRESS • MANTRA MERIDIAN BALEWADI</span>
+      </div>
+      
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl text-architectural-white font-normal leading-tight">
+        Mantra Meridian Balewadi.<br />
+        <span class="text-champagne font-light italic font-serif">Mantra Properties Flagship Estate.</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-concrete leading-relaxed max-w-3xl">
+        Welcome to the official portal for <strong>Mantra Meridian Balewadi</strong>. Positioned on Balewadi Village Road along the Mula River corridor, this landmark 8-acre project brings together architectural grandeur, expansive carpet layouts, and an unrivaled riverside lifestyle in West Pune.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <a href="#plans" class="btn-luxury text-xs">
+          EXPLORE FLOOR PLANS →
+        </a>
+        <a href="/mantra-meridian-riverside/rera/" class="btn-luxury-outline text-xs">
+          MAHARERA DETAILS
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Above-the-fold Quick Project Snapshot */}
+  <ProjectSnapshotMatrix highlightKeyword="Mantra Meridian Balewadi" />
+
+  {/* Interactive Floor Plans */}
+  <section id="plans" class="w-full bg-obsidian py-24 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">PRECISION LAYOUTS</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-architectural-white font-normal">
+          Mantra Meridian Balewadi Floor Plans
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Detailed architectural floor plans for 2 BHK, 3 BHK, 3 BHK Duplex, and 4 BHK homes.
+        </p>
+      </div>
+
+      <FloorPlanViewer client:visible />
+    </div>
+  </section>
+
+  {/* Location Intelligence */}
+  <LocationIntelligence client:visible />
+
+  {/* MahaRERA Statutory Verification */}
+  <ReraVerificationCard />
+
+  {/* Dedicated FAQs */}
+  <FAQAccordion />
+</BaseLayout>

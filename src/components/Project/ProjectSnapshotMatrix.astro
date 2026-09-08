@@ -1,0 +1,114 @@
+---
+import { projectData } from '../../data/project';
+
+interface Props {
+  highlightKeyword?: string;
+}
+
+const { highlightKeyword = 'Mantra Meridian Balewadi' } = Astro.props;
+
+const projectFacts = [
+  { label: 'Project Name', value: 'Mantra Meridian & Mantra Riverside Balewadi', highlight: true },
+  { label: 'Developer', value: 'Mantra Properties (Pune)', highlight: false },
+  { 
+    label: 'MahaRERA Registration', 
+    value: projectData.reraNumber, 
+    link: projectData.reraRegistrationUrl,
+    isExternal: true,
+    highlight: true 
+  },
+  { label: 'Land Parcel', value: '8 Acres Riverfront Integrated Estate', highlight: false },
+  { label: 'Location', value: 'Balewadi, Pune 411045 (Adj. Mula River)', highlight: true },
+  { label: 'Configurations', value: '2, 3, 4 BHK & 3 BHK Sky Duplexes', highlight: true },
+  { label: 'Carpet Area Range', value: '785 sq.ft. to 2,150 sq.ft.', highlight: false },
+  { label: 'Starting Price', value: '₹85 Lakhs* onwards', highlight: true },
+  { label: 'Target Possession', value: 'June 2028 (As per MahaRERA)', highlight: true },
+  { label: 'Elevation / Floors', value: '2 Podiums + 22 to 32 Storeys', highlight: false },
+  { label: 'Waterfront Feature', value: '500-Metre Private Mula River Promenade', highlight: false },
+  { label: 'Key Proximity', value: '3 Mins Balewadi High Street • 10 Mins Hinjewadi', highlight: false },
+];
+---
+
+<section id="project-snapshot" class="relative w-full py-12 md:py-16 bg-obsidian-card/80 border-y border-champagne/25 backdrop-blur-xl">
+  <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-8">
+    
+    {/* Section Header */}
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 px-3 py-1 bg-champagne/10 border border-champagne/30 text-champagne text-[11px] font-mono tracking-widest uppercase">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>OFFICIAL PROJECT SNAPSHOT • 2026</span>
+        </div>
+        <h2 class="font-serif text-2xl sm:text-3xl md:text-4xl text-architectural-white font-normal">
+          {highlightKeyword} &amp; Project Matrix <br class="hidden sm:inline" />
+          <span class="text-champagne font-light italic">Authoritative Project Factsheet</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete max-w-3xl leading-relaxed">
+          Verified structural specifications, MahaRERA accreditation, pricing, and spatial data for Mantra Properties' landmark 8-acre riverfront development at Balewadi, Pune.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-3 self-start md:self-auto">
+        <a
+          href="/mantra-meridian-riverside/price/"
+          class="btn-luxury-outline text-xs whitespace-nowrap"
+        >
+          VIEW PRICE BREAKDOWN →
+        </a>
+      </div>
+    </div>
+
+    {/* Structured 2-Column / 4-Column Fact Matrix */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
+      {projectFacts.map((fact) => (
+        <div class="p-4 bg-obsidian-deep/90 border border-champagne/15 hover:border-champagne/40 transition-colors flex flex-col justify-between space-y-2">
+          <span class="text-[10px] sm:text-[11px] font-mono uppercase tracking-wider text-concrete/70 block">
+            {fact.label}
+          </span>
+          <div>
+            {fact.link ? (
+              <a
+                href={fact.link}
+                target={fact.isExternal ? '_blank' : '_self'}
+                rel={fact.isExternal ? 'noopener noreferrer' : undefined}
+                class="font-medium text-xs sm:text-sm text-champagne hover:underline inline-flex items-center gap-1.5 font-mono"
+              >
+                <span>{fact.value}</span>
+                {fact.isExternal && <span class="text-[10px]">↗</span>}
+              </a>
+            ) : (
+              <span class={`text-xs sm:text-sm ${fact.highlight ? 'text-architectural-white font-semibold' : 'text-concrete/90 font-medium'}`}>
+                {fact.value}
+              </span>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+
+    {/* Targeted Search Entity Anchors Bar */}
+    <div class="pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 text-[11px] text-concrete/70">
+      <div class="flex items-center gap-2">
+        <span class="text-champagne font-mono font-medium uppercase text-[10px] tracking-wider">Quick Navigation:</span>
+      </div>
+      <div class="flex flex-wrap items-center gap-4 text-xs">
+        <a href="/mantra-meridian/" class="hover:text-champagne transition-colors text-architectural-white/90">
+          • Mantra Meridian
+        </a>
+        <a href="/mantra-balewadi/" class="hover:text-champagne transition-colors text-architectural-white/90">
+          • Mantra Balewadi
+        </a>
+        <a href="/mantra-riverside/" class="hover:text-champagne transition-colors text-architectural-white/90">
+          • Mantra Riverside
+        </a>
+        <a href="/mantra-riverside-balewadi/" class="hover:text-champagne transition-colors text-architectural-white/90">
+          • Mantra Riverside Balewadi
+        </a>
+        <a href="/mantra-meridian-balewadi/" class="hover:text-champagne transition-colors text-architectural-white/90">
+          • Mantra Meridian Balewadi
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -12,7 +12,7 @@ import '../styles/global.css';
 interface Props {
   title?: string;
   description?: string;
-  keywords?: string;
+  keywords?: string | string[];
   ogImage?: string;
   canonicalUrl?: string;
   schemaType?: string;
@@ -22,11 +22,13 @@ interface Props {
 const {
   title = "Mantra Meridian Balewadi | Mantra Riverside Balewadi | Luxury 2, 3, 4 BHK & Duplexes Pune",
   description = "Official portal of Mantra Meridian Balewadi and Mantra Riverside Balewadi by Mantra Properties. 8-acre luxury riverside development offering 2, 3, 4 BHK homes & 3 BHK Duplexes along the Mula River. MahaRERA P52100045688.",
-  keywords = defaultMetaKeywords,
+  keywords: rawKeywords = defaultMetaKeywords,
   ogImage = projectData.ogImage,
   canonicalUrl,
   customSchema
 } = Astro.props;
+
+const keywords = Array.isArray(rawKeywords) ? rawKeywords.join(', ') : rawKeywords;
 
 // Authoritative canonical URL normalization strictly matching trailing-slash routing
 const siteOrigin = "https://mantrameridianriverside.com";

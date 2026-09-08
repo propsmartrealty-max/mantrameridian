@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import ProjectSnapshotMatrix from '../components/Project/ProjectSnapshotMatrix.astro';
+import DesignPhilosophy from '../components/Architecture/DesignPhilosophy.astro';
+import FloorPlanViewer from '../components/FloorPlan/FloorPlanViewer';
+import AmenityAtlas from '../components/Amenity/AmenityAtlas';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+export const prerender = true;
+
+const pageKeywords = [
+  "Mantra Meridian",
+  "Mantra Meridian Balewadi",
+  "Mantra Meridian Pune",
+  "Mantra Properties Meridian",
+  "Mantra Meridian Riverside",
+  "Mantra Meridian Floor Plans",
+  "Mantra Meridian Price",
+  "Mantra Meridian Brochure",
+  "Mantra Meridian RERA",
+  "2 BHK Mantra Meridian",
+  "3 BHK Mantra Meridian",
+  "4 BHK Mantra Meridian"
+];
+---
+
+<BaseLayout
+  title="Mantra Meridian | Official Portal | Luxury Residences by Mantra Properties"
+  description="Official portal for Mantra Meridian by Mantra Properties in Balewadi, Pune. Explore 8 acres of waterfront luxury, 2, 3, 4 BHK apartments, and sky duplexes. MahaRERA P52100045688."
+  keywords={pageKeywords}
+>
+  <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
+    <Breadcrumbs items={[{ name: "Mantra Meridian" }]} />
+
+    <div class="max-w-4xl space-y-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-champagne/10 border border-champagne/30 text-champagne text-xs font-mono tracking-widest uppercase">
+        <span class="w-2 h-2 rounded-full bg-champagne animate-pulse"></span>
+        <span>FLAGSHIP DEVELOPMENT • MANTRA MERIDIAN</span>
+      </div>
+      
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl text-architectural-white font-normal leading-tight">
+        Mantra Meridian.<br />
+        <span class="text-champagne font-light italic font-serif">Architectural Distinction in West Pune.</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-concrete leading-relaxed max-w-3xl">
+        <strong>Mantra Meridian</strong> is Mantra Properties' premier luxury residential estate in Balewadi, Pune. Conceived across an 8-acre waterfront canvas, Mantra Meridian unites contemporary high-rise design, 30+ resort-style amenities, and direct access to the Mula River promenade.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <a href="#floor-plans" class="btn-luxury text-xs">
+          VIEW FLOOR PLANS →
+        </a>
+        <a href="/mantra-meridian-riverside/price/" class="btn-luxury-outline text-xs">
+          OFFICIAL 2026 PRICE LIST
+        </a>
+      </div>
+    </div>
+  </div>
+
+  {/* Above-the-fold Quick Project Snapshot */}
+  <ProjectSnapshotMatrix highlightKeyword="Mantra Meridian" />
+
+  {/* Floor Plan Explorer Island */}
+  <section id="floor-plans" class="w-full bg-obsidian py-24 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">SPATIAL EXCELLENCE</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-architectural-white font-normal">
+          Mantra Meridian Floor Plans &amp; Layouts
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Interactive unit layouts and dimensions for 2 BHK, 3 BHK, 3 BHK Duplex, and 4 BHK configurations.
+        </p>
+      </div>
+
+      <FloorPlanViewer client:visible />
+    </div>
+  </section>
+
+  {/* Architectural Design Philosophy */}
+  <DesignPhilosophy />
+
+  {/* Amenity Atlas */}
+  <section class="w-full py-24 bg-obsidian-deep border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">ESTATE INFRASTRUCTURE</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-architectural-white font-normal">
+          30+ Curated Lifestyle Amenities
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          From infinity pools to a private river promenade, discover the complete leisure ecosystem at Mantra Meridian.
+        </p>
+      </div>
+
+      <AmenityAtlas client:visible />
+    </div>
+  </section>
+
+  {/* MahaRERA Statutory Verification */}
+  <ReraVerificationCard />
+
+  {/* Dedicated FAQs */}
+  <FAQAccordion />
+</BaseLayout>

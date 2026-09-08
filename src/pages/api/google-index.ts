@@ -7,6 +7,11 @@ const HOST = 'mantrameridianriverside.com';
 
 const ALL_CANONICAL_URLS = [
   `https://${HOST}/`,
+  `https://${HOST}/mantra-meridian/`,
+  `https://${HOST}/mantra-balewadi/`,
+  `https://${HOST}/mantra-riverside/`,
+  `https://${HOST}/mantra-riverside-balewadi/`,
+  `https://${HOST}/mantra-meridian-balewadi/`,
   `https://${HOST}/mantra-meridian-riverside/residences/`,
   `https://${HOST}/mantra-meridian-riverside/2-bhk/`,
   `https://${HOST}/mantra-meridian-riverside/3-bhk/`,
