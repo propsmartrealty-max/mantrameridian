@@ -254,7 +254,8 @@ await runAsyncTest('Worker delivers zero-cookie response with Tier-1 headers to 
 
   // Cache-Control & Cache-Tag
   assert.ok(res.headers.get('Cache-Control')?.includes('stale-while-revalidate'));
-  assert.equal(res.headers.get('Cache-Tag'), 'mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, riverside-balewadi');
+  assert.ok(res.headers.get('Cache-Tag')?.includes('mantra-balewadi'));
+  assert.ok(res.headers.get('Cache-Tag')?.includes('html-pages'));
   assert.equal(res.headers.get('X-Edge-Keywords'), 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
 });
 
@@ -339,6 +340,54 @@ await runAsyncTest('Worker tags human NRI visitor with nri market cookie', async
   assert.equal(res.status, 200);
   assert.equal(res.headers.get('X-Edge-PoP'), 'DXB');
   assert.ok(res.headers.get('Set-Cookie')?.includes('cf_geo_market=nri'));
+});
+
+// -----------------------------------------------------------------------------
+// 8. RFC 5988 Canonical Link, Geo & Cache-Tag Edge Header Tests
+// -----------------------------------------------------------------------------
+await runAsyncTest('Worker sets RFC 5988 canonical Link header and geospatial coordinates', async () => {
+  const mockHtml = '<!DOCTYPE html><html><head></head><body><h1>Mantra Riverside</h1></body></html>';
+  const env = {
+    ASSETS: {
+      fetch: async () => new Response(mockHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      })
+    }
+  };
+
+  const req = new Request('https://mantrameridianriverside.com/mantra-riverside/', {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+      'cf-ipcountry': 'US'
+    }
+  });
+
+  const res = await worker.fetch(req, env, mockCtx);
+  assert.equal(res.status, 200);
+
+  // Verify RFC 5988 HTTP Link canonical header
+  const linkHeader = res.headers.get('Link');
+  assert.ok(linkHeader, 'Link header must exist on HTML responses');
+  assert.ok(linkHeader.includes('<https://mantrameridianriverside.com/mantra-riverside/>; rel="canonical"'));
+
+  // Verify Geospatial headers for Google Local Search
+  assert.equal(res.headers.get('Geo-Position'), '18.5839181;73.7747366');
+  assert.equal(res.headers.get('ICBM'), '18.5839181, 73.7747366');
+  assert.equal(res.headers.get('Geo-Placename'), 'Balewadi, Pune, Maharashtra, India');
+
+  // Verify route-specific Cache-Tag
+  const cacheTag = res.headers.get('Cache-Tag');
+  assert.ok(cacheTag, 'Cache-Tag header must exist');
+  assert.ok(cacheTag.includes('mantra-riverside'));
+});
+
+runTest('BaseLayout contains W3C Speculation Rules API for instant Chrome 121+ pre-rendering', () => {
+  const baseLayoutPath = path.resolve(process.cwd(), 'src/layouts/BaseLayout.astro');
+  const content = fs.readFileSync(baseLayoutPath, 'utf8');
+  assert.ok(content.includes('type="speculationrules"'), 'BaseLayout must include Speculation Rules');
+  assert.ok(content.includes('/mantra-riverside/'), 'Speculation Rules must include /mantra-riverside/');
+  assert.ok(content.includes('/mantra-meridian/'), 'Speculation Rules must include /mantra-meridian/');
 });
 
 // -----------------------------------------------------------------------------

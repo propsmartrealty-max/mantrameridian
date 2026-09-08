@@ -23,12 +23,40 @@ const pageKeywords = [
   "3 BHK Mantra Balewadi",
   "Balewadi High Street Flats"
 ];
+
+const customSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://mantrameridianriverside.com/mantra-balewadi/#listing",
+      "name": "Mantra Balewadi - Mantra Meridian & Mantra Riverside",
+      "description": "8-acre luxury residential development by Mantra Properties near Balewadi High Street, Pune. Premium 2, 3, 4 BHK homes.",
+      "url": "https://mantrameridianriverside.com/mantra-balewadi/",
+      "datePosted": "2026-01-01",
+      "validThrough": "2028-06-30",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "INR",
+        "lowPrice": "8500000",
+        "highPrice": "24000000",
+        "offerCount": "450",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "RealEstateAgent",
+          "@id": "https://mantrameridianriverside.com/#organization"
+        }
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Mantra Balewadi | Mantra Meridian & Mantra Riverside Luxury Apartments"
   description="Explore Mantra Balewadi: Mantra Properties' landmark 8-acre development featuring Mantra Meridian and Mantra Riverside. Premium 2, 3, 4 BHK apartments near Balewadi High Street, Pune. MahaRERA P52100045688."
   keywords={pageKeywords}
+  customSchema={customSchema}
 >
   <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
     <Breadcrumbs items={[{ name: "Mantra Balewadi" }]} />

@@ -300,6 +300,10 @@ export default {
               `<meta property="og:region" content="Maharashtra" />\n` +
               `<meta property="og:postal-code" content="411045" />\n` +
               `<meta property="og:country-name" content="India" />\n` +
+              `<meta name="geo.region" content="IN-MH" />\n` +
+              `<meta name="geo.placename" content="Balewadi, Pune, Maharashtra, India" />\n` +
+              `<meta name="geo.position" content="18.5839181;73.7747366" />\n` +
+              `<meta name="ICBM" content="18.5839181, 73.7747366" />\n` +
               `<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n` +
               `<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n` +
               `<link rel="dns-prefetch" href="//maps.google.com" />\n` +
@@ -412,11 +416,18 @@ export default {
     response.headers.set('X-Edge-Ray', cfRay);
     response.headers.set('X-Edge-Duration', `${duration}ms`);
 
-    // HTTP 103 Early Hints link headers for fast browser pre-warming
+    // Real Estate Geospatial headers for Google Maps & Local search spiders
+    response.headers.set('Geo-Position', '18.5839181;73.7747366');
+    response.headers.set('ICBM', '18.5839181, 73.7747366');
+    response.headers.set('Geo-Placename', 'Balewadi, Pune, Maharashtra, India');
+
+    // RFC 5988 HTTP Canonical Link & HTTP 103 Early Hints link headers for fast browser pre-warming
     if (isHtml) {
+      const canonicalPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+      const canonicalUrl = `https://mantrameridianriverside.com${canonicalPath}`;
       response.headers.set(
         'Link',
-        '</assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin'
+        `<${canonicalUrl}>; rel="canonical", </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin`
       );
     }
 
@@ -440,13 +451,22 @@ export default {
       response.headers.set('X-AI-Context', 'https://mantrameridianriverside.com/llms-full.txt');
     }
 
-    // Clean Edge Caching headers with Stale-While-Revalidate and Cache-Tag
+    // Clean Edge Caching headers with Stale-While-Revalidate and Granular Cache-Tag
     if (isHtml && !bypassCache) {
       response.headers.set(
         'Cache-Control',
         'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
       );
-      response.headers.set('Cache-Tag', 'mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, riverside-balewadi');
+      let routeTag = 'mantra-core';
+      if (pathname.includes('riverside')) routeTag = 'mantra-riverside';
+      else if (pathname.includes('balewadi')) routeTag = 'mantra-balewadi';
+      else if (pathname.includes('meridian')) routeTag = 'mantra-meridian';
+      else if (pathname.includes('price')) routeTag = 'mantra-pricing';
+
+      response.headers.set(
+        'Cache-Tag',
+        `mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, ${routeTag}`
+      );
       response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
     }
 
@@ -459,5 +479,70 @@ export default {
     }
 
     return response;
+  },
+
+  /**
+   * Autonomous Cloudflare Edge Cron Handler
+   * Triggers daily to broadcast 30 canonical URLs to Bing IndexNow, IndexNow Central, and Google Indexing API
+   */
+  async scheduled(_event: any, _env: Env, ctx: ExecutionContext): Promise<void> {
+    ctx.waitUntil(broadcastAutonomousIndexing(_env));
   }
 };
+
+const ALL_CANONICAL_INDEX_URLS: readonly string[] = [
+  'https://mantrameridianriverside.com/',
+  'https://mantrameridianriverside.com/mantra-meridian/',
+  'https://mantrameridianriverside.com/mantra-balewadi/',
+  'https://mantrameridianriverside.com/mantra-riverside/',
+  'https://mantrameridianriverside.com/mantra-riverside-balewadi/',
+  'https://mantrameridianriverside.com/mantra-meridian-balewadi/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/residences/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/price/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/amenities/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/location/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/riverside/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/rera/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/documents/',
+  'https://mantrameridianriverside.com/balewadi/',
+  'https://mantrameridianriverside.com/west-pune/',
+  'https://mantrameridianriverside.com/pune-real-estate/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/why-balewadi-emerging-luxury-destination-pune/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/balewadi-vs-baner-real-estate-comparison/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/architecture-of-light-riverside-living-meridian/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/rise-of-sky-duplex-living-pune/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/hinjewadi-balewadi-connectivity-corridor/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/'
+];
+
+async function broadcastAutonomousIndexing(_env: Env): Promise<void> {
+  const indexNowPayload = {
+    host: 'mantrameridianriverside.com',
+    key: '4c7e6b0a9f1248a881335b2e3a1d95c2',
+    keyLocation: 'https://mantrameridianriverside.com/4c7e6b0a9f1248a881335b2e3a1d95c2.txt',
+    urlList: ALL_CANONICAL_INDEX_URLS
+  };
+
+  const dispatches: Promise<any>[] = [
+    fetch('https://www.bing.com/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(indexNowPayload)
+    }),
+    fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(indexNowPayload)
+    })
+  ];
+
+  await Promise.allSettled(dispatches);
+}

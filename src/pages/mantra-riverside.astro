@@ -23,12 +23,40 @@ const pageKeywords = [
   "3 BHK Mantra Riverside",
   "4 BHK Mantra Riverside"
 ];
+
+const customSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://mantrameridianriverside.com/mantra-riverside/#listing",
+      "name": "Mantra Riverside Balewadi Luxury Residences",
+      "description": "8-acre luxury riverfront development by Mantra Properties along the Mula River in Balewadi, Pune. Offering 2, 3, 4 BHK apartments and sky duplexes.",
+      "url": "https://mantrameridianriverside.com/mantra-riverside/",
+      "datePosted": "2026-01-01",
+      "validThrough": "2028-06-30",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "INR",
+        "lowPrice": "8500000",
+        "highPrice": "24000000",
+        "offerCount": "450",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "RealEstateAgent",
+          "@id": "https://mantrameridianriverside.com/#organization"
+        }
+      }
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Mantra Riverside | Luxury Riverfront Residences Balewadi by Mantra Properties"
   description="Official portal for Mantra Riverside by Mantra Properties in Balewadi, Pune. 8-acre luxury riverfront development offering 2, 3, 4 BHK residences along the tranquil Mula river boardwalk. MahaRERA P52100045688."
   keywords={pageKeywords}
+  customSchema={customSchema}
 >
   <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
     <Breadcrumbs items={[{ name: "Mantra Riverside" }]} />

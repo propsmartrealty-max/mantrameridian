@@ -458,7 +458,7 @@ const coreGraph: any[] = [
       },
       "speakable": {
         "@type": "SpeakableSpecification",
-        "cssSelector": ["h1", "h2", ".speakable-summary", "[data-speakable]"]
+        "cssSelector": ["h1", "h2", ".speakable-summary", "[data-speakable]", "#project-snapshot", ".label-architectural"]
       }
     }
   ];
@@ -495,6 +495,40 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     <script is:inline>
       if (window.location.hostname === 'www.mantrameridianriverside.com') {
         window.location.replace('https://mantrameridianriverside.com' + window.location.pathname + window.location.search + window.location.hash);
+      }
+    </script>
+    {/* W3C Speculation Rules API for Chrome 121+ (Sub-10ms Instant Navigation for Top Real Estate SERP Targets) */}
+    <script type="speculationrules" is:inline>
+      {
+        "prerender": [
+          {
+            "source": "list",
+            "urls": [
+              "/",
+              "/mantra-riverside/",
+              "/mantra-balewadi/",
+              "/mantra-meridian/",
+              "/mantra-riverside-balewadi/",
+              "/mantra-meridian-balewadi/",
+              "/mantra-meridian-riverside/price/",
+              "/mantra-meridian-riverside/residences/",
+              "/mantra-meridian-riverside/floor-plans/"
+            ],
+            "eagerness": "moderate"
+          }
+        ],
+        "prefetch": [
+          {
+            "source": "document",
+            "where": {
+              "and": [
+                { "href_matches": "/*" },
+                { "not": { "href_matches": "/api/*" } }
+              ]
+            },
+            "eagerness": "conservative"
+          }
+        ]
       }
     </script>
     <meta name="theme-color" content="#07080A" />
