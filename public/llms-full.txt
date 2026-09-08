@@ -15,9 +15,13 @@
 | **MahaRERA Registration No.** | **P52100045688** |
 | **MahaRERA Verification URL** | https://maharera.mahaonline.gov.in/ |
 | **Project Site Address** | Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune, Maharashtra 411045 |
-| **Exact Geographic Coordinates** | 18.5839181° N, 73.7747366° E |
-| **Google Maps Entity CID** | 15494874017770876249 |
-| **Google Knowledge Graph ID** | /g/11x7zq3s0c |
+| **Exact Geographic Coordinates** | 18.5848136° N, 73.7751313° E |
+| **Google Maps Primary Listing** | [Meridian Mantra balewadi](https://www.google.com/maps/place/Meridian+Mantra+balewadi/@18.5848136,73.7725564,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b9006ffb408f:0x2c6aa34db7020b81!8m2!3d18.5848136!4d73.7751313!16s%2Fg%2F11zwwkvm2z) |
+| **Google Maps Primary CID** | 3200550039378332545 |
+| **Google Knowledge Graph ID (Primary)** | /g/11zwwkvm2z |
+| **Google Maps Secondary Listing** | [Site - Mantra Riverside](https://www.google.com/maps/place/Site+-+Mantra+Riverside/@18.5839181,73.7747366,17z/data=!4m6!3m5!1s0x3bc2b90046a5808b:0xd7087df3d2222d59!8m2!3d18.5839181!4d73.7747366!16s%2Fg%2F11x7zq3s0c) |
+| **Google Maps Secondary CID** | 15494874017770876249 |
+| **Google Knowledge Graph ID (Secondary)** | /g/11x7zq3s0c |
 | **Land Parcel Extent** | 8 Acres total gated masterplan |
 | **Open Green Space** | Over 75% landscaped, vehicle-free ground realm |
 | **Natural Riparian Frontage** | 500 metres along the Mula River |

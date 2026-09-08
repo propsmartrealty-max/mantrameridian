@@ -257,7 +257,7 @@ export default function LocationIntelligence() {
             {/* CTA */}
             <div className="pt-6 border-t border-white/10 mt-6 space-y-3">
               <a
-                href="https://www.google.com/maps/dir/?api=1&destination=18.5839181,73.7747366"
+                href="https://www.google.com/maps/dir/?api=1&destination=18.5848136,73.7751313"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full text-xs py-3 px-4 border border-champagne/40 bg-champagne/10 hover:bg-champagne/20 text-champagne font-mono flex items-center justify-center gap-2 transition-colors uppercase tracking-wider group"

@@ -372,8 +372,8 @@ await runAsyncTest('Worker sets RFC 5988 canonical Link header and geospatial co
   assert.ok(linkHeader.includes('<https://mantrameridianriverside.com/mantra-riverside/>; rel="canonical"'));
 
   // Verify Geospatial headers for Google Local Search
-  assert.equal(res.headers.get('Geo-Position'), '18.5839181;73.7747366');
-  assert.equal(res.headers.get('ICBM'), '18.5839181, 73.7747366');
+  assert.equal(res.headers.get('Geo-Position'), '18.5848136;73.7751313');
+  assert.equal(res.headers.get('ICBM'), '18.5848136, 73.7751313');
   assert.equal(res.headers.get('Geo-Placename'), 'Balewadi, Pune, Maharashtra, India');
 
   // Verify route-specific Cache-Tag

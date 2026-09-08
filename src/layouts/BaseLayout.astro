@@ -105,7 +105,10 @@ const coreGraph: any[] = [
         "https://maharera.mahaonline.gov.in/",
         projectData.googleMapsUrl,
         `https://maps.google.com/?cid=${projectData.googleMapsCid}`,
-        `https://www.google.com/search?kgmid=${projectData.googleMapsKgId}`
+        `https://www.google.com/search?kgmid=${projectData.googleMapsKgId}`,
+        projectData.googleMapsRiversideUrl,
+        `https://maps.google.com/?cid=${projectData.googleMapsRiversideCid}`,
+        `https://www.google.com/search?kgmid=${projectData.googleMapsRiversideKgId}`
       ],
       "address": {
         "@type": "PostalAddress",
@@ -212,6 +215,9 @@ const coreGraph: any[] = [
         projectData.officialPropertyUrl,
         `https://www.google.com/search?kgmid=${projectData.googleMapsKgId}`,
         `https://maps.google.com/?cid=${projectData.googleMapsCid}`,
+        projectData.googleMapsRiversideUrl,
+        `https://www.google.com/search?kgmid=${projectData.googleMapsRiversideKgId}`,
+        `https://maps.google.com/?cid=${projectData.googleMapsRiversideCid}`,
         projectData.reraRegistrationUrl
       ],
       "photo": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
@@ -228,7 +234,10 @@ const coreGraph: any[] = [
         "latitude": projectData.coordinates.latitude,
         "longitude": projectData.coordinates.longitude
       },
-      "hasMap": projectData.googleMapsUrl,
+      "hasMap": [
+        projectData.googleMapsUrl,
+        projectData.googleMapsRiversideUrl
+      ],
       "containedInPlace": {
         "@type": "Place",
         "name": "Balewadi, Pune",

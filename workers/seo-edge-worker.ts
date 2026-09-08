@@ -302,8 +302,8 @@ export default {
               `<meta property="og:country-name" content="India" />\n` +
               `<meta name="geo.region" content="IN-MH" />\n` +
               `<meta name="geo.placename" content="Balewadi, Pune, Maharashtra, India" />\n` +
-              `<meta name="geo.position" content="18.5839181;73.7747366" />\n` +
-              `<meta name="ICBM" content="18.5839181, 73.7747366" />\n` +
+              `<meta name="geo.position" content="18.5848136;73.7751313" />\n` +
+              `<meta name="ICBM" content="18.5848136, 73.7751313" />\n` +
               `<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n` +
               `<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n` +
               `<link rel="dns-prefetch" href="//maps.google.com" />\n` +
@@ -417,8 +417,8 @@ export default {
     response.headers.set('X-Edge-Duration', `${duration}ms`);
 
     // Real Estate Geospatial headers for Google Maps & Local search spiders
-    response.headers.set('Geo-Position', '18.5839181;73.7747366');
-    response.headers.set('ICBM', '18.5839181, 73.7747366');
+    response.headers.set('Geo-Position', '18.5848136;73.7751313');
+    response.headers.set('ICBM', '18.5848136, 73.7751313');
     response.headers.set('Geo-Placename', 'Balewadi, Pune, Maharashtra, India');
 
     // RFC 5988 HTTP Canonical Link & HTTP 103 Early Hints link headers for fast browser pre-warming

@@ -89,11 +89,13 @@ Google ranks entities, not just keywords. To establish **Mantra Meridian Riversi
 
 | Entity Identifier | Value | Google Semantic Target |
 | :--- | :--- | :--- |
-| **Google Maps CID** | `15494874017770876249` | Direct Google Maps Place Entity (`Site - Mantra Riverside`) |
-| **Knowledge Graph MId** | `/g/11x7zq3s0c` | Official Google Knowledge Graph Entity MId |
+| **Google Maps CID (Primary)** | `3200550039378332545` | Direct Google Maps Place Entity (`Meridian Mantra balewadi`) |
+| **Knowledge Graph MId (Primary)** | `/g/11zwwkvm2z` | Official Google Knowledge Graph Entity MId |
+| **Google Maps CID (Secondary)** | `15494874017770876249` | Secondary Google Maps Place Entity (`Site - Mantra Riverside`) |
+| **Knowledge Graph MId (Secondary)** | `/g/11x7zq3s0c` | Secondary Google Knowledge Graph Entity MId |
 | **MahaRERA ID** | `P52100045688` | Maharashtra Real Estate Regulatory Authority Entity |
-| **Coordinates** | `18.5839181° N, 73.7747366° E` | Exact geographic position along Mula Riverfront |
-| **NAP Consistency** | Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi, Pune 411045, Phone: `+91 77440 09295` | 100% parity across Google Business Profile, Schema, and On-Page Content |
+| **Coordinates** | `18.5848136° N, 73.7751313° E` | Exact geographic position along Mula Riverfront |
+| **NAP Consistency** | Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi, Pune 411045 | 100% parity across Google Business Profiles, Schema, and On-Page Content |
 
 ### 3.2 Semantic Wikidata & Wikipedia Disambiguation
 In [`src/layouts/BaseLayout.astro`](file:///Users/vikasyewle/Documents/mantrameridianriverside/src/layouts/BaseLayout.astro), both `RealEstateAgent` and `ApartmentComplex` anchor to global knowledge repositories via `areaServed` and `containedInPlace`:

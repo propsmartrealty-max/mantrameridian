@@ -82,7 +82,11 @@ export const GET: APIRoute = async ({ request }) => {
         mapsUrl: projectData.googleMapsUrl,
         directDirectionsUrl: `https://www.google.com/maps/dir/?api=1&destination=${projectData.coordinates.latitude},${projectData.coordinates.longitude}`,
         coordinates: projectData.coordinates,
-        verifiedPlaceName: 'Site - Mantra Riverside',
+        verifiedPlaceName: 'Meridian Mantra balewadi',
+        secondaryPlaceName: 'Site - Mantra Riverside',
+        secondaryMapsUrl: projectData.googleMapsRiversideUrl,
+        secondaryCid: projectData.googleMapsRiversideCid,
+        secondaryKgMid: projectData.googleMapsRiversideKgId
       },
       inventoryOverview: {
         totalConfigurations: inventory.length,
