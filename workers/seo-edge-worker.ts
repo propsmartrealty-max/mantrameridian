@@ -162,6 +162,36 @@ export default {
       return Response.redirect(`${url.origin}${pathname}/${url.search}`, 301);
     }
 
+    // 2D. Major Search Query Permutation & Phonetic Typo Normalizer (301 Permanent Redirects)
+    if (!isStatic && pathname.includes('riverride')) {
+      const healedPath = pathname.replace(/riverride/g, 'riverside');
+      return Response.redirect(`${url.origin}${healedPath}${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/mantra-meridian-riverside-balewadi' || pathname === '/mantra-meridian-riverside-balewadi/')) {
+      return Response.redirect(`${url.origin}/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/meridian-mantra-balewadi' || pathname === '/meridian-mantra-balewadi/')) {
+      return Response.redirect(`${url.origin}/mantra-meridian-balewadi/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/meridian-mantra' || pathname === '/meridian-mantra/')) {
+      return Response.redirect(`${url.origin}/mantra-meridian/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/riverside-mantra-balewadi' || pathname === '/riverside-mantra-balewadi/')) {
+      return Response.redirect(`${url.origin}/mantra-riverside-balewadi/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/riverside-mantra' || pathname === '/riverside-mantra/')) {
+      return Response.redirect(`${url.origin}/mantra-riverside/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/balewadi-mantra-meridian' || pathname === '/balewadi-mantra-meridian/')) {
+      return Response.redirect(`${url.origin}/mantra-meridian-balewadi/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/balewadi-mantra-riverside' || pathname === '/balewadi-mantra-riverside/')) {
+      return Response.redirect(`${url.origin}/mantra-riverside-balewadi/${url.search}`, 301);
+    }
+    if (!isStatic && (pathname === '/balewadi-mantra' || pathname === '/balewadi-mantra/')) {
+      return Response.redirect(`${url.origin}/mantra-balewadi/${url.search}`, 301);
+    }
+
     // =========================================================================
     // STAGE 3: White Bot Engine & Edge Geo-Intelligence
     // =========================================================================
@@ -468,6 +498,7 @@ export default {
         `mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, ${routeTag}`
       );
       response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
+      response.headers.set('X-Edge-Keywords-Permutations', 'mantra balewadi, mantra meridian, mantra meridian balewadi, mantra riverside balewadi, mantra riverride balewadi, mantra meridian riverside balewadi');
     }
 
     // Asynchronously store into caches.default with Set-Cookie stripped!

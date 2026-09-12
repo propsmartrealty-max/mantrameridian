@@ -22,14 +22,47 @@ export const coreBrandQueriesLower: readonly string[] = [
   "mantra meridian balewadi"
 ] as const;
 
-// 01. Comprehensive Brand Entity Permutations (Tokens: Mantra, Meridian, Riverside, Balewadi, Pune, Properties)
+// Major Google Search Queries (Tier-1 Primary Ranking Targets specified by property desk)
+export const majorGoogleQueries: readonly string[] = [
+  "Mantra Balewadi",
+  "Mantra Meridian",
+  "Mantra Meridian Balewadi",
+  "Mantra Riverside Balewadi",
+  "Mantra Riverride Balewadi",
+  "Mantra Meridian Riverside Balewadi"
+] as const;
+
+export const majorGoogleQueriesLower: readonly string[] = [
+  "mantra balewadi",
+  "mantra meridian",
+  "mantra meridian balewadi",
+  "mantra riverside balewadi",
+  "mantra riverride balewadi",
+  "mantra meridian riverside balewadi"
+] as const;
+
+// 01. Comprehensive Brand Entity Permutations (Tokens: Mantra, Meridian, Riverside, Riverride, Balewadi, Pune, Properties)
 export const brandPermutations: string[] = [
-  // 5 Explicit High-Priority Target Search Queries
+  // 5 Explicit High-Priority Target Search Queries (Strictly preserved for test assertion integrity)
   "Mantra Meridian",
   "Mantra Balewadi",
   "Mantra Riverside",
   "Mantra Riverside Balewadi",
   "Mantra Meridian Balewadi",
+
+  // Major Google Query Variations & Combinations
+  "Mantra Riverride Balewadi",
+  "Mantra Meridian Riverside Balewadi",
+  "Mantra Riverride",
+  "Riverride Balewadi Mantra",
+  "Riverride Mantra Balewadi",
+  "Mantra Riverride Pune",
+  "Meridian Mantra Balewadi",
+  "Riverside Mantra Balewadi",
+  "Balewadi Mantra Meridian",
+  "Balewadi Mantra Riverside",
+  "Balewadi Mantra Meridian Riverside",
+  "Mantra Riverside Meridian Balewadi",
 
   // 4-token natural permutations
   "Mantra Meridian Riverside Balewadi",

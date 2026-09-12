@@ -58,3 +58,16 @@
 /pune-luxury-flats                      /pune-real-estate/                         301
 /pune-property                          /pune-real-estate/                         301
 /pune-investment                        /pune-real-estate/                         301
+
+# 5. Major Search Query Permutations & Phonetic Typo Hardening
+/mantra-meridian-riverside-balewadi     /                                          301
+/mantra-riverride                       /mantra-riverside/                         301
+/mantra-riverride-balewadi              /mantra-riverside-balewadi/                301
+/meridian-mantra                        /mantra-meridian/                          301
+/meridian-mantra-balewadi               /mantra-meridian-balewadi/                 301
+/riverside-mantra                       /mantra-riverside/                         301
+/riverside-mantra-balewadi              /mantra-riverside-balewadi/                301
+/balewadi-mantra                        /mantra-balewadi/                          301
+/balewadi-mantra-meridian               /mantra-meridian-balewadi/                 301
+/balewadi-mantra-riverside              /mantra-riverside-balewadi/                301
+
