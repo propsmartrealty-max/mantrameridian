@@ -1,0 +1,176 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import ConstructionTracker from '../components/Construction/ConstructionTracker.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+
+export const prerender = true;
+
+const engineeringHighlights = [
+  {
+    title: "MIVAN Aluminum Formwork",
+    spec: "Precision Monolithic RCC",
+    description: "Engineered with advanced aluminum shuttering systems to deliver earthquake-resistant, joint-free monolithic concrete structures with immaculate wall smoothness and durability."
+  },
+  {
+    title: "Seismic Zone III Engineering",
+    spec: "Fe 550D High-Ductility Steel",
+    description: "Designed strictly per Bureau of Indian Standards (BIS) seismic codes, utilizing corrosion-resistant TMT bars and heavy raft foundation slabs anchored into solid basalt strata."
+  },
+  {
+    title: "100-Year High Flood Level Setback",
+    spec: "Riparian Embankment Protection",
+    description: "Site plinth and ground elevations are engineered significantly above the designated PMC 100-year High Flood Level (HFL) and Blue Line of the Mula River with multi-tier retaining walls."
+  },
+  {
+    title: "Multi-Tier Subterranean Waterproofing",
+    spec: "Polyurethane & Crystalline Membrane",
+    description: "Basement retaining walls and raft foundations are enveloped in elastomeric and crystalline waterproofing barriers to ensure lifelong dry, moisture-free basement parking."
+  }
+];
+
+const constructionFaqs = [
+  {
+    question: "What is the official MahaRERA possession date for Mantra Meridian Riverside?",
+    answer: "As per statutory registration with Maharashtra Real Estate Regulatory Authority (MahaRERA) under registration number P52100045688, the sanctioned completion and handover deadline is June 2028."
+  },
+  {
+    question: "What construction technology is being deployed for the residential towers?",
+    answer: "Mantra Properties utilizes advanced aluminum formwork (MIVAN) technology. This system casts concrete walls and slabs simultaneously in a monolithic cycle, resulting in superior structural strength, zero seismic joint vulnerability, enhanced floor carpet efficiency, and accelerated execution timelines."
+  },
+  {
+    question: "How frequently are construction updates and architect progress certificates published?",
+    answer: "Quarterly progress reports, project architect certificates, structural engineer certificates, and chartered accountant escrow statements (Form 1, 2, and 3) are submitted to MahaRERA every quarter and reflected directly in our Document Library."
+  },
+  {
+    question: "Can prospective buyers schedule an on-site structural inspection?",
+    answer: "Yes. Guided safety-compliant site inspections of the project show flat, structural mock-ups, and riverfront boardwalk viewing deck can be scheduled through our VIP Concierge Desk."
+  }
+];
+
+const constructionSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemPage",
+      "@id": "https://mantrameridianriverside.com/construction-status/#webpage",
+      "name": "Mantra Meridian Riverside Balewadi Construction Status & Milestones",
+      "description": "Verified structural progress, MahaRERA June 2028 handover timeline, and quarterly engineering updates for Mantra Meridian Riverside Balewadi.",
+      "url": "https://mantrameridianriverside.com/construction-status/"
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Mantra Meridian Construction Status | Possession Date & MahaRERA Timeline Balewadi"
+  description="Verified construction status, structural milestones, and June 2028 possession timeline for Mantra Meridian Riverside Balewadi. MahaRERA P52100045688 progress tracker."
+  keywords="Mantra Meridian construction status, Mantra Meridian possession date, Mantra Meridian current stage, Mantra Meridian RERA completion date, Mantra Balewadi construction update 2026"
+  customSchema={constructionSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Construction Status & Milestones" }]} />
+
+    {/* Hero Header */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">STATUTORY TRUST • EXECUTION EXCELLENCE</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Construction Status.<br />
+        <span class="text-champagne font-light italic font-serif">Precision Engineering at Scale.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Track transparent, verified progress across the 8-acre riverside estate. Executed with MIVAN aluminum formwork and strict adherence to approved PMC/PMRDA architectural blueprints.
+      </p>
+    </div>
+
+    {/* Metric Highlights Strip */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">JUNE 2028</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">RERA Handover</span>
+        <p class="text-[11px] text-concrete/70">Sanctioned completion under P52100045688.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">MIVAN</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Formwork Tech</span>
+        <p class="text-[11px] text-concrete/70">Monolithic RCC casting for high structural integrity.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">ZONE III</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Seismic Safety</span>
+        <p class="text-[11px] text-concrete/70">BIS compliant structural engineering &amp; Fe 550D steel.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">100%</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">RERA Compliant</span>
+        <p class="text-[11px] text-concrete/70">Quarterly progress filings published on MahaRERA.</p>
+      </div>
+    </div>
+
+    {/* Standalone Construction Tracker Component */}
+    <ConstructionTracker />
+
+    {/* Section: Engineering & Structural Specifications */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">STRUCTURAL INTEGRITY</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white mt-1">Engineering Benchmark</h2>
+        <p class="text-xs text-concrete/80 mt-1">Industrial-grade construction methodologies safeguarding your multi-generational asset.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {engineeringHighlights.map((eng) => (
+          <div class="p-6 bg-obsidian-card border border-white/10 space-y-3 hover:border-champagne/40 transition-colors">
+            <div class="flex justify-between items-center">
+              <h3 class="font-serif text-lg text-architectural-white">{eng.title}</h3>
+              <span class="text-[10px] font-mono text-champagne">{eng.spec}</span>
+            </div>
+            <p class="text-xs text-concrete/80 leading-relaxed">{eng.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Schedule Site Visit CTA */}
+    <div class="p-8 md:p-12 bg-gradient-to-r from-obsidian-card via-obsidian-deep to-obsidian-card border border-champagne/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl">
+        <span class="label-architectural text-xs text-champagne">VERIFY ON GROUND</span>
+        <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+          Experience the Site Office &amp; Sample Residences
+        </h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Book an exclusive on-site preview to inspect material sample boards, foundation layouts, and panoramic viewpoints overlooking the Mula River.
+        </p>
+      </div>
+      <div class="shrink-0 flex flex-col sm:flex-row gap-4">
+        <a
+          href="https://wa.me/912067082699?text=Hello%20Mantra%20Meridian%2C%20I%20would%20like%20to%20schedule%20an%20on-site%20construction%20and%20sample%20flat%20visit."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-luxury text-xs px-6 py-3 whitespace-nowrap flex items-center gap-2"
+        >
+          <span>BOOK SITE VISIT</span>
+          <span>↗</span>
+        </a>
+        <a href="/mantra-meridian-riverside/documents/" class="btn-luxury-outline text-xs px-6 py-3 whitespace-nowrap">
+          DOWNLOAD RERA CERTIFICATES
+        </a>
+      </div>
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">RERA &amp; TIMELINE</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Construction FAQs</h2>
+      </div>
+      <FAQAccordion customFaqs={constructionFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

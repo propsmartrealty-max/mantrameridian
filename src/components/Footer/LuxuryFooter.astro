@@ -30,38 +30,43 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
         </div>
       </div>
 
-      {/* Nav Cluster 1: Residences & Spaces (Cols 6-8) */}
-      <div class="lg:col-span-3 space-y-4">
+      {/* Nav Cluster 1: Residences & Spaces (Cols 5-6) */}
+      <div class="lg:col-span-2 space-y-4">
         <p class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Residences</p>
         <ul class="space-y-2.5 text-xs text-concrete/70">
-          <li><a href="/mantra-meridian-riverside/2-bhk/" class="hover:text-champagne transition-colors">2 BHK Contemporary Homes</a></li>
-          <li><a href="/mantra-meridian-riverside/3-bhk/" class="hover:text-champagne transition-colors">3 BHK Riverside Residences</a></li>
-          <li><a href="/mantra-meridian-riverside/3-bhk-duplex/" class="hover:text-champagne transition-colors">3 BHK Signature Sky Duplexes</a></li>
-          <li><a href="/mantra-meridian-riverside/4-bhk/" class="hover:text-champagne transition-colors">4 BHK Grand Riverside Estates</a></li>
-          <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Pricing &amp; Cost Sheet</a></li>
-          <li><a href="/mantra-meridian-riverside/floor-plans/" class="hover:text-champagne transition-colors">Complete Floor Plan Portfolio</a></li>
-          <li><a href="/mantra-meridian-riverside/masterplan/" class="hover:text-champagne transition-colors">8-Acre Estate Masterplan</a></li>
+          <li><a href="/mantra-meridian-riverside/2-bhk/" class="hover:text-champagne transition-colors">2 BHK Contemporary</a></li>
+          <li><a href="/mantra-meridian-riverside/3-bhk/" class="hover:text-champagne transition-colors">3 BHK Riverside</a></li>
+          <li><a href="/duplex/" class="hover:text-champagne transition-colors">3 BHK Sky Duplexes</a></li>
+          <li><a href="/mantra-meridian-riverside/4-bhk/" class="hover:text-champagne transition-colors">4 BHK Grand Estates</a></li>
+          <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Price &amp; Cost Sheet</a></li>
+          <li><a href="/mantra-meridian-riverside/floor-plans/" class="hover:text-champagne transition-colors">Floor Plan Portfolio</a></li>
+          <li><a href="/mantra-meridian-riverside/masterplan/" class="hover:text-champagne transition-colors">8-Acre Masterplan</a></li>
         </ul>
       </div>
 
-      {/* Nav Cluster 2: Lifestyle & SEO Hubs (Cols 9-10) */}
-      <div class="lg:col-span-2 space-y-4">
-        <p class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Discovery</p>
+      {/* Nav Cluster 2: Corridors & Advisory (Cols 7-9) */}
+      <div class="lg:col-span-3 space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Corridors &amp; Advisory</p>
+        <ul class="space-y-2.5 text-xs text-concrete/70">
+          <li><a href="/balewadi/" class="hover:text-champagne transition-colors">Balewadi Real Estate Hub</a></li>
+          <li><a href="/hinjewadi/" class="hover:text-champagne transition-colors">Hinjewadi Tech Corridor</a></li>
+          <li><a href="/baner/" class="hover:text-champagne transition-colors">Baner Luxury Corridor</a></li>
+          <li><a href="/mahalunge/" class="hover:text-champagne transition-colors">Mahalunge Hi-Tech Hub</a></li>
+          <li><a href="/nri-desk/" class="hover:text-champagne transition-colors">Global NRI Investment Desk</a></li>
+          <li><a href="/compare/" class="hover:text-champagne transition-colors">Project Comparison Hub</a></li>
+          <li><a href="/home-loan/" class="hover:text-champagne transition-colors">Home Loan &amp; Bank APF</a></li>
+          <li><a href="/construction-status/" class="hover:text-champagne transition-colors">Construction Status &amp; RERA</a></li>
+        </ul>
+      </div>
+
+      {/* Nav Cluster 3: Discovery & Compliance (Cols 10-12) */}
+      <div class="lg:col-span-3 space-y-4">
+        <p class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Discovery &amp; Legal</p>
         <ul class="space-y-2.5 text-xs text-concrete/70">
           <li><a href="/mantra-meridian-riverside/riverside/" class="hover:text-champagne transition-colors">The Riverside Story</a></li>
           <li><a href="/mantra-meridian-riverside/amenities/" class="hover:text-champagne transition-colors">Amenity Atlas (30+ Spaces)</a></li>
           <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Location Intelligence</a></li>
-          <li><a href="/mantra-meridian-riverside/gallery/" class="hover:text-champagne transition-colors">Visual Archive</a></li>
-          <li><a href="/mantra-meridian-riverside/journal/" class="hover:text-champagne transition-colors">The Meridian Journal</a></li>
-          <li><a href="/balewadi/" class="hover:text-champagne transition-colors">Balewadi Real Estate Hub</a></li>
-          <li><a href="/west-pune/" class="hover:text-champagne transition-colors">West Pune Luxury Guide</a></li>
-        </ul>
-      </div>
-
-      {/* Nav Cluster 3: Documentation & Compliance (Cols 11-12) */}
-      <div class="lg:col-span-2 space-y-4">
-        <p class="text-xs uppercase tracking-[0.2em] text-architectural-white font-semibold">Verification</p>
-        <ul class="space-y-2.5 text-xs text-concrete/70">
+          <li><a href="/pune-real-estate/" class="hover:text-champagne transition-colors">Pune Real Estate Index</a></li>
           <li><a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors">MahaRERA: {projectData.reraNumber}</a></li>
           <li><a href="/mantra-meridian-riverside/documents/" class="hover:text-champagne transition-colors">Document Library</a></li>
           <li><a href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`} class="hover:text-champagne transition-colors">VIP Concierge Telephone Desk</a></li>

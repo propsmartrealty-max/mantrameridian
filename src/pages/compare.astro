@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { comparativeKeywordsList } from '../data/keywords';
+
+export const prerender = true;
+
+const competitorDeepDives = [
+  {
+    name: "Kolte Patil 24K Altura",
+    location: "Balewadi High Street Cluster",
+    verdict: "High Brand Recall, Higher Density",
+    strengths: "Proximity to commercial offices, established brand pedigree.",
+    limitations: "Smaller land parcel (~3.2 acres) surrounded by busy internal access roads. Higher per-square-foot premium with limited river proximity.",
+    advantageMeridian: "Mantra Meridian offers more than double the contiguous land parcel (8 acres), 75%+ landscaped green space, and a pristine 500m natural riverfront buffer ensuring lifelong unobstructed views."
+  },
+  {
+    name: "Kasturi The Balmoral & Balmoral Riverside",
+    location: "Balewadi / Mula River Border",
+    verdict: "Super-Luxury Finishes, High Cost Entry",
+    strengths: "Renowned architectural craftsmanship and luxury specifications.",
+    limitations: "Primarily tailored to ultra-large ticket sizes with entry price points often exceeding ₹2.2 Cr+, limiting flexibility for growing families seeking modern 2 and 3 BHK layouts.",
+    advantageMeridian: "Mantra Meridian provides comparable architectural elegance and ceiling voids (including 20-ft Sky Duplexes) starting from ₹85 Lakhs* for 2 BHK and ₹1.28 Cr* for 3 BHK, offering superior capital appreciation leverage."
+  },
+  {
+    name: "ANP Universe",
+    location: "Balewadi Mumbai-Bengaluru Highway Link",
+    verdict: "Commercial-Integrated Mixed Development",
+    strengths: "Large commercial presence, immediate highway bypass transit.",
+    limitations: "Proximity to high-decibel highway traffic noise and dust. Less natural tree canopy and no riparian riverfront buffer.",
+    advantageMeridian: "Meridian is situated along peaceful Balewadi Village Road directly on the Mula river, providing acoustic tranquility, microclimatic cooling, and clean air while remaining just 3 minutes from High Street."
+  },
+  {
+    name: "VTP Earth One & Godrej Hillside (Mahalunge)",
+    location: "Mahalunge PMRDA Hi-Tech City",
+    verdict: "Mega-Township Scale, Extended Timelines",
+    strengths: "Large township masterplans with retail high-streets.",
+    limitations: "Massive scale (15,000+ total apartments) resulting in high resident density, congested entry roads during peak hours, and delivery timelines extending into 2030+.",
+    advantageMeridian: "Mantra Meridian delivers boutique luxury on an 8-acre estate with established Balewadi civic infrastructure, lower resident density, and a firm June 2028 MahaRERA handover date."
+  }
+];
+
+const compareFaqs = [
+  {
+    question: "Why does the 8-acre continuous parcel size at Mantra Meridian matter compared to 24K Altura?",
+    answer: "Land parcel scale directly dictates resident lifestyle and density. On a 3-acre parcel like 24K Altura, amenities and tower footprints are heavily consolidated on podium slabs with limited ground-level greenery. An 8-acre estate like Mantra Meridian dedicates over 75% of the land to landscaped open realms, including a 500-meter riverfront boardwalk, Olympic-standard sports courts, and a standalone 20,000 sq.ft. clubhouse (The Grand Pavilion)."
+  },
+  {
+    question: "How does pricing at Mantra Meridian Riverside compare to Balmoral Riverside?",
+    answer: "While both projects border the Balewadi riverfront, Mantra Meridian offers a wider, more accessible typology spectrum: luxury 2 BHK homes start at ₹85 Lakhs*, 3 BHK residences from ₹1.28 Cr*, and 3 BHK Sky Duplexes from ₹1.85 Cr*. This allows buyers to enter a premier waterfront development at a substantial pre-launch value advantage."
+  },
+  {
+    question: "Is Mantra Meridian Riverside closer to Balewadi High Street than highway-side projects?",
+    answer: "Yes. Mantra Meridian is situated just 1.2 km (a 3-minute drive) from Balewadi High Street via wider interior municipal roads, avoiding the chronic vehicular choke points of the NH 48 highway service road."
+  }
+];
+
+const compareSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://mantrameridianriverside.com/compare/#webpage",
+      "name": "West Pune & Balewadi Luxury Real Estate Benchmark & Comparison Guide",
+      "description": "Comparative analysis benchmarking Mantra Meridian Riverside against 24K Altura, Kasturi Balmoral, ANP Universe, and Mahalunge townships.",
+      "url": "https://mantrameridianriverside.com/compare/"
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Mantra Meridian vs 24K Altura & Balmoral | Balewadi Project Comparison Guide"
+  description="Objective comparative analysis of luxury projects in Balewadi Pune: Mantra Meridian Riverside vs 24K Altura, Kasturi Balmoral, ANP Universe & Mahalunge townships."
+  keywords={comparativeKeywordsList}
+  customSchema={compareSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Project Comparison Hub" }]} />
+
+    {/* Hero Header */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">ANALYTICAL INTELLIGENCE • BUYER'S BENCHMARK</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Project Benchmark.<br />
+        <span class="text-champagne font-light italic font-serif">Mantra Meridian vs. The Market.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Making an informed luxury real estate investment in Balewadi requires transparent comparison across land parcel scale, riverfront frontage, open space ratios, ceiling volumes, and long-term capital appreciation potential.
+      </p>
+    </div>
+
+    {/* Summary Metric Strip */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">8 ACRES</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">Estate Acreage</span>
+        <p class="text-[11px] text-concrete/70">Largest contiguous waterfront parcel in Balewadi.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">75%+</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Green Spaces</span>
+        <p class="text-[11px] text-concrete/70">Significantly lower density than competing towers.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">500M</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">River Boardwalk</span>
+        <p class="text-[11px] text-concrete/70">Direct, unhindered Mula riverfront promenade.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">20,000</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">Sq.Ft. Clubhouse</span>
+        <p class="text-[11px] text-concrete/70">The Grand Pavilion dedicated lifestyle hub.</p>
+      </div>
+    </div>
+
+    {/* Deep Dive Grid */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">COMPETITIVE ARCHITECTURE</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white mt-1">Head-to-Head Evaluation</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {competitorDeepDives.map((comp) => (
+          <div class="p-6 md:p-8 bg-obsidian-card border border-white/10 space-y-6 hover:border-champagne/40 transition-colors flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <span class="text-[10px] font-mono text-champagne uppercase tracking-widest">{comp.location}</span>
+                  <h3 class="font-serif text-2xl text-architectural-white">{comp.name}</h3>
+                </div>
+                <span class="px-2.5 py-1 text-[10px] font-mono bg-white/5 border border-white/10 text-concrete">
+                  {comp.verdict}
+                </span>
+              </div>
+
+              <div class="space-y-2 text-xs">
+                <p><strong class="text-architectural-white">Key Attributes:</strong> <span class="text-concrete/80">{comp.strengths}</span></p>
+                <p><strong class="text-rose-400/90">Market Limitations:</strong> <span class="text-concrete/80">{comp.limitations}</span></p>
+              </div>
+            </div>
+
+            <div class="p-4 bg-champagne/5 border border-champagne/20 space-y-1">
+              <span class="text-[10px] font-mono text-champagne uppercase font-bold tracking-wider block">
+                The Mantra Meridian Advantage:
+              </span>
+              <p class="text-xs text-concrete/90 leading-relaxed">{comp.advantageMeridian}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Transparent Valuation CTA */}
+    <div class="p-8 md:p-12 bg-gradient-to-r from-obsidian-card via-obsidian-deep to-obsidian-card border border-champagne/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl">
+        <span class="label-architectural text-xs text-champagne">TRANSPARENT VALUE PROPOSITION</span>
+        <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+          Compare Unit Economics &amp; Cost Sheets
+        </h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Evaluate transparent pricing, floor rise models, and statutory fee breakups across our 2, 3, 4 BHK and Sky Duplex residences.
+        </p>
+      </div>
+      <div class="shrink-0 flex flex-col sm:flex-row gap-4">
+        <a href="/mantra-meridian-riverside/price/" class="btn-luxury text-xs px-6 py-3 whitespace-nowrap">
+          ITEMIZED COST SHEET ESTIMATOR →
+        </a>
+        <a href="/mantra-meridian-riverside/residences/" class="btn-luxury-outline text-xs px-6 py-3 whitespace-nowrap">
+          EXPLORE RESIDENCES
+        </a>
+      </div>
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">BUYER'S INQUIRIES</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Comparative Real Estate FAQs</h2>
+      </div>
+      <FAQAccordion customFaqs={compareFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

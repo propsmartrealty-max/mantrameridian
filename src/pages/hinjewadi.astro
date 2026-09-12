@@ -1,0 +1,201 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { hinjewadiKeywordsList } from '../data/keywords';
+
+export const prerender = true;
+
+const commuteDestinations = [
+  { name: "Infosys Campus (Phase 1)", distance: "7.8 km", driveTime: "12 mins", directRoute: "Balewadi Bypass / NH 48" },
+  { name: "Tata Consultancy Services (TCS)", distance: "8.2 km", driveTime: "14 mins", directRoute: "Hinjewadi Flyover" },
+  { name: "Wipro Technologies (Phase 2)", distance: "10.5 km", driveTime: "18 mins", directRoute: "Maan Road Expressway" },
+  { name: "Cognizant Technology Solutions", distance: "8.9 km", driveTime: "15 mins", directRoute: "Hinjewadi-Wakad Link" },
+  { name: "Embassy TechZone (Phase 2)", distance: "11.2 km", driveTime: "19 mins", directRoute: "Phase 2 Spine Road" },
+  { name: "Quadron Business Park", distance: "9.5 km", driveTime: "16 mins", directRoute: "Hinjewadi Main Road" },
+  { name: "Balewadi Stadium Metro Station", distance: "1.4 km", driveTime: "4 mins", directRoute: "PMRDA Metro Line 3" }
+];
+
+const hinjewadiFaqs = [
+  {
+    question: "Why do tech executives from Hinjewadi IT Park prefer living in Balewadi?",
+    answer: "While Hinjewadi is Maharashtra's largest IT SEZ employing over 400,000 tech professionals, living inside the industrial park entails traffic congestion, construction noise, and limited social infrastructure. Balewadi, situated just 12 to 14 minutes away, offers planned avenues, Balewadi High Street dining, international schools, and serene riverside estates like Mantra Meridian Riverside."
+  },
+  {
+    question: "How will Pune Metro Line 3 impact commute from Balewadi to Hinjewadi?",
+    answer: "The 23-km elevated Pune Metro Line 3 connects Balewadi Stadium directly with Hinjewadi Phase 1, Phase 2, and Megapolis Phase 3. Residents of Mantra Meridian can reach the Balewadi Stadium station in under 4 minutes, allowing a rapid car-free transit to IT campuses without highway roundabouts."
+  },
+  {
+    question: "What rental yields can investors expect from flats near Hinjewadi in Balewadi?",
+    answer: "Balewadi delivers Pune's highest residential gross rental yields between 4.0% and 4.6%, driven by sustained tenant demand from senior managers, tech architects, and corporate directors working in Hinjewadi MNCs."
+  },
+  {
+    question: "How far is Mantra Meridian Riverside from Rajiv Gandhi Infotech Park Phase 1?",
+    answer: "Mantra Meridian Riverside is approximately 7.8 km from Hinjewadi Phase 1, achievable in 12 to 14 minutes via the Balewadi arterial road and the upcoming Wakad-Balewadi Mula river bridge."
+  }
+];
+
+const hinjewadiSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "@id": "https://mantrameridianriverside.com/hinjewadi/#place",
+      "name": "Hinjewadi IT Park Executive Residential Gateway — Mantra Meridian Riverside",
+      "description": "Executive residential corridor connecting Rajiv Gandhi Infotech Park in Hinjewadi to Balewadi High Street and Mantra Meridian Riverside.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5848136,
+        "longitude": 73.7751313
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Flats Near Hinjewadi IT Park Pune | Tech Executive Housing at Mantra Meridian Balewadi"
+  description="Executive housing guide for Hinjewadi IT Park professionals. Luxury 2, 3, 4 BHK & Sky Duplexes at Mantra Meridian Riverside Balewadi, 12 mins from Phase 1. Metro Line 3 transit."
+  keywords={hinjewadiKeywordsList}
+  customSchema={hinjewadiSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Hinjewadi IT Park Housing Hub" }]} />
+
+    {/* Hero Section */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">HINJEWADI TECH CORRIDOR • EXECUTIVE HOUSING PORTAL</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Hinjewadi IT Park.<br />
+        <span class="text-champagne font-light italic">The Balewadi Sanctuary.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Positioned just 7.8 km from Rajiv Gandhi Infotech Park Phase 1, Mantra Meridian Riverside offers 400,000+ technology leaders the premier alternative to industrial park sprawl: an 8-acre waterside estate minutes from Balewadi High Street.
+      </p>
+    </div>
+
+    {/* Metric Highlights Grid */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">12 MIN</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Phase 1 Commute</span>
+        <p class="text-[11px] text-concrete/70">Seamless highway and bypass connectivity.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">LINE 3</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Metro High Speed</span>
+        <p class="text-[11px] text-concrete/70">Balewadi Stadium to Hinjewadi Megapolis.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">4.4%</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Gross Rental Yield</span>
+        <p class="text-[11px] text-concrete/70">High executive tenant demand from tech MNCs.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">8 ACRES</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Riverfront Estate</span>
+        <p class="text-[11px] text-concrete/70">75%+ green space, acoustic calm &amp; fresh air.</p>
+      </div>
+    </div>
+
+    {/* Commute Radar Table */}
+    <div class="bg-obsidian-surface border border-white/10 p-6 md:p-10 space-y-6">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">TRANSIT ACCELERATION RADAR</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Drive Times to Key Hinjewadi Campuses</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Strategically located along the Mula River corridor, Mantra Meridian bypasses peak inner-city chokepoints via dedicated arterial boulevards.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-concrete">
+          <thead>
+            <tr class="border-b border-white/10 font-mono text-[11px] uppercase tracking-wider text-architectural-white">
+              <th class="py-3 px-4">Campus / Tech SEZ</th>
+              <th class="py-3 px-4">Distance</th>
+              <th class="py-3 px-4">Drive Time</th>
+              <th class="py-3 px-4">Primary Arterial Route</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-sans">
+            {commuteDestinations.map((dest) => (
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-3.5 px-4 text-architectural-white font-medium">{dest.name}</td>
+                <td class="py-3.5 px-4 font-mono text-champagne">{dest.distance}</td>
+                <td class="py-3.5 px-4 font-mono text-emerald-400 font-semibold">{dest.driveTime}</td>
+                <td class="py-3.5 px-4 text-concrete/80">{dest.directRoute}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Strategic Thesis: Why Live in Balewadi vs Hinjewadi */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-4">
+      <div class="lg:col-span-6 space-y-4">
+        <span class="label-architectural text-xs text-champagne">THE EXECUTIVE DILEMMA RESOLVED</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white leading-tight">
+          Work in Hinjewadi. Decompress Beside the River.
+        </h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          For software engineering directors, product leaders, and corporate VPs, daily productivity requires mental restoration. Dense townships inside Hinjewadi suffer from constant road widening, dust, and lack of fine dining.
+        </p>
+        <p class="text-xs text-concrete leading-relaxed">
+          At Mantra Meridian Riverside, residents enjoy a 500-metre boardwalk along the Mula River, Olympic lap pools, private screening theaters, and immediate proximity to Balewadi High Street’s cosmopolitan lifestyle—all while retaining an effortless 12-minute commute to the office.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a href="/mantra-meridian-riverside/residences/" class="btn-luxury text-xs">
+            VIEW EXECUTIVE RESIDENCES →
+          </a>
+          <a href="/mantra-meridian-riverside/price/" class="btn-luxury-outline text-xs">
+            DOWNLOAD COST SHEET &amp; PLANS ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 space-y-4 bg-obsidian-card p-6 md:p-8 border border-champagne/20">
+        <h3 class="font-serif text-xl text-architectural-white">Recommended Configurations for IT Leaders</h3>
+        <div class="space-y-4 text-xs">
+          <div class="p-4 bg-obsidian-surface border border-white/10 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-champagne font-mono font-semibold">3 BHK Signature (1,180 sq.ft.)</span>
+              <span class="text-architectural-white font-mono">₹1.28 Cr* onwards</span>
+            </div>
+            <p class="text-[11px] text-concrete/70">Ideal for tech managers requiring ergonomic dedicated work-from-home study suites and expansive river balconies.</p>
+          </div>
+          <div class="p-4 bg-obsidian-surface border border-white/10 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-champagne font-mono font-semibold">3 BHK Sky Duplex (1,660 sq.ft.)</span>
+              <span class="text-architectural-white font-mono">₹1.85 Cr* onwards</span>
+            </div>
+            <p class="text-[11px] text-concrete/70">20-foot double-height salon with acoustic level separation—entertain on lower tier while family sleeps peacefully on upper deck.</p>
+          </div>
+          <div class="p-4 bg-obsidian-surface border border-white/10 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-champagne font-mono font-semibold">2 BHK Contemporary (815 sq.ft.)</span>
+              <span class="text-architectural-white font-mono">₹85 Lakhs* onwards</span>
+            </div>
+            <p class="text-[11px] text-concrete/70">Prime high-yield rental investment asset favored by IT consultants and tech expatriates.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">FAQ &amp; ADVISORY</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Hinjewadi Executive Housing Inquiries</h2>
+      </div>
+      <FAQAccordion customFaqs={hinjewadiFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

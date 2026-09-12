@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import NRICurrencyConverter from '../components/Finance/NRICurrencyConverter';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+
+export const prerender = true;
+
+const nriFaqs = [
+  {
+    question: "Can Non-Resident Indians (NRIs) and OCIs purchase residential property at Mantra Meridian Riverside?",
+    answer: "Yes, under the Foreign Exchange Management Act (FEMA) guidelines and Reserve Bank of India (RBI) general permissions, NRIs and Overseas Citizens of India (OCIs) can purchase unlimited residential real estate in India without needing prior approval from the RBI."
+  },
+  {
+    question: "What banking channels must be used by NRIs to fund property purchases?",
+    answer: "Payments must be made in Indian Rupees through normal banking channels via inward remittances from overseas through an NRE (Non-Resident External) or NRO (Non-Resident Ordinary) account, or FCNR (Foreign Currency Non-Resident) deposits. Payment cannot be made via foreign currency traveller’s cheques or cash."
+  },
+  {
+    question: "Are capital gains and rental yields repatriable back to the NRI’s host country?",
+    answer: "Yes. Rental income is fully repatriable under the USD 1 Million Scheme through an NRO account after deduction of applicable Indian withholding taxes (TDS) and submission of Form 15CA/15CB certified by a chartered accountant. For property sales, capital proceeds equivalent to the initial foreign inward remittance can be repatriated freely via NRE accounts, subject to FEMA limits."
+  },
+  {
+    question: "How can NRIs verify MahaRERA registration and project sanctions remotely?",
+    answer: "Mantra Meridian Riverside is registered under MahaRERA number P52100045688. All sanctioned architectural floor plans, commencement certificates (CC), building layouts, and quarterly progress filings can be verified directly on the official MahaRERA portal (maharera.mahaonline.gov.in) or downloaded from our official Document Library."
+  },
+  {
+    question: "Does Mantra Meridian offer virtual 4K video tours and digital documentation for overseas buyers?",
+    answer: "Yes. Our dedicated NRI desk provides end-to-end digital onboarding: high-resolution 4K live video walkthroughs, digital floor plan orientations, electronic allotment letter issuance, and remote payment gateway facilities with Foreign Inward Remittance Certificate (FIRC) generation support."
+  }
+];
+
+const nriSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FinancialService",
+      "@id": "https://mantrameridianriverside.com/nri-desk/#service",
+      "name": "Mantra Meridian Riverside NRI Real Estate Advisory Desk",
+      "description": "Specialized global investor concierge assisting Non-Resident Indians across UAE, USA, UK, Singapore, and Europe with luxury property investment in Balewadi Pune.",
+      "telephone": "+91 20 6708 2699",
+      "areaServed": ["US", "AE", "GB", "SG", "QA", "SA", "CA", "AU"],
+      "provider": {
+        "@type": "RealEstateAgent",
+        "name": "Mantra Meridian Riverside",
+        "url": "https://mantrameridianriverside.com/"
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="NRI Property Investment in Pune | Global Investment Desk at Mantra Meridian Balewadi"
+  description="Official NRI real estate investment desk for Mantra Meridian Riverside Balewadi Pune. Multi-currency converter (USD, AED, SGD, GBP), FEMA guidelines, NRE/NRO repatriation, & 4K virtual tours."
+  keywords="NRI property investment Pune, Mantra Meridian Balewadi NRI desk, buy flats in Pune from USA UAE Singapore, FEMA guidelines Pune real estate, NRE NRO account property buying India, capital appreciation West Pune 2026"
+  customSchema={nriSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Global NRI Investment Desk" }]} />
+
+    {/* Hero Header */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">GLOBAL CONCIERGE • WEST PUNE WEALTH CORRIDOR</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Global NRI Desk.<br />
+        <span class="text-champagne font-light italic font-serif">West Pune Luxury Asset.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Curated for Indian expatriates, tech leaders, and global investors seeking premier residential assets in Pune’s highest-appreciating riverfront corridor. Transparent FEMA compliance, dedicated digital escrow, and live 4K virtual tours.
+      </p>
+    </div>
+
+    {/* Key NRI Investment Advantage Metrics */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">12.4%</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">5-Yr CAGR</span>
+        <p class="text-[11px] text-concrete/70">Sustained capital compounding in Balewadi.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">4.4%</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Gross Rental Yield</span>
+        <p class="text-[11px] text-concrete/70">Substantial rental return from Hinjewadi tech MNCs.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">100%</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Repatriable</span>
+        <p class="text-[11px] text-concrete/70">Fully compliant with RBI &amp; FEMA inward remittance.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">JUNE 2028</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">MahaRERA Handover</span>
+        <p class="text-[11px] text-concrete/70">Clear statutory timeline under P52100045688.</p>
+      </div>
+    </div>
+
+    {/* Interactive Multi-Currency Purchasing Power Engine */}
+    <div class="space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">MULTI-CURRENCY VALUATION</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white mt-1">Live Overseas Purchasing Power</h2>
+        <p class="text-xs text-concrete/80 mt-1">
+          Evaluate unit economics, projected rental income, and 5-year capital appreciation in your home currency.
+        </p>
+      </div>
+      <NRICurrencyConverter client:load />
+    </div>
+
+    {/* Section 02: FEMA & Regulatory Compliance Framework */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-full bg-champagne/10 border border-champagne/30 flex items-center justify-center font-mono text-xs text-champagne font-bold">
+          01
+        </div>
+        <h3 class="font-serif text-lg text-architectural-white">FEMA / RBI Eligibility</h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          NRIs, OCIs, and PIOs hold statutory permission to acquire residential properties in India without central bank clearance. No restriction on the number of residential units held.
+        </p>
+      </div>
+
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-full bg-champagne/10 border border-champagne/30 flex items-center justify-center font-mono text-xs text-champagne font-bold">
+          02
+        </div>
+        <h3 class="font-serif text-lg text-architectural-white">NRE / NRO Banking &amp; FIRC</h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Inward remittances are processed seamlessly via authorized banking channels. Our finance desk facilitates the swift issuance of Foreign Inward Remittance Certificates (FIRC).
+        </p>
+      </div>
+
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
+        <div class="w-8 h-8 rounded-full bg-champagne/10 border border-champagne/30 flex items-center justify-center font-mono text-xs text-champagne font-bold">
+          03
+        </div>
+        <h3 class="font-serif text-lg text-architectural-white">Section 54F Tax Optimization</h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Global investors can reinvest capital gains from other asset sales into residential property at Mantra Meridian to claim exemptions under Section 54/54F of the Indian Income Tax Act.
+        </p>
+      </div>
+    </div>
+
+    {/* Section 03: Virtual Presentation & NRI Concierge CTA */}
+    <div class="p-8 md:p-12 bg-gradient-to-r from-obsidian-card via-obsidian-deep to-obsidian-card border border-champagne/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl">
+        <span class="label-architectural text-xs text-champagne">VIP CONCIERGE ACCESS</span>
+        <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+          Schedule a Dedicated 4K Live Virtual Walkthrough
+        </h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Join our senior architectural relationship team over private video conference for a live site broadcast, sun path analysis, and custom payment milestone structuring.
+        </p>
+      </div>
+      <div class="shrink-0 flex flex-col sm:flex-row gap-4">
+        <a
+          href="https://wa.me/912067082699?text=Hello%20Mantra%20Meridian%20NRI%20Desk%2C%20I%20am%20an%20overseas%20investor%20and%20would%20like%20to%20schedule%20a%20private%204K%20virtual%20walkthrough."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-luxury text-xs px-6 py-3 whitespace-nowrap flex items-center gap-2"
+        >
+          <span>WHATSAPP NRI DESK</span>
+          <span>↗</span>
+        </a>
+        <a href="/mantra-meridian-riverside/documents/" class="btn-luxury-outline text-xs px-6 py-3 whitespace-nowrap">
+          DOWNLOAD NRI BROCHURE
+        </a>
+      </div>
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">OVERSEAS ADVISORY</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">NRI Homebuyer &amp; Investor FAQs</h2>
+      </div>
+      <FAQAccordion customFaqs={nriFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

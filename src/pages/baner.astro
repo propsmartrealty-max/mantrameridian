@@ -1,0 +1,191 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { banerKeywordsList } from '../data/keywords';
+
+export const prerender = true;
+
+const banerComparisons = [
+  { metric: "Typical Project Parcel Size", baner: "1.0 – 2.5 Acres (Infill & Fragmented)", meridian: "8 Contiguous Acres (Masterplanned Sanctuary)" },
+  { metric: "Open Landscaped Space", baner: "40% – 50% (Dense Concrete Footprint)", meridian: "75%+ (Botanical Courtyards & Green Buffers)" },
+  { metric: "Riparian River Frontage", baner: "None (Landlocked Urban Density)", meridian: "Direct 500m Mula River Boardwalk" },
+  { metric: "Architectural Ceiling Heights", baner: "Standard 9.5 – 10.0 ft Flat Plates", meridian: "Double-Height 20ft Sky Duplex Salons" },
+  { metric: "Peak Hour Traffic Congestion", baner: "High Bottlenecks on Baner Main Road", meridian: "Wide 24-36m Planned Boulevards & Bypass" },
+  { metric: "Balewadi High Street Access", baner: "8 – 15 mins across congested links", meridian: "1.2 km / 3 – 5 mins direct breezy transit" }
+];
+
+const banerFaqs = [
+  {
+    question: "Why are luxury homebuyers upgrading from Baner to Balewadi Riverside?",
+    answer: "Baner developed early in West Pune's growth cycle and has reached near-total land saturation, resulting in high vehicular congestion, narrow secondary roads, and smaller gated developments. Discerning buyers choose Mantra Meridian in Balewadi because it provides expansive 8-acre scale, 75%+ green space, natural riverfront acoustics, and direct access to Balewadi High Street without traffic gridlock."
+  },
+  {
+    question: "How far is Mantra Meridian from Pancard Club Road and Baner Main Road?",
+    answer: "Mantra Meridian Riverside is located approximately 3.5 km from Pancard Club Road and Baner Road, achievable in 6 to 8 minutes via the Balewadi-Baner connecting boulevards."
+  },
+  {
+    question: "How do apartment sizes and floorplans in Balewadi compare with Baner?",
+    answer: "Due to larger land availability, Mantra Meridian Riverside offers expansive carpet areas: 2 BHK (815 sq.ft.), 3 BHK (1,180 sq.ft.), signature 3 BHK Sky Duplexes (1,660 sq.ft.) with 20ft double-height living salons, and 4 BHK Grand Estates (2,050 sq.ft.) with private elevator lobbies—features unavailable in older Baner complexes."
+  },
+  {
+    question: "Is property in Balewadi more lucrative for capital appreciation than Baner?",
+    answer: "Yes. With Baner's price per sq.ft. plateauing due to saturation, Balewadi offers higher capital appreciation momentum (projected at 12-14% CAGR) fueled by the PMRDA Metro Line 3, the Mula Riverfront Development (RFD), and upcoming arterial river bridges."
+  }
+];
+
+const banerSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "@id": "https://mantrameridianriverside.com/baner/#place",
+      "name": "Baner–Balewadi Luxury Real Estate Corridor — Mantra Meridian Riverside",
+      "description": "Premium residential corridor spanning Baner and Balewadi, spotlighting luxury upgrade opportunities at Mantra Meridian Riverside.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5848136,
+        "longitude": 73.7751313
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Baner Luxury Apartments | Upgrade to Mantra Meridian Riverside Balewadi Pune"
+  description="Discover why Baner residents are upgrading to Mantra Meridian Riverside Balewadi. 8-acre estate, 75%+ green space, 3 & 4 BHK sky duplexes, minutes from Balewadi High Street."
+  keywords={banerKeywordsList}
+  customSchema={banerSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Baner Luxury Corridor" }]} />
+
+    {/* Hero Section */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">WEST PUNE LUXURY CORRIDOR • BANER TO BALEWADI</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Beyond Baner.<br />
+        <span class="text-champagne font-light italic">The Riverside Benchmark.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        While Baner pioneered West Pune’s residential ascent, Mantra Meridian Riverside represents its architectural evolution: an uncompromised 8-acre sanctuary offering double-height sky duplexes and riparian peace minutes from Balewadi High Street.
+      </p>
+    </div>
+
+    {/* Key Metrics */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">6 MIN</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">From Baner Road</span>
+        <p class="text-[11px] text-concrete/70">Seamless connection via wide arterial link.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">8 ACRES</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Contiguous Footprint</span>
+        <p class="text-[11px] text-concrete/70">Resort scale impossible on saturated Baner plots.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">20 FT</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Double-Height Void</span>
+        <p class="text-[11px] text-concrete/70">Sky Duplex volume redefining luxury standards.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">500 M</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">River Boardwalk</span>
+        <p class="text-[11px] text-concrete/70">Private waterside promenade along the Mula river.</p>
+      </div>
+    </div>
+
+    {/* Analytical Comparison Table */}
+    <div class="bg-obsidian-surface border border-white/10 p-6 md:p-10 space-y-6">
+      <div class="max-w-2xl space-y-2">
+        <span class="label-architectural text-xs text-champagne">ANALYTICAL EVALUATION MATRIX</span>
+        <h2 class="font-serif text-3xl text-architectural-white">Saturated Baner Infill vs Meridian Riverside</h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          A side-by-side comparison of spatial geometry, lifestyle acoustics, and urban density across West Pune's two defining residential standards.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-xs text-concrete">
+          <thead>
+            <tr class="border-b border-white/10 font-mono text-[11px] uppercase tracking-wider text-architectural-white">
+              <th class="py-3 px-4">Evaluation Parameter</th>
+              <th class="py-3 px-4">Conventional Baner Projects</th>
+              <th class="py-3 px-4">Mantra Meridian Riverside</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-sans">
+            {banerComparisons.map((c) => (
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-3.5 px-4 text-architectural-white font-medium">{c.metric}</td>
+                <td class="py-3.5 px-4 text-concrete/70">{c.baner}</td>
+                <td class="py-3.5 px-4 font-medium text-champagne">{c.meridian}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Architectural Thesis */}
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start pt-4">
+      <div class="lg:col-span-6 space-y-4">
+        <span class="label-architectural text-xs text-champagne">SPATIAL ELEVATION</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white leading-tight">
+          Why Luxury Upgraders Choose the Meridian Sanctuary
+        </h2>
+        <p class="text-xs text-concrete leading-relaxed">
+          Families residing in older Baner societies often face a ceiling: limited clubhouse amenities, tight basement parking, and traffic gridlock spilling onto secondary access roads.
+        </p>
+        <p class="text-xs text-concrete leading-relaxed">
+          Mantra Meridian provides the relief of scale. An 8-acre gated sanctuary allows for a 20,000 sq.ft. multi-level clubhouse ("The Grand Pavilion"), dedicated tennis and pickleball arenas, Dolby Atmos private screening rooms, and an Olympic-grade temperature-controlled lap pool.
+        </p>
+        <div class="pt-4 flex flex-wrap gap-4">
+          <a href="/mantra-meridian-riverside/residences/" class="btn-luxury text-xs">
+            EXPLORE RESIDENCE SPECIFICATIONS →
+          </a>
+          <a href="/mantra-meridian-riverside/masterplan/" class="btn-luxury-outline text-xs">
+            EXPLORE 8-ACRE MASTERPLAN ↗
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-6 space-y-4 bg-obsidian-card p-6 md:p-8 border border-champagne/20">
+        <h3 class="font-serif text-xl text-architectural-white">Upgrader Portfolio Tiers</h3>
+        <div class="space-y-4 text-xs">
+          <div class="p-4 bg-obsidian-surface border border-white/10 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-champagne font-mono font-semibold">4 BHK Grand Estate (2,050 sq.ft.)</span>
+              <span class="text-architectural-white font-mono">₹2.40 Cr* onwards</span>
+            </div>
+            <p class="text-[11px] text-concrete/70">Private elevator vestibule, dual master suites, formal drawing room, and wraparound riverfront terrace for multi-generational prestige.</p>
+          </div>
+          <div class="p-4 bg-obsidian-surface border border-white/10 space-y-1">
+            <div class="flex justify-between items-center">
+              <span class="text-champagne font-mono font-semibold">3 BHK Sky Duplex (1,660 sq.ft.)</span>
+              <span class="text-architectural-white font-mono">₹1.85 Cr* onwards</span>
+            </div>
+            <p class="text-[11px] text-concrete/70">Two-tier villa-like volume in the sky with a dramatic 20-foot ceiling void overlooking the gentle flow of the Mula river.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">FAQ &amp; ADVISORY</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Baner Homebuyer Inquiries</h2>
+      </div>
+      <FAQAccordion customFaqs={banerFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

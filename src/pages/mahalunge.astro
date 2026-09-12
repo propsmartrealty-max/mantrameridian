@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { mahalungeKeywordsList } from '../data/keywords';
+
+export const prerender = true;
+
+const townshipComparison = [
+  {
+    parameter: "Estate Philosophy",
+    mantraMeridian: "Boutique 8-Acre Riverside Sanctuary",
+    mahalungeTownships: "100+ Acre High-Density Mega Townships"
+  },
+  {
+    parameter: "Overall Resident Density",
+    mantraMeridian: "Low-to-Medium Density (High Privacy & Serenity)",
+    mahalungeTownships: "High Density (10,000 to 20,000+ Planned Units)"
+  },
+  {
+    parameter: "Riverfront Proximity",
+    mantraMeridian: "Direct 500m Mula River Boardwalk & Riparian Calm",
+    mahalungeTownships: "Landlocked Hillside or Secondary Canal Views"
+  },
+  {
+    parameter: "Social Infrastructure",
+    mantraMeridian: "Immediate (Balewadi High Street, Orchid School, Jupiter)",
+    mahalungeTownships: "Under-development (Requires 5-8 years to mature)"
+  },
+  {
+    parameter: "Civic Road Access",
+    mantraMeridian: "Fully widened 24-36m Balewadi arterial avenues",
+    mahalungeTownships: "Constrained transit points during monsoon & peak hours"
+  },
+  {
+    parameter: "Signature Residences",
+    mantraMeridian: "2, 3, 4 BHK & 20-ft Double-Height Sky Duplexes",
+    mahalungeTownships: "Standardized compact 1, 2 & 3 BHK formats"
+  },
+  {
+    parameter: "Possession & RERA Trust",
+    mantraMeridian: "June 2028 Sanctioned (MahaRERA P52100045688)",
+    mahalungeTownships: "Multi-phase delivery extending up to 2030-2032"
+  }
+];
+
+const mahalungeTransitRadar = [
+  { destination: "Mahalunge PMRDA Hi-Tech City Core", distance: "2.1 km", time: "4 mins", route: "Upcoming Mula River Bridge" },
+  { destination: "Shiv Chhatrapati Sports Complex", distance: "1.5 km", time: "3 mins", route: "Balewadi Stadium Road" },
+  { destination: "Balewadi High Street Culinary District", distance: "1.2 km", time: "3 mins", route: "Balewadi Village Avenue" },
+  { destination: "Rajiv Gandhi Infotech Park Hinjewadi Phase 1", distance: "7.8 km", time: "12 mins", route: "NH 48 Bypass / Bridge" },
+  { destination: "Mumbai-Pune Expressway Dehu Road", distance: "8.5 km", time: "11 mins", route: "Wakad Expressway Flyover" }
+];
+
+const mahalungeFaqs = [
+  {
+    question: "How is Mantra Meridian Riverside connected to Mahalunge Hi-Tech City?",
+    answer: "Mantra Meridian Riverside is located on the Balewadi riverfront directly across from Mahalunge. The planned 45-meter Balewadi-Mahalunge river bridge provides a 3-minute transit between the two micro-markets, allowing residents to benefit from PMRDA's Hi-Tech City employment nodes while residing in Balewadi's established luxury ecosystem."
+  },
+  {
+    question: "Why do buyers choose Mantra Meridian Balewadi over Mahalunge mega-townships?",
+    answer: "While Mahalunge projects like Godrej Hillside and VTP Earth One offer large-scale township masterplans, they come with high resident density (often exceeding 15,000 apartments) and developing social infrastructure. In contrast, Mantra Meridian provides an intimate, 8-acre boutique riverside sanctuary with over 75% landscaped open space, 20-ft ceiling Sky Duplexes, and immediate walking proximity to Balewadi High Street's gourmet culture and top schools."
+  },
+  {
+    question: "What is the capital growth potential of the Balewadi-Mahalunge river corridor?",
+    answer: "The Balewadi-Mahalunge riverfront is West Pune's fastest appreciating corridor. Driven by PMRDA Metro Line 3, the bridge connecting Balewadi to Wakad and Mahalunge, and the PMC Mula Riverfront Development (RFD) promenade, real estate values in this riverfront pocket are projected to grow by over 25% from 2026 to 2028."
+  },
+  {
+    question: "What typologies and price brackets are available at Mantra Meridian for Mahalunge seekers?",
+    answer: "Mantra Meridian Riverside offers spacious 2 BHK residences starting at ₹85 Lakhs*, 3 BHK riverside homes from ₹1.28 Cr*, exclusive 3 BHK Sky Duplexes from ₹1.85 Cr*, and grand 4 BHK riverside estates from ₹2.40 Cr*."
+  }
+];
+
+const mahalungeSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "@id": "https://mantrameridianriverside.com/mahalunge/#place",
+      "name": "Mahalunge Hi-Tech City & Balewadi River Corridor — Mantra Meridian Riverside",
+      "description": "Cross-corridor analysis comparing PMRDA Hi-Tech City Mahalunge with the 8-acre riverside luxury at Mantra Meridian Balewadi Pune.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5848136,
+        "longitude": 73.7751313
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Mahalunge Hi-Tech City Flats | Why Upgrade to Mantra Meridian Riverside Balewadi"
+  description="Compare Mahalunge Hi-Tech City township flats with Mantra Meridian Riverside Balewadi. Discover bridge connectivity, lower density 8-acre riverfront estate, and Balewadi High Street access."
+  keywords={mahalungeKeywordsList}
+  customSchema={mahalungeSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Mahalunge Hi-Tech City Corridor" }]} />
+
+    {/* Hero Section */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">PMRDA HI-TECH CITY CORRIDOR • CROSS-RIVER ANALYSIS</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Mahalunge Hi-Tech.<br />
+        <span class="text-champagne font-light italic font-serif">The Balewadi Advantage.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Directly across the Mula River from Mahalunge’s PMRDA Hi-Tech City, Mantra Meridian Riverside offers discerning homebuyers an exclusive 8-acre sanctuary: the serenity of natural river borders combined with Balewadi’s established social infrastructure and dining boulevards.
+      </p>
+    </div>
+
+    {/* Metric Highlights Grid */}
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">3 MIN</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Bridge Transit</span>
+        <p class="text-[11px] text-concrete/70">Upcoming 45m Mula River connecting bridge.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">8 ACRES</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Boutique Estate</span>
+        <p class="text-[11px] text-concrete/70">Unmatched privacy vs 15,000-unit mega townships.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">75%+</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Open Spaces</span>
+        <p class="text-[11px] text-concrete/70">Expansive green podium &amp; river promenade.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-white/10 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">1.2 KM</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">High Street</span>
+        <p class="text-[11px] text-concrete/70">Established cafes, bistros &amp; retail next door.</p>
+      </div>
+    </div>
+
+    {/* Section 01: Township vs. Boutique Riverside Comparison */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">ANALYTICAL BENCHMARK</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white mt-1">
+          Mahalunge Mega-Townships vs. Mantra Meridian Balewadi
+        </h2>
+        <p class="text-xs text-concrete/80 mt-1">
+          Why homebuyers seeking enduring quality of life choose Balewadi's established riverfront over dense township clusters.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto border border-champagne/20 bg-obsidian-card">
+        <table class="w-full text-left text-xs">
+          <thead>
+            <tr class="border-b border-champagne/20 bg-obsidian-deep text-architectural-white font-mono uppercase tracking-wider">
+              <th class="p-4">Decision Parameter</th>
+              <th class="p-4 text-champagne bg-champagne/10">Mantra Meridian Riverside (Balewadi)</th>
+              <th class="p-4">Mahalunge Mega Townships (e.g. Godrej / VTP)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-concrete">
+            {townshipComparison.map((row) => (
+              <tr class="hover:bg-white/[0.02]">
+                <td class="p-4 font-mono text-architectural-white font-semibold whitespace-nowrap">{row.parameter}</td>
+                <td class="p-4 font-mono text-champagne bg-champagne/5 font-semibold">{row.mantraMeridian}</td>
+                <td class="p-4">{row.mahalungeTownships}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    {/* Section 02: Cross-River Transit Radar */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">CONNECTIVITY NETWORK</span>
+        <h2 class="font-serif text-3xl md:text-4xl text-architectural-white mt-1">Cross-River Transit Times</h2>
+        <p class="text-xs text-concrete/80 mt-1">Immediate access to both PMRDA Hi-Tech employment and Balewadi cosmopolitan life.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {mahalungeTransitRadar.map((node) => (
+          <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-xs font-mono text-champagne">{node.time}</span>
+              <span class="text-[10px] font-mono text-concrete/60">{node.distance}</span>
+            </div>
+            <h3 class="font-serif text-lg text-architectural-white">{node.destination}</h3>
+            <p class="text-xs text-concrete/70">Route: {node.route}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Section 03: Residences Showcase Banner */}
+    <div class="p-8 md:p-12 bg-gradient-to-r from-obsidian-card via-obsidian-deep to-obsidian-card border border-champagne/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div class="space-y-3 max-w-2xl">
+        <span class="label-architectural text-xs text-champagne">CURATED PORTFOLIO</span>
+        <h3 class="font-serif text-2xl md:text-3xl text-architectural-white">
+          Explore 2, 3, 4 BHK &amp; Sky Duplexes at Meridian
+        </h3>
+        <p class="text-xs text-concrete/80 leading-relaxed">
+          Experience voluminous living with 10.5-ft to 20-ft ceiling heights, zero dead corridor efficiency, and permanent views of the Mula river.
+        </p>
+      </div>
+      <div class="shrink-0 flex flex-col sm:flex-row gap-4">
+        <a href="/mantra-meridian-riverside/residences/" class="btn-luxury text-xs px-6 py-3 whitespace-nowrap">
+          VIEW RESIDENCES &amp; FLOOR PLANS →
+        </a>
+        <a href="/mantra-meridian-riverside/price/" class="btn-luxury-outline text-xs px-6 py-3 whitespace-nowrap">
+          PRICE &amp; COST SHEET
+        </a>
+      </div>
+    </div>
+
+    {/* Section 04: Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">FAQ &amp; ADVISORY</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Mahalunge Corridor Inquiries</h2>
+      </div>
+      <FAQAccordion customFaqs={mahalungeFaqs} />
+    </div>
+
+    {/* Section 05: MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>
