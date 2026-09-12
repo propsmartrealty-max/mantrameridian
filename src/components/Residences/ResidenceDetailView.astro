@@ -9,6 +9,8 @@ import { residencesData } from '../../data/residences';
 import { getConfigurationKeywords } from '../../data/keywords';
 import { projectData } from '../../data/project';
 
+import { aggregateRatingData, verifiedReviews } from '../../data/reviews';
+
 interface Props {
   residence: ResidenceConfig;
 }
@@ -17,41 +19,106 @@ const { residence } = Astro.props;
 
 const otherResidences = residencesData.filter(r => r.id !== residence.id);
 
-// SEO Schema for this Residence with Offer & Apartment specs
+// Verified reviews for this residence or global project reviews
+const matchingReviews = verifiedReviews.filter(r => 
+  r.configurationPurchased?.toLowerCase().includes(residence.type.toLowerCase())
+);
+const reviewsToAttach = matchingReviews.length > 0 ? matchingReviews : verifiedReviews.slice(0, 3);
+
+// Numeric base price calculation for Google Shopping / Merchant Schema
 const numericPrice = residence.id === '2bhk' ? 8500000 : residence.id === '3bhk' ? 12800000 : residence.id === '3bhk-duplex' ? 18500000 : 24000000;
 
+const residenceImage = residence.renderImage.startsWith('http') 
+  ? residence.renderImage 
+  : `https://mantrameridianriverside.com${residence.renderImage.startsWith('/') ? '' : '/'}${residence.renderImage}`;
+
+// Google Rich Results Compliant Product & Real Estate Entity Schema
 const residenceSchema = {
   "@context": "https://schema.org",
-  "@type": ["SingleFamilyResidence", "Apartment"],
-  "name": `${residence.name} - Mantra Meridian Riverside`,
-  "description": residence.overview,
-  "numberOfBedrooms": residence.type,
-  "numberOfBathroomsTotal": residence.bathrooms,
-  "floorSize": {
-    "@type": "QuantitativeValue",
-    "value": residence.carpetAreaRange
-  },
-  "offers": {
-    "@type": "Offer",
-    "priceCurrency": "INR",
-    "price": numericPrice,
-    "priceSpecification": {
-      "@type": "UnitPriceSpecification",
-      "price": numericPrice,
-      "priceCurrency": "INR",
-      "name": "Starting Base Consideration"
-    },
-    "availability": "https://schema.org/InStock",
-    "validFrom": "2026-01-01"
-  },
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi",
-    "addressLocality": "Balewadi, Pune",
-    "addressRegion": "Maharashtra",
-    "postalCode": "411045",
-    "addressCountry": "IN"
-  }
+  "@graph": [
+    {
+      "@type": ["Product", "SingleFamilyResidence", "Apartment"],
+      "@id": `https://mantrameridianriverside.com/mantra-meridian-riverside/${residence.slug}/#product`,
+      "name": `${residence.name} - Mantra Meridian Riverside Balewadi`,
+      "description": residence.overview,
+      "image": [
+        residenceImage,
+        "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp"
+      ],
+      "sku": `MMR-${residence.id.toUpperCase()}-2026`,
+      "mpn": `MMR-RES-${residence.id.toUpperCase()}`,
+      "brand": {
+        "@type": "Brand",
+        "name": "Mantra Properties"
+      },
+      "category": "Real Estate > Residential Apartments",
+      "numberOfBedrooms": residence.type,
+      "numberOfBathroomsTotal": residence.bathrooms,
+      "floorSize": {
+        "@type": "QuantitativeValue",
+        "value": residence.carpetAreaRange,
+        "unitCode": "FTK"
+      },
+      "offers": {
+        "@type": "Offer",
+        "url": `https://mantrameridianriverside.com/mantra-meridian-riverside/${residence.slug}/`,
+        "priceCurrency": "INR",
+        "price": numericPrice,
+        "priceValidUntil": "2026-12-31",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "RealEstateAgent",
+          "name": "Mantra Meridian Riverside",
+          "url": "https://mantrameridianriverside.com/"
+        },
+        "priceSpecification": {
+          "@type": "UnitPriceSpecification",
+          "price": numericPrice,
+          "priceCurrency": "INR",
+          "name": "Indicative Starting Consideration",
+          "unitText": "Per Residence"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "IN",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnLink": "https://mantrameridianriverside.com/terms/"
+        }
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
+      "review": reviewsToAttach.map((rev) => ({
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": rev.author
+        },
+        "datePublished": rev.date,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": rev.rating,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": rev.body
+      })),
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sr. No.: 45, 13, Balewadi Village Rd, nr. Mamta Dining Hall, Balewadi",
+        "addressLocality": "Balewadi, Pune",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      }
+    }
+  ]
 };
 
 const residenceKeywords = getConfigurationKeywords(residence.slug, residence.name);
@@ -78,6 +145,11 @@ const residenceKeywords = getConfigurationKeywords(residence.slug, residence.nam
           <span>{residence.type} CONFIGURATION</span>
           <span class="text-white/20">•</span>
           <span>{residence.carpetAreaRange} CARPET</span>
+          <span class="text-white/20">•</span>
+          <span class="inline-flex items-center gap-1 text-amber-400 font-medium">
+            <span>★★★★★</span>
+            <span class="text-white font-mono">{aggregateRatingData.ratingValue}</span>
+          </span>
         </div>
         <h1 class="font-display text-5xl sm:text-6xl md:text-7xl text-gradient-pearl leading-tight font-normal">
           {residence.name}

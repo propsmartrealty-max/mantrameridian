@@ -1,5 +1,6 @@
 ---
 import { projectData } from '../../data/project';
+import { aggregateRatingData } from '../../data/reviews';
 ---
 
 <section class="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-obsidian-deep">
@@ -82,8 +83,8 @@ import { projectData } from '../../data/project';
       </button>
     </div>
 
-    {/* MahaRERA Statutory Pill */}
-    <div class="pt-6 flex justify-center reveal-glass is-revealed reveal-delay-4">
+    {/* MahaRERA Statutory Pill & Google 5-Star Rating Trust Badge */}
+    <div class="pt-6 flex flex-wrap items-center justify-center gap-3 reveal-glass is-revealed reveal-delay-4">
       <div class="inline-flex items-center gap-2 px-4 py-2 glass-pill text-xs text-concrete/90 font-sans shadow-md">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <span class="text-[11px] tracking-wider uppercase text-concrete/70">MahaRERA:</span>
@@ -97,6 +98,18 @@ import { projectData } from '../../data/project';
         </a>
         <span class="text-white/20 mx-1">•</span>
         <span class="text-[11px] tracking-wider uppercase text-concrete/70">8-Acre Riverside Estate</span>
+      </div>
+
+      <div class="inline-flex items-center gap-2 px-4 py-2 glass-pill text-xs text-concrete/90 font-sans shadow-md border border-champagne/30">
+        <span class="text-champagne text-xs font-semibold tracking-wide flex items-center gap-1">
+          <span class="text-amber-400 font-serif">★★★★★</span>
+          <span class="font-mono text-white font-bold">{aggregateRatingData.ratingValue}</span>
+          <span class="text-concrete/60 text-[10px]">/{aggregateRatingData.bestRating}</span>
+        </span>
+        <span class="text-white/20 mx-0.5">•</span>
+        <span class="text-[10px] sm:text-[11px] tracking-wider uppercase text-concrete/80 font-mono">
+          {aggregateRatingData.ratingCount} Ratings
+        </span>
       </div>
     </div>
 

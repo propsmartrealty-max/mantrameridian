@@ -297,6 +297,15 @@ const coreGraph: any[] = [
         }
       },
       "numberOfBedrooms": "2, 3, 4",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
+      "review": structuredReviews,
       "potentialAction": [
         {
           "@type": "ReserveAction",

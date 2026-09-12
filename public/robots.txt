@@ -106,4 +106,5 @@ Sitemap: https://mantrameridianriverside.com/sitemap-index.xml
 Sitemap: https://mantrameridianriverside.com/sitemap.xml
 Sitemap: https://mantrameridianriverside.com/image-sitemap.xml
 Sitemap: https://mantrameridianriverside.com/rss.xml
+Sitemap: https://mantrameridianriverside.com/google-products.xml
 # LLM Knowledge Monograph: https://mantrameridianriverside.com/llms.txt
