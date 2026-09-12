@@ -10,11 +10,12 @@
  * 5. Safe offline resilience
  */
 
-const CACHE_NAME = 'mantra-meridian-v2';
+const CACHE_NAME = 'mantra-meridian-v3';
 
 // Critical core assets to precache on install
 const PRECACHE_ASSETS = [
   '/',
+  '/offline.html',
   '/favicon.svg',
   '/favicon.ico',
   '/favicon-48x48.png',
@@ -109,8 +110,8 @@ self.addEventListener('fetch', (event) => {
             return networkResponse;
           })
           .catch(() => {
-            // Offline fallback to cached response or root shell
-            return cachedResponse || caches.match('/');
+            // Offline fallback to cached response, offline sanctuary screen, or root shell
+            return cachedResponse || caches.match('/offline.html') || caches.match('/');
           });
 
         return cachedResponse || fetchPromise;

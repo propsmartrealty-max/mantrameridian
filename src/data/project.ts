@@ -64,7 +64,7 @@ export const projectData: ProjectData = {
   locationTag: "Balewadi • Pune",
   reraNumber: "P52100045688",
   reraRegistrationUrl: "https://maharera.mahaonline.gov.in/",
-  officialPropertyUrl: "https://www.mantraproperties.in/properties/residential/mantra-meridian",
+  officialPropertyUrl: "https://mantrameridianriverside.com/",
   googleMapsUrl: "https://www.google.com/maps/place/Meridian+Mantra+balewadi/@18.5848136,73.7725564,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b9006ffb408f:0x2c6aa34db7020b81!8m2!3d18.5848136!4d73.7751313!16s%2Fg%2F11zwwkvm2z",
   googleMapsCid: "3200550039378332545",
   googleMapsKgId: "/g/11zwwkvm2z",

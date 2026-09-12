@@ -602,3 +602,46 @@
   contain-intrinsic-size: auto 600px;
 }
 
+/* ==============================================================================
+   HIGH-FIDELITY PRINT & INVESTOR BROCHURE STYLESHEET
+   Clean high-contrast rendering for homebuyer Cmd+P / Save as PDF
+   ============================================================================== */
+@media print {
+  body {
+    background-color: #FFFFFF !important;
+    color: #0F172A !important;
+  }
+  #luxury-navbar,
+  #mobile-bar,
+  aside,
+  .ambient-mesh-canvas,
+  .ambient-mesh-orb-1,
+  .ambient-mesh-orb-2,
+  .ambient-mesh-orb-3,
+  button:not(.print-allow),
+  .btn-luxury,
+  .btn-luxury-outline {
+    display: none !important;
+  }
+  .glass-card-luxury,
+  .bg-obsidian-card,
+  .bg-obsidian-deep,
+  .bg-obsidian {
+    background: #FFFFFF !important;
+    color: #0F172A !important;
+    border: 1px solid #CBD5E1 !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+  }
+  h1, h2, h3, h4, .text-architectural-white, .text-white {
+    color: #0F172A !important;
+  }
+  .text-champagne, .text-beige-warm {
+    color: #996515 !important;
+  }
+  .text-concrete {
+    color: #475569 !important;
+  }
+}
+
+

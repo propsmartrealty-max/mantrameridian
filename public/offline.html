@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Offline Sanctuary | Mantra Meridian Riverside Balewadi</title>
+  <meta name="description" content="You are currently browsing Mantra Meridian Riverside in offline mode. Access cached project data and direct concierge telephone support." />
+  <meta name="theme-color" content="#07080A" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: #07080A;
+      color: #E2E8F0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+    .ambient-glow {
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(223, 183, 90, 0.12) 0%, rgba(7, 8, 10, 0) 70%);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .card {
+      position: relative;
+      z-index: 10;
+      max-width: 540px;
+      width: 100%;
+      background: rgba(14, 16, 21, 0.85);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid rgba(223, 183, 90, 0.3);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 0 0 30px rgba(223, 183, 90, 0.08);
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: rgba(223, 183, 90, 0.1);
+      border: 1px solid rgba(223, 183, 90, 0.4);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #DFB75A;
+      margin-bottom: 1.5rem;
+    }
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background-color: #DFB75A;
+      box-shadow: 0 0 8px #DFB75A;
+    }
+    h1 {
+      font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      font-size: 1.85rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      color: #FFFFFF;
+      margin-bottom: 0.5rem;
+    }
+    .subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #DFB75A;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      margin-bottom: 1.25rem;
+    }
+    p {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: #94A3B8;
+      margin-bottom: 2rem;
+    }
+    .specs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .spec-box {
+      background: rgba(7, 8, 10, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.85rem;
+    }
+    .spec-label {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.65rem;
+      color: #64748B;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+    .spec-val {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #F8FAFC;
+    }
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    @media (min-width: 480px) {
+      .btn-group {
+        flex-direction: row;
+      }
+    }
+    .btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.85rem 1.25rem;
+      font-size: 0.75rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 46px;
+    }
+    .btn-gold {
+      background: #DFB75A;
+      color: #07080A;
+      border: 1px solid #DFB75A;
+      box-shadow: 0 0 15px rgba(223, 183, 90, 0.3);
+    }
+    .btn-gold:hover {
+      background: #E8CA7A;
+      box-shadow: 0 0 25px rgba(223, 183, 90, 0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #E2E8F0;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-outline:hover {
+      border-color: #DFB75A;
+      color: #DFB75A;
+      background: rgba(223, 183, 90, 0.05);
+    }
+    .footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.7rem;
+      color: #64748B;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow" aria-hidden="true"></div>
+
+  <div class="card">
+    <div class="badge">
+      <span class="pulse-dot"></span>
+      <span>Offline Sanctuary Mode</span>
+    </div>
+
+    <h1>Mantra Meridian Riverside</h1>
+    <div class="subtitle">Balewadi • Pune</div>
+
+    <p>
+      Your connection to the network is currently inactive. You can continue reviewing cached architectural specifications, or connect with our VIP Concierge via direct telephone dialer.
+    </p>
+
+    <div class="specs-grid">
+      <div class="spec-box">
+        <span class="spec-label">MahaRERA Reg</span>
+        <span class="spec-val">P52100045688</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-label">Possession Target</span>
+        <span class="spec-val">June 2028</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-label">Masterplan</span>
+        <span class="spec-val">8 Acres • 75%+ Green</span>
+      </div>
+      <div class="spec-box">
+        <span class="spec-label">Typologies</span>
+        <span class="spec-val">2, 3, 4 BHK & Duplex</span>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <a href="tel:+917744009295" class="btn btn-gold">
+        <span>Call Concierge</span>
+        <span>📞</span>
+      </a>
+      <button onclick="window.location.reload()" class="btn btn-outline">
+        <span>Retry Connection</span>
+        <span>↻</span>
+      </button>
+    </div>
+
+    <div style="margin-top: 1rem;">
+      <a href="/" class="btn btn-outline" style="width: 100%;">
+        <span>Return to Cached Sanctuary Home</span>
+        <span>→</span>
+      </a>
+    </div>
+
+    <div class="footer-note">
+      Direct Telephone Desk: +91 77440 09295 • Balewadi, Pune 411045
+    </div>
+  </div>
+</body>
+</html>
