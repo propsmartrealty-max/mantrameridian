@@ -32,6 +32,10 @@ const articleSchema = {
   "image": [article.heroImage],
   "datePublished": "2026-08-01T08:00:00+05:30",
   "dateModified": "2026-08-15T12:00:00+05:30",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://mantrameridianriverside.com/mantra-meridian-riverside/journal/${article.slug}/`
+  },
   "author": [{
     "@type": "Organization",
     "name": article.author,
@@ -42,9 +46,9 @@ const articleSchema = {
     "name": "Mantra Meridian Riverside",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://mantrameridianriverside.com/apple-touch-icon.png",
-      "width": 180,
-      "height": 180
+      "url": "https://mantrameridianriverside.com/icon-512.png",
+      "width": 512,
+      "height": 512
     }
   }
 };

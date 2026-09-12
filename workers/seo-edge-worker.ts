@@ -778,7 +778,10 @@ const ALL_CANONICAL_INDEX_URLS: readonly string[] = [
   'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/architecture-of-light-riverside-living-meridian/',
   'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/rise-of-sky-duplex-living-pune/',
   'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/hinjewadi-balewadi-connectivity-corridor/',
-  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/'
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/',
+  'https://mantrameridianriverside.com/privacy-policy/',
+  'https://mantrameridianriverside.com/terms/',
+  'https://mantrameridianriverside.com/disclaimer/'
 ];
 
 async function broadcastAutonomousIndexing(_env: Env): Promise<void> {

@@ -55,6 +55,11 @@
   Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
   Cache-Tag: mantra-meridian, sitemaps
 
+/rss.xml
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
+  Cache-Tag: mantra-meridian, sitemaps, rss-feed
+
 # 6. Web Bot Discovery & LLM Monograph
 /robots.txt
   Content-Type: text/plain; charset=utf-8
