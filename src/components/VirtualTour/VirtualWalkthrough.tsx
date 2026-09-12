@@ -41,19 +41,19 @@ export default function VirtualWalkthrough() {
   const currentTour = tours.find((t) => t.id === activeTab) || tours[0];
 
   return (
-    <div className="w-full bg-obsidian-deep border border-white/10 overflow-hidden">
+    <div className="w-full glass-card-luxury glass-spotlight border border-champagne/30 overflow-hidden shadow-2xl">
       {/* Tab Navigation */}
-      <div className="border-b border-white/10 bg-obsidian/80 px-4 sm:px-8 pt-4 flex flex-wrap gap-2 sm:gap-4">
+      <div className="border-b border-champagne/20 bg-obsidian-deep/90 backdrop-blur-xl px-4 sm:px-8 py-3 flex flex-wrap gap-2 sm:gap-3">
         {tours.map((tour) => {
           const isActive = tour.id === activeTab;
           return (
             <button
               key={tour.id}
               onClick={() => setActiveTab(tour.id)}
-              className={`px-4 sm:px-6 py-3 text-xs tracking-wider transition-all duration-300 font-mono relative flex items-center gap-2 ${
+              className={`px-4 sm:px-5 py-2 text-xs tracking-wider transition-all duration-300 font-mono relative flex items-center gap-2 rounded ${
                 isActive
-                  ? 'text-champagne font-semibold border-b-2 border-champagne bg-white/5'
-                  : 'text-concrete hover:text-architectural-white'
+                  ? 'text-champagne font-semibold border border-champagne bg-champagne/15 shadow-[0_0_15px_rgba(223,183,90,0.3)] scale-[1.02]'
+                  : 'text-concrete hover:text-architectural-white border border-white/10 bg-obsidian-card/60 hover:border-champagne/40'
               }`}
             >
               <span className={`w-1.5 h-1.5 rounded-full ${isActive ? 'bg-champagne animate-pulse' : 'bg-concrete/40'}`} />
@@ -76,9 +76,9 @@ export default function VirtualWalkthrough() {
       </div>
 
       {/* Information Strip */}
-      <div className="p-6 sm:p-8 bg-obsidian-surface/80 border-t border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="p-6 sm:p-8 bg-obsidian-deep/90 backdrop-blur-xl border-t border-champagne/20 flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div className="space-y-2 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 border border-champagne/30 text-[9px] font-mono tracking-widest text-champagne uppercase">
+          <div className="inline-flex items-center gap-2 px-2.5 py-0.5 border border-champagne/30 text-[9px] font-mono tracking-widest text-champagne uppercase rounded-none">
             {currentTour.badge}
           </div>
           <h3 className="font-serif text-xl sm:text-2xl text-architectural-white font-normal">

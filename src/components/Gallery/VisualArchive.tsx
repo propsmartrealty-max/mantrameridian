@@ -37,10 +37,10 @@ export default function VisualArchive() {
               setSelectedCategory(cat.id);
               setActiveLightboxIndex(null);
             }}
-            className={`px-4 py-2 text-xs uppercase tracking-widest transition-all border ${
+            className={`px-4 py-2 text-xs uppercase tracking-widest transition-all duration-300 rounded font-medium ${
               selectedCategory === cat.id
-                ? 'bg-champagne text-obsidian border-champagne font-semibold shadow-glow'
-                : 'bg-obsidian-card text-concrete border-white/10 hover:border-white/30 hover:text-white'
+                ? 'bg-champagne text-obsidian font-bold shadow-[0_0_15px_rgba(223,183,90,0.35)] scale-[1.02]'
+                : 'bg-obsidian-card/70 text-concrete border border-white/10 hover:border-champagne/40 hover:text-white'
             }`}
           >
             {cat.label}
@@ -54,7 +54,7 @@ export default function VisualArchive() {
           <div
             key={img.id}
             onClick={() => setActiveLightboxIndex(index)}
-            className="group relative cursor-pointer overflow-hidden border border-white/10 bg-obsidian-card aspect-[4/3]"
+            className="group relative cursor-pointer overflow-hidden border border-white/10 hover:border-champagne/50 transition-all duration-500 bg-obsidian-card aspect-[4/3] rounded glass-card-luxury glass-spotlight"
           >
             <img
               src={img.url}

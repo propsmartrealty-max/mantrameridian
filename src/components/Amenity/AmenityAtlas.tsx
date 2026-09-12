@@ -28,11 +28,11 @@ export default function AmenityAtlas() {
   };
 
   return (
-    <div className="w-full bg-obsidian border border-white/10 overflow-hidden">
+    <div className="w-full glass-card-luxury glass-spotlight border border-champagne/30 overflow-hidden shadow-2xl">
       
       {/* Chapter Selection Bar */}
-      <div className="border-b border-white/10 bg-obsidian-deep/90 p-4 md:p-6 overflow-x-auto">
-        <div className="flex items-center gap-2 min-w-max">
+      <div className="border-b border-champagne/20 bg-obsidian-deep/90 backdrop-blur-xl p-4 md:p-6 overflow-x-auto">
+        <div className="flex items-center gap-2.5 min-w-max">
           {amenityChapters.map((chapter) => {
             const isSelected = chapter.id === activeChapterId;
             return (
@@ -42,10 +42,10 @@ export default function AmenityAtlas() {
                   setActiveChapterId(chapter.id);
                   setActiveItemIndex(0);
                 }}
-                className={`px-5 py-3 text-xs uppercase tracking-widest transition-all border ${
+                className={`px-5 py-2.5 text-xs uppercase tracking-widest transition-all duration-300 rounded ${
                   isSelected
-                    ? 'bg-champagne text-obsidian border-champagne font-semibold shadow-glow'
-                    : 'bg-obsidian-card/70 text-concrete border-white/10 hover:border-white/30 hover:text-architectural-white'
+                    ? 'bg-champagne text-obsidian font-bold shadow-[0_0_15px_rgba(223,183,90,0.35)] scale-[1.02]'
+                    : 'bg-obsidian-card/70 text-concrete border border-white/10 hover:border-champagne/40 hover:text-architectural-white'
                 }`}
               >
                 {chapter.title}

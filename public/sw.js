@@ -10,15 +10,19 @@
  * 5. Safe offline resilience
  */
 
-const CACHE_NAME = 'mantra-meridian-v1';
+const CACHE_NAME = 'mantra-meridian-v2';
 
 // Critical core assets to precache on install
 const PRECACHE_ASSETS = [
   '/',
   '/favicon.svg',
   '/favicon.ico',
-  '/site.webmanifest',
+  '/favicon-48x48.png',
+  '/favicon-96x96.png',
+  '/icon-192.png',
+  '/icon-512.png',
   '/apple-touch-icon.png',
+  '/site.webmanifest',
   '/assets/mantra-meridian-hero.webp',
   '/assets/mantra-meridian-rera-qr.webp'
 ];

@@ -117,7 +117,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
       />
 
       {/* Slide-in luxury drawer panel */}
-      <div className="relative z-10 h-full w-full max-w-lg bg-obsidian-deep border-l border-champagne/20 p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-luxury">
+      <div className="relative z-10 h-full w-full max-w-lg bg-obsidian-deep/98 backdrop-blur-3xl border-l border-champagne/35 p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-[0_0_60px_rgba(0,0,0,0.95),-10px_0_30px_rgba(223,183,90,0.12)]">
         
         {/* Header */}
         <div>
@@ -142,7 +142,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                 <div 
                   key={idx} 
                   className={`h-0.5 flex-1 transition-all duration-500 ${
-                    step >= idx ? 'bg-champagne' : 'bg-white/10'
+                    step >= idx ? 'bg-champagne shadow-[0_0_8px_rgba(223,183,90,0.6)]' : 'bg-white/10'
                   }`}
                 />
               ))}
@@ -164,10 +164,10 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     key={res.label}
                     type="button"
                     onClick={() => setSelectedResidence(res.label)}
-                    className={`w-full text-left py-2.5 px-3.5 rounded-none border transition-all flex items-center justify-between ${
+                    className={`w-full text-left py-2.5 px-3.5 rounded border transition-all duration-300 flex items-center justify-between ${
                       selectedResidence === res.label
-                        ? 'border-champagne bg-champagne/10 text-architectural-white shadow-glow'
-                        : 'border-white/10 bg-obsidian-card/40 text-concrete hover:border-white/30 hover:text-architectural-white'
+                        ? 'border-champagne bg-champagne/20 text-architectural-white shadow-[0_0_15px_rgba(223,183,90,0.25)] scale-[1.01]'
+                        : 'border-white/10 bg-obsidian-card/60 text-concrete hover:border-champagne/40 hover:text-architectural-white'
                     }`}
                   >
                     <div>
@@ -175,7 +175,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                       <div className="text-[11px] text-concrete/70 mt-0.5">{res.sub}</div>
                     </div>
                     {selectedResidence === res.label && (
-                      <div className="w-2 h-2 rounded-full bg-champagne shrink-0" />
+                      <div className="w-2 h-2 rounded-full bg-champagne shrink-0 shadow-glow" />
                     )}
                   </button>
                 ))}
@@ -184,7 +184,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
               <button
                 type="button"
                 onClick={() => setStep(2)}
-                className="w-full mt-3 py-2.5 px-4 text-xs font-medium tracking-[0.16em] uppercase bg-architectural-white text-obsidian hover:bg-champagne transition-all duration-300 flex items-center justify-center gap-2 shadow-sm"
+                className="w-full mt-3 btn-luxury text-xs flex items-center justify-center gap-2 glass-sheen"
               >
                 <span>CONTINUE TO INTENT</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -196,18 +196,9 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
           {!isSuccess && step === 2 && (
             <div className="space-y-4 pt-1">
               <div>
-                <div className="flex items-center justify-between">
-                  <p className="label-architectural text-[9.5px] text-concrete">STEP 02 OF 03</p>
-                  <button 
-                    type="button" 
-                    onClick={() => setStep(1)} 
-                    className="text-xs text-champagne hover:underline tracking-widest uppercase font-mono"
-                  >
-                    ← Back
-                  </button>
-                </div>
-                <h3 className="font-serif text-lg md:text-xl text-architectural-white mt-0.5">What would you like to explore?</h3>
-                <p className="text-xs text-concrete/80 mt-0.5">We tailor the documentation specifically to your preferences.</p>
+                <p className="label-architectural text-[9.5px] text-concrete">STEP 02 OF 03</p>
+                <h3 className="font-serif text-lg md:text-xl text-architectural-white mt-0.5">What is your primary intent?</h3>
+                <p className="text-xs text-concrete/80 mt-0.5">Help our senior director prepare the exact materials for you.</p>
               </div>
 
               <div className="space-y-2">
@@ -216,10 +207,10 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     key={intent.label}
                     type="button"
                     onClick={() => setSelectedIntent(intent.label)}
-                    className={`w-full text-left py-2.5 px-3.5 rounded-none border transition-all flex items-center justify-between ${
+                    className={`w-full text-left py-2.5 px-3.5 rounded border transition-all duration-300 flex items-center justify-between ${
                       selectedIntent === intent.label
-                        ? 'border-champagne bg-champagne/10 text-architectural-white shadow-glow'
-                        : 'border-white/10 bg-obsidian-card/40 text-concrete hover:border-white/30 hover:text-architectural-white'
+                        ? 'border-champagne bg-champagne/20 text-architectural-white shadow-[0_0_15px_rgba(223,183,90,0.25)] scale-[1.01]'
+                        : 'border-white/10 bg-obsidian-card/60 text-concrete hover:border-champagne/40 hover:text-architectural-white'
                     }`}
                   >
                     <div>
@@ -227,7 +218,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                       <div className="text-[11px] text-concrete/70 mt-0.5">{intent.desc}</div>
                     </div>
                     {selectedIntent === intent.label && (
-                      <div className="w-2 h-2 rounded-full bg-champagne shrink-0" />
+                      <div className="w-2 h-2 rounded-full bg-champagne shrink-0 shadow-glow" />
                     )}
                   </button>
                 ))}
@@ -237,14 +228,14 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="py-2.5 px-4 text-xs tracking-wider uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 flex-1 transition-colors"
+                  className="py-2.5 px-4 text-xs tracking-wider uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 flex-1 transition-colors rounded"
                 >
                   PREVIOUS
                 </button>
                 <button
                   type="button"
                   onClick={() => setStep(3)}
-                  className="py-2.5 px-4 text-xs tracking-[0.14em] uppercase font-medium bg-architectural-white text-obsidian hover:bg-champagne flex-1 flex items-center justify-center gap-2 transition-colors shadow-sm"
+                  className="py-2.5 px-4 text-xs font-medium tracking-[0.14em] uppercase btn-luxury flex-1 flex items-center justify-center gap-2 transition-colors rounded shadow-sm glass-sheen"
                 >
                   <span>SCHEDULE PRESENTATION</span>
                   <ArrowRight className="w-3.5 h-3.5" />
