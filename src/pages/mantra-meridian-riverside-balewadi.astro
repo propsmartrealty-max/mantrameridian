@@ -1,0 +1,206 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import ProjectSnapshotMatrix from '../components/Project/ProjectSnapshotMatrix.astro';
+import RiversideExperience from '../components/Riverside/RiversideExperience.astro';
+import LocationIntelligence from '../components/Location/LocationIntelligence';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import ClientReviews from '../components/Reviews/ClientReviews.astro';
+import { residencesData } from '../data/residences';
+import { aggregateRatingData } from '../data/reviews';
+
+export const prerender = true;
+
+const pageKeywords = [
+  "Mantra Meridian Riverside Balewadi",
+  "Mantra Meridian Riverside Balewadi Pune",
+  "Mantra Meridian Riverside",
+  "Mantra Riverside Balewadi",
+  "Mantra Meridian Balewadi",
+  "Mantra Balewadi",
+  "Luxury flats Balewadi",
+  "Riverfront apartments Balewadi Pune",
+  "2 BHK Balewadi Pune",
+  "3 BHK Balewadi Pune",
+  "4 BHK Duplex Balewadi",
+  "Mula River apartments Pune",
+  "Mantra Properties Balewadi"
+];
+
+const customSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/#webpage",
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/",
+      "name": "Mantra Meridian Riverside Balewadi | Luxury Riverfront Residences Pune",
+      "description": "Mantra Meridian Riverside Balewadi — 8-acre luxury riverfront development in Balewadi, Pune. 2, 3, 4 BHK and Duplex residences from ₹1.29 Cr*. MahaRERA P52100045688.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://mantrameridianriverside.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Mantra Meridian Riverside Balewadi", "item": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/" }
+        ]
+      }
+    },
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/#listing",
+      "name": "Mantra Meridian Riverside Balewadi",
+      "alternateName": [
+        "Mantra Riverside Balewadi",
+        "Mantra Meridian Balewadi",
+        "Mantra Balewadi",
+        "Mantra Meridian Riverside"
+      ],
+      "description": "8-acre riverfront residential masterplan in Balewadi, Pune, by Mantra Properties. Luxury 2, 3, 4 BHK apartments and Sky Duplexes with 500m Mula River boardwalk.",
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/",
+      "datePosted": "2026-01-01",
+      "validThrough": "2028-06-30",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "INR",
+        "lowPrice": 12900000,
+        "highPrice": 35000000,
+        "offerCount": 450,
+        "availability": "https://schema.org/InStock"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "reviewCount": aggregateRatingData.reviewCount,
+        "bestRating": 5,
+        "worstRating": 1
+      },
+      "seller": {
+        "@type": "RealEstateAgent",
+        "@id": "https://mantrameridianriverside.com/#organization"
+      }
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Mantra Meridian Riverside Balewadi | Luxury Riverfront Residences | From ₹1.29 Cr*"
+  description="Mantra Meridian Riverside Balewadi is Pune's premier riverfront luxury address. 8-acre development with 2, 3, 4 BHK and Sky Duplex residences along the Mula River from ₹1.29 Cr*. MahaRERA P52100045688."
+  keywords={pageKeywords}
+  customSchema={customSchema}
+>
+  <div class="pt-32 pb-16 px-6 md:px-12 max-w-7xl mx-auto space-y-12">
+    <Breadcrumbs items={[{ name: "Mantra Meridian Riverside Balewadi" }]} />
+
+    <div class="max-w-4xl space-y-5">
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-champagne/10 border border-champagne/30 text-champagne text-xs font-mono tracking-widest uppercase">
+        <span class="w-2 h-2 rounded-full bg-champagne animate-pulse"></span>
+        <span>EXCLUSIVE RIVERFRONT • MANTRA MERIDIAN RIVERSIDE BALEWADI</span>
+      </div>
+
+      <h1 class="font-display text-4xl sm:text-6xl md:text-7xl text-architectural-white font-normal leading-tight">
+        Mantra Meridian Riverside Balewadi.<br />
+        <span class="text-champagne font-light italic font-serif">Pune's Finest Riverfront Address.</span>
+      </h1>
+
+      <p class="text-sm sm:text-base text-concrete leading-relaxed max-w-3xl">
+        <strong>Mantra Meridian Riverside Balewadi</strong> is Pune's most prestigious riverfront address — an 8-acre masterplanned luxury community situated directly on the Mula River promenade in Balewadi by <strong>Mantra Properties</strong>. Offering 2 BHK, 3 BHK, 3 BHK Sky Duplex, and 4 BHK residences from ₹1.29 Cr*, with a 500-metre riverside boardwalk and world-class amenities. MahaRERA Approved: P52100045688.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-4 pt-2">
+        <a href="/mantra-meridian-riverside/" class="btn-luxury text-xs">
+          EXPLORE PROJECT →
+        </a>
+        <a href="/mantra-meridian-riverside/price/" class="btn-luxury-outline text-xs">
+          VIEW PRICING
+        </a>
+        <a href="/mantra-meridian-riverside/floor-plans/" class="btn-luxury-outline text-xs">
+          FLOOR PLANS
+        </a>
+      </div>
+
+      {/* Key Stats */}
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-white/10">
+        {[
+          { label: "Starting Price", value: "₹1.29 Cr*" },
+          { label: "Land Area", value: "8 Acres" },
+          { label: "Total Units", value: "450+" },
+          { label: "MahaRERA", value: "P52100045688" },
+        ].map((s) => (
+          <div class="space-y-1">
+            <div class="text-xl sm:text-2xl font-display text-champagne">{s.value}</div>
+            <div class="text-[10px] font-mono text-concrete tracking-widest uppercase">{s.label}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  {/* Project Snapshot */}
+  <ProjectSnapshotMatrix highlightKeyword="Mantra Meridian Riverside Balewadi" />
+
+  {/* Riverside Experience */}
+  <div id="riverside">
+    <RiversideExperience />
+  </div>
+
+  {/* Location */}
+  <LocationIntelligence client:visible />
+
+  {/* Residences Grid */}
+  <section class="w-full py-24 bg-obsidian border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 md:px-12 space-y-12">
+      <div class="max-w-2xl space-y-3">
+        <span class="label-architectural text-xs text-champagne">SPATIAL SELECTION</span>
+        <h2 class="font-serif text-3xl sm:text-5xl text-architectural-white font-normal">
+          Residences at Mantra Meridian Riverside Balewadi
+        </h2>
+        <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+          Luxury 2, 3, and 4 BHK river-facing apartments crafted with expansive balconies and premium fittings.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {residencesData.map((res) => (
+          <div class="card-beige-luxury border-animated-beam p-6 sm:p-8 flex flex-col justify-between space-y-6">
+            <div class="space-y-4">
+              <div class="relative aspect-[16/10] overflow-hidden">
+                <img
+                  src={res.renderImage}
+                  alt={`${res.name} at Mantra Meridian Riverside Balewadi`}
+                  class="w-full h-full object-cover brightness-95 hover:scale-105 transition-transform duration-700"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="absolute top-3 left-3 badge-beige font-mono text-[10px]">{res.type}</div>
+                <div class="absolute bottom-3 right-3 badge-beige font-mono text-xs text-champagne">{res.carpetAreaRange}</div>
+              </div>
+              <h3 class="font-serif text-2xl text-architectural-white">{res.name}</h3>
+              <p class="text-xs text-concrete leading-relaxed">{res.subtitle}</p>
+            </div>
+            <div class="pt-4 border-t border-white/10 flex items-center justify-between">
+              <span class="text-xs font-mono text-champagne">{res.balconyType}</span>
+              <a href={`/mantra-meridian-riverside/${res.slug}/`} class="btn-luxury text-xs">
+                VIEW RESIDENCE →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="flex flex-wrap gap-4 pt-4">
+        <a href="/mantra-meridian-riverside/" class="btn-luxury text-xs">FULL PROJECT PORTAL →</a>
+        <a href="/mantra-meridian-riverside/price/" class="btn-luxury-outline text-xs">PRICING & COST SHEET</a>
+      </div>
+    </div>
+  </section>
+
+  {/* Reviews */}
+  <ClientReviews />
+
+  {/* MahaRERA */}
+  <ReraVerificationCard />
+
+  {/* FAQs */}
+  <FAQAccordion />
+</BaseLayout>
