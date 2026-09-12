@@ -311,7 +311,31 @@ const coreGraph: any[] = [
             "url": "https://mantrameridianriverside.com/penthouse/"
           }
         ]
-      }
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": projectData.contact.phone,
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Hindi", "Marathi"],
+          "contactOption": "TollFree",
+          "areaServed": ["IN", "US", "GB", "AE", "SG", "AU", "CA"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+            "opens": "09:30",
+            "closes": "19:30"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": projectData.contact.whatsapp,
+          "contactType": "sales",
+          "contactOption": "HearingImpairedSupported",
+          "availableLanguage": ["English", "Hindi"],
+          "description": "WhatsApp enquiries — Mantra Meridian Riverside sales desk"
+        }
+      ]
     },
     {
       "@type": ["ApartmentComplex", "Place"],
