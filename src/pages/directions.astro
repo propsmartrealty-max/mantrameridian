@@ -1,0 +1,229 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import LocationIntelligence from '../components/Location/LocationIntelligence';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { projectData } from '../data/project';
+
+export const prerender = true;
+
+const drivingRoutes = [
+  {
+    origin: "From Mumbai-Pune Expressway (Dehu Road Exit)",
+    distance: "14.2 km",
+    duration: "15 mins",
+    stepByStep: [
+      "Exit the Mumbai-Pune Expressway at the Dehu Road / Katraj-Dehu Road Bypass interchange.",
+      "Proceed south on NH 48 towards Wakad / Hinjewadi.",
+      "Take the left exit just before the Hinjewadi Flyover towards Balewadi Village / Stadium Road.",
+      "Follow Balewadi Village Road past Mamta Dining Hall; the Mantra Meridian Riverside site office will be on your left along the riverbank."
+    ],
+    highlight: "Preferred route for Mumbai, Navi Mumbai, and Thane visitors."
+  },
+  {
+    origin: "From Hinjewadi IT Park Phase 1 (Infosys Circle)",
+    distance: "7.8 km",
+    duration: "12 mins",
+    stepByStep: [
+      "Head east on Hinjewadi Main Road from Infosys Phase 1 towards Wakad Flyover.",
+      "Cross the flyover or take the direct Balewadi Stadium underpass.",
+      "Turn onto Balewadi Village Road heading toward the Mula River corridor.",
+      "Arrive at the Mantra Meridian Riverside Experience Centre (valet parking available)."
+    ],
+    highlight: "Direct, commute-friendly route for Rajiv Gandhi Infotech Park executives."
+  },
+  {
+    origin: "From Baner / Aundh / Pune University Circle",
+    distance: "5.4 km",
+    duration: "8 mins",
+    stepByStep: [
+      "Travel west on Baner Road past Pan Card Club Road toward Balewadi Phata.",
+      "Turn right onto Balewadi High Street arterial boulevard.",
+      "Drive past Balewadi High Street retail promenade for 1.2 km onto Balewadi Village Road.",
+      "The entrance gates of Mantra Meridian Riverside will be visible directly ahead on the river setback."
+    ],
+    highlight: "Scenic boulevard drive passing top cafes and High Street retail."
+  },
+  {
+    origin: "From Pune International Airport (PNQ, Lohegaon)",
+    distance: "22.5 km",
+    duration: "42 mins",
+    stepByStep: [
+      "Head southwest on Airport Road toward Yerawada / Bund Garden.",
+      "Take the Pune University Road onto Baner Road or follow the Katraj-Dehu Road Bypass via Pashan.",
+      "Continue straight on Baner-Balewadi Link Road directly onto Balewadi Village Road.",
+      "Follow signage for Site - Mantra Riverside."
+    ],
+    highlight: "Smooth multi-lane transit for interstate and international visitors."
+  }
+];
+
+const gpsLinks = {
+  googleMaps: `https://www.google.com/maps/dir/?api=1&destination=${projectData.coordinates.latitude},${projectData.coordinates.longitude}`,
+  appleMaps: `https://maps.apple.com/?daddr=${projectData.coordinates.latitude},${projectData.coordinates.longitude}`,
+  waze: `https://waze.com/ul?ll=${projectData.coordinates.latitude},${projectData.coordinates.longitude}&navigate=yes`
+};
+
+const directionsFaqs = [
+  {
+    question: "What is the exact Google Maps address and landmark for Mantra Meridian Riverside?",
+    answer: "The official site address is: Sr. No. 45, 13, Balewadi Village Road, Near Mamta Dining Hall, Balewadi, Pune, Maharashtra 411045. Prominent landmarks include Balewadi High Street (1.2 km south) and Shiv Chhatrapati Sports Complex (1.5 km west)."
+  },
+  {
+    question: "Is visitor parking and valet service available at the site office?",
+    answer: "Yes. The Mantra Meridian Riverside Experience Centre offers secure on-site covered visitor parking and complimentary valet assistance for all prospective buyers and families."
+  },
+  {
+    question: "What are the site office operating hours for visits?",
+    answer: "The Experience Centre and model apartments are open 7 days a week from 9:30 AM to 7:30 PM. We recommend booking an appointment via our concierge desk to ensure a dedicated relationship manager."
+  },
+  {
+    question: "Can I navigate using the Google Plus Code?",
+    answer: "Yes, you can enter the Google Plus Code '9RQC+73 Pune, Maharashtra' into the Google Maps search bar to navigate directly to the entrance gate of the site office."
+  }
+];
+
+const directionsSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "@id": "https://mantrameridianriverside.com/directions/#place",
+      "name": "Mantra Meridian Riverside Experience Centre & Site Office",
+      "description": "Physical site office, experience gallery, and sample apartments for Mantra Meridian Riverside Balewadi.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": projectData.coordinates.latitude,
+        "longitude": projectData.coordinates.longitude
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Sr. No. 45, 13, Balewadi Village Road, Near Mamta Dining Hall",
+        "addressLocality": "Balewadi",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "hasMap": projectData.googleMapsUrl
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Directions to Mantra Meridian Riverside Balewadi | Google Maps & In-Car GPS Guide"
+  description="Turn-by-turn driving directions to Mantra Meridian Riverside Balewadi from Mumbai Expressway, Hinjewadi, Baner, and Pune Airport. 1-click in-car GPS navigation."
+  keywords="Directions to Mantra Meridian Balewadi, how to reach Mantra Meridian Riverside, Mantra Meridian Google Maps location, Mantra Meridian site office address, Mantra Balewadi landmark"
+  customSchema={directionsSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Directions & Site Access" }]} />
+
+    {/* Hero Section */}
+    <div class="max-w-3xl space-y-4">
+      <span class="label-architectural text-xs text-champagne">LOCAL ACCESS GUIDE • IN-CAR GPS NAVIGATION</span>
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Directions.<br />
+        <span class="text-champagne font-light italic font-serif">Arrive at the Riverside.</span>
+      </h1>
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed">
+        Located along tranquil Balewadi Village Road beside the Mula River, Mantra Meridian Riverside is easily accessible via major arterial corridors from Mumbai, Hinjewadi, and central Pune.
+      </p>
+    </div>
+
+    {/* 1-Click GPS Quick Launch Buttons */}
+    <div class="p-6 md:p-8 bg-obsidian-card border border-champagne/30 space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <span class="text-[10px] font-mono uppercase tracking-widest text-champagne block">ONE-TOUCH IN-CAR NAVIGATION</span>
+          <h2 class="font-serif text-xl text-architectural-white">Launch Direct GPS Routing to Site Office</h2>
+          <p class="text-xs text-concrete/70 font-mono mt-0.5">Plus Code: 9RQC+73 Pune, Maharashtra • Lat: 18.5848° N, Long: 73.7751° E</p>
+        </div>
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href={gpsLinks.googleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-luxury text-xs px-4 py-2.5 flex items-center gap-2"
+          >
+            <span>GOOGLE MAPS</span>
+            <span>↗</span>
+          </a>
+          <a
+            href={gpsLinks.appleMaps}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-luxury-outline text-xs px-4 py-2.5 flex items-center gap-2"
+          >
+            <span>APPLE MAPS</span>
+            <span>↗</span>
+          </a>
+          <a
+            href={gpsLinks.waze}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-luxury-outline text-xs px-4 py-2.5 flex items-center gap-2"
+          >
+            <span>WAZE</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* 4 Cardinal Driving Routes Grid */}
+    <div class="space-y-8">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">TURN-BY-TURN GUIDANCE</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Driving Routes from Major Gateways</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {drivingRoutes.map((route) => (
+          <div class="p-6 bg-obsidian-card border border-white/10 space-y-4 hover:border-champagne/40 transition-colors flex flex-col justify-between">
+            <div class="space-y-3">
+              <div class="flex justify-between items-start">
+                <h3 class="font-serif text-xl text-architectural-white">{route.origin}</h3>
+                <div class="text-right shrink-0">
+                  <span class="font-mono text-xs text-champagne block font-semibold">{route.duration}</span>
+                  <span class="font-mono text-[10px] text-concrete/60">{route.distance}</span>
+                </div>
+              </div>
+              <p class="text-xs text-champagne font-mono">{route.highlight}</p>
+
+              <ol class="space-y-2 pt-2 border-t border-white/5 list-decimal list-inside text-xs text-concrete/80 leading-relaxed">
+                {route.stepByStep.map((step) => (
+                  <li class="pl-1">{step}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Interactive Location Intelligence Map Island */}
+    <div class="space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">SATELLITE &amp; TRANSIT RADAR</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Interactive Location Map</h2>
+      </div>
+      <LocationIntelligence client:visible />
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <div class="space-y-6 pt-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">NAVIGATIONAL ASSISTANCE</span>
+        <h2 class="font-serif text-3xl text-architectural-white mt-1">Directions &amp; Site Visit FAQs</h2>
+      </div>
+      <FAQAccordion customFaqs={directionsFaqs} />
+    </div>
+
+    {/* MahaRERA Compliance */}
+    <ReraVerificationCard />
+
+  </div>
+</BaseLayout>

@@ -154,13 +154,97 @@
   <!-- Masterplan -->
   <url>
     <loc>https://mantrameridianriverside.com/mantra-meridian-riverside/masterplan/</loc>
-    <lastmod>2026-09-05</lastmod>
+    <lastmod>2026-09-13</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
     <image:image>
       <image:loc>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-intro-317592911.webp</image:loc>
       <image:title>8-Acre Sanctioned Masterplan Layout Mantra Meridian Balewadi</image:title>
       <image:caption>Master zoning plan showing towers, podium, central park, and 500m riverwalk</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Balewadi Micromarket Authority Hub -->
+  <url>
+    <loc>https://mantrameridianriverside.com/balewadi/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image:loc>
+      <image:title>Balewadi Real Estate &amp; Mantra Meridian Riverside Elevation</image:title>
+      <image:caption>8-acre riverfront estate benchmark in Balewadi West Pune</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Signature Sky Duplex Showcase -->
+  <url>
+    <loc>https://mantrameridianriverside.com/duplex/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1070529402.webp</image:loc>
+      <image:title>3 BHK Signature Sky Duplex 20-Foot Living Salon Balewadi</image:title>
+      <image:caption>Volumetric two-tier living room with double-height acoustic glass overlooking Mula River</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Penthouse & Sky Villa Collection -->
+  <url>
+    <loc>https://mantrameridianriverside.com/penthouse/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp</image:loc>
+      <image:title>Luxury Riverfront Penthouse &amp; Sky Villa Balewadi</image:title>
+      <image:caption>Topmost residential tier with wrap-around terrace and private elevator access</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Directions & GPS Transit Guide -->
+  <url>
+    <loc>https://mantrameridianriverside.com/directions/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image:loc>
+      <image:title>Mantra Meridian Riverside Experience Centre Site Office</image:title>
+      <image:caption>Official entrance and experience centre along Balewadi Village Road</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Hinjewadi Tech Corridor -->
+  <url>
+    <loc>https://mantrameridianriverside.com/hinjewadi/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image:loc>
+      <image:title>Hinjewadi Tech Executive Housing Gateway Balewadi</image:title>
+      <image:caption>12-minute commute corridor to Rajiv Gandhi Infotech Park Phase 1</image:caption>
+      <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
+    </image:image>
+  </url>
+
+  <!-- Global NRI Investment Desk -->
+  <url>
+    <loc>https://mantrameridianriverside.com/nri-desk/</loc>
+    <lastmod>2026-09-13</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image:loc>
+      <image:title>Global NRI Real Estate Investment Desk Mantra Meridian Balewadi</image:title>
+      <image:caption>FEMA compliant overseas luxury property advisory in West Pune</image:caption>
       <image:geo_location>Balewadi, Pune, Maharashtra, India</image:geo_location>
     </image:image>
   </url>

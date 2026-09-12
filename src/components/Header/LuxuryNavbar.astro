@@ -12,6 +12,8 @@ const { currentPath = '/' } = Astro.props;
 const exploreDropdownLinks = [
   { label: 'Balewadi Real Estate Hub', href: '/balewadi/', desc: 'Micromarket price trends, yields & High Street' },
   { label: 'Signature Sky Duplexes', href: '/duplex/', desc: '20-ft ceiling living salon from ₹1.85 Cr*' },
+  { label: 'Penthouse & Sky Villas', href: '/penthouse/', desc: '4 BHK Grand Estates with wrap-around decks' },
+  { label: 'GPS Driving Directions', href: '/directions/', desc: 'Turn-by-turn routes & in-car GPS links' },
   { label: 'Project Comparison Hub', href: '/compare/', desc: 'Mantra Meridian vs 24K Altura & Balmoral' },
   { label: 'Construction Milestones', href: '/construction-status/', desc: 'June 2028 RERA progress tracker' },
   { label: 'Home Loan & Bank APF', href: '/home-loan/', desc: 'SBI & HDFC APF & EMI calculator' },
@@ -279,6 +281,14 @@ const exploreDropdownLinks = [
           </a>
           <a href="/duplex/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
             <span>Sky Duplexes</span>
+            <span class="text-champagne text-xs">→</span>
+          </a>
+          <a href="/penthouse/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+            <span>Penthouses</span>
+            <span class="text-champagne text-xs">→</span>
+          </a>
+          <a href="/directions/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
+            <span>GPS Directions</span>
             <span class="text-champagne text-xs">→</span>
           </a>
           <a href="/compare/" class="p-4 min-h-[54px] glass-card-luxury text-sm text-architectural-white font-medium hover:text-champagne transition-colors flex items-center justify-between">
