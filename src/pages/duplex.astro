@@ -5,6 +5,7 @@ import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
 import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
 import { duplexKeywordsList } from '../data/keywords';
 import { residencesData } from '../data/residences';
+import { aggregateRatingData, verifiedReviews } from '../data/reviews';
 
 export const prerender = true;
 
@@ -56,17 +57,66 @@ const duplexSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "RealEstateListing",
-      "@id": "https://mantrameridianriverside.com/duplex/#listing",
+      "@type": ["Product", "SingleFamilyResidence", "Apartment", "RealEstateListing"],
+      "@id": "https://mantrameridianriverside.com/duplex/#product",
       "name": "3 BHK Signature Sky Duplex — Mantra Meridian Riverside Balewadi",
-      "description": "Exclusive two-tier luxury sky villa featuring 20-foot double-height ceilings, 1,660 sq.ft. carpet area, and permanent Mula riverfront views.",
+      "description": "Exclusive two-tier luxury sky duplex featuring 20-foot double-height ceilings, 1,660 sq.ft. carpet area, internal architectural staircase, and permanent Mula riverfront views. MahaRERA No. P52100045688.",
       "url": "https://mantrameridianriverside.com/duplex/",
+      "image": [
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp",
+        "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp"
+      ],
+      "sku": "MMR-DUPLEX-2026",
+      "mpn": "MMR-RES-3BHK-DUPLEX",
+      "brand": {
+        "@type": "Brand",
+        "name": "Mantra Properties"
+      },
+      "category": "Real Estate > Residential Apartments > Sky Duplexes",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
+      "review": verifiedReviews.slice(0, 3).map((rev) => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": rev.author },
+        "datePublished": rev.date,
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": rev.rating,
+          "bestRating": 5,
+          "worstRating": 1
+        },
+        "reviewBody": rev.body
+      })),
       "offers": {
         "@type": "Offer",
+        "url": "https://mantrameridianriverside.com/duplex/",
         "price": "18500000",
         "priceCurrency": "INR",
         "availability": "https://schema.org/InStock",
-        "validFrom": "2026-01-01"
+        "itemCondition": "https://schema.org/NewCondition",
+        "priceValidUntil": "2028-06-30",
+        "seller": {
+          "@type": "RealEstateAgent",
+          "name": "Mantra Meridian Riverside",
+          "url": "https://mantrameridianriverside.com/"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "IN",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnLink": "https://mantrameridianriverside.com/terms/"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "INR" },
+          "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "IN" }
+        }
       }
     }
   ]

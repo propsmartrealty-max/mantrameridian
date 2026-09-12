@@ -21,6 +21,36 @@
       <g:mpn>MMR-RES-2BHK</g:mpn>
       <g:product_type>Real Estate &gt; Residential &gt; 2 BHK Apartments</g:product_type>
       <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:product_highlight>8-Acre Continuous Waterfront Land Parcel with 75%+ Landscaped Green Realm</g:product_highlight>
+      <g:product_highlight>Zero-Dead-Space 815 sq.ft. Carpet Area with Private Riverfront Balcony</g:product_highlight>
+      <g:product_highlight>1.2 km to Balewadi High Street &amp; 12 mins to Hinjewadi IT Park Phase 1</g:product_highlight>
+      <g:product_highlight>MahaRERA Sanctioned June 2028 Completion (Registration No. P52100045688)</g:product_highlight>
+      <g:product_detail>
+        <g:section_name>Dimensions</g:section_name>
+        <g:attribute_name>Carpet Area</g:attribute_name>
+        <g:attribute_value>815 sq.ft.</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Specifications</g:section_name>
+        <g:attribute_name>Bathrooms</g:attribute_name>
+        <g:attribute_value>2 Luxury Baths</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Delivery</g:section_name>
+        <g:attribute_name>Possession Timeline</g:attribute_name>
+        <g:attribute_value>June 2028</g:attribute_value>
+      </g:product_detail>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Site Visit VIP Walkthrough &amp; Direct Document Handover</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:tax>
+        <g:country>IN</g:country>
+        <g:rate>5.00</g:rate>
+        <g:tax_ship>no</g:tax_ship>
+      </g:tax>
+      <g:return_policy_label>statutory_rera_allotment_terms</g:return_policy_label>
       <g:custom_label_0>Balewadi Pune</g:custom_label_0>
       <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
       <g:custom_label_2>June 2028 Handover</g:custom_label_2>
@@ -44,6 +74,36 @@
       <g:mpn>MMR-RES-3BHK</g:mpn>
       <g:product_type>Real Estate &gt; Residential &gt; 3 BHK Apartments</g:product_type>
       <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:product_highlight>Wraparound Corner River Deck with Unhindered Panoramic Mula River Views</g:product_highlight>
+      <g:product_highlight>1,180 sq.ft. Carpet Area Arranged for Acoustic Master Suite Isolation</g:product_highlight>
+      <g:product_highlight>Access to 20,000 sq.ft. The Grand Pavilion Clubhouse &amp; 25m Lap Pool</g:product_highlight>
+      <g:product_highlight>Approved by SBI, HDFC, ICICI, and Axis Bank with Instant APF Clearance</g:product_highlight>
+      <g:product_detail>
+        <g:section_name>Dimensions</g:section_name>
+        <g:attribute_name>Carpet Area</g:attribute_name>
+        <g:attribute_value>1,180 sq.ft.</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Specifications</g:section_name>
+        <g:attribute_name>Bathrooms</g:attribute_name>
+        <g:attribute_value>3 Luxury Baths</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Parking</g:section_name>
+        <g:attribute_name>Covered Parking Bays</g:attribute_name>
+        <g:attribute_value>2 Reserved Spaces</g:attribute_value>
+      </g:product_detail>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Site Visit VIP Walkthrough &amp; Direct Document Handover</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:tax>
+        <g:country>IN</g:country>
+        <g:rate>5.00</g:rate>
+        <g:tax_ship>no</g:tax_ship>
+      </g:tax>
+      <g:return_policy_label>statutory_rera_allotment_terms</g:return_policy_label>
       <g:custom_label_0>Balewadi Pune</g:custom_label_0>
       <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
       <g:custom_label_2>June 2028 Handover</g:custom_label_2>
@@ -56,8 +116,8 @@
       <g:id>MMR-3BHK-DUPLEX-001</g:id>
       <g:title>3 BHK Signature Sky Duplex - Mantra Meridian Riverside Balewadi</g:title>
       <g:description>Bespoke two-tier Sky Duplex at Mantra Meridian Riverside, Balewadi, Pune. 1,660 sq.ft. carpet area, monumental 20-foot double-height living room with full-height panoramic glass facade overlooking the Mula River, private family lounge, and internal architectural staircase. MahaRERA No. P52100045688.</g:description>
-      <g:link>https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/</g:link>
-      <g:image_link>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</g:image_link>
+      <g:link>https://mantrameridianriverside.com/duplex/</g:link>
+      <g:image_link>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp</g:image_link>
       <g:additional_image_link>https://mantrameridianriverside.com/assets/mantra-meridian-rera-qr.webp</g:additional_image_link>
       <g:price>18500000 INR</g:price>
       <g:availability>in_stock</g:availability>
@@ -67,6 +127,36 @@
       <g:mpn>MMR-RES-3BHK-DUPLEX</g:mpn>
       <g:product_type>Real Estate &gt; Residential &gt; Sky Duplexes</g:product_type>
       <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:product_highlight>20-Foot Double-Height Vertical Ceiling Void in Central Living Salon</g:product_highlight>
+      <g:product_highlight>Sculptural Internal Floating Staircase Connecting Entertaining &amp; Private Tiers</g:product_highlight>
+      <g:product_highlight>1,660 sq.ft. Two-Tier Layout with Dedicated Upper Master Suite Sanctuary</g:product_highlight>
+      <g:product_highlight>Permanent Riverfront Orientation with Double-Glazed Acoustic Glazing</g:product_highlight>
+      <g:product_detail>
+        <g:section_name>Dimensions</g:section_name>
+        <g:attribute_name>Carpet Area</g:attribute_name>
+        <g:attribute_value>1,660 sq.ft.</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Architecture</g:section_name>
+        <g:attribute_name>Ceiling Height</g:attribute_name>
+        <g:attribute_value>20 Feet Double Height</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Bathrooms</g:section_name>
+        <g:attribute_name>Bathrooms</g:attribute_name>
+        <g:attribute_value>4 Luxury Baths</g:attribute_value>
+      </g:product_detail>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Site Visit VIP Walkthrough &amp; Direct Document Handover</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:tax>
+        <g:country>IN</g:country>
+        <g:rate>5.00</g:rate>
+        <g:tax_ship>no</g:tax_ship>
+      </g:tax>
+      <g:return_policy_label>statutory_rera_allotment_terms</g:return_policy_label>
       <g:custom_label_0>Balewadi Pune</g:custom_label_0>
       <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
       <g:custom_label_2>June 2028 Handover</g:custom_label_2>
@@ -90,6 +180,36 @@
       <g:mpn>MMR-RES-4BHK</g:mpn>
       <g:product_type>Real Estate &gt; Residential &gt; 4 BHK Grand Estates</g:product_type>
       <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:product_highlight>2,050 sq.ft. Palatial Estate with Private Elevator Access &amp; Biometric Foyer</g:product_highlight>
+      <g:product_highlight>Dual Primary Master Suites with Spa-Inspired 5-Fixture Bathrooms</g:product_highlight>
+      <g:product_highlight>Independent Domestic Staff Quarters with Dedicated Service Ingress</g:product_highlight>
+      <g:product_highlight>270-Degree Continuous Wraparound Riverfront Viewing Sundecks</g:product_highlight>
+      <g:product_detail>
+        <g:section_name>Dimensions</g:section_name>
+        <g:attribute_name>Carpet Area</g:attribute_name>
+        <g:attribute_value>2,050 sq.ft.</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Configuration</g:section_name>
+        <g:attribute_name>Bedrooms</g:attribute_name>
+        <g:attribute_value>4 Bedrooms + Staff Room</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Parking</g:section_name>
+        <g:attribute_name>Covered Parking Bays</g:attribute_name>
+        <g:attribute_value>2 Reserved Spaces</g:attribute_value>
+      </g:product_detail>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Site Visit VIP Walkthrough &amp; Direct Document Handover</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:tax>
+        <g:country>IN</g:country>
+        <g:rate>5.00</g:rate>
+        <g:tax_ship>no</g:tax_ship>
+      </g:tax>
+      <g:return_policy_label>statutory_rera_allotment_terms</g:return_policy_label>
       <g:custom_label_0>Balewadi Pune</g:custom_label_0>
       <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
       <g:custom_label_2>June 2028 Handover</g:custom_label_2>
@@ -113,6 +233,36 @@
       <g:mpn>MMR-RES-PENTHOUSE</g:mpn>
       <g:product_type>Real Estate &gt; Residential &gt; Penthouses &amp; Sky Villas</g:product_type>
       <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:product_highlight>Topmost High-Rise Floors with Commanding 270-Degree Horizon &amp; River Panoramas</g:product_highlight>
+      <g:product_highlight>1,660 to 2,180 sq.ft. Carpet Area with Private Rooftop Viewing Sundecks</g:product_highlight>
+      <g:product_highlight>Direct Keycard/Biometric Elevator Access to Private Residence Lobby</g:product_highlight>
+      <g:product_highlight>Dedicated Reserved Covered Parking for 3 Vehicles with EV High-Speed Charging</g:product_highlight>
+      <g:product_detail>
+        <g:section_name>Dimensions</g:section_name>
+        <g:attribute_name>Carpet Area</g:attribute_name>
+        <g:attribute_value>1,660 - 2,180 sq.ft.</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Elevation</g:section_name>
+        <g:attribute_name>Floor Levels</g:attribute_name>
+        <g:attribute_value>Topmost Penthouse Tiers</g:attribute_value>
+      </g:product_detail>
+      <g:product_detail>
+        <g:section_name>Parking</g:section_name>
+        <g:attribute_name>Covered Parking Bays</g:attribute_name>
+        <g:attribute_value>3 Reserved Spaces</g:attribute_value>
+      </g:product_detail>
+      <g:shipping>
+        <g:country>IN</g:country>
+        <g:service>Site Visit VIP Walkthrough &amp; Direct Document Handover</g:service>
+        <g:price>0 INR</g:price>
+      </g:shipping>
+      <g:tax>
+        <g:country>IN</g:country>
+        <g:rate>5.00</g:rate>
+        <g:tax_ship>no</g:tax_ship>
+      </g:tax>
+      <g:return_policy_label>statutory_rera_allotment_terms</g:return_policy_label>
       <g:custom_label_0>Balewadi Pune</g:custom_label_0>
       <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
       <g:custom_label_2>June 2028 Handover</g:custom_label_2>

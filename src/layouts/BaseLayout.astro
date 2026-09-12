@@ -77,6 +77,88 @@ const structuredReviews = verifiedReviews.map((rev) => ({
 // Global Organization, ApartmentComplex & RealEstateAgent Core Graph
 const coreGraph: any[] = [
     {
+      "@type": "Product",
+      "@id": "https://mantrameridianriverside.com/#flagship-residences-product",
+      "name": "Mantra Meridian Riverside Residences",
+      "alternateName": [
+        "Mantra Meridian Balewadi",
+        "Mantra Riverside Balewadi",
+        "Mantra Meridian",
+        "Mantra Balewadi"
+      ],
+      "description": "Ultra-luxury 2, 3, 4 BHK apartments, 3 BHK Sky Duplexes, and Penthouses at Mantra Meridian Riverside Balewadi. Masterplanned across 8 acres along the Mula River with 75%+ open green areas, 20,000 sq.ft clubhouse, and 500m river boardwalk. MahaRERA P52100045688.",
+      "image": [
+        "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp",
+        "https://mantrameridianriverside.com/assets/mantra-meridian-rera-qr.webp"
+      ],
+      "sku": "MMR-ESTATE-2026",
+      "mpn": "MMR-P52100045688",
+      "brand": {
+        "@type": "Brand",
+        "name": "Mantra Properties"
+      },
+      "category": "Real Estate > Residential Apartments",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": aggregateRatingData.ratingValue,
+        "bestRating": aggregateRatingData.bestRating,
+        "worstRating": aggregateRatingData.worstRating,
+        "ratingCount": aggregateRatingData.ratingCount,
+        "reviewCount": aggregateRatingData.reviewCount
+      },
+      "review": structuredReviews,
+      "offers": {
+        "@type": "AggregateOffer",
+        "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price/",
+        "priceCurrency": "INR",
+        "lowPrice": 8500000,
+        "highPrice": 24000000,
+        "offerCount": 5,
+        "priceValidUntil": "2028-06-30",
+        "itemCondition": "https://schema.org/NewCondition",
+        "availability": "https://schema.org/InStock",
+        "seller": {
+          "@type": "RealEstateAgent",
+          "name": "Mantra Meridian Riverside",
+          "url": "https://mantrameridianriverside.com/"
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "IN",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnLink": "https://mantrameridianriverside.com/terms/"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "INR"
+          },
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "IN"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 0,
+              "maxValue": 0,
+              "unitCode": "DAY"
+            }
+          }
+        }
+      }
+    },
+    {
       "@type": "RealEstateAgent",
       "@id": "https://mantrameridianriverside.com/#organization",
       "name": "Mantra Meridian Riverside",

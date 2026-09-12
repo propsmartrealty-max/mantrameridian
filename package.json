@@ -14,6 +14,7 @@
     "check": "ASTRO_TELEMETRY_DISABLED=1 astro check",
     "worker:test": "node --experimental-strip-types scripts/test-edge-worker.mjs",
     "feed:test": "node scripts/verify-google-realestate.mjs",
+    "shopping:test": "node scripts/verify-google-shopping.mjs",
     "worker:dry-run": "wrangler deploy --env edge-seo --dry-run",
     "worker:deploy": "wrangler deploy --env edge-seo",
     "index:broadcast": "node scripts/broadcast-indexing.mjs",
