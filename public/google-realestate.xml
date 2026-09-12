@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<property_feed version="2.0" xmlns="http://www.google.com/schemas/sitemap-property/1.0">
+  <agency>
+    <name>Mantra Properties</name>
+    <url>https://mantrameridianriverside.com/</url>
+    <phone>+917744009295</phone>
+    <email>propsmartrealty@gmail.com</email>
+  </agency>
+  <development>
+    <id>MMR-BALEWADI-P52100045688</id>
+    <name>Mantra Meridian Riverside</name>
+    <legal_name>Mantra Meridian Riverside Balewadi</legal_name>
+    <developer>Mantra Properties</developer>
+    <rera_number>P52100045688</rera_number>
+    <rera_url>https://maharera.maharashtra.gov.in/</rera_url>
+    <address>
+      <street>Balewadi Village Road, Near Mula River</street>
+      <locality>Balewadi</locality>
+      <city>Pune</city>
+      <region>Maharashtra</region>
+      <country>IN</country>
+      <postal_code>411045</postal_code>
+    </address>
+    <coordinates>
+      <latitude>18.5848136</latitude>
+      <longitude>73.7751313</longitude>
+    </coordinates>
+    <site_area unit="acres">8</site_area>
+    <towers>4</towers>
+    <possession_date>2028-06-30</possession_date>
+    <virtual_tour_url>https://mantrameridianriverside.com/#virtual-tour</virtual_tour_url>
+    <rating value="4.9" best="5.0" count="384" />
+    <listings>
+      <listing>
+        <id>MMR-2BHK-001</id>
+        <property_type>Apartment</property_type>
+        <title>2 BHK Contemporary Riverside Residence</title>
+        <url>https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/</url>
+        <bedrooms>2</bedrooms>
+        <bathrooms>2</bathrooms>
+        <carpet_area unit="sqft">815</carpet_area>
+        <price currency="INR">8500000</price>
+        <availability>InStock</availability>
+        <status>Active</status>
+        <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
+        <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+      </listing>
+      <listing>
+        <id>MMR-3BHK-002</id>
+        <property_type>Apartment</property_type>
+        <title>3 BHK Premium Riverside Residence</title>
+        <url>https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/</url>
+        <bedrooms>3</bedrooms>
+        <bathrooms>3</bathrooms>
+        <carpet_area unit="sqft">1180</carpet_area>
+        <price currency="INR">12800000</price>
+        <availability>InStock</availability>
+        <status>Active</status>
+        <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
+        <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+      </listing>
+      <listing>
+        <id>MMR-3BHK-DUP-003</id>
+        <property_type>Sky Duplex</property_type>
+        <title>3 BHK Signature Sky Duplex</title>
+        <url>https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/</url>
+        <bedrooms>3</bedrooms>
+        <bathrooms>4</bathrooms>
+        <carpet_area unit="sqft">1660</carpet_area>
+        <price currency="INR">18500000</price>
+        <availability>InStock</availability>
+        <status>Active</status>
+        <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
+        <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+      </listing>
+      <listing>
+        <id>MMR-4BHK-004</id>
+        <property_type>Apartment</property_type>
+        <title>4 BHK Grand Riverside Estate</title>
+        <url>https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/</url>
+        <bedrooms>4</bedrooms>
+        <bathrooms>4</bathrooms>
+        <carpet_area unit="sqft">2050</carpet_area>
+        <price currency="INR">24000000</price>
+        <availability>InStock</availability>
+        <status>Active</status>
+        <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
+        <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+      </listing>
+    </listings>
+  </development>
+</property_feed>

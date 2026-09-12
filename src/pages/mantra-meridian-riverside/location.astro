@@ -7,6 +7,40 @@ import { locationDestinations } from '../../data/location';
 import { locationKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
+
+const locationTransitSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Place",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/location/#place",
+      "name": "Mantra Meridian Riverside Balewadi Location",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5848136,
+        "longitude": 73.7751313
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Balewadi Village Road, Near Mula River",
+        "addressLocality": "Balewadi",
+        "addressRegion": "Maharashtra",
+        "postalCode": "411045",
+        "addressCountry": "IN"
+      },
+      "containsPlace": locationDestinations.slice(0, 10).map((dest) => ({
+        "@type": "CivicStructure",
+        "name": dest.name,
+        "description": `${dest.description} (${dest.distanceKm}, approx ${dest.driveTimeMins})`,
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": dest.coordinates.lat,
+          "longitude": dest.coordinates.lng
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -14,6 +48,7 @@ export const prerender = true;
   description="Exact location intelligence for Mantra Riverside Balewadi and Mantra Meridian Balewadi. Situated along Mula River, 5 mins from Balewadi High Street, planned Wakad bridge & Hinjewadi IT Park."
   keywords={locationKeywordsList}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(locationTransitSchema)} />
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
     <Breadcrumbs items={[{ name: "Mantra Riverside Balewadi Location" }]} />

@@ -7,6 +7,46 @@ import { residencesData } from '../../data/residences';
 import { residencesKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
+
+const residencesCatalogSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ItemList",
+      "name": "Mantra Meridian Balewadi Residential Formats & Sky Duplexes",
+      "numberOfItems": residencesData.length,
+      "itemListElement": residencesData.map((res, idx) => ({
+        "@type": "RealEstateListing",
+        "position": idx + 1,
+        "name": `${res.name} at Mantra Meridian Riverside Balewadi`,
+        "description": res.overview,
+        "leaseOrSale": "Sale",
+        "listingStatus": "Active",
+        "datePosted": "2025-01-01",
+        "validThrough": "2028-06-30",
+        "mainEntity": {
+          "@type": ["Apartment", "SingleFamilyResidence"],
+          "@id": `https://mantrameridianriverside.com/mantra-meridian-riverside/${res.slug}/#residence`,
+          "name": res.name,
+          "numberOfBedrooms": res.type,
+          "numberOfBathroomsTotal": res.bathrooms,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": res.carpetAreaRange,
+            "unitCode": "FTK"
+          },
+          "offers": {
+            "@type": "Offer",
+            "price": res.slug === '2-bhk' ? '8500000' : res.slug === '3-bhk' ? '12800000' : res.slug === '3-bhk-duplex' ? '18500000' : '24000000',
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": `https://mantrameridianriverside.com/mantra-meridian-riverside/${res.slug}/`
+          }
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -14,6 +54,7 @@ export const prerender = true;
   description="Explore luxury 2, 3, 4 BHK flats and signature 3 BHK Sky Duplexes at Mantra Meridian Balewadi and Mantra Riverside in Balewadi, Pune. Verified MahaRERA carpet dimensions and price details."
   keywords={residencesKeywordsList}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(residencesCatalogSchema)} />
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
     <Breadcrumbs items={[{ name: "Mantra Meridian Balewadi Residences" }]} />

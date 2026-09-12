@@ -224,8 +224,10 @@ const coreGraph: any[] = [
       }
     },
     {
-      "@type": "ApartmentComplex",
+      "@type": ["ApartmentComplex", "Place"],
       "@id": "https://mantrameridianriverside.com/#complex",
+      "additionalType": "https://schema.org/HousingDevelopment",
+      "category": "housing_development",
       "name": "Mantra Meridian Riverside",
       "alternateName": meridianKeywordEcosystem.brandKeywords,
       "disambiguatingDescription": "Official 8-acre riverside residential landmark known as Mantra Meridian, Mantra Balewadi, Mantra Meridian Balewadi, Mantra Riverside Balewadi, Mantra Riverride Balewadi, and Mantra Meridian Riverside Balewadi in Balewadi, Pune.",
@@ -398,6 +400,108 @@ const coreGraph: any[] = [
           }
         }
       ],
+      "accommodationFloorPlan": [
+        {
+          "@type": "FloorPlan",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/#floorplan",
+          "name": "2 BHK Contemporary Residence Floor Plan",
+          "numberOfBedrooms": 2,
+          "numberOfBathroomsTotal": 2,
+          "numberOfRooms": 4,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 815,
+            "unitCode": "FTK"
+          },
+          "layoutImage": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Balcony with Riverfront Breeze", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Vitrified Tile Flooring", "value": true }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "8500000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/"
+          }
+        },
+        {
+          "@type": "FloorPlan",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/#floorplan",
+          "name": "3 BHK Riverside Residence Floor Plan",
+          "numberOfBedrooms": 3,
+          "numberOfBathroomsTotal": 3,
+          "numberOfRooms": 5,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1180,
+            "unitCode": "FTK"
+          },
+          "layoutImage": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Panoramic River Deck", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Grand Living & Dining Room", "value": true }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "12800000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/"
+          }
+        },
+        {
+          "@type": "FloorPlan",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/#floorplan",
+          "name": "3 BHK Signature Sky Duplex Floor Plan",
+          "numberOfBedrooms": 3,
+          "numberOfBathroomsTotal": 4,
+          "numberOfRooms": 6,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 1660,
+            "unitCode": "FTK"
+          },
+          "layoutImage": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Double-Height 20-Foot Living Ceiling", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Internal Architectural Staircase", "value": true }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "18500000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/"
+          }
+        },
+        {
+          "@type": "FloorPlan",
+          "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/#floorplan",
+          "name": "4 BHK Grand Riverside Estate Floor Plan",
+          "numberOfBedrooms": 4,
+          "numberOfBathroomsTotal": 4,
+          "numberOfRooms": 7,
+          "floorSize": {
+            "@type": "QuantitativeValue",
+            "value": 2050,
+            "unitCode": "FTK"
+          },
+          "layoutImage": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+          "amenityFeature": [
+            { "@type": "LocationFeatureSpecification", "name": "Private Elevator Foyer Lobby", "value": true },
+            { "@type": "LocationFeatureSpecification", "name": "Dual Primary Suites with River Decks", "value": true }
+          ],
+          "offers": {
+            "@type": "Offer",
+            "price": "24000000",
+            "priceCurrency": "INR",
+            "availability": "https://schema.org/InStock",
+            "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/"
+          }
+        }
+      ],
       "amenityFeature": [
         {
           "@type": "LocationFeatureSpecification",
@@ -430,6 +534,47 @@ const coreGraph: any[] = [
           "value": true
         }
       ]
+    },
+    {
+      "@type": ["Event", "OpenHouse"],
+      "@id": "https://mantrameridianriverside.com/#experience-centre-tour",
+      "name": "Mantra Meridian Riverside Experience Centre & Model Residence Walkthrough",
+      "description": "Daily guided architectural walkthroughs of 2, 3, 4 BHK and Sky Duplex show residences at Mantra Meridian Riverside Balewadi. Discover riverfront biophilic architecture, layout dimensions, and luxury finishes.",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "Place",
+        "name": "Mantra Meridian Riverside Experience Centre",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": projectData.contact.siteAddress,
+          "addressLocality": "Balewadi",
+          "addressRegion": "Maharashtra",
+          "postalCode": "411045",
+          "addressCountry": "IN"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": projectData.coordinates.latitude,
+          "longitude": projectData.coordinates.longitude
+        }
+      },
+      "organizer": {
+        "@type": "RealEstateAgent",
+        "name": "Mantra Properties",
+        "url": "https://mantrameridianriverside.com/"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "INR",
+        "availability": "https://schema.org/InStock",
+        "url": "https://mantrameridianriverside.com/#enquire",
+        "validFrom": "2025-01-01"
+      },
+      "doorTime": "09:30:00+05:30",
+      "startDate": "2025-01-01T09:30:00+05:30",
+      "endDate": "2028-06-30T19:30:00+05:30"
     },
     {
       "@type": "ItemList",
@@ -716,6 +861,12 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){window.dataLayer.push(arguments);}
+      gtag('consent', 'default', {
+        'ad_storage': 'granted',
+        'ad_user_data': 'granted',
+        'ad_personalization': 'granted',
+        'analytics_storage': 'granted'
+      });
       gtag('js', new Date());
 
       // Forward architectural presentation inquiries into dataLayer

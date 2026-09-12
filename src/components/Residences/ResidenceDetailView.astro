@@ -37,7 +37,7 @@ const residenceSchema = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": ["Product", "SingleFamilyResidence", "Apartment"],
+      "@type": ["Product", "SingleFamilyResidence", "Apartment", "RealEstateListing"],
       "@id": `https://mantrameridianriverside.com/mantra-meridian-riverside/${residence.slug}/#product`,
       "name": `${residence.name} - Mantra Meridian Riverside Balewadi`,
       "description": residence.overview,
@@ -52,12 +52,30 @@ const residenceSchema = {
         "name": "Mantra Properties"
       },
       "category": "Real Estate > Residential Apartments",
+      "leaseOrSale": "Sale",
+      "listingStatus": "Active",
+      "datePosted": "2025-01-01",
+      "validThrough": "2028-06-30",
+      "yearBuilt": 2028,
       "numberOfBedrooms": residence.type,
       "numberOfBathroomsTotal": residence.bathrooms,
       "floorSize": {
         "@type": "QuantitativeValue",
         "value": residence.carpetAreaRange,
         "unitCode": "FTK"
+      },
+      "accommodationFloorPlan": {
+        "@type": "FloorPlan",
+        "@id": `https://mantrameridianriverside.com/mantra-meridian-riverside/${residence.slug}/#floorplan`,
+        "name": `${residence.name} Floor Plan`,
+        "numberOfBedrooms": residence.type,
+        "numberOfBathroomsTotal": residence.bathrooms,
+        "floorSize": {
+          "@type": "QuantitativeValue",
+          "value": residence.carpetAreaRange,
+          "unitCode": "FTK"
+        },
+        "layoutImage": residenceImage
       },
       "offers": {
         "@type": "Offer",

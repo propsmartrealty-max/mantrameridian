@@ -83,8 +83,8 @@ export const projectData: ProjectData = {
   ogImage: "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
   heroSliderImages: [
     "/assets/mantra-meridian-hero.webp",
-    "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-467045184.webp",
-    "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp"
+    "/assets/mantra-meridian-hero.webp",
+    "/assets/mantra-meridian-hero.webp"
   ],
   introImage: "/assets/mantra-meridian-hero.webp",
   logoImage: "/assets/mantra-logo.svg",
