@@ -6,12 +6,48 @@ import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { riversideKeywords } from '../../data/keywords';
 
 export const prerender = true;
+
+const riversideSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Place", "Park"],
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/riverside/#riverside-sanctuary",
+      "name": "Mantra Riverside — Mula Riverfront Promenade & Boardwalk",
+      "description": "500-metre private riverfront boardwalk and biophilic landscaped promenade bordering the Mula River in Balewadi, Pune.",
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/riverside/",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 18.5848136,
+        "longitude": 73.7751313
+      },
+      "amenityFeature": [
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "500m Riverfront Boardwalk",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Reflexology Zen Pathways",
+          "value": true
+        },
+        {
+          "@type": "LocationFeatureSpecification",
+          "name": "Riparian Microclimate Buffer Zone",
+          "value": true
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Mantra Riverside Balewadi | Luxury Riverfront Residences by Mantra Properties"
   description="Explore Mantra Riverside Balewadi by Mantra Properties. 8-acre waterfront estate featuring 500m Mula river boardwalk, 2, 3, 4 BHK luxury residences, and green sanctuary views in Balewadi, Pune."
   keywords={riversideKeywords}
+  customSchema={riversideSchema}
 >
   <div class="pt-32 pb-12 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

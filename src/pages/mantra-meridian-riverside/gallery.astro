@@ -5,12 +5,42 @@ import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { galleryKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
+
+const gallerySchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ImageGallery",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/#gallery",
+      "name": "Mantra Meridian Riverside Visual Archive & Architectural Gallery",
+      "description": "Official photographic renders and architectural monographs of Mantra Meridian Riverside in Balewadi, Pune.",
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/",
+      "image": [
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-873008650.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-106076887.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-170408229.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-344980877.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-512405277.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-533930309.webp",
+        "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-gallery-636694877.webp"
+      ]
+    },
+    {
+      "@type": "VirtualLocation",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/#virtual-tour",
+      "name": "Mantra Meridian 3D Matterport Digital Twin Virtual Tour",
+      "description": "360-degree interactive digital twin and room-by-room walkthrough of Mantra Meridian Riverside Balewadi residences.",
+      "url": "https://my.matterport.com/show/?m=GBTsK9FFEvJ"
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Photos & 3D Virtual Tour Gallery | Mantra Meridian Riverside Balewadi"
   description="Immersive architectural photography, interior living voids, riverside dusk perspectives, and 3D Matterport virtual tour for Mantra Meridian Riverside, Balewadi."
   keywords={galleryKeywordsList}
+  customSchema={gallerySchema}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

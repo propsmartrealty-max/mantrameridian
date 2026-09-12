@@ -6,12 +6,59 @@ import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
 import { statutoryKeywordsList } from '../../data/keywords';
 
 export const prerender = true;
+
+const documentSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "DigitalDocument",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/documents/#brochure",
+      "name": "Mantra Meridian Riverside Official Project Brochure PDF",
+      "description": "Comprehensive official project brochure detailing 8-acre masterplan, amenities, and floor plates.",
+      "encodingFormat": "application/pdf",
+      "url": "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-brochure.pdf",
+      "inLanguage": "en-IN",
+      "publisher": {
+        "@id": "https://mantrameridianriverside.com/#organization"
+      }
+    },
+    {
+      "@type": "DigitalDocument",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/documents/#floor-plans",
+      "name": "Mantra Meridian Riverside Sanctioned Floor Plans & Layout Book",
+      "description": "Architectural floor plans, measured carpet areas, and structural unit layouts for 2, 3, 4 BHK and Sky Duplexes.",
+      "encodingFormat": "application/pdf",
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/",
+      "inLanguage": "en-IN",
+      "publisher": {
+        "@id": "https://mantrameridianriverside.com/#organization"
+      }
+    },
+    {
+      "@type": "GovernmentPermit",
+      "@id": "https://mantrameridianriverside.com/mantra-meridian-riverside/documents/#rera-certificate",
+      "name": "MahaRERA Project Registration Certificate",
+      "permitAudience": "Public Homebuyers and Investors",
+      "validIn": {
+        "@type": "AdministrativeArea",
+        "name": "Maharashtra, India"
+      },
+      "issuedBy": {
+        "@type": "GovernmentOrganization",
+        "name": "Maharashtra Real Estate Regulatory Authority",
+        "url": "https://maharera.mahaonline.gov.in"
+      },
+      "identifier": "P52100045688"
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Download Brochure & Sanctioned Plans | Mantra Meridian Riverside Balewadi"
   description="Download official architectural brochures, sanctioned floor plan books, MahaRERA certificates, and technical specifications for Mantra Meridian Riverside, Balewadi."
   keywords={statutoryKeywordsList}
+  customSchema={documentSchema}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
