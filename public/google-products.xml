@@ -96,5 +96,28 @@
       <g:custom_label_3>8-Acre Riverfront</g:custom_label_3>
       <g:custom_label_4>5-Star 4.9 Rated</g:custom_label_4>
     </item>
+
+    <!-- Item 5: Penthouse & Sky Villa Collection -->
+    <item>
+      <g:id>MMR-PENTHOUSE-001</g:id>
+      <g:title>Penthouse &amp; Sky Villa Collection - Mantra Meridian Riverside Balewadi</g:title>
+      <g:description>Pinnacle luxury residential penthouses and sky villas at Mantra Meridian Riverside, Balewadi, Pune. 1,660 to 2,180 sq.ft. carpet area, 20-foot double-height ceilings, private elevator foyers, wrap-around sundecks, and unhindered 270-degree Mula River views. MahaRERA No. P52100045688.</g:description>
+      <g:link>https://mantrameridianriverside.com/penthouse/</g:link>
+      <g:image_link>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp</g:image_link>
+      <g:additional_image_link>https://mantrameridianriverside.com/assets/mantra-meridian-rera-qr.webp</g:additional_image_link>
+      <g:price>18500000 INR</g:price>
+      <g:availability>in_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:brand>Mantra Properties</g:brand>
+      <g:identifier_exists>no</g:identifier_exists>
+      <g:mpn>MMR-RES-PENTHOUSE</g:mpn>
+      <g:product_type>Real Estate &gt; Residential &gt; Penthouses &amp; Sky Villas</g:product_type>
+      <g:google_product_category>Business &amp; Industrial &gt; Construction &gt; Real Estate</g:google_product_category>
+      <g:custom_label_0>Balewadi Pune</g:custom_label_0>
+      <g:custom_label_1>MahaRERA P52100045688</g:custom_label_1>
+      <g:custom_label_2>June 2028 Handover</g:custom_label_2>
+      <g:custom_label_3>8-Acre Riverfront</g:custom_label_3>
+      <g:custom_label_4>5-Star 4.9 Rated</g:custom_label_4>
+    </item>
   </channel>
 </rss>

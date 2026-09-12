@@ -5,6 +5,8 @@
     <url>https://mantrameridianriverside.com/</url>
     <phone>+917744009295</phone>
     <email>propsmartrealty@gmail.com</email>
+    <operating_hours>Monday-Sunday 09:30-19:30 IST</operating_hours>
+    <agent_license>MahaRERA: P52100045688</agent_license>
   </agency>
   <development>
     <id>MMR-BALEWADI-P52100045688</id>
@@ -25,67 +27,148 @@
       <latitude>18.5848136</latitude>
       <longitude>73.7751313</longitude>
     </coordinates>
+    <plus_code>9RQC+73 Pune</plus_code>
+    <google_maps_place_url>https://www.google.com/maps/place/Meridian+Mantra+balewadi/@18.5848136,73.7725564,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b9006ffb408f:0x2c6aa34db7020b81!8m2!3d18.5848136!4d73.7751313!16s%2Fg%2F11zwwkvm2z</google_maps_place_url>
     <site_area unit="acres">8</site_area>
+    <open_space_percentage>75%+</open_space_percentage>
     <towers>4</towers>
+    <floors_structure>G + Podium + 28 Floors</floors_structure>
+    <total_units>450</total_units>
     <possession_date>2028-06-30</possession_date>
+    <property_condition>UnderConstruction</property_condition>
     <virtual_tour_url>https://mantrameridianriverside.com/#virtual-tour</virtual_tour_url>
     <rating value="4.9" best="5.0" count="384" />
+    <amenities>
+      <amenity>500m Mula Riverfront Promenade &amp; Boardwalk</amenity>
+      <amenity>20,000 sq.ft. The Grand Pavilion Clubhouse</amenity>
+      <amenity>25m Temperature-Controlled Infinity Lap Pool</amenity>
+      <amenity>Championship Tennis &amp; Pickleball Courts</amenity>
+      <amenity>Dedicated EV Charging Stations</amenity>
+      <amenity>Biometric Access Control &amp; 24/7 Security</amenity>
+      <amenity>Dolby Atmos 4K Private Screening Theatre</amenity>
+      <amenity>Botanical Reflexology Sensory Gardens</amenity>
+      <amenity>Coworking Business Hub &amp; Meeting Salons</amenity>
+      <amenity>Kids Eco-Splash &amp; Adventure Play Park</amenity>
+    </amenities>
     <listings>
+      <!-- Item 1: 2 BHK Contemporary -->
       <listing>
         <id>MMR-2BHK-001</id>
         <property_type>Apartment</property_type>
         <title>2 BHK Contemporary Riverside Residence</title>
+        <description>Intelligently zoned 2 BHK residence with zero-dead-space layout, river-facing private balcony, and acoustic insulation.</description>
         <url>https://mantrameridianriverside.com/mantra-meridian-riverside/2-bhk/</url>
         <bedrooms>2</bedrooms>
         <bathrooms>2</bathrooms>
+        <balconies>2</balconies>
         <carpet_area unit="sqft">815</carpet_area>
         <price currency="INR">8500000</price>
+        <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
+        <furnishing>Semi-Furnished</furnishing>
+        <parking_spaces>1</parking_spaces>
+        <facing>Vastu Compliant East / River-Facing</facing>
+        <possession_date>2028-06-30</possession_date>
         <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
         <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+        <virtual_tour>https://mantrameridianriverside.com/#virtual-tour</virtual_tour>
       </listing>
+
+      <!-- Item 2: 3 BHK Premium Riverside -->
       <listing>
         <id>MMR-3BHK-002</id>
         <property_type>Apartment</property_type>
         <title>3 BHK Premium Riverside Residence</title>
+        <description>Expansive 3 BHK residence with isolated primary master suite, wide waterfront sundeck, and panoramic Mula river vistas.</description>
         <url>https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk/</url>
         <bedrooms>3</bedrooms>
         <bathrooms>3</bathrooms>
+        <balconies>3</balconies>
         <carpet_area unit="sqft">1180</carpet_area>
         <price currency="INR">12800000</price>
+        <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
+        <furnishing>Semi-Furnished</furnishing>
+        <parking_spaces>2</parking_spaces>
+        <facing>Vastu Compliant North-East / Unobstructed River View</facing>
+        <possession_date>2028-06-30</possession_date>
         <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
         <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+        <virtual_tour>https://mantrameridianriverside.com/#virtual-tour</virtual_tour>
       </listing>
+
+      <!-- Item 3: 3 BHK Signature Sky Duplex -->
       <listing>
         <id>MMR-3BHK-DUP-003</id>
         <property_type>Sky Duplex</property_type>
         <title>3 BHK Signature Sky Duplex</title>
-        <url>https://mantrameridianriverside.com/mantra-meridian-riverside/3-bhk-duplex/</url>
+        <description>Two-tier vertical sky duplex featuring monumental 20-foot double-height living salon, floating internal staircase, and private upper master retreat.</description>
+        <url>https://mantrameridianriverside.com/duplex/</url>
         <bedrooms>3</bedrooms>
         <bathrooms>4</bathrooms>
+        <balconies>3</balconies>
         <carpet_area unit="sqft">1660</carpet_area>
         <price currency="INR">18500000</price>
+        <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
-        <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
+        <furnishing>High-Specification Bare Shell</furnishing>
+        <parking_spaces>2</parking_spaces>
+        <facing>Riverfront North-East / Double-Height Glazing</facing>
+        <possession_date>2028-06-30</possession_date>
+        <image>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp</image>
         <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+        <virtual_tour>https://mantrameridianriverside.com/#virtual-tour</virtual_tour>
       </listing>
+
+      <!-- Item 4: 4 BHK Grand Riverside Estate -->
       <listing>
         <id>MMR-4BHK-004</id>
         <property_type>Apartment</property_type>
         <title>4 BHK Grand Riverside Estate</title>
+        <description>Sprawling 2,050 sq.ft. estate with private elevator foyer, dual primary bedroom suites, domestic staff room, and 270-degree wraparound river balconies.</description>
         <url>https://mantrameridianriverside.com/mantra-meridian-riverside/4-bhk/</url>
         <bedrooms>4</bedrooms>
         <bathrooms>4</bathrooms>
+        <balconies>4</balconies>
         <carpet_area unit="sqft">2050</carpet_area>
         <price currency="INR">24000000</price>
+        <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
+        <furnishing>Semi-Furnished Luxury Spec</furnishing>
+        <parking_spaces>2</parking_spaces>
+        <facing>Unobstructed North-East River Frontage</facing>
+        <possession_date>2028-06-30</possession_date>
         <image>https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp</image>
         <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+        <virtual_tour>https://mantrameridianriverside.com/#virtual-tour</virtual_tour>
+      </listing>
+
+      <!-- Item 5: Penthouse & Sky Villa Collection -->
+      <listing>
+        <id>MMR-PENTHOUSE-005</id>
+        <property_type>Penthouse</property_type>
+        <title>Penthouse &amp; Sky Villa Collection</title>
+        <description>Apex collection of top-tier residential penthouses and sky villas. Features 1,660 to 2,180 sq.ft. carpet area, biometric elevator access, and private rooftop sky lounges overlooking the Mula River.</description>
+        <url>https://mantrameridianriverside.com/penthouse/</url>
+        <bedrooms>4</bedrooms>
+        <bathrooms>5</bathrooms>
+        <balconies>4</balconies>
+        <carpet_area unit="sqft">2180</carpet_area>
+        <price currency="INR">24000000</price>
+        <price_type>Starting Base Consideration</price_type>
+        <availability>InStock</availability>
+        <status>Active</status>
+        <furnishing>Custom Designer Bare Shell</furnishing>
+        <parking_spaces>3</parking_spaces>
+        <facing>Apex 270-Degree Panoramic River Horizon</facing>
+        <possession_date>2028-06-30</possession_date>
+        <image>https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp</image>
+        <floor_plan>https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/</floor_plan>
+        <virtual_tour>https://mantrameridianriverside.com/#virtual-tour</virtual_tour>
       </listing>
     </listings>
   </development>

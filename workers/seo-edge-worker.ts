@@ -154,6 +154,17 @@ export function generateBreadcrumbJsonLd(pathname: string): string {
     'rera': 'MahaRERA Compliance',
     'documents': 'Document Centre',
     'balewadi': 'Balewadi Real Estate Hub',
+    'hinjewadi': 'Hinjewadi Tech Corridor',
+    'baner': 'Baner Luxury Upgrade',
+    'mahalunge': 'Mahalunge Hi-Tech Corridor',
+    'nri-desk': 'Global NRI Investment Desk',
+    'duplex': 'Signature Sky Duplexes',
+    'penthouse': 'Penthouse & Sky Villa Collection',
+    'directions': 'GPS Driving Directions',
+    'explore': 'Explore Master Directory',
+    'compare': 'Project Comparison Hub',
+    'construction-status': 'Construction Status & Milestones',
+    'home-loan': 'Home Loan & Bank APF',
     'west-pune': 'West Pune Luxury Guide',
     'pune-real-estate': 'Pune Real Estate Market',
     'journal': 'The Meridian Journal',
@@ -251,10 +262,16 @@ export const NOSCRIPT_GOOGLEBOT_FALLBACK: string = `
           <td style="padding:0.5rem;">₹ 2.40 Cr* onwards</td>
           <td style="padding:0.5rem;">Dual master suites, private elevator foyer</td>
         </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <td style="padding:0.5rem;">Penthouse &amp; Sky Villa Collection</td>
+          <td style="padding:0.5rem;">1,660 – 2,180 sq.ft.</td>
+          <td style="padding:0.5rem;">₹ 1.85 Cr* – ₹ 2.40 Cr*+</td>
+          <td style="padding:0.5rem;">Topmost towers, wrap-around sundecks, biometric elevators</td>
+        </tr>
       </tbody>
     </table>
     <p style="margin-top:1rem;font-size:0.8rem;color:#a3a3a3;">
-      Masterplanned across 8 acres with 75%+ landscaped green open areas, 20,000 sq.ft Central Clubhouse (The Grand Pavilion), 25m Temperature-Controlled Infinity Lap Pool, and 500m Riverside Boardwalk along the Mula River. MahaRERA Completion: June 2028.
+      Masterplanned across 8 acres with 75%+ landscaped green open areas, 20,000 sq.ft Central Clubhouse (The Grand Pavilion), 25m Temperature-Controlled Infinity Lap Pool, and 500m Riverside Boardwalk along the Mula River. Connectivity: 1.2 km to Balewadi High Street, 1.4 km to PMRDA Metro Line 3 Balewadi Stadium Station, 7.8 km (12 mins) to Hinjewadi IT Park Phase 1. MahaRERA Completion: June 2028 (P52100045688).
     </p>
   </section>
 </noscript>

@@ -1,0 +1,516 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Breadcrumbs from '../components/Navigation/Breadcrumbs.astro';
+import FAQAccordion from '../components/FAQ/FAQAccordion.astro';
+import ReraVerificationCard from '../components/Trust/ReraVerificationCard.astro';
+import { brandPermutations } from '../data/keywords';
+
+export const prerender = true;
+
+interface HubCategory {
+  title: string;
+  tagline: string;
+  badge: string;
+  items: {
+    title: string;
+    href: string;
+    description: string;
+    meta: string;
+    highlight?: boolean;
+  }[];
+}
+
+const directoryCategories: HubCategory[] = [
+  {
+    title: "01. Typologies & Sky Mansions",
+    tagline: "Ultra-luxury riverfront residences engineered with acoustic isolation and volumetric height",
+    badge: "LIVING SPACES",
+    items: [
+      {
+        title: "2 BHK Contemporary Riverside Residences",
+        href: "/mantra-meridian-riverside/2-bhk/",
+        description: "815 sq.ft. carpet area featuring zero-dead-space ergonomics, cross-ventilated living salon, and private river sundeck.",
+        meta: "From ₹85 Lakhs* • Balewadi Riverfront"
+      },
+      {
+        title: "3 BHK Premium Riverside Residences",
+        href: "/mantra-meridian-riverside/3-bhk/",
+        description: "1,180 sq.ft. carpet area with master suite isolation, expansive kitchen realm, and wide waterfront verandas.",
+        meta: "From ₹1.28 Cr* • Prime Waterfront View"
+      },
+      {
+        title: "Signature 3 BHK Sky Duplexes",
+        href: "/duplex/",
+        description: "1,660 sq.ft. duplex format with dramatic 20-foot vertical ceiling void, cantilevered floating stair, and dual living tiers.",
+        meta: "From ₹1.85 Cr* • 20-Ft Ceiling Grandeur",
+        highlight: true
+      },
+      {
+        title: "4 BHK Grand Riverside Estates",
+        href: "/mantra-meridian-riverside/4-bhk/",
+        description: "2,050 sq.ft. carpet area boasting dual master suites, private elevator foyer, staff quarters, and 270-degree panorama.",
+        meta: "From ₹2.40 Cr* • Ultra-Spacious Sanctuary"
+      },
+      {
+        title: "Penthouse & Sky Villa Collection",
+        href: "/penthouse/",
+        description: "1,660 to 2,180 sq.ft. apex penthouses occupying the topmost residential tiers with wrap-around entertainer terraces.",
+        meta: "From ₹1.85 Cr* – ₹2.40 Cr*+ • Top Tier Living",
+        highlight: true
+      },
+      {
+        title: "Complete Architectural Floor Plans",
+        href: "/mantra-meridian-riverside/floor-plans/",
+        description: "High-resolution downloadable floor plan blueprints for every 2, 3, 3 Duplex, and 4 BHK unit configuration.",
+        meta: "All Configurations • Sanctioned Dimensions"
+      }
+    ]
+  },
+  {
+    title: "02. Micro-Market & Growth Corridors",
+    tagline: "Macroeconomic drivers, capital escalation indexes, and rental yields in West Pune",
+    badge: "CORRIDOR INTELLIGENCE",
+    items: [
+      {
+        title: "Balewadi Real Estate Hub",
+        href: "/balewadi/",
+        description: "Comprehensive micromarket dossier: 2020-2028 price escalations, rental yields of 4.2-4.8%, and High Street retail pulse.",
+        meta: "₹9,800 - ₹13,500/sqft • High Capital Velocity",
+        highlight: true
+      },
+      {
+        title: "Hinjewadi Tech Executive Corridor",
+        href: "/hinjewadi/",
+        description: "Strategic commute corridor guide: 12 minutes (7.8 km) to Rajiv Gandhi Infotech Park Phase 1 via proposed Wakad bridge.",
+        meta: "12 Mins Commute • Tech Leadership Housing"
+      },
+      {
+        title: "Baner Luxury Upgrade Guide",
+        href: "/baner/",
+        description: "Comparative migration analysis: why Baner residents are transitioning to Balewadi's 8-acre continuous riverfront acreage.",
+        meta: "3.5 km Distance • Low Density Alternative"
+      },
+      {
+        title: "Mahalunge Hi-Tech Corridor",
+        href: "/mahalunge/",
+        description: "Boutique waterfront serenity versus dense 100-acre mega-townships along the Mula River corridor.",
+        meta: "Boutique vs Mega-Township • June 2028 Handover"
+      },
+      {
+        title: "West Pune Luxury Corridor Analysis",
+        href: "/west-pune/",
+        description: "Macro-regional synthesis covering the Baner-Balewadi-Hinjewadi golden economic triangle and infrastructure catalysts.",
+        meta: "Regional Overview • Infrastructure Catalysts"
+      },
+      {
+        title: "Pune Citywide Real Estate Index",
+        href: "/pune-real-estate/",
+        description: "Citywide benchmark contrasting West Pune capital trends with East Pune (Kharadi/Kalyani Nagar) and Central Pune.",
+        meta: "Citywide Analysis • Appreciation Trends"
+      }
+    ]
+  },
+  {
+    title: "03. Financial Architecture & Global Advisory",
+    tagline: "Transparent pricing models, all-inclusive cost sheet breakdowns, and international NRI support",
+    badge: "FINANCIAL TOOLS",
+    items: [
+      {
+        title: "Price & All-Inclusive Cost Sheet",
+        href: "/mantra-meridian-riverside/price/",
+        description: "Interactive real-time cost sheet estimator computing base price, stamp duty (7%), registration, and GST schedules.",
+        meta: "₹85 L* to ₹2.40 Cr* • Real-Time Cost Estimator",
+        highlight: true
+      },
+      {
+        title: "Home Loan & Bank APF Approval Hub",
+        href: "/home-loan/",
+        description: "Pre-approved home loan guide featuring official APF numbers from SBI, HDFC, ICICI, and Axis Bank with live EMI calculator.",
+        meta: "SBI & HDFC Pre-Approved • Live EMI Model"
+      },
+      {
+        title: "Global NRI Investment Desk",
+        href: "/nri-desk/",
+        description: "Specialized advisory for Gulf, US, and UK expatriates featuring live USD/AED/GBP/EUR currency converter and FEMA compliance.",
+        meta: "Multi-Currency Converter • FEMA Guidelines",
+        highlight: true
+      }
+    ]
+  },
+  {
+    title: "04. Engineering, Milestones & Due Diligence",
+    tagline: "Uncompromising legal integrity, structural milestone tracking, and competitive benchmarks",
+    badge: "DUE DILIGENCE",
+    items: [
+      {
+        title: "Project Comparison Hub",
+        href: "/compare/",
+        description: "Analytical benchmarking comparing Mantra Meridian Riverside with Kolte Patil 24K Altura, Kasturi Balmoral, and ANP Universe.",
+        meta: "8 Acres vs 3 Acres • Unbiased Comparison",
+        highlight: true
+      },
+      {
+        title: "Construction Status & Milestones",
+        href: "/construction-status/",
+        description: "Live construction tracker detailing piling, podium excavation, structural RCC schedules, and June 2028 handover progress.",
+        meta: "MahaRERA June 2028 • Milestone Progress"
+      },
+      {
+        title: "MahaRERA Statutory Compliance",
+        href: "/mantra-meridian-riverside/rera/",
+        description: "Official registration details for MahaRERA No. P52100045688, title certificates, quarterly progress reports, and encumbrance filings.",
+        meta: "MahaRERA P52100045688 • Verified Legal Title"
+      },
+      {
+        title: "Document Library & Official Brochure",
+        href: "/mantra-meridian-riverside/documents/",
+        description: "Download verified PDF collaterals including the high-resolution master brochure, sanctioned layout sheets, and bank certificates.",
+        meta: "Instant PDF Downloads • Sanctioned Plans"
+      }
+    ]
+  },
+  {
+    title: "05. Estate Masterplan & Riverfront Living",
+    tagline: "An 8-acre continuous waterfront realm curated with 30+ lifestyle amenities and a 500m boardwalk",
+    badge: "MASTERPLAN & AMENITIES",
+    items: [
+      {
+        title: "The 8-Acre Masterplan",
+        href: "/mantra-meridian-riverside/masterplan/",
+        description: "Architectural zoning blueprint detailing the 4 residential high-rise towers, multi-tier podium, and 75%+ green open spaces.",
+        meta: "8 Contiguous Acres • 4 Iconic Towers"
+      },
+      {
+        title: "The Riverside Story",
+        href: "/mantra-meridian-riverside/riverside/",
+        description: "Biophilic architectural design harnessing the Mula River for acoustic tranquility, natural air purification, and perpetual views.",
+        meta: "500m Boardwalk • Riparian Ecosystem"
+      },
+      {
+        title: "Amenity Atlas (30+ Spaces)",
+        href: "/mantra-meridian-riverside/amenities/",
+        description: "Detailed inventory of the 20,000 sq.ft. Grand Pavilion clubhouse, 25m infinity lap pool, padel tennis, and wellness spas.",
+        meta: "20,000 Sq.Ft. Pavilion • 25m Infinity Pool"
+      },
+      {
+        title: "Location Intelligence & Civic Infrastructure",
+        href: "/mantra-meridian-riverside/location/",
+        description: "Proximity mapping to leading IB schools, tertiary hospitals, premium dining, and the upcoming PMRDA Metro Line 3.",
+        meta: "1.2 km to High Street • 1.4 km to Metro"
+      },
+      {
+        title: "Architectural Gallery & Visual Showcase",
+        href: "/mantra-meridian-riverside/gallery/",
+        description: "Cinematic 3D architectural renders, evening lighting simulations, and clubhouse interior visualizations.",
+        meta: "High-Resolution Renders • Interior Visuals"
+      }
+    ]
+  },
+  {
+    title: "06. Transit, Navigation & GPS Gateways",
+    tagline: "Effortless ingress and egress with 1-click turn-by-turn routing directly into Apple Maps, Google Maps, and Waze",
+    badge: "GPS NAVIGATION",
+    items: [
+      {
+        title: "GPS Driving Directions Hub",
+        href: "/directions/",
+        description: "Dedicated turn-by-turn driving instructions from Mumbai-Pune Expressway, Pune International Airport, Hinjewadi, and Baner.",
+        meta: "Google Maps / Waze / Apple Maps • Plus Code: 9RQC+73 Pune",
+        highlight: true
+      }
+    ]
+  },
+  {
+    title: "07. The Meridian Journal & Analytical Research",
+    tagline: "Thought-leadership essays, micro-market whitepapers, and luxury lifestyle perspectives",
+    badge: "RESEARCH & JOURNAL",
+    items: [
+      {
+        title: "Pune Real Estate Market Outlook 2026",
+        href: "/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/",
+        description: "Macro analysis of West Pune infrastructure catalysts, metro expansion, and price growth projections.",
+        meta: "Market Outlook • Investment Analysis"
+      },
+      {
+        title: "Hinjewadi Tech Corridor Housing Guide",
+        href: "/mantra-meridian-riverside/journal/hinjewadi-it-corridor-balewadi-luxury-housing-guide/",
+        description: "Why Hinjewadi tech senior executives are choosing Balewadi riverfront over congested IT township living.",
+        meta: "Executive Living • Commute Efficiency"
+      },
+      {
+        title: "Baner vs Balewadi vs Mahalunge Investment Guide",
+        href: "/mantra-meridian-riverside/journal/baner-vs-balewadi-vs-mahalunge-real-estate-investment-2026/",
+        description: "Three-way micromarket comparison analyzing price appreciation, infrastructure, and livability indices.",
+        meta: "Tri-Market Guide • Comparative ROI"
+      },
+      {
+        title: "Sky Duplex vs Penthouse Living in Pune",
+        href: "/mantra-meridian-riverside/journal/sky-duplex-vs-penthouse-luxury-living-pune/",
+        description: "In-depth design comparison between vertical double-height duplexes and apex panoramic sky villas.",
+        meta: "Architectural Essay • Volumetric Design"
+      },
+      {
+        title: "Kumar Magnacity vs Mantra Meridian Riverside",
+        href: "/mantra-meridian-riverside/journal/kumar-magnacity-vs-mantra-meridian-riverside-comparison/",
+        description: "Objective evaluation between Manjri township density and boutique waterfront luxury in Balewadi.",
+        meta: "Benchmark Study • Lifestyle Comparison"
+      }
+    ]
+  },
+  {
+    title: "08. Dedicated Search & Entity Match Portals",
+    tagline: "Targeted entryways tuned for high-intent organic search queries and conversational AI citations",
+    badge: "BRAND PORTALS",
+    items: [
+      {
+        title: "Mantra Meridian Balewadi Official Portal",
+        href: "/mantra-meridian-balewadi/",
+        description: "Dedicated gateway addressing prime search intent for Mantra Meridian in Balewadi Pune.",
+        meta: "Primary Search Landing • High Intent"
+      },
+      {
+        title: "Mantra Riverside Balewadi Official Portal",
+        href: "/mantra-riverside-balewadi/",
+        description: "Dedicated gateway tuned for queries targeting the riverfront identity of Mantra Balewadi.",
+        meta: "Riverfront Focus • Intent Landing"
+      },
+      {
+        title: "Mantra Meridian Primary Brand Portal",
+        href: "/mantra-meridian/",
+        description: "Flagship brand landing page highlighting project overview, architectural features, and pricing.",
+        meta: "Brand Overview • Core Specs"
+      },
+      {
+        title: "Mantra Balewadi Project Portal",
+        href: "/mantra-balewadi/",
+        description: "Targeted micromarket landing page showcasing location advantages and lifestyle amenities.",
+        meta: "Location Focus • High Street Nearby"
+      },
+      {
+        title: "Mantra Riverside Portal",
+        href: "/mantra-riverside/",
+        description: "Dedicated waterfront lifestyle portal exploring the natural serenity of the Mula River.",
+        meta: "Waterfront Serenity • Biophilic Design"
+      }
+    ]
+  }
+];
+
+const exploreFaqs = [
+  {
+    question: "What is the Mantra Meridian Riverside Explore Knowledge Hub?",
+    answer: "The Explore Knowledge Hub is the master programmatic directory for the Mantra Meridian Riverside ecosystem. It connects prospective buyers, investors, and researchers with comprehensive intelligence covering apartment typologies, micro-market appreciation models, financial calculators, legal due diligence documents, driving routes, and competitive benchmarks."
+  },
+  {
+    question: "Where is Mantra Meridian Riverside located and what are the key landmarks?",
+    answer: "Mantra Meridian Riverside is located on Balewadi Village Road along the pristine banks of the Mula River in Balewadi, Pune (PIN 411045, Plus Code: 9RQC+73 Pune). Key nearby landmarks include Balewadi High Street (1.2 km, 3 mins), PMRDA Metro Line 3 Balewadi Stadium Station (1.4 km, 4 mins), and Hinjewadi IT Park Phase 1 (7.8 km, 12 mins)."
+  },
+  {
+    question: "What typologies and price points are available at Mantra Meridian Riverside?",
+    answer: "Mantra Meridian Riverside offers an extensive spectrum of riverfront typologies: 2 BHK residences (815 sq.ft.) from ₹85 Lakhs*, 3 BHK residences (1,180 sq.ft.) from ₹1.28 Cr*, 3 BHK Signature Sky Duplexes (1,660 sq.ft. with 20-ft ceiling voids) from ₹1.85 Cr*, 4 BHK Grand Estates (2,050 sq.ft.) from ₹2.40 Cr*, and apex Penthouses & Sky Villas (1,660 – 2,180 sq.ft.) from ₹1.85 Cr* to ₹2.40 Cr*+."
+  },
+  {
+    question: "Is Mantra Meridian Riverside approved under MahaRERA and major banking institutions?",
+    answer: "Yes, Mantra Meridian Riverside is registered with MahaRERA under registration number P52100045688 with an official handover milestone of June 2028. The project has received Bank Approved Project Financial (APF) clearance from leading commercial banks including SBI (State Bank of India), HDFC Bank, ICICI Bank, and Axis Bank for streamlined home loan disbursement."
+  }
+];
+
+const exploreSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "@id": "https://mantrameridianriverside.com/explore/#collectionpage",
+      "url": "https://mantrameridianriverside.com/explore/",
+      "name": "Mantra Meridian Riverside Balewadi | Master Directory & Knowledge Hub",
+      "description": "Comprehensive knowledge directory and programmatic index for Mantra Meridian Riverside, Balewadi, Pune. Explore residences, floor plans, pricing, corridor analyses, and legal due diligence.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://mantrameridianriverside.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Explore Hub",
+            "item": "https://mantrameridianriverside.com/explore/"
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ItemList",
+      "@id": "https://mantrameridianriverside.com/explore/#itemlist",
+      "name": "Mantra Meridian Riverside Topical Directory",
+      "numberOfItems": directoryCategories.reduce((acc, cat) => acc + cat.items.length, 0),
+      "itemListElement": directoryCategories.flatMap((cat, catIdx) => 
+        cat.items.map((item, itemIdx) => ({
+          "@type": "ListItem",
+          "position": catIdx * 10 + itemIdx + 1,
+          "name": item.title,
+          "url": `https://mantrameridianriverside.com${item.href}`
+        }))
+      )
+    }
+  ]
+};
+---
+
+<BaseLayout
+  title="Explore Mantra Meridian Riverside Balewadi | Master Project Directory & Hub"
+  description="Master programmatic directory for Mantra Meridian Riverside Balewadi. Explore 2, 3 & 4 BHK residences, Sky Duplexes, Penthouses, pricing cost sheets, corridor reports, and MahaRERA filings."
+  keywords={brandPermutations.slice(0, 30)}
+  customSchema={exploreSchema}
+>
+  <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
+    
+    <Breadcrumbs items={[{ name: "Explore Knowledge Hub" }]} />
+
+    {/* Hero Header */}
+    <div class="max-w-4xl space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-champagne/10 border border-champagne/30 text-champagne text-xs font-mono tracking-widest uppercase">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        MASTER PROJECT DIRECTORY & TOPICAL GRAPH
+      </div>
+
+      <h1 class="font-serif text-5xl sm:text-7xl text-architectural-white font-normal leading-tight">
+        Explore Meridian.<br />
+        <span class="text-champagne font-light italic font-serif">The Authoritative Project Ecosystem.</span>
+      </h1>
+
+      <p class="text-xs sm:text-sm text-concrete leading-relaxed max-w-3xl">
+        Welcome to the master knowledge portal for <strong class="text-architectural-white font-medium">Mantra Meridian Riverside Balewadi</strong>. Whether you are researching floor plans, cross-corridor migration trends from Baner and Hinjewadi, official MahaRERA documentation, or turn-by-turn GPS routes, explore the complete directory below.
+      </p>
+
+      {/* Quick Search / Filter Bar */}
+      <div class="pt-2">
+        <div class="relative max-w-xl">
+          <input
+            type="text"
+            id="directory-search-input"
+            placeholder="Search across typologies, corridors, legal, pricing..."
+            class="w-full bg-obsidian-card border border-champagne/30 px-4 py-3 text-sm text-white placeholder-concrete/50 focus:outline-none focus:border-champagne transition-colors"
+          />
+          <span class="absolute right-3.5 top-3.5 text-champagne/60 text-xs font-mono">LIVE FILTER</span>
+        </div>
+      </div>
+    </div>
+
+    {/* Quick Metric Matrix */}
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">8 ACRES</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">Masterplan Acreage</span>
+        <p class="text-[11px] text-concrete/70">Largest continuous riverfront estate in Balewadi.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">5 TYPOLOGIES</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">Living Spectrum</span>
+        <p class="text-[11px] text-concrete/70">2 BHK, 3 BHK, Sky Duplex, 4 BHK & Penthouses.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-architectural-white">JUNE 2028</span>
+        <span class="text-xs uppercase tracking-widest text-champagne block font-mono">MahaRERA Possession</span>
+        <p class="text-[11px] text-concrete/70">P52100045688 with verified legal title.</p>
+      </div>
+      <div class="p-6 bg-obsidian-card border border-champagne/20 space-y-1">
+        <span class="font-serif text-3xl md:text-4xl text-champagne">1.2 KM</span>
+        <span class="text-xs uppercase tracking-widest text-architectural-white block font-mono">To High Street</span>
+        <p class="text-[11px] text-concrete/70">3 minutes to Balewadi High Street commercial strip.</p>
+      </div>
+    </div>
+
+    {/* Main Programmatic Directory Grid */}
+    <div id="directory-sections-container" class="space-y-16">
+      {directoryCategories.map((category) => (
+        <section class="space-y-6 directory-category-group" data-category={category.title}>
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-champagne/20 pb-4">
+            <div>
+              <span class="text-[11px] font-mono tracking-widest text-champagne uppercase">{category.badge}</span>
+              <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">{category.title}</h2>
+            </div>
+            <p class="text-xs text-concrete/80 max-w-md">{category.tagline}</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {category.items.map((item) => (
+              <a
+                href={item.href}
+                class={`group block p-5 rounded-none border transition-all duration-300 directory-item-card ${
+                  item.highlight
+                    ? 'bg-gradient-to-br from-obsidian-card to-obsidian-surface border-champagne/50 shadow-[0_0_20px_rgba(223,183,90,0.1)] hover:border-champagne'
+                    : 'bg-obsidian-card/80 border-white/10 hover:border-champagne/40 hover:bg-obsidian-card'
+                }`}
+                data-item-title={item.title.toLowerCase()}
+                data-item-desc={item.description.toLowerCase()}
+              >
+                <div class="space-y-3">
+                  <div class="flex items-start justify-between gap-2">
+                    <h3 class="font-serif text-base sm:text-lg text-architectural-white group-hover:text-champagne transition-colors leading-snug">
+                      {item.title}
+                    </h3>
+                    <span class="text-champagne text-sm shrink-0 transform group-hover:translate-x-1 transition-transform">→</span>
+                  </div>
+                  
+                  <p class="text-xs text-concrete/80 leading-relaxed font-sans line-clamp-2">
+                    {item.description}
+                  </p>
+
+                  <div class="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-champagne/90">
+                    <span>{item.meta}</span>
+                  </div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    {/* Frequently Asked Questions */}
+    <FAQAccordion customFaqs={exploreFaqs} />
+
+    {/* Verified RERA Seal */}
+    <ReraVerificationCard />
+
+  </div>
+
+  <script is:inline>
+    // Client-side instant live filtering across directory cards
+    const searchInput = document.getElementById('directory-search-input');
+    const cards = document.querySelectorAll('.directory-item-card');
+    const groups = document.querySelectorAll('.directory-category-group');
+
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        
+        cards.forEach((card) => {
+          const title = card.getAttribute('data-item-title') || '';
+          const desc = card.getAttribute('data-item-desc') || '';
+          const isMatch = !query || title.includes(query) || desc.includes(query);
+          
+          if (isMatch) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Hide empty category groups
+        groups.forEach((group) => {
+          const visibleCards = group.querySelectorAll('.directory-item-card:not([style*="display: none"])');
+          if (query && visibleCards.length === 0) {
+            group.style.display = 'none';
+          } else {
+            group.style.display = 'block';
+          }
+        });
+      });
+    }
+  </script>
+</BaseLayout>
