@@ -17,7 +17,13 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import worker, { getNormalizedCacheUrl, isStaticAssetPath } from '../workers/seo-edge-worker.ts';
+import worker, {
+  getNormalizedCacheUrl,
+  isStaticAssetPath,
+  generateBreadcrumbJsonLd,
+  generateSitelinksSearchBoxJsonLd,
+  NOSCRIPT_GOOGLEBOT_FALLBACK
+} from '../workers/seo-edge-worker.ts';
 import { identifyWhiteBot } from '../src/utils/bot-detection.ts';
 import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords } from '../src/data/keywords.ts';
 
@@ -388,6 +394,96 @@ runTest('BaseLayout contains W3C Speculation Rules API for instant Chrome 121+ p
   assert.ok(content.includes('type="speculationrules"'), 'BaseLayout must include Speculation Rules');
   assert.ok(content.includes('/mantra-riverside/'), 'Speculation Rules must include /mantra-riverside/');
   assert.ok(content.includes('/mantra-meridian/'), 'Speculation Rules must include /mantra-meridian/');
+});
+
+// -----------------------------------------------------------------------------
+// 9. Googlebot Crawl Budget Protection Tests
+// -----------------------------------------------------------------------------
+await runAsyncTest('Googlebot parameter requests are instantly 301 redirected to canonical path', async () => {
+  const googlebotParamReq = new Request('https://mantrameridianriverside.com/balewadi/?utm_source=google&gclid=test12345', {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+      'cf-ipcountry': 'US'
+    }
+  });
+
+  const res = await worker.fetch(googlebotParamReq, {}, mockCtx);
+  assert.equal(res.status, 301);
+  assert.equal(res.headers.get('Location'), 'https://mantrameridianriverside.com/balewadi/');
+});
+
+// -----------------------------------------------------------------------------
+// 10. Googlebot Optimized Crawl Status & HTMLRewriter Dynamic Headers
+// -----------------------------------------------------------------------------
+await runAsyncTest('Googlebot receives Authorized-Optimized-Crawl and HTMLRewriter dynamic headers', async () => {
+  const mockHtml = `<!DOCTYPE html><html><head></head><body><h1>Mantra Meridian Balewadi</h1></body></html>`;
+  const env = {
+    ASSETS: {
+      fetch: async () => new Response(mockHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      })
+    }
+  };
+
+  const googlebotReq = new Request('https://mantrameridianriverside.com/mantra-meridian-riverside/price/', {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)',
+      'cf-ipcountry': 'US',
+      'cf-colo': 'IAD'
+    }
+  });
+
+  const res = await worker.fetch(googlebotReq, env, mockCtx);
+  assert.equal(res.status, 200);
+  assert.equal(res.headers.get('X-Googlebot-Status'), 'Authorized-Optimized-Crawl');
+  assert.equal(res.headers.get('X-Edge-Rendering'), 'Cloudflare-Worker-HTMLRewriter-Dynamic');
+  assert.equal(res.headers.get('X-Content-Type-Options'), 'nosniff');
+  assert.ok(res.headers.get('Vary')?.includes('User-Agent'));
+});
+
+// -----------------------------------------------------------------------------
+// 11. Extended Googlebot Ecosystem Identification Tests
+// -----------------------------------------------------------------------------
+runTest('identifyWhiteBot accurately classifies Google-InspectionTool, Mobile and Storebot', () => {
+  const inspectionTool = identifyWhiteBot('Mozilla/5.0 (compatible; Google-InspectionTool/1.0;)');
+  assert.equal(inspectionTool.isWhiteBot, true);
+  assert.equal(inspectionTool.isGooglebot, true);
+  assert.equal(inspectionTool.botType, 'Google-Tier1');
+  assert.equal(inspectionTool.shouldStripMarketingScripts, true);
+
+  const mobileBot = identifyWhiteBot('Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)');
+  assert.equal(mobileBot.isWhiteBot, true);
+  assert.equal(mobileBot.isGooglebot, true);
+  assert.equal(mobileBot.botType, 'Google-Tier1');
+
+  const storeBot = identifyWhiteBot('Mozilla/5.0 (X11; Linux x86_64; Storebot-Google/1.0; +http://www.google.com/bot.html) Chrome/120.0.0.0 Safari/537.36');
+  assert.equal(storeBot.isWhiteBot, true);
+  assert.equal(storeBot.isGooglebot, true);
+  assert.equal(storeBot.botType, 'Google-Tier1');
+});
+
+// -----------------------------------------------------------------------------
+// 12. Dynamic BreadcrumbList, Sitelinks Searchbox & Semantic Fallback Tests
+// -----------------------------------------------------------------------------
+runTest('generateBreadcrumbJsonLd and generateSitelinksSearchBoxJsonLd create valid Schema.org graphs', () => {
+  const breadcrumbHome = JSON.parse(generateBreadcrumbJsonLd('/'));
+  assert.equal(breadcrumbHome['@type'], 'BreadcrumbList');
+  assert.equal(breadcrumbHome.itemListElement.length, 1);
+
+  const breadcrumbSubpage = JSON.parse(generateBreadcrumbJsonLd('/mantra-meridian-riverside/2-bhk/'));
+  assert.equal(breadcrumbSubpage['@type'], 'BreadcrumbList');
+  assert.equal(breadcrumbSubpage.itemListElement.length, 3);
+  assert.equal(breadcrumbSubpage.itemListElement[1].name, 'Mantra Meridian Riverside');
+  assert.equal(breadcrumbSubpage.itemListElement[2].name, '2 BHK Residences');
+
+  const sitelinks = JSON.parse(generateSitelinksSearchBoxJsonLd());
+  assert.equal(sitelinks['@type'], 'WebSite');
+  assert.equal(sitelinks.potentialAction['@type'], 'SearchAction');
+  assert.ok(sitelinks.potentialAction.target.urlTemplate.includes('mantrameridianriverside.com'));
+
+  assert.ok(NOSCRIPT_GOOGLEBOT_FALLBACK.includes('P52100045688'));
+  assert.ok(NOSCRIPT_GOOGLEBOT_FALLBACK.includes('Mantra Meridian Riverside Balewadi'));
 });
 
 // -----------------------------------------------------------------------------

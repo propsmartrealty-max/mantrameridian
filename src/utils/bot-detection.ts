@@ -7,13 +7,15 @@
 
 export interface WhiteBotInfo {
   isWhiteBot: boolean;
+  isGooglebot: boolean;
   botType: string;
   category: 'search' | 'ai' | 'social' | 'none';
   shouldExpandDetails: boolean;
+  shouldStripMarketingScripts: boolean;
 }
 
-// 1. Google Search & Inspection Ecosystem
-const GOOGLE_BOT_REGEX = /Googlebot|Google-InspectionTool|GoogleOther|Google-Extended|Mediapartners-Google|AdsBot-Google|FeedFetcher-Google/i;
+// 1. Google Search & Inspection Ecosystem (Desktop, Mobile, Image, Video, News, InspectionTool, Storebot)
+const GOOGLE_BOT_REGEX = /Googlebot|Google-InspectionTool|Googlebot-Mobile|Googlebot-Image|Googlebot-News|Googlebot-Video|Storebot-Google|GoogleOther|Google-Extended|Mediapartners-Google|AdsBot-Google|FeedFetcher-Google/i;
 
 // 2. Microsoft Bing Ecosystem
 const BING_BOT_REGEX = /Bingbot|msnbot|BingPreview|AdIdxBot/i;
@@ -36,72 +38,89 @@ const GLOBAL_SEARCH_REGEX = /DuckDuckBot|YandexBot|Baiduspider|NaverBot|Sogou/i;
 export function identifyWhiteBot(userAgent: string, cf?: any): WhiteBotInfo {
   // Cloudflare Bot Management verified bot signal (Enterprise / Pro edge feature)
   if (cf?.botManagement?.verifiedBot === true) {
+    const isGoogle = GOOGLE_BOT_REGEX.test(userAgent);
     return {
       isWhiteBot: true,
-      botType: 'Cloudflare-Verified-Bot',
+      isGooglebot: isGoogle,
+      botType: isGoogle ? 'Google-Tier1' : 'Cloudflare-Verified-Bot',
       category: 'search',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: true
     };
   }
 
   if (GOOGLE_BOT_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: true,
       botType: 'Google-Tier1',
       category: 'search',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: true
     };
   }
 
   if (BING_BOT_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: false,
       botType: 'Bing-Tier1',
       category: 'search',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: true
     };
   }
 
   if (APPLE_BOT_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: false,
       botType: 'Apple-Tier1',
       category: 'search',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: true
     };
   }
 
   if (AI_BOT_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: false,
       botType: 'Frontier-AI-Crawler',
       category: 'ai',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: false
     };
   }
 
   if (GLOBAL_SEARCH_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: false,
       botType: 'Global-Search-Engine',
       category: 'search',
-      shouldExpandDetails: true
+      shouldExpandDetails: true,
+      shouldStripMarketingScripts: true
     };
   }
 
   if (SOCIAL_BOT_REGEX.test(userAgent)) {
     return {
       isWhiteBot: true,
+      isGooglebot: false,
       botType: 'Social-Link-Unfurler',
       category: 'social',
-      shouldExpandDetails: false // Unfurlers only need OpenGraph metadata in <head>
+      shouldExpandDetails: false, // Unfurlers only need OpenGraph metadata in <head>
+      shouldStripMarketingScripts: false
     };
   }
 
   return {
     isWhiteBot: false,
+    isGooglebot: false,
     botType: 'Human-Or-Generic-Client',
     category: 'none',
-    shouldExpandDetails: false
+    shouldExpandDetails: false,
+    shouldStripMarketingScripts: false
   };
 }

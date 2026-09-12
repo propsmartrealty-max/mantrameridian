@@ -110,6 +110,157 @@ export function isStaticAssetPath(pathname: string): boolean {
 }
 
 /**
+ * Dynamic BreadcrumbList Schema Generator for Google Search snippet enrichment
+ */
+export function generateBreadcrumbJsonLd(pathname: string): string {
+  const origin = 'https://mantrameridianriverside.com';
+  const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+  const items: any[] = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Mantra Meridian Riverside",
+      "item": `${origin}/`
+    }
+  ];
+
+  if (!cleanPath) {
+    return JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": items
+    });
+  }
+
+  const routeNameMap: Record<string, string> = {
+    'mantra-meridian': 'Mantra Meridian',
+    'mantra-balewadi': 'Mantra Balewadi',
+    'mantra-riverside': 'Mantra Riverside',
+    'mantra-riverside-balewadi': 'Mantra Riverside Balewadi',
+    'mantra-meridian-balewadi': 'Mantra Meridian Balewadi',
+    'mantra-meridian-riverside': 'Mantra Meridian Riverside',
+    'residences': 'Residences & Typologies',
+    '2-bhk': '2 BHK Residences',
+    '3-bhk': '3 BHK Residences',
+    '3-bhk-duplex': '3 BHK Signature Sky Duplexes',
+    '4-bhk': '4 BHK Grand Estates',
+    'price': 'Pricing & Cost Sheet 2026',
+    'floor-plans': 'Floor Plan Portfolio',
+    'amenities': 'Amenity Atlas (30+ Amenities)',
+    'location': 'Location & Connectivity',
+    'masterplan': '8-Acre Masterplan',
+    'riverside': 'The Riverside Story',
+    'gallery': 'Visual Archive',
+    'rera': 'MahaRERA Compliance',
+    'documents': 'Document Centre',
+    'balewadi': 'Balewadi Real Estate Hub',
+    'west-pune': 'West Pune Luxury Guide',
+    'pune-real-estate': 'Pune Real Estate Market',
+    'journal': 'The Meridian Journal',
+    'privacy-policy': 'Privacy Policy',
+    'terms': 'Terms of Use',
+    'disclaimer': 'Statutory Disclaimer'
+  };
+
+  const segments = cleanPath.split('/');
+  let currentAccumulated = '';
+  segments.forEach((seg, idx) => {
+    currentAccumulated += `/${seg}`;
+    const name = routeNameMap[seg] || seg.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+    items.push({
+      "@type": "ListItem",
+      "position": idx + 2,
+      "name": name,
+      "item": `${origin}${currentAccumulated}/`
+    });
+  });
+
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items
+  });
+}
+
+/**
+ * Dynamic Sitelinks SearchBox Schema for Google SERP interactive search
+ */
+export function generateSitelinksSearchBoxJsonLd(): string {
+  return JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://mantrameridianriverside.com/",
+    "name": "Mantra Meridian Riverside Balewadi",
+    "alternateName": [
+      "Mantra Meridian",
+      "Mantra Balewadi",
+      "Mantra Riverside Balewadi",
+      "Mantra Meridian Balewadi",
+      "Mantra Riverride Balewadi"
+    ],
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/?search={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  });
+}
+
+/**
+ * Static semantic fallback block injected for search bot crawlers to guarantee complete data extraction
+ */
+export const NOSCRIPT_GOOGLEBOT_FALLBACK: string = `
+<noscript>
+  <section class="bot-semantic-data" data-nosnippet="false" style="margin:2rem auto;max-width:1200px;padding:1.5rem;border:1px solid rgba(212,175,55,0.3);background:#0d0d0d;color:#e6e6e6;font-family:sans-serif;">
+    <h2 style="color:#d4af37;font-size:1.25rem;">Mantra Meridian Riverside Balewadi — Verified Project Specifications</h2>
+    <p>Official MahaRERA: <strong>P52100045688</strong> | Location: Sr. No. 45, 13, Balewadi Village Road, Balewadi, Pune 411045</p>
+    <table style="width:100%;border-collapse:collapse;margin-top:1rem;font-size:0.875rem;">
+      <thead>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.2);text-align:left;">
+          <th style="padding:0.5rem;">Residence Typology</th>
+          <th style="padding:0.5rem;">Carpet Area</th>
+          <th style="padding:0.5rem;">Indicative Price</th>
+          <th style="padding:0.5rem;">Key Architecture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <td style="padding:0.5rem;">2 BHK Contemporary Homes</td>
+          <td style="padding:0.5rem;">785 – 845 sq.ft.</td>
+          <td style="padding:0.5rem;">₹ 85 Lakhs* onwards</td>
+          <td style="padding:0.5rem;">Riparian river-breeze balcony, optimal cross-ventilation</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <td style="padding:0.5rem;">3 BHK Signature Residences</td>
+          <td style="padding:0.5rem;">1,120 – 1,240 sq.ft.</td>
+          <td style="padding:0.5rem;">₹ 1.28 Cr* onwards</td>
+          <td style="padding:0.5rem;">Wraparound corner deck with panoramic Mula river views</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <td style="padding:0.5rem;">3 BHK Signature Sky Duplexes</td>
+          <td style="padding:0.5rem;">1,580 – 1,740 sq.ft.</td>
+          <td style="padding:0.5rem;">₹ 1.85 Cr* onwards</td>
+          <td style="padding:0.5rem;">Two-tier sky homes, 20ft double-height living salon</td>
+        </tr>
+        <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
+          <td style="padding:0.5rem;">4 BHK Grand Riverfront Estates</td>
+          <td style="padding:0.5rem;">1,920 – 2,180 sq.ft.</td>
+          <td style="padding:0.5rem;">₹ 2.40 Cr* onwards</td>
+          <td style="padding:0.5rem;">Dual master suites, private elevator foyer</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="margin-top:1rem;font-size:0.8rem;color:#a3a3a3;">
+      Masterplanned across 8 acres with 75%+ landscaped green open areas, 20,000 sq.ft Central Clubhouse (The Grand Pavilion), 25m Temperature-Controlled Infinity Lap Pool, and 500m Riverside Boardwalk along the Mula River. MahaRERA Completion: June 2028.
+    </p>
+  </section>
+</noscript>
+`;
+
+/**
  * Primary Cloudflare Worker Fetch Handler
  */
 export default {
@@ -119,6 +270,9 @@ export default {
     const pathname = url.pathname;
     const userAgent = request.headers.get('user-agent') || '';
     const cfData = (request as any).cf;
+
+    // Comprehensive White Bot & Googlebot Taxonomy Inspection
+    const botInfo: WhiteBotInfo = identifyWhiteBot(userAgent, cfData);
 
     // =========================================================================
     // STAGE 1: Edge WAF Lite - Drop malicious probes in < 1ms
@@ -192,6 +346,14 @@ export default {
       return Response.redirect(`${url.origin}/mantra-balewadi/${url.search}`, 301);
     }
 
+    // 2E. Dynamic Googlebot & Verified Search Crawler Crawl Budget Protection
+    // If a verified crawler visits a URL containing marketing/tracking query parameters,
+    // immediately 301 redirect to the clean canonical path to preserve crawl budget and avoid duplicate parameter indexation.
+    if (botInfo.isWhiteBot && !isStatic && Array.from(url.searchParams.keys()).some((k) => TRACKING_PARAMS.includes(k))) {
+      const canonicalPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+      return Response.redirect(`${url.origin}${canonicalPath}`, 301);
+    }
+
     // =========================================================================
     // STAGE 3: White Bot Engine & Edge Geo-Intelligence
     // =========================================================================
@@ -202,9 +364,6 @@ export default {
     const cfColo = request.headers.get('cf-colo') || 'BOM';
     const isNRI = NRI_COUNTRIES.has(cfCountry.toUpperCase());
     const marketTag = isNRI ? 'nri' : 'domestic';
-
-    // Comprehensive White Bot Taxonomy Inspection
-    const botInfo: WhiteBotInfo = identifyWhiteBot(userAgent, cfData);
 
     // =========================================================================
     // STAGE 4: Edge Caching Layer (caches.default) with Stale-While-Revalidate
@@ -295,31 +454,48 @@ export default {
     const contentType = response.headers.get('content-type') || '';
     const isHtml = contentType.includes('text/html');
     if (isHtml && typeof (globalThis as any).HTMLRewriter !== 'undefined') {
-      // Target Image Alt Permutations cycling through the 5 high-priority brand queries
+      // Target Image Alt Permutations cycling through the high-priority brand queries
       const TARGET_IMAGE_ALTS = [
         'Mantra Meridian Balewadi Luxury Residences',
         'Mantra Riverside Balewadi Riverfront Living',
         'Mantra Meridian Pune 2, 3, 4 BHK Apartments',
         'Mantra Balewadi by Mantra Properties',
         'Mantra Riverside Luxury River-Facing Homes',
-        'Mantra Meridian Balewadi Signature Sky Duplex'
+        'Mantra Meridian Balewadi Signature Sky Duplex',
+        'Mantra Meridian Riverside Balewadi Masterplan',
+        'Mantra Riverride Balewadi Riverfront Residences'
       ];
       let altCounter = 0;
 
       const RewriterClass = (globalThis as any).HTMLRewriter;
       const rewriter = new RewriterClass()
-        // 6A. Injects Authoritative Keyword Meta, Brand Aliases, Local Geo Metadata & DNS Hints into <head>
+        // 6A. Injects Authoritative Keyword Meta, Brand Aliases, Local Geo Metadata, BreadcrumbList, Sitelinks & DNS Hints into <head>
         .on('head', {
           element(head: any) {
             const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
             const botMeta = botInfo.isWhiteBot ? `<meta name="cf-bot-type" content="${botInfo.botType}" />\n` : '';
-            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra meridian riverside balewadi, luxury 2 3 4 bhk flats pune';
-            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi';
+            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, luxury 2 3 4 bhk flats pune';
+            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi';
+
+            // Googlebot & Bingbot crawler directives & Search Console directives
+            const crawlerMeta = 
+              `<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />\n` +
+              `<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />\n` +
+              `<meta name="format-detection" content="telephone=no" />\n`;
+
+            // Dynamic BreadcrumbList Schema injection for Google SERP breadcrumbs
+            const breadcrumbJsonLd = `<script type="application/ld+json">\n${generateBreadcrumbJsonLd(pathname)}\n</script>\n`;
+
+            // Sitelinks SearchBox Schema for Homepage
+            const sitelinksJsonLd = (pathname === '/' || pathname === '') 
+              ? `<script type="application/ld+json">\n${generateSitelinksSearchBoxJsonLd()}\n</script>\n` 
+              : '';
 
             head.append(
               `<meta name="keywords" content="${targetKeywords}" />\n` +
               `<meta name="brand-aliases" content="${brandAliases}" />\n` +
               `<meta name="search-authority" content="Mantra Meridian Balewadi | Mantra Riverside Balewadi" />\n` +
+              crawlerMeta +
               `<meta name="cf-edge-pop" content="${cfColo}" />\n` +
               `<meta name="cf-edge-speed" content="sub-15ms" />\n` +
               `<meta name="cf-edge-geo" content="${cfCity}, ${cfRegion}, ${cfCountry}" />\n` +
@@ -334,6 +510,8 @@ export default {
               `<meta name="geo.placename" content="Balewadi, Pune, Maharashtra, India" />\n` +
               `<meta name="geo.position" content="18.5848136;73.7751313" />\n` +
               `<meta name="ICBM" content="18.5848136, 73.7751313" />\n` +
+              breadcrumbJsonLd +
+              sitelinksJsonLd +
               `<link rel="dns-prefetch" href="//fonts.googleapis.com" />\n` +
               `<link rel="dns-prefetch" href="//fonts.gstatic.com" />\n` +
               `<link rel="dns-prefetch" href="//maps.google.com" />\n` +
@@ -343,7 +521,23 @@ export default {
             );
           }
         })
-        // 6B. White Bot Accordion Auto-Expansion (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot)
+        // 6B. Marketing Script Stripping for Googlebot to maximize 5-second WRS Render Budget
+        .on('script', {
+          element(el: any) {
+            if (botInfo.shouldStripMarketingScripts) {
+              const src = el.getAttribute('src') || '';
+              if (
+                src.includes('googletagmanager.com/gtm.js') ||
+                src.includes('google-analytics.com') ||
+                src.includes('connect.facebook.net') ||
+                el.getAttribute('id') === 'google-tag-manager'
+              ) {
+                el.remove();
+              }
+            }
+          }
+        })
+        // 6C. White Bot Accordion & Hidden Tab Auto-Expansion
         .on('details', {
           element(el: any) {
             if (botInfo.shouldExpandDetails) {
@@ -351,19 +545,34 @@ export default {
             }
           }
         })
-        // 6C. Google SERP Snippet Defense (blocks statutory disclaimers from snippets)
+        .on('[aria-hidden="true"]', {
+          element(el: any) {
+            if (botInfo.isWhiteBot) {
+              el.setAttribute('aria-hidden', 'false');
+            }
+          }
+        })
+        .on('[hidden]', {
+          element(el: any) {
+            if (botInfo.isWhiteBot) {
+              el.removeAttribute('hidden');
+            }
+          }
+        })
+        // 6D. Google SERP Snippet Defense (blocks statutory disclaimers from snippets)
         .on('.legal-disclaimer, [data-nosnippet-candidate], footer small, .disclaimer, [data-nosnippet]', {
           element(el: any) {
             el.setAttribute('data-nosnippet', 'true');
           }
         })
-        // 6D. Voice Search & Answer Engine Headings
-        .on('h1, h2, .speakable-summary', {
+        // 6E. Voice Search & Answer Engine Headings
+        .on('h1, h2, .speakable-summary, #project-snapshot', {
           element(el: any) {
             el.setAttribute('data-speakable', 'true');
+            el.setAttribute('itemprop', 'speakable');
           }
         })
-        // 6E. Wire-Level Internal Link Normalization & External Link Defense
+        // 6F. Wire-Level Internal Link Normalization & External Link Defense
         .on('a[href]', {
           element(el: any) {
             const href = el.getAttribute('href') || '';
@@ -377,7 +586,10 @@ export default {
               const [pathAndQuery, hashPart] = href.split('#');
               const [pathPart, queryPart] = pathAndQuery.split('?');
               if (!/\.[a-zA-Z0-9]+$/.test(pathPart)) {
-                const clean = pathPart.toLowerCase().replace(/\/+$/, '');
+                let clean = pathPart.toLowerCase().replace(/\/+$/, '');
+                if (clean.includes('riverride')) {
+                  clean = clean.replace(/riverride/g, 'riverside');
+                }
                 const normPath = clean === '' ? '/' : `${clean}/`;
                 let normalizedHref = normPath;
                 if (queryPart) normalizedHref += `?${queryPart}`;
@@ -394,7 +606,7 @@ export default {
             }
           }
         })
-        // 6F. Largest Contentful Paint (LCP) Hero Prioritization & Dynamic Keyword Alt Text Rotator
+        // 6G. Largest Contentful Paint (LCP) Hero Prioritization & Dynamic Keyword Alt Text Rotator
         .on('img', {
           element(el: any) {
             const src = el.getAttribute('src') || '';
@@ -424,6 +636,14 @@ export default {
               }
             }
           }
+        })
+        // 6H. Static Semantic Fallback for Googlebot and Search Crawlers
+        .on('body', {
+          element(body: any) {
+            if (botInfo.isWhiteBot) {
+              body.append(NOSCRIPT_GOOGLEBOT_FALLBACK, { html: true });
+            }
+          }
         });
 
       response = rewriter.transform(response);
@@ -445,6 +665,9 @@ export default {
     response.headers.set('X-Edge-City', cfCity);
     response.headers.set('X-Edge-Ray', cfRay);
     response.headers.set('X-Edge-Duration', `${duration}ms`);
+    response.headers.set('X-Edge-Rendering', 'Cloudflare-Worker-HTMLRewriter-Dynamic');
+    response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('Vary', 'Accept-Encoding, User-Agent');
 
     // Real Estate Geospatial headers for Google Maps & Local search spiders
     response.headers.set('Geo-Position', '18.5848136;73.7751313');
@@ -479,6 +702,10 @@ export default {
       response.headers.set('X-WhiteBot-Type', botInfo.botType);
       response.headers.set('Content-Signal', 'ai-train=yes, ai-search=yes');
       response.headers.set('X-AI-Context', 'https://mantrameridianriverside.com/llms-full.txt');
+
+      if (botInfo.isGooglebot) {
+        response.headers.set('X-Googlebot-Status', 'Authorized-Optimized-Crawl');
+      }
     }
 
     // Clean Edge Caching headers with Stale-While-Revalidate and Granular Cache-Tag
