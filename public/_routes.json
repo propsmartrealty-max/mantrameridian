@@ -8,14 +8,21 @@
     "/assets/*",
     "/favicon.ico",
     "/favicon.svg",
+    "/favicon-48x48.png",
+    "/favicon-96x96.png",
     "/apple-touch-icon.png",
+    "/icon-192.png",
+    "/icon-512.png",
     "/site.webmanifest",
     "/robots.txt",
     "/sitemap.xml",
     "/sitemap-index.xml",
     "/image-sitemap.xml",
+    "/google-products.xml",
+    "/google-realestate.xml",
     "/llms.txt",
     "/llms-full.txt",
+    "/offline.html",
     "/4c7e6b0a9f1248a881335b2e3a1d95c2.txt"
   ]
 }

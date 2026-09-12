@@ -708,8 +708,9 @@ const unifiedSchema = {
 const absoluteOgImage = ogImage.startsWith('http')
   ? ogImage
   : `https://mantrameridianriverside.com${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
-// Support dynamic Google Search Console verification token from environment variables
+// Support dynamic Google Search Console & Bing Webmaster verification tokens from environment variables
 const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION || import.meta.env.GOOGLE_SITE_VERIFICATION || "G-VERIFY-MANTRA-MERIDIAN").trim();
+const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || import.meta.env.BING_SITE_VERIFICATION || "BING-VERIFY-MANTRA-MERIDIAN").trim();
 ---
 
 <!doctype html>
@@ -807,8 +808,9 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     <meta name="chatgpt-search:enable" content="true" />
     <meta name="perplexity:enable" content="true" />
 
-    {/* Google Search Central & Console Verification */}
+    {/* Search Engine Webmaster Verification (Google & Bing) */}
     <meta name="google-site-verification" content={googleSiteVerification} />
+    <meta name="msvalidate.01" content={bingSiteVerification} />
 
     {/* Local SEO Geo Tags for Balewadi, Pune */}
     <meta name="geo.region" content="IN-MH" />

@@ -6,6 +6,24 @@ import { amenityChapters } from '../../data/amenities';
 import { amenityKeywords } from '../../data/keywords';
 
 export const prerender = true;
+
+const allAmenitiesFlat = amenityChapters.flatMap((c) => c.items);
+const amenitiesSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ApartmentComplex",
+      "@id": "https://mantrameridianriverside.com/#complex",
+      "name": "Mantra Meridian Riverside Amenities & The Grand Pavilion",
+      "amenityFeature": allAmenitiesFlat.map((item) => ({
+        "@type": "LocationFeatureSpecification",
+        "name": item.name,
+        "description": item.description,
+        "value": true
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
@@ -13,6 +31,7 @@ export const prerender = true;
   description="Discover 30+ curated lifestyle amenities across 8 chapters at Mantra Meridian Riverside, Balewadi. Temperature-controlled infinity pool, 20,000 sq.ft. pavilion & riverside promenade."
   keywords={amenityKeywords}
 >
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(amenitiesSchema)} />
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     
     <Breadcrumbs items={[{ name: "Amenities" }]} />
