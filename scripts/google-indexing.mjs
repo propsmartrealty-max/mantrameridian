@@ -48,8 +48,25 @@ Examples:
   process.exit(0);
 }
 
-if (!fs.existsSync(CREDENTIALS_PATH)) {
-  console.error(`❌ Google service-account.json not found at ${CREDENTIALS_PATH}`);
+let credentials = null;
+if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+  try {
+    credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+  } catch (e) {
+    console.error(`⚠️ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON environment variable:`, e.message);
+  }
+}
+
+if (!credentials && fs.existsSync(CREDENTIALS_PATH)) {
+  try {
+    credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
+  } catch (e) {
+    console.error(`⚠️ Failed to parse ${CREDENTIALS_PATH}:`, e.message);
+  }
+}
+
+if (!credentials) {
+  console.error(`❌ Google credentials not found. Provide GOOGLE_SERVICE_ACCOUNT_JSON env variable or place service-account.json at ${CREDENTIALS_PATH}`);
   process.exit(1);
 }
 
@@ -58,7 +75,6 @@ if (!fs.existsSync(SITEMAP_PATH)) {
   process.exit(1);
 }
 
-const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
 const sitemapContent = fs.readFileSync(SITEMAP_PATH, 'utf8');
 
 const locMatches = sitemapContent.match(/<loc>(https:\/\/[^<]+)<\/loc>/g);

@@ -240,6 +240,86 @@ export const reputationPermutations: string[] = [
   "Mantra Properties customer satisfaction track record"
 ];
 
+// 09. Hinjewadi IT Park & Tech Executive Corridor Permutations
+export const hinjewadiKeywords: string[] = [
+  "flats near Hinjewadi IT Park Phase 1",
+  "flats near Hinjewadi IT Park Phase 2",
+  "2 BHK near Hinjewadi IT Park Pune",
+  "3 BHK near Hinjewadi IT Park Pune",
+  "luxury apartments near Rajiv Gandhi Infotech Park",
+  "Mantra Meridian Hinjewadi connectivity",
+  "commute from Balewadi to Hinjewadi Phase 1",
+  "luxury homes for IT leaders Hinjewadi Balewadi",
+  "PMRDA Metro Line 3 Hinjewadi to Balewadi",
+  "residences near Embassy TechZone Hinjewadi",
+  "apartments near Quadron Business Park Hinjewadi",
+  "executive housing Hinjewadi tech corridor"
+];
+
+// 10. Baner Luxury Corridor & Link Road Permutations
+export const banerKeywords: string[] = [
+  "Baner luxury apartments Pune",
+  "flats near Baner Balewadi link road",
+  "luxury homes near Balewadi High Street Baner",
+  "Mantra Meridian Baner connectivity",
+  "Baner vs Balewadi real estate comparison",
+  "new residential projects in Baner Balewadi 2026",
+  "Pancard Club Road luxury flats Pune",
+  "premium 3 BHK 4 BHK Baner Balewadi corridor",
+  "apartments near Jupiter Hospital Baner",
+  "gated community Baner Balewadi border"
+];
+
+// 11. Mahalunge Hi-Tech City & Bridge Corridor Permutations
+export const mahalungeKeywords: string[] = [
+  "Mahalunge township flats Pune",
+  "Mahalunge Balewadi bridge connection flats",
+  "flats near Mahalunge Hi-Tech City PMRDA",
+  "riverfront properties Mahalunge Balewadi",
+  "VTP Earth One vs Mantra Meridian Balewadi",
+  "Godrej Hillside Mahalunge vs Mantra Meridian",
+  "investment in Mahalunge Balewadi river corridor",
+  "flats near Mula river bridge Mahalunge Balewadi"
+];
+
+// 12. Duplex, Penthouse & Sky Villa Architectural Permutations
+export const duplexPenthouseKeywords: string[] = [
+  "3 BHK Duplex flats Balewadi Pune",
+  "Sky Duplex Mantra Meridian Riverside",
+  "double height ceiling apartments Pune",
+  "4 BHK Riverfront Penthouse Balewadi",
+  "two tier luxury sky villas Pune",
+  "luxury duplex apartments West Pune",
+  "river facing duplex Balewadi Mantra Meridian",
+  "20ft ceiling living room apartments Pune",
+  "luxury penthouses in Balewadi Pune"
+];
+
+// 13. Comparative Project & Locality Searches
+export const comparativeProjectKeywords: string[] = [
+  "Mantra Meridian vs Kumar Magnacity",
+  "Mantra Meridian vs 24K Altura Balewadi",
+  "Mantra Meridian vs Balmoral Riverside Balewadi",
+  "Mantra Meridian vs VTP Earth One Mahalunge",
+  "Mantra Meridian vs ANP Universe Balewadi",
+  "Mantra Meridian vs Kasturi The Balmoral",
+  "best luxury residential project Balewadi vs Wakad",
+  "riverfront apartments Balewadi comparison 2026",
+  "Mantra Properties vs Kolte Patil Balewadi"
+];
+
+// 14. Pune Real Estate Macro Market & Investment Permutations
+export const puneRealEstateMacroKeywords: string[] = [
+  "Pune real estate market outlook 2026",
+  "best residential investment micromarkets Pune",
+  "top luxury projects in West Pune 2026",
+  "riverfront development RFD Pune real estate",
+  "Mula Mutha riverfront apartments Pune",
+  "Pune Metro Line 3 residential appreciation",
+  "Pune Ring Road impact on Balewadi property",
+  "NRI luxury real estate investment Pune"
+];
+
 // Master Keyword Ecosystem Object
 export const meridianKeywordEcosystem = {
   brandKeywords: brandPermutations,
@@ -260,8 +340,13 @@ export const meridianKeywordEcosystem = {
     "Dolby Atmos private cinema society Balewadi"
   ],
   statutoryKeywords: statutoryPermutations,
-  comparativeKeywords: reputationPermutations,
+  comparativeKeywords: [...reputationPermutations, ...comparativeProjectKeywords],
+  hinjewadiKeywords: hinjewadiKeywords,
+  banerKeywords: banerKeywords,
+  mahalungeKeywords: mahalungeKeywords,
+  duplexKeywords: duplexPenthouseKeywords,
   investmentKeywords: [
+    ...puneRealEstateMacroKeywords,
     "NRI property investment in Pune Balewadi",
     "Rental yield Balewadi High Street tech corridor",
     "Capital appreciation West Pune property 2026 to 2030",
@@ -279,7 +364,13 @@ export const allSearchPermutations: string[] = [
   ...collateralPermutations,
   ...statutoryPermutations,
   ...contactPermutations,
-  ...reputationPermutations
+  ...reputationPermutations,
+  ...hinjewadiKeywords,
+  ...banerKeywords,
+  ...mahalungeKeywords,
+  ...duplexPenthouseKeywords,
+  ...comparativeProjectKeywords,
+  ...puneRealEstateMacroKeywords
 ];
 
 // Curated default meta keywords string for general pages
@@ -440,3 +531,67 @@ export const journalKeywordsList = [
   "Pune real estate news 2026",
   "Mantra Meridian news and updates"
 ].join(", ");
+
+// Hinjewadi Tech Corridor Intelligence keyword builder
+export const hinjewadiKeywordsList = [
+  ...hinjewadiKeywords,
+  ...brandPermutations.slice(0, 5),
+  ...locationPermutations.slice(0, 4),
+  "Hinjewadi IT Park luxury apartments",
+  "PMRDA Metro Line 3 Balewadi to Hinjewadi"
+].join(", ");
+
+// Baner Luxury Corridor keyword builder
+export const banerKeywordsList = [
+  ...banerKeywords,
+  ...brandPermutations.slice(0, 5),
+  "Baner Balewadi luxury apartments",
+  "Balewadi High Street Baner residences"
+].join(", ");
+
+// Mahalunge Hi-Tech City Corridor keyword builder
+export const mahalungeKeywordsList = [
+  ...mahalungeKeywords,
+  ...brandPermutations.slice(0, 5),
+  "Mahalunge Balewadi bridge connectivity",
+  "Mula riverfront apartments Mahalunge"
+].join(", ");
+
+// Sky Duplex & Penthouse Architectural keyword builder
+export const duplexKeywordsList = [
+  ...duplexPenthouseKeywords,
+  ...brandPermutations.slice(0, 5),
+  "3 BHK Duplex in Balewadi Pune",
+  "double height ceiling flats West Pune"
+].join(", ");
+
+// Comparative Real Estate keyword builder
+export const comparativeKeywordsList = [
+  ...comparativeProjectKeywords,
+  ...reputationPermutations,
+  ...brandPermutations.slice(0, 5)
+].join(", ");
+
+// Master Search Engine & AI Crawler Repository
+export const masterKeywordsRepository = {
+  totalKeywords: allSearchPermutations.length,
+  coreBrandQueries,
+  majorGoogleQueries,
+  clusters: {
+    brand: brandPermutations,
+    typologies: typologyPermutations,
+    pricing: pricingPermutations,
+    locations: locationPermutations,
+    collateral: collateralPermutations,
+    statutory: statutoryPermutations,
+    contact: contactPermutations,
+    reputation: reputationPermutations,
+    hinjewadi: hinjewadiKeywords,
+    baner: banerKeywords,
+    mahalunge: mahalungeKeywords,
+    duplex: duplexPenthouseKeywords,
+    comparative: comparativeProjectKeywords,
+    puneMacro: puneRealEstateMacroKeywords
+  }
+};
+

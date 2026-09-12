@@ -130,15 +130,18 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
 
       {/* Comprehensive Google Search & Keyword Permutation Directory */}
       <nav aria-label="Search & Keyword Directory" class="pt-6 border-t border-white/10 space-y-4">
-        <p class="text-xs uppercase font-mono tracking-wider text-champagne/90 font-semibold">
-          Mantra Meridian Riverside Balewadi • Search &amp; Keyword Directory
-        </p>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <p class="text-xs uppercase font-mono tracking-wider text-champagne/90 font-semibold">
+            Mantra Meridian Riverside Balewadi • Pune Real Estate Ecosystem Directory
+          </p>
+          <span class="text-[10px] font-mono text-concrete/50">MahaRERA: {projectData.reraNumber} • June 2028 Possession</span>
+        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-[11px] text-concrete/65 font-sans leading-relaxed">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 text-[11px] text-concrete/65 font-sans leading-relaxed">
           
-          {/* Column 1: Core Brand & Typology Permutations */}
+          {/* Column 1: Core Brand & Voice Searches */}
           <div class="space-y-2">
-            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Brand &amp; Typology Searches</p>
+            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Brand &amp; Voice Queries</p>
             <ul class="space-y-1.5 text-concrete/70">
               <li><a href="/mantra-meridian/" class="hover:text-champagne transition-colors font-medium text-architectural-white/90">Mantra Meridian</a></li>
               <li><a href="/mantra-balewadi/" class="hover:text-champagne transition-colors font-medium text-architectural-white/90">Mantra Balewadi</a></li>
@@ -147,42 +150,68 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
               <li><a href="/mantra-meridian-balewadi/" class="hover:text-champagne transition-colors font-medium text-architectural-white/90">Mantra Meridian Balewadi</a></li>
               <li><a href="/" class="hover:text-champagne transition-colors font-medium text-architectural-white/90">Mantra Meridian Riverside Balewadi</a></li>
               <li><a href="/mantra-riverside-balewadi/" class="hover:text-champagne transition-colors text-concrete/60" title="Mantra Riverride Balewadi Phonetic Search Alias">Mantra Riverride Balewadi</a></li>
+              <li><a href="/" class="hover:text-champagne transition-colors">Mantra Properties Balewadi Pune</a></li>
+              <li><a href="/" class="hover:text-champagne transition-colors">Mantra Meridian Official Portal</a></li>
+            </ul>
+          </div>
+
+          {/* Column 2: Typologies & Sky Duplexes */}
+          <div class="space-y-2">
+            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Typologies &amp; Duplexes</p>
+            <ul class="space-y-1.5 text-concrete/70">
               <li><a href="/mantra-meridian-riverside/2-bhk/" class="hover:text-champagne transition-colors">2 BHK Flats in Balewadi Mantra Meridian</a></li>
               <li><a href="/mantra-meridian-riverside/3-bhk/" class="hover:text-champagne transition-colors">3 BHK Flats in Balewadi Mantra Meridian</a></li>
               <li><a href="/mantra-meridian-riverside/3-bhk-duplex/" class="hover:text-champagne transition-colors">3 BHK Duplex in Balewadi Mantra Meridian</a></li>
               <li><a href="/mantra-meridian-riverside/4-bhk/" class="hover:text-champagne transition-colors">4 BHK Luxury Apartments Balewadi</a></li>
+              <li><a href="/mantra-meridian-riverside/3-bhk-duplex/" class="hover:text-champagne transition-colors">Sky Duplex Apartments Pune</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/sky-duplex-vs-penthouse-luxury-living-pune/" class="hover:text-champagne transition-colors">Sky Duplex vs Penthouse Guide</a></li>
+              <li><a href="/mantra-meridian-riverside/riverside/" class="hover:text-champagne transition-colors">River Facing Apartments Pune</a></li>
+              <li><a href="/mantra-meridian-riverside/residences/" class="hover:text-champagne transition-colors">Double Height Ceiling Residences</a></li>
             </ul>
           </div>
 
-          {/* Column 2: Commercial, Plans & Collateral */}
+          {/* Column 3: Micro-Markets & IT Corridors */}
           <div class="space-y-2">
-            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Pricing, Plans &amp; Downloads</p>
+            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Micro-Markets &amp; IT Hubs</p>
+            <ul class="space-y-1.5 text-concrete/70">
+              <li><a href="/balewadi/" class="hover:text-champagne transition-colors">Balewadi Real Estate Hub 2026</a></li>
+              <li><a href="/west-pune/" class="hover:text-champagne transition-colors">West Pune Luxury Corridor</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/hinjewadi-it-corridor-balewadi-luxury-housing-guide/" class="hover:text-champagne transition-colors">Flats Near Hinjewadi IT Park Phase 1</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/hinjewadi-balewadi-connectivity-corridor/" class="hover:text-champagne transition-colors">Hinjewadi–Balewadi Transit Axis</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/baner-vs-balewadi-vs-mahalunge-real-estate-investment-2026/" class="hover:text-champagne transition-colors">Baner vs Balewadi vs Mahalunge</a></li>
+              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Flats Near Balewadi High Street</a></li>
+              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Balewadi-Wakad River Bridge Link</a></li>
+              <li><a href="/pune-real-estate/" class="hover:text-champagne transition-colors">Pune Real Estate Market Outlook</a></li>
+            </ul>
+          </div>
+
+          {/* Column 4: Commercial, Blueprints & Approvals */}
+          <div class="space-y-2">
+            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Pricing, Plans &amp; RERA</p>
             <ul class="space-y-1.5 text-concrete/70">
               <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Mantra Meridian Price List 2026</a></li>
-              <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Mantra Meridian Cost Sheet &amp; Payment Plan</a></li>
-              <li><a href="/mantra-meridian-riverside/floor-plans/" class="hover:text-champagne transition-colors">Mantra Meridian Floor Plans PDF</a></li>
-              <li><a href="/mantra-meridian-riverside/floor-plans/" class="hover:text-champagne transition-colors">Mantra Meridian Unit Layouts &amp; Carpet Area</a></li>
-              <li><a href="/mantra-meridian-riverside/masterplan/" class="hover:text-champagne transition-colors">Mantra Meridian 8-Acre Masterplan</a></li>
-              <li><a href="/mantra-meridian-riverside/documents/" class="hover:text-champagne transition-colors">Download Official Brochure &amp; Sanctioned Plans</a></li>
-              <li><a href="/mantra-meridian-riverside/gallery/" class="hover:text-champagne transition-colors">Mantra Meridian Photos &amp; 3D Virtual Tour</a></li>
-              <li><a href="/mantra-meridian-riverside/amenities/" class="hover:text-champagne transition-colors">Mantra Meridian Amenities &amp; Clubhouse</a></li>
-              <li><a href="/balewadi/" class="hover:text-champagne transition-colors">Balewadi Real Estate Price Trends 2026</a></li>
+              <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Cost Sheet &amp; Payment Schedules</a></li>
+              <li><a href="/mantra-meridian-riverside/floor-plans/" class="hover:text-champagne transition-colors">Floor Plans PDF &amp; Carpet Areas</a></li>
+              <li><a href="/mantra-meridian-riverside/masterplan/" class="hover:text-champagne transition-colors">8-Acre Riverfront Masterplan</a></li>
+              <li><a href="/mantra-meridian-riverside/amenities/" class="hover:text-champagne transition-colors">30+ Resort Amenities &amp; Clubhouse</a></li>
+              <li><a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors">MahaRERA P52100045688 Certificate</a></li>
+              <li><a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors">Possession Timeline: June 2028</a></li>
+              <li><a href="/mantra-meridian-riverside/documents/" class="hover:text-champagne transition-colors">Sanctioned Plans &amp; Official Brochure</a></li>
             </ul>
           </div>
 
-          {/* Column 3: Location, RERA & Contact */}
+          {/* Column 5: Comparative Intelligence & Infrastructure */}
           <div class="space-y-2">
-            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Location, MahaRERA &amp; Office</p>
+            <p class="text-[10.5px] uppercase font-mono text-architectural-white font-medium tracking-wide">Comparisons &amp; Landmarks</p>
             <ul class="space-y-1.5 text-concrete/70">
-              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Mantra Meridian Exact Location &amp; Address</a></li>
-              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Flats Near Balewadi High Street</a></li>
-              <li><a href="/mantra-meridian-riverside/riverside/" class="hover:text-champagne transition-colors">Properties Near Mula River Pune</a></li>
-              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Flats Near Proposed Wakad Balewadi Bridge</a></li>
-              <li><a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors">MahaRERA P52100045688 Certificate</a></li>
-              <li><a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors">Mantra Meridian Possession Date June 2028</a></li>
-              <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Mantra Meridian Homebuyer Reviews &amp; Ratings</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/kumar-magnacity-vs-mantra-meridian-riverside-comparison/" class="hover:text-champagne transition-colors">Mantra Meridian vs Competing Projects</a></li>
+              <li><a href="/mantra-meridian-riverside/journal/balewadi-vs-baner-real-estate-comparison/" class="hover:text-champagne transition-colors">Balewadi vs Baner Comparison</a></li>
+              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">PMRDA Metro Line 3 Connectivity</a></li>
+              <li><a href="/mantra-meridian-riverside/riverside/" class="hover:text-champagne transition-colors">Mula Riverfront Development (RFD)</a></li>
+              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Near Cummins India Campus Balewadi</a></li>
+              <li><a href="/mantra-meridian-riverside/location/" class="hover:text-champagne transition-colors">Near Jupiter Hospital Baner</a></li>
+              <li><a href="/mantra-meridian-riverside/price/" class="hover:text-champagne transition-colors">Verified Buyer Reviews 4.9★</a></li>
               <li><a href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(projectData.contact.whatsappEnquiryText)}`} target="_blank" rel="noopener noreferrer" class="hover:text-champagne transition-colors">Official WhatsApp Concierge Desk</a></li>
-              <li><a href="/" class="hover:text-champagne transition-colors">Mantra Meridian Official Website</a></li>
             </ul>
           </div>
 

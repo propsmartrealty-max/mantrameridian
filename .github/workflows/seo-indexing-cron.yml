@@ -1,0 +1,60 @@
+name: Automated SEO Indexing & Crawl Acceleration Cron
+run-name: SEO Indexing Pipeline (${{ github.event_name }})
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'public/**'
+      - 'scripts/**'
+      - 'package.json'
+      - 'astro.config.mjs'
+  schedule:
+    # Runs daily at 00:00 UTC (05:30 AM IST)
+    - cron: '0 0 * * *'
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Indexing Action to Execute'
+        required: true
+        default: 'broadcast'
+        type: choice
+        options:
+          - broadcast
+          - google
+          - all
+
+jobs:
+  seo-indexing:
+    name: Programmatic Search Engine Broadcast
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Verify Edge Worker & Schema Health
+        run: npm run worker:test
+
+      - name: Run Programmatic Search Engine Indexing Broadcast
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: npm run index:broadcast
+
+      - name: Run Google Indexing Suite (If Configured)
+        if: "${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON != '' && (github.event.inputs.action == 'google' || github.event.inputs.action == 'all') }}"
+        env:
+          GOOGLE_SERVICE_ACCOUNT_JSON: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_JSON }}
+        run: npm run index:google -- --publish

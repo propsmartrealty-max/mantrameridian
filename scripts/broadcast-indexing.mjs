@@ -94,10 +94,25 @@ async function broadcastUnifiedIndexing() {
   const summary = [];
 
   // 1. Google Indexing API Programmatic Dispatch
-  if (fs.existsSync(CREDENTIALS_PATH)) {
+  let credentials = null;
+  if (process.env.GOOGLE_SERVICE_ACCOUNT_JSON) {
+    try {
+      credentials = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+    } catch (e) {
+      console.error('⚠️ Failed to parse GOOGLE_SERVICE_ACCOUNT_JSON environment variable:', e.message);
+    }
+  }
+  if (!credentials && fs.existsSync(CREDENTIALS_PATH)) {
+    try {
+      credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
+    } catch (e) {
+      console.error(`⚠️ Failed to parse ${CREDENTIALS_PATH}:`, e.message);
+    }
+  }
+
+  if (credentials) {
     try {
       console.log('🔑 [1/3] Authenticating with Google Indexing API (OAuth 2.0)...');
-      const credentials = JSON.parse(fs.readFileSync(CREDENTIALS_PATH, 'utf8'));
       const googleToken = await getGoogleAccessToken(credentials);
       console.log('   ✅ Google Access Token acquired. Broadcasting all canonical URLs:');
 
@@ -125,7 +140,7 @@ async function broadcastUnifiedIndexing() {
       summary.push({ engine: 'Google Indexing API', status: 'error', message: err.message });
     }
   } else {
-    console.log('ℹ️ Google service-account.json not found, skipping Google Indexing API.');
+    console.log('ℹ️ Google credentials not found (set GOOGLE_SERVICE_ACCOUNT_JSON or place service-account.json), skipping Google Indexing API.');
   }
 
   // 2. IndexNow Protocol Dispatch (Bing, Yandex, Seznam, Naver)
@@ -157,7 +172,7 @@ async function broadcastUnifiedIndexing() {
       headers: { 'Content-Type': 'application/json; charset=utf-8' },
       body: JSON.stringify(indexNowPayload)
     });
-    console.log(`   ✅ Microsoft Bing: Status ${resBing.status} (${resBing.statusText || 'OK'})`);
+    console.log(`   ✅ Microsoft Bing IndexNow: Status ${resBing.status} (${resBing.statusText || 'OK'})`);
     summary.push({ engine: 'Microsoft Bing IndexNow', status: resBing.status });
   } catch (err) {
     console.error(`   ⚠️ Microsoft Bing Error:`, err.message);
