@@ -64,7 +64,7 @@ export const residencesData: ResidenceConfig[] = [
     bathrooms: 2,
     aspect: "East-Facing Morning Sunlight & Podium Greens",
     levels: 1,
-    renderImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-344980877.webp",
+    renderImage: "/assets/images/properties/mantra-meridian-gallery-344980877.webp",
     overview: "Nestled in Balewadi, just steps away from the Holy River, the 2 BHK residences at Mantra Meridian Riverside optimize spatial balance and light. With seamless flow from the foyer through the open dining lounge into the deep cantilevered balcony, the space invites natural cross-ventilation and golden morning light.",
     architecturalHighlights: [
       "Zero dead-corridor spatial geometry",
@@ -139,25 +139,25 @@ export const residencesData: ResidenceConfig[] = [
       {
         title: "2 BHK - 1",
         unitPlanCode: "A1 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-279058082.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-279058082.webp",
         description: "Official sanctioned layout A1 for Tower A 2 BHK contemporary residence."
       },
       {
         title: "2 BHK",
         unitPlanCode: "A1 - TYPICAL UNIT PLAN (ALT)",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-425800430.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-425800430.webp",
         description: "Official architectural layout A1 standard variation."
       },
       {
         title: "2 BHK - 2",
         unitPlanCode: "A5 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-763477442.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-763477442.webp",
         description: "Official unit layout A5 with enhanced dining foyer and garden balcony."
       },
       {
         title: "2 BHK - 3",
         unitPlanCode: "A5 - TYPICAL UNIT PLAN (ALT)",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-506294750.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-506294750.webp",
         description: "Official corner layout A5 with dual aspect sunlight."
       }
     ]
@@ -174,7 +174,7 @@ export const residencesData: ResidenceConfig[] = [
     bathrooms: 3,
     aspect: "North-West River Panorama with Sunset Views",
     levels: 1,
-    renderImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-993460122.webp",
+    renderImage: "/assets/images/properties/mantra-meridian-gallery-993460122.webp",
     virtualTourUrl: "https://my.matterport.com/show/?m=GBTsK9FFEvJ",
     overview: "The 3 Bedroom Riverside Residence is curated for families desiring expansive spaces and unobstructed river views. Featuring dual balconies, three ensuite or dedicated baths, and a sprawling 28-foot living pavilion, it offers a resort-inspired lifestyle in the heart of Balewadi.",
     architecturalHighlights: [
@@ -258,19 +258,19 @@ export const residencesData: ResidenceConfig[] = [
       {
         title: "3 BHK",
         unitPlanCode: "A4 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-270942215.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-270942215.webp",
         description: "Official sanctioned 3 BHK layout A4 featuring dual balconies and riverfront salon."
       },
       {
         title: "3 BHK - 1",
         unitPlanCode: "A4 - TYPICAL UNIT PLAN (ALT)",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-668100051.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-668100051.webp",
         description: "Official 3 BHK layout A4 orientation variant."
       },
       {
         title: "3 BHK - 2",
         unitPlanCode: "A5 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-634039557.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-634039557.webp",
         description: "Official 3 BHK layout A5 with expanded master dressing suite."
       }
     ]
@@ -287,7 +287,7 @@ export const residencesData: ResidenceConfig[] = [
     bathrooms: 4,
     aspect: "Unobstructed 270° Riverfront & Skyline Horizon",
     levels: 2,
-    renderImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-475996847.webp",
+    renderImage: "/assets/images/properties/mantra-meridian-gallery-475996847.webp",
     virtualTourUrl: "https://www.youtube.com/embed/6VhVRl7ycds?si=PpcHSihidvFD07g7",
     overview: "Exclusive 3 BHK duplex apartments redefining luxury living in Balewadi. Arranged over two grand vertical tiers connected by an architectural open-riser cantilevered staircase, it offers a monumental 20-foot double-height living void that creates an unmatched feeling of light, openness, and distinction.",
     architecturalHighlights: [
@@ -363,13 +363,13 @@ export const residencesData: ResidenceConfig[] = [
       {
         title: "3 BHK Duplex - Lower Level",
         unitPlanCode: "A2 A3 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-371620990.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-371620990.webp",
         description: "Official Lower Level layout showing double-height living salon, kitchen, and guest suite."
       },
       {
         title: "3 BHK Duplex - Upper Level",
         unitPlanCode: "A2 A3 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-760657828.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-760657828.webp",
         description: "Official Upper Level layout with private master sanctuary bridge, walk-in boutique, and family lounge."
       }
     ]
@@ -386,7 +386,7 @@ export const residencesData: ResidenceConfig[] = [
     bathrooms: 5,
     aspect: "Corner 3-Sided Open River & Hill Views",
     levels: 1,
-    renderImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-738772119.webp",
+    renderImage: "/assets/images/properties/mantra-meridian-gallery-738772119.webp",
     virtualTourUrl: "https://www.youtube.com/embed/6hsoYHelVXg?si=HBbZ9of8vVROszQx",
     overview: "Crafted for connoisseurs of fine architecture, the 4 Bedroom Grand Estate represents the most palatial single-level home at Meridian. Featuring four expansive ensuite bedrooms, separate staff quarters with dedicated service entrance, and an astonishing 34-foot wide riverfront hall, it redefines luxury in West Pune.",
     architecturalHighlights: [
@@ -470,7 +470,7 @@ export const residencesData: ResidenceConfig[] = [
       {
         title: "4 BHK",
         unitPlanCode: "A6 - TYPICAL UNIT PLAN",
-        imageUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-floor-plan-789654719.webp",
+        imageUrl: "/assets/images/properties/mantra-meridian-floor-plan-789654719.webp",
         description: "Official sanctioned 4 BHK grand layout A6 with private elevator lobby and staff quarters."
       }
     ]

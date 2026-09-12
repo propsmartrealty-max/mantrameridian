@@ -21,7 +21,7 @@ export const projectDocuments: ProjectDocument[] = [
     fileSize: "1.4 MB",
     lastUpdated: "Active Registration",
     isOfficialVerification: true,
-    downloadUrl: "https://www.mantraproperties.in/assets/images/properties/mantra-magnus-certificate-988224001.pdf",
+    downloadUrl: "/assets/images/properties/mantra-magnus-certificate-988224001.pdf",
     externalVerificationUrl: "https://maharera.mahaonline.gov.in/"
   },
   {

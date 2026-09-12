@@ -11,12 +11,12 @@ export default function AmenityAtlas() {
 
   // Curated imagery mapping for amenity chapters using authentic project renders
   const chapterImages: Record<string, string> = {
-    wellness: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-533930309.webp",
-    social: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-636694877.webp",
-    recreation: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-911472749.webp",
-    landscape: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-683039693.webp",
-    children: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-815277701.webp",
-    everyday: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-319534698.webp"
+    wellness: "/assets/images/properties/mantra-meridian-gallery-533930309.webp",
+    social: "/assets/images/properties/mantra-meridian-gallery-636694877.webp",
+    recreation: "/assets/images/properties/mantra-meridian-gallery-911472749.webp",
+    landscape: "/assets/images/properties/mantra-meridian-gallery-683039693.webp",
+    children: "/assets/images/properties/mantra-meridian-gallery-815277701.webp",
+    everyday: "/assets/images/properties/mantra-meridian-gallery-319534698.webp"
   };
 
   const handleOpenConcierge = () => {

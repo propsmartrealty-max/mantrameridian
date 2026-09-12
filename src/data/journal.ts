@@ -22,7 +22,7 @@ export const journalArticles: JournalArticle[] = [
     author: "Meridian Architectural Research Cell",
     publishDate: "August 2026",
     readTime: "6 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-106076887.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-gallery-106076887.webp",
     summary: "Over the past decade, Balewadi has outgrown its identity as an annex to Baner to become West Pune's most sought-after upscale residential market, fueled by wide planned avenues, high-street culture, and riverside developments.",
     keyTakeaways: [
       "Strategic centroid between Hinjewadi IT Park and Pune central cultural districts",
@@ -47,7 +47,7 @@ export const journalArticles: JournalArticle[] = [
     author: "West Pune Real Estate Intelligence",
     publishDate: "July 2026",
     readTime: "8 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-765721034.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-gallery-765721034.webp",
     summary: "While Baner pioneered West Pune's commercial emergence, Balewadi has captured modern luxury homebuyers seeking less congested arterial roads, higher open-space ratios, and riverside architectural planning.",
     keyTakeaways: [
       "Baner has reached high commercial density, resulting in tighter plot sizes and traffic congestion",
@@ -72,7 +72,7 @@ export const journalArticles: JournalArticle[] = [
     author: "Studio Meridian Design Notes",
     publishDate: "August 2026",
     readTime: "5 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-170408229.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-gallery-170408229.webp",
     summary: "Living beside water has measurable neurological and psychological benefits. Discover how Mantra Meridian Riverside translates natural river airflow and daylight into exceptional architectural comfort.",
     keyTakeaways: [
       "Microclimate cooling: Riverside breeze reduces ambient local temperatures by 2-3°C compared to dense urban cores",
@@ -96,7 +96,7 @@ export const journalArticles: JournalArticle[] = [
     author: "Luxury Residential Advisory",
     publishDate: "July 2026",
     readTime: "6 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-475996847.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-gallery-475996847.webp",
     summary: "The duplex configuration has emerged as the ultimate architectural statement in Pune's luxury market, offering the vertical volume of an independent bungalow with the security and amenities of an elite high-rise.",
     keyTakeaways: [
       "Distinct spatial demarcation: Lower floor for social hosting; upper floor as an intimate private family retreat",
@@ -121,7 +121,7 @@ export const journalArticles: JournalArticle[] = [
     author: "Infrastructure & Urban Mobility Research",
     publishDate: "June 2026",
     readTime: "7 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-gallery-274967097.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-gallery-274967097.webp",
     summary: "The seamless transit corridor between Rajiv Gandhi Infotech Park and Balewadi has created one of India's strongest white-collar residential ecosystems, driving consistent rental yields and asset appreciation.",
     keyTakeaways: [
       "Hinjewadi employs 400,000+ technology and engineering professionals seeking premium homes within a 15-minute commute",
@@ -146,7 +146,7 @@ export const journalArticles: JournalArticle[] = [
     author: "Pune Real Estate Research Bureau",
     publishDate: "September 2026",
     readTime: "9 min read",
-    heroImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-873008650.webp",
+    heroImage: "/assets/images/properties/mantra-meridian-873008650.webp",
     summary: "An in-depth market report examining capital values across West Pune, East Pune, and Central Pune. Analyzes the impact of Pune Metro Line 3, Riverfront Development (RFD), and why Mantra Meridian Riverside in Balewadi has emerged as Pune's standout residential asset.",
     keyTakeaways: [
       "Balewadi delivers Pune's highest residential rental yields (4.0% - 4.4%) driven by senior IT and corporate tenant demand",

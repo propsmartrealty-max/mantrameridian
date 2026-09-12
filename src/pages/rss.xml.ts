@@ -10,6 +10,10 @@ export const GET: APIRoute = async () => {
     const articleUrl = `${siteUrl}/mantra-meridian-riverside/journal/${article.slug}/`;
     const pubDate = new Date('2026-08-01T08:00:00+05:30').toUTCString();
     
+    const enclosureUrl = article.heroImage.startsWith('http')
+      ? article.heroImage
+      : `${siteUrl}${article.heroImage.startsWith('/') ? '' : '/'}${article.heroImage}`;
+
     return `    <item>
       <title><![CDATA[${article.title}]]></title>
       <link>${articleUrl}</link>
@@ -18,7 +22,7 @@ export const GET: APIRoute = async () => {
       <category>${article.category}</category>
       <dc:creator><![CDATA[${article.author}]]></dc:creator>
       <pubDate>${pubDate}</pubDate>
-      <enclosure url="${article.heroImage}" length="0" type="image/webp" />
+      <enclosure url="${enclosureUrl}" length="0" type="image/webp" />
     </item>`;
   }).join('\n');
 
