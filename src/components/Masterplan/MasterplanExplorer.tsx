@@ -17,10 +17,10 @@ export default function MasterplanExplorer() {
   };
 
   return (
-    <div className="w-full bg-obsidian border border-white/10 rounded-none overflow-hidden">
+    <div className="w-full glass-card-luxury glass-spotlight border border-champagne/30 rounded-none overflow-hidden shadow-2xl">
       
       {/* Top Filter Bar */}
-      <div className="border-b border-white/10 p-4 md:p-6 bg-obsidian-deep/80 flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div className="border-b border-champagne/20 p-4 md:p-6 bg-obsidian-deep/90 backdrop-blur-xl flex flex-col md:flex-row md:items-center justify-between gap-4">
         
         <div>
           <span className="label-architectural text-xs text-champagne">8-ACRE RIVERSIDE ESTATE</span>
@@ -33,10 +33,10 @@ export default function MasterplanExplorer() {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-3.5 py-1.5 text-xs uppercase tracking-wider transition-all border ${
+              className={`px-3.5 py-1.5 text-xs uppercase tracking-wider transition-all duration-300 rounded ${
                 activeFilter === filter
-                  ? 'bg-champagne text-obsidian border-champagne font-semibold shadow-glow'
-                  : 'bg-obsidian-card text-concrete border-white/10 hover:border-white/30 hover:text-architectural-white'
+                  ? 'bg-champagne text-obsidian font-bold shadow-[0_0_15px_rgba(223,183,90,0.35)] scale-[1.02]'
+                  : 'bg-obsidian-card/70 text-concrete border border-white/10 hover:border-champagne/40 hover:text-white'
               }`}
             >
               {filter === 'all' ? 'All Zones' : filter}

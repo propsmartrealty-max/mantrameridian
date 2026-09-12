@@ -42,7 +42,7 @@ const displayReviews = limit ? verifiedReviews.slice(0, limit) : verifiedReviews
       </div>
 
       {/* Google 5-Star Aggregate Rating Box */}
-      <div class="glass-card-luxury p-5 border border-champagne/35 shadow-glow flex items-center gap-5 shrink-0 self-start md:self-auto">
+      <div class="glass-card-luxury glass-spotlight reveal-glass p-5 border border-champagne/35 shadow-glow flex items-center gap-5 shrink-0 self-start md:self-auto">
         <div class="text-center border-r border-white/10 pr-5">
           <div class="text-3xl sm:text-4xl font-serif text-champagne font-bold">
             {aggregateRatingData.ratingValue}
@@ -106,8 +106,8 @@ const displayReviews = limit ? verifiedReviews.slice(0, limit) : verifiedReviews
 
     {/* Testimonials Review Cards Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {displayReviews.map((rev) => (
-        <article class="glass-card-luxury p-8 border border-white/10 hover:border-champagne/40 transition-all duration-300 flex flex-col justify-between space-y-6 relative group">
+      {displayReviews.map((rev, idx) => (
+        <article class={`glass-card-luxury glass-spotlight reveal-glass ${idx % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2'} p-8 border border-white/10 hover:border-champagne/40 flex flex-col justify-between space-y-6 relative group`}>
           <div class="space-y-4">
             {/* Review Header: Stars, Date, Config */}
             <div class="flex items-center justify-between border-b border-white/10 pb-3">

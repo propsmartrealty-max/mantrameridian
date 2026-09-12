@@ -5,11 +5,11 @@ import { projectData } from '../../data/project';
 <section class="relative w-full h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-obsidian-deep">
   
   {/* Cinematic Ambient Background Image / Video Backdrop */}
-  <div class="absolute inset-0 z-0 select-none">
+  <div class="absolute inset-0 z-0 select-none overflow-hidden">
     <img
       src={projectData.heroSliderImages[0]}
       alt="Mantra Meridian Riverside Balewadi Architecture"
-      class="w-full h-full object-cover object-center filter brightness-[0.70] contrast-[1.05] scale-105"
+      class="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.06] animate-hero-kenburns will-change-transform"
     />
     {/* Cinematic Multi-layered Vignette & Dark Veil */}
     <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/30 to-obsidian/70" />
@@ -20,7 +20,7 @@ import { projectData } from '../../data/project';
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-6 md:space-y-8 pt-20">
     
     {/* Architectural Location & Accreditation Tag */}
-    <div class="glass-pill inline-flex items-center gap-3 px-5 py-2 border border-champagne/35 text-champagne shadow-glow">
+    <div class="glass-pill glass-sheen inline-flex items-center gap-3 px-5 py-2.5 border border-champagne/40 text-champagne shadow-glow reveal-glass is-revealed">
       <span class="w-2 h-2 rounded-full bg-champagne animate-pulse" />
       <span class="label-architectural text-[10px] sm:text-xs tracking-[0.24em] text-champagne">
         MANTRA BALEWADI • MANTRA RIVERSIDE • MANTRA MERIDIAN
@@ -28,9 +28,9 @@ import { projectData } from '../../data/project';
     </div>
 
     {/* Monumental Typography with Ambient Backglow */}
-    <div class="relative space-y-3">
+    <div class="relative space-y-3 reveal-glass is-revealed reveal-delay-1">
       {/* Ambient Gold Radial Bloom behind heading */}
-      <div class="absolute -inset-x-20 -inset-y-10 bg-radial-dusk opacity-70 blur-2xl pointer-events-none -z-10" />
+      <div class="absolute -inset-x-20 -inset-y-10 bg-radial-dusk opacity-80 blur-3xl pointer-events-none -z-10" />
 
       <h1 class="flex flex-col items-center gap-2 drop-shadow-2xl">
         <span class="text-xs sm:text-sm font-mono tracking-[0.32em] text-champagne uppercase font-medium">
@@ -54,12 +54,12 @@ import { projectData } from '../../data/project';
     </div>
 
     {/* Restrained Project Subtitle */}
-    <p class="max-w-2xl text-xs sm:text-sm text-concrete leading-relaxed font-normal">
+    <p class="max-w-2xl text-xs sm:text-sm text-concrete leading-relaxed font-normal reveal-glass is-revealed reveal-delay-2">
       An 8-acre contemporary architectural address at Mantra Meridian Balewadi by Mantra Properties. Experience Mantra Riverside offering luxury 2, 3, 4 BHK apartments and signature sky duplexes beside the permanent serenity of the Mula river.
     </p>
 
     {/* Hero Actions with Glassmorphism */}
-    <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
+    <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto reveal-glass is-revealed reveal-delay-3">
       <a
         href="#experience-manifesto"
         class="btn-luxury w-full sm:w-auto text-xs glass-sheen"
@@ -78,8 +78,8 @@ import { projectData } from '../../data/project';
     </div>
 
     {/* MahaRERA Statutory Pill */}
-    <div class="pt-6 flex justify-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-obsidian-card/70 border border-white/10 backdrop-blur-md text-xs text-concrete/80 font-sans">
+    <div class="pt-6 flex justify-center reveal-glass is-revealed reveal-delay-4">
+      <div class="inline-flex items-center gap-2 px-4 py-2 glass-pill text-xs text-concrete/90 font-sans shadow-md">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
         <span class="text-[11px] tracking-wider uppercase text-concrete/70">MahaRERA:</span>
         <a 

@@ -757,13 +757,20 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
       }
     </script>
   </head>
-  <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen">
+  <body class="bg-obsidian text-architectural-white antialiased selection:bg-champagne selection:text-obsidian flex flex-col min-h-screen relative">
     
+    {/* Living Ambient Mesh Canvas (Deep optical refraction behind all frosted glass surfaces) */}
+    <div class="ambient-mesh-canvas" aria-hidden="true">
+      <div class="ambient-mesh-orb-1"></div>
+      <div class="ambient-mesh-orb-2"></div>
+      <div class="ambient-mesh-orb-3"></div>
+    </div>
+
     {/* Global Luxury Navigation */}
     <LuxuryNavbar currentPath={Astro.url.pathname} />
 
     {/* Main Page Slot */}
-    <main class="flex-grow">
+    <main class="flex-grow relative z-10">
       <slot />
     </main>
 
@@ -779,5 +786,104 @@ const googleSiteVerification = (import.meta.env.PUBLIC_GOOGLE_SITE_VERIFICATION 
     {/* Luxury Architectural Footer */}
     <LuxuryFooter />
 
+    {/* Modern Luxury Glassmorphic Motion & Spotlight Runtime */}
+    <script is:inline>
+      (function() {
+        const isBot = /bot|crawl|spider|slurp|googlebot|bingbot|yandex|mediapartners|google-inspectiontool/i.test(navigator.userAgent);
+
+        // 1. Scroll-Driven Glass Entrance Reveal System
+        function initGlassReveals() {
+          const elements = document.querySelectorAll('.reveal-glass');
+          if (!elements.length) return;
+
+          if (isBot || window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) {
+            elements.forEach(el => el.classList.add('is-revealed'));
+            return;
+          }
+
+          const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                obs.unobserve(entry.target);
+              }
+            });
+          }, {
+            root: null,
+            rootMargin: '0px 0px -60px 0px',
+            threshold: 0.12
+          });
+
+          elements.forEach(el => observer.observe(el));
+        }
+
+        // 2. Interactive Specular Spotlight (GPU-accelerated mouse tracking)
+        function initGlassSpotlights() {
+          if (window.matchMedia('(pointer: coarse)').matches) return; // Skip touch screens
+
+          const cards = document.querySelectorAll('.glass-spotlight, .glass-card-luxury, .card-beige-luxury');
+          if (!cards.length) return;
+
+          cards.forEach(card => {
+            let rafId = null;
+            card.addEventListener('mousemove', (e) => {
+              if (rafId) cancelAnimationFrame(rafId);
+              rafId = requestAnimationFrame(() => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+              });
+            }, { passive: true });
+          });
+        }
+
+        // 3. Dynamic Navbar Glass Compaction on Scroll
+        function initNavbarScroll() {
+          const navbar = document.getElementById('luxury-navbar');
+          if (!navbar) return;
+
+          let ticking = false;
+
+          function updateNavbar() {
+            if (window.scrollY > 25) {
+              navbar.classList.add('scrolled');
+            } else {
+              navbar.classList.remove('scrolled');
+            }
+            ticking = false;
+          }
+
+          window.addEventListener('scroll', () => {
+            if (!ticking) {
+              requestAnimationFrame(updateNavbar);
+              ticking = true;
+            }
+          }, { passive: true });
+
+          updateNavbar();
+        }
+
+        // Initialize on DOM ready and after Astro page transitions
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => {
+            initGlassReveals();
+            initGlassSpotlights();
+            initNavbarScroll();
+          });
+        } else {
+          initGlassReveals();
+          initGlassSpotlights();
+          initNavbarScroll();
+        }
+
+        document.addEventListener('astro:page-load', () => {
+          initGlassReveals();
+          initGlassSpotlights();
+          initNavbarScroll();
+        });
+      })();
+    </script>
   </body>
 </html>

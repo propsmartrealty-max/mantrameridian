@@ -71,6 +71,14 @@ export default {
         'border-pulse': 'borderPulse 4s ease-in-out infinite',
         'line-sweep': 'lineSweep 4s ease-in-out infinite',
         'border-glow-slow': 'borderGlow 5s ease-in-out infinite',
+        'mesh-drift-1': 'meshDrift1 22s ease-in-out infinite alternate',
+        'mesh-drift-2': 'meshDrift2 26s ease-in-out infinite alternate',
+        'mesh-drift-3': 'meshDrift3 20s ease-in-out infinite alternate',
+        'border-beam': 'borderBeam 7s linear infinite',
+        'glass-pulse': 'glassPulse 3.5s ease-in-out infinite',
+        'hero-kenburns': 'heroKenBurns 24s ease-in-out infinite alternate',
+        'shimmer-sweep': 'shimmerSweep 4s cubic-bezier(0.16, 1, 0.3, 1) infinite',
+        'spin-slow': 'spin 25s linear infinite',
       },
       keyframes: {
         float: {
@@ -97,6 +105,40 @@ export default {
         borderGlow: {
           '0%, 100%': { borderColor: 'rgba(231, 223, 213, 0.25)', boxShadow: '0 0 15px rgba(231, 223, 213, 0.08)' },
           '50%': { borderColor: 'rgba(223, 183, 90, 0.65)', boxShadow: '0 0 25px rgba(223, 183, 90, 0.25)' },
+        },
+        meshDrift1: {
+          '0%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '50%': { transform: 'translate3d(60px, 40px, 0) scale(1.15)' },
+          '100%': { transform: 'translate3d(-40px, 80px, 0) scale(0.95)' },
+        },
+        meshDrift2: {
+          '0%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '50%': { transform: 'translate3d(-70px, -50px, 0) scale(1.2)' },
+          '100%': { transform: 'translate3d(50px, -30px, 0) scale(0.9)' },
+        },
+        meshDrift3: {
+          '0%': { transform: 'translate3d(0, 0, 0) scale(1)' },
+          '50%': { transform: 'translate3d(40px, -60px, 0) scale(1.1)' },
+          '100%': { transform: 'translate3d(-50px, 30px, 0) scale(1.05)' },
+        },
+        borderBeam: {
+          '0%': { offsetDistance: '0%' },
+          '100%': { offsetDistance: '100%' },
+        },
+        glassPulse: {
+          '0%, 100%': { opacity: '0.7', transform: 'scale(1)' },
+          '50%': { opacity: '1', transform: 'scale(1.04)' },
+        },
+        heroKenBurns: {
+          '0%': { transform: 'scale(1.05) translate3d(0, 0, 0)' },
+          '50%': { transform: 'scale(1.12) translate3d(-1%, -1.5%, 0)' },
+          '100%': { transform: 'scale(1.08) translate3d(1%, 1%, 0)' },
+        },
+        shimmerSweep: {
+          '0%': { transform: 'translateX(-150%) rotate(25deg)', opacity: '0' },
+          '20%': { opacity: '0.8' },
+          '80%': { opacity: '0.8' },
+          '100%': { transform: 'translateX(250%) rotate(25deg)', opacity: '0' },
         },
       },
       letterSpacing: {

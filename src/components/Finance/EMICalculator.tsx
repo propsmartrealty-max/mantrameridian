@@ -64,7 +64,7 @@ export default function EMICalculator() {
   };
 
   return (
-    <div className="w-full glass-card-luxury p-6 sm:p-10 border border-champagne/30 shadow-luxury-gold relative overflow-hidden">
+    <div className="w-full glass-card-luxury glass-spotlight border-animated-beam p-6 sm:p-10 border border-champagne/30 shadow-luxury-gold relative overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-champagne/5 rounded-full blur-3xl pointer-events-none -z-10" />
 
@@ -99,9 +99,9 @@ export default function EMICalculator() {
                   key={p.label}
                   type="button"
                   onClick={() => setPropertyPrice(p.price)}
-                  className={`px-3 py-2 text-xs font-mono text-center border transition-all duration-300 min-h-[44px] flex items-center justify-center ${
+                  className={`px-3 py-2 text-xs font-mono text-center border transition-all duration-300 min-h-[44px] flex items-center justify-center rounded ${
                     propertyPrice === p.price
-                      ? 'border-champagne bg-champagne/15 text-champagne font-semibold shadow-glow'
+                      ? 'border-champagne bg-champagne/20 text-champagne font-bold shadow-[0_0_15px_rgba(223,183,90,0.3)] scale-[1.02]'
                       : 'border-white/10 bg-obsidian-surface/60 text-concrete hover:border-champagne/40'
                   }`}
                 >

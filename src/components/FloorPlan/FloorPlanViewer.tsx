@@ -25,10 +25,10 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
   };
 
   return (
-    <div className="w-full bg-obsidian border border-white/10 rounded-none overflow-hidden">
+    <div className="w-full glass-card-luxury glass-spotlight border border-champagne/30 overflow-hidden shadow-2xl">
       
       {/* Top Bar: Configuration Switcher & View Mode */}
-      <div className="border-b border-white/10 p-4 md:p-6 bg-obsidian-deep/80 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+      <div className="border-b border-champagne/20 p-4 md:p-6 bg-obsidian-deep/90 backdrop-blur-xl flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         
         {/* Residence Tabs */}
         <div className="flex flex-wrap gap-2">
@@ -40,10 +40,10 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
                 setSelectedOfficialIndex(0);
                 setActiveRoomId(null);
               }}
-              className={`px-4 py-2.5 text-xs font-medium tracking-wider transition-all uppercase border ${
+              className={`px-4 py-2.5 text-xs font-semibold tracking-wider transition-all duration-300 uppercase rounded ${
                 selectedConfigId === res.id
-                  ? 'bg-champagne text-obsidian border-champagne shadow-glow'
-                  : 'bg-obsidian-card/60 text-concrete border-white/10 hover:border-white/30 hover:text-architectural-white'
+                  ? 'bg-champagne text-obsidian shadow-[0_0_20px_rgba(223,183,90,0.4)] scale-[1.02]'
+                  : 'bg-obsidian-card/70 text-concrete border border-white/10 hover:border-champagne/40 hover:text-architectural-white hover:bg-obsidian-surface'
               }`}
             >
               {res.type}
@@ -53,27 +53,27 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
 
         {/* View Mode & Metrics */}
         <div className="flex items-center gap-3 self-end lg:self-auto">
-          <div className="flex bg-obsidian-card border border-white/10 p-0.5">
+          <div className="flex bg-obsidian-deep/80 backdrop-blur-md border border-champagne/30 p-1 rounded-full">
             <button
               onClick={() => setViewMode('official')}
-              className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors ${
-                viewMode === 'official' ? 'bg-champagne text-obsidian font-medium' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
+                viewMode === 'official' ? 'bg-champagne text-obsidian font-bold shadow-glow' : 'text-concrete hover:text-white'
               }`}
             >
               Official RERA Layout
             </button>
             <button
               onClick={() => setViewMode('2d')}
-              className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors ${
-                viewMode === '2d' ? 'bg-white/10 text-architectural-white' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
+                viewMode === '2d' ? 'bg-white/20 text-architectural-white font-medium' : 'text-concrete hover:text-white'
               }`}
             >
               Interactive 2D
             </button>
             <button
               onClick={() => setViewMode('3d')}
-              className={`px-3 py-1.5 text-xs tracking-wider uppercase transition-colors ${
-                viewMode === '3d' ? 'bg-champagne/20 text-champagne' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
+                viewMode === '3d' ? 'bg-champagne/30 text-champagne font-medium' : 'text-concrete hover:text-white'
               }`}
             >
               3D Spatial
@@ -82,7 +82,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
 
           <button
             onClick={() => handleOpenConcierge('DOWNLOAD VERIFIED PLAN')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 border border-champagne/30 text-champagne hover:bg-champagne hover:text-obsidian transition-colors text-xs tracking-wider uppercase"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-champagne/40 text-champagne hover:bg-champagne hover:text-obsidian transition-all duration-300 text-xs tracking-wider uppercase rounded font-medium glass-sheen"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Plan</span>

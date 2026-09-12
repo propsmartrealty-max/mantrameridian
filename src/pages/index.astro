@@ -75,8 +75,8 @@ export const prerender = true;
 
       {/* Grid of Residence Cards */}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {residencesData.map((res) => (
-          <div class="group card-beige-luxury border-animated-beam glass-sheen flex flex-col justify-between overflow-hidden">
+        {residencesData.map((res, idx) => (
+          <div class={`group card-beige-luxury border-animated-beam glass-sheen glass-spotlight reveal-glass ${idx % 2 === 0 ? 'reveal-delay-1' : 'reveal-delay-2'} flex flex-col justify-between overflow-hidden`}>
             
             {/* Card Image */}
             <div class="relative aspect-[16/10] overflow-hidden">
@@ -276,22 +276,22 @@ export const prerender = true;
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="glass-card-luxury p-6 border border-white/10 space-y-2">
+        <div class="glass-card-luxury glass-spotlight reveal-glass reveal-delay-1 p-6 border border-white/10 space-y-2">
           <span class="text-[10px] font-mono uppercase text-champagne block">CAPITAL APPRECIATION</span>
           <div class="text-2xl font-serif text-architectural-white font-medium">11.8% CAGR</div>
           <p class="text-xs text-concrete/70 leading-relaxed">Forecasted 5-year growth accelerated by Hinjewadi-Shivajinagar Metro Line 3.</p>
         </div>
-        <div class="glass-card-luxury p-6 border border-white/10 space-y-2">
+        <div class="glass-card-luxury glass-spotlight reveal-glass reveal-delay-2 p-6 border border-white/10 space-y-2">
           <span class="text-[10px] font-mono uppercase text-champagne block">PRIME RENTAL YIELD</span>
           <div class="text-2xl font-serif text-architectural-white font-medium">4.0% – 4.4%</div>
           <p class="text-xs text-concrete/70 leading-relaxed">Top-quartile Pune rental yield driven by corporate and IT senior leadership tenancy.</p>
         </div>
-        <div class="glass-card-luxury p-6 border border-white/10 space-y-2">
+        <div class="glass-card-luxury glass-spotlight reveal-glass reveal-delay-3 p-6 border border-white/10 space-y-2">
           <span class="text-[10px] font-mono uppercase text-champagne block">OPEN SPACE DENSITY</span>
           <div class="text-2xl font-serif text-architectural-white font-medium">75%+ Green Area</div>
           <p class="text-xs text-concrete/70 leading-relaxed">8-acre contiguous riparian masterplan versus fragmented 1-2 acre city infill plots.</p>
         </div>
-        <div class="glass-card-luxury p-6 border border-white/10 space-y-2">
+        <div class="glass-card-luxury glass-spotlight reveal-glass reveal-delay-4 p-6 border border-white/10 space-y-2">
           <span class="text-[10px] font-mono uppercase text-champagne block">PRICE-TO-SPACE VALUE</span>
           <div class="text-2xl font-serif text-architectural-white font-medium">₹ 85L* to ₹ 2.40 Cr*</div>
           <p class="text-xs text-concrete/70 leading-relaxed">Luxury 2, 3, 4 BHK &amp; Sky Duplexes delivering 2x the space of East Pune at identical pricing.</p>
@@ -431,7 +431,7 @@ export const prerender = true;
     {/* Ambient Glows */}
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-champagne/8 rounded-full blur-3xl pointer-events-none -z-10" />
 
-    <div class="max-w-4xl mx-auto p-8 sm:p-14 glass-card-luxury relative z-10 border border-champagne/25 shadow-luxury-gold">
+    <div class="max-w-4xl mx-auto p-8 sm:p-14 glass-card-luxury border-animated-beam glass-spotlight reveal-glass relative z-10 shadow-luxury-gold">
       <div class="max-w-2xl mx-auto space-y-6">
         <span class="label-architectural text-xs tracking-luxury text-champagne">PRIVATE RESERVATIONS</span>
         <h2 class="font-display text-4xl sm:text-6xl md:text-7xl text-gradient-pearl font-normal leading-tight">
