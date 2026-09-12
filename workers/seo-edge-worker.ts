@@ -241,31 +241,31 @@ export const NOSCRIPT_GOOGLEBOT_FALLBACK: string = `
         <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
           <td style="padding:0.5rem;">2 BHK Contemporary Homes</td>
           <td style="padding:0.5rem;">785 – 845 sq.ft.</td>
-          <td style="padding:0.5rem;">₹ 85 Lakhs* onwards</td>
+          <td style="padding:0.5rem;">₹ 1.29 Cr* onwards</td>
           <td style="padding:0.5rem;">Riparian river-breeze balcony, optimal cross-ventilation</td>
         </tr>
         <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
           <td style="padding:0.5rem;">3 BHK Signature Residences</td>
           <td style="padding:0.5rem;">1,120 – 1,240 sq.ft.</td>
-          <td style="padding:0.5rem;">₹ 1.28 Cr* onwards</td>
+          <td style="padding:0.5rem;">₹ 1.75 Cr* onwards</td>
           <td style="padding:0.5rem;">Wraparound corner deck with panoramic Mula river views</td>
         </tr>
         <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
           <td style="padding:0.5rem;">3 BHK Signature Sky Duplexes</td>
           <td style="padding:0.5rem;">1,580 – 1,740 sq.ft.</td>
-          <td style="padding:0.5rem;">₹ 1.85 Cr* onwards</td>
+          <td style="padding:0.5rem;">₹ 2.25 Cr* onwards</td>
           <td style="padding:0.5rem;">Two-tier sky homes, 20ft double-height living salon</td>
         </tr>
         <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
           <td style="padding:0.5rem;">4 BHK Grand Riverfront Estates</td>
           <td style="padding:0.5rem;">1,920 – 2,180 sq.ft.</td>
-          <td style="padding:0.5rem;">₹ 2.40 Cr* onwards</td>
+          <td style="padding:0.5rem;">₹ 2.85 Cr* onwards</td>
           <td style="padding:0.5rem;">Dual master suites, private elevator foyer</td>
         </tr>
         <tr style="border-bottom:1px solid rgba(255,255,255,0.1);">
           <td style="padding:0.5rem;">Penthouse &amp; Sky Villa Collection</td>
           <td style="padding:0.5rem;">1,660 – 2,180 sq.ft.</td>
-          <td style="padding:0.5rem;">₹ 1.85 Cr* – ₹ 2.40 Cr*+</td>
+          <td style="padding:0.5rem;">₹ 2.25 Cr* – ₹ 3.50 Cr*+</td>
           <td style="padding:0.5rem;">Topmost towers, wrap-around sundecks, biometric elevators</td>
         </tr>
       </tbody>

@@ -14,32 +14,32 @@ const typologies: TypologyOption[] = [
     id: '2bhk',
     name: '2 BHK Contemporary',
     carpetArea: '815 sq.ft.',
-    basePrice: 8500000,
-    maintenanceDeposit: 175000,
+    basePrice: 12900000,
+    maintenanceDeposit: 225000,
     slug: '2-bhk'
   },
   {
     id: '3bhk',
     name: '3 BHK Riverside',
     carpetArea: '1,180 sq.ft.',
-    basePrice: 12800000,
-    maintenanceDeposit: 225000,
+    basePrice: 17500000,
+    maintenanceDeposit: 285000,
     slug: '3-bhk'
   },
   {
     id: '3bhk-duplex',
     name: '3 BHK Sky Duplex',
     carpetArea: '1,660 sq.ft.',
-    basePrice: 18500000,
-    maintenanceDeposit: 285000,
+    basePrice: 22500000,
+    maintenanceDeposit: 350000,
     slug: '3-bhk-duplex'
   },
   {
     id: '4bhk',
     name: '4 BHK Grand Estate',
     carpetArea: '2,050 sq.ft.',
-    basePrice: 24000000,
-    maintenanceDeposit: 350000,
+    basePrice: 28500000,
+    maintenanceDeposit: 425000,
     slug: '4-bhk'
   }
 ];

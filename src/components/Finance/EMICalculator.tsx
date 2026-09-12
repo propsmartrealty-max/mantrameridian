@@ -6,14 +6,14 @@ interface PresetConfig {
 }
 
 const PRESETS: PresetConfig[] = [
-  { label: '2 BHK (₹85L)', price: 8500000 },
-  { label: '3 BHK (₹1.28 Cr)', price: 12800000 },
-  { label: '3 BHK Duplex (₹1.85 Cr)', price: 18500000 },
-  { label: '4 BHK (₹2.40 Cr)', price: 24000000 },
+  { label: '2 BHK (₹1.29 Cr)', price: 12900000 },
+  { label: '3 BHK (₹1.75 Cr)', price: 17500000 },
+  { label: '3 BHK Duplex (₹2.25 Cr)', price: 22500000 },
+  { label: '4 BHK (₹2.85 Cr)', price: 28500000 },
 ];
 
 export default function EMICalculator() {
-  const [propertyPrice, setPropertyPrice] = useState<number>(12800000); // 1.28 Cr default
+  const [propertyPrice, setPropertyPrice] = useState<number>(12900000); // 1.29 Cr default
   const [downPaymentPct, setDownPaymentPct] = useState<number>(20); // 20%
   const [tenureYears, setTenureYears] = useState<number>(20); // 20 years
   const [interestRate, setInterestRate] = useState<number>(8.5); // 8.5%
@@ -121,17 +121,17 @@ export default function EMICalculator() {
             </div>
             <input
               type="range"
-              min={7500000}
-              max={30000000}
+              min={12000000}
+              max={35000000}
               step={250000}
               value={propertyPrice}
               onChange={(e) => setPropertyPrice(Number(e.target.value))}
               className="w-full h-2 bg-obsidian-border rounded-lg appearance-none cursor-pointer accent-champagne"
             />
             <div className="flex justify-between text-[10px] text-concrete/60 font-mono">
-              <span>₹75 Lakhs</span>
-              <span>₹1.85 Cr</span>
-              <span>₹3.00 Cr</span>
+              <span>₹1.20 Cr</span>
+              <span>₹2.25 Cr</span>
+              <span>₹3.50 Cr</span>
             </div>
           </div>
 

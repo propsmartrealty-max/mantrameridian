@@ -83,7 +83,7 @@ export const verifiedReviews: ReviewItem[] = [
     rating: 5,
     date: "2026-06-22",
     title: "Light-Filled 2 BHK with Panoramic River Breeze Balconies",
-    body: "The layout efficiency in the 2 BHK Urban Canvas is exceptional. Deep wrap-around river-facing decks, cross-ventilation designed around Pune's west-to-east breeze, and top-tier construction specifications. Excellent value starting at ₹85 Lakhs*.",
+    body: "The layout efficiency in the 2 BHK Urban Canvas is exceptional. Deep wrap-around river-facing decks, cross-ventilation designed around Pune's west-to-east breeze, and top-tier construction specifications. Excellent value starting at ₹1.29 Cr*.",
     verifiedBuyer: true,
     configurationPurchased: "2 BHK Luxury Residence"
   },

@@ -62,7 +62,7 @@
         <bathrooms>2</bathrooms>
         <balconies>2</balconies>
         <carpet_area unit="sqft">815</carpet_area>
-        <price currency="INR">8500000</price>
+        <price currency="INR">12900000</price>
         <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
@@ -86,7 +86,7 @@
         <bathrooms>3</bathrooms>
         <balconies>3</balconies>
         <carpet_area unit="sqft">1180</carpet_area>
-        <price currency="INR">12800000</price>
+        <price currency="INR">17500000</price>
         <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
@@ -110,7 +110,7 @@
         <bathrooms>4</bathrooms>
         <balconies>3</balconies>
         <carpet_area unit="sqft">1660</carpet_area>
-        <price currency="INR">18500000</price>
+        <price currency="INR">22500000</price>
         <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
@@ -134,7 +134,7 @@
         <bathrooms>4</bathrooms>
         <balconies>4</balconies>
         <carpet_area unit="sqft">2050</carpet_area>
-        <price currency="INR">24000000</price>
+        <price currency="INR">28500000</price>
         <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>
@@ -158,7 +158,7 @@
         <bathrooms>5</bathrooms>
         <balconies>4</balconies>
         <carpet_area unit="sqft">2180</carpet_area>
-        <price currency="INR">24000000</price>
+        <price currency="INR">28500000</price>
         <price_type>Starting Base Consideration</price_type>
         <availability>InStock</availability>
         <status>Active</status>

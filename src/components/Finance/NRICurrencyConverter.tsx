@@ -17,10 +17,10 @@ const currencies: CurrencyConfig[] = [
 ];
 
 const investmentTiers = [
-  { name: '2 BHK Contemporary', inrPrice: 8500000, carpet: '815 sq.ft.', annualRentalINR: 375000 },
-  { name: '3 BHK Riverside', inrPrice: 12800000, carpet: '1,180 sq.ft.', annualRentalINR: 550000 },
-  { name: '3 BHK Sky Duplex', inrPrice: 18500000, carpet: '1,660 sq.ft.', annualRentalINR: 825000 },
-  { name: '4 BHK Grand Estate', inrPrice: 24000000, carpet: '2,050 sq.ft.', annualRentalINR: 1050000 }
+  { name: '2 BHK Contemporary', inrPrice: 12900000, carpet: '815 sq.ft.', annualRentalINR: 480000 },
+  { name: '3 BHK Riverside', inrPrice: 17500000, carpet: '1,180 sq.ft.', annualRentalINR: 650000 },
+  { name: '3 BHK Sky Duplex', inrPrice: 22500000, carpet: '1,660 sq.ft.', annualRentalINR: 950000 },
+  { name: '4 BHK Grand Estate', inrPrice: 28500000, carpet: '2,050 sq.ft.', annualRentalINR: 1250000 }
 ];
 
 export default function NRICurrencyConverter() {

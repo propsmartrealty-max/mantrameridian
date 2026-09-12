@@ -64,7 +64,7 @@ export const faqsData: FAQItem[] = [
     id: "what-is-the-price-of-mantra-meridian",
     category: "pricing",
     question: "What is the price of apartments at Mantra Meridian Riverside?",
-    answer: "Indicative starting prices begin from approximately ₹ 85 Lakhs* for 2 BHK residences, ₹ 1.28 Cr* for 3 BHK homes, ₹ 1.85 Cr* for 3 BHK Sky Duplexes, and ₹ 2.40 Cr* for 4 BHK Grand Estates (excluding statutory taxes and registration). Detailed unit-wise cost sheets are available upon request."
+    answer: "Indicative starting prices begin from approximately ₹ 1.29 Cr* for 2 BHK residences, ₹ 1.75 Cr* for 3 BHK homes, ₹ 2.25 Cr* for 3 BHK Sky Duplexes, and ₹ 2.85 Cr* for 4 BHK Grand Estates (excluding statutory taxes and registration). Detailed unit-wise cost sheets are available upon request."
   },
   {
     id: "distance-to-balewadi-high-street",

@@ -26,7 +26,7 @@ const matchingReviews = verifiedReviews.filter(r =>
 const reviewsToAttach = matchingReviews.length > 0 ? matchingReviews : verifiedReviews.slice(0, 3);
 
 // Numeric base price calculation for Google Shopping / Merchant Schema
-const numericPrice = residence.id === '2bhk' ? 8500000 : residence.id === '3bhk' ? 12800000 : residence.id === '3bhk-duplex' ? 18500000 : 24000000;
+const numericPrice = residence.id === '2bhk' ? 12900000 : residence.id === '3bhk' ? 17500000 : residence.id === '3bhk-duplex' ? 22500000 : 28500000;
 
 const residenceImage = residence.renderImage.startsWith('http') 
   ? residence.renderImage 

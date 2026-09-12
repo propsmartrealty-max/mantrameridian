@@ -41,7 +41,7 @@ const duplexFaqs = [
   },
   {
     question: "What is the price of a 3 BHK Sky Duplex at Mantra Meridian Riverside Balewadi?",
-    answer: "The 3 BHK Signature Sky Duplex starts at ₹1.85 Cr* (base consideration). With floor rise and statutory levies (7% Maharashtra Stamp Duty, 5% GST, and ₹30,000 registration), the all-inclusive estimate ranges between ₹2.08 Cr* and ₹2.15 Cr*, depending on floor height and riverfront orientation."
+    answer: "The 3 BHK Signature Sky Duplex starts at ₹2.25 Cr* (base consideration). With floor rise and statutory levies (7% Maharashtra Stamp Duty, 5% GST, and ₹30,000 registration), the all-inclusive estimate ranges between ₹2.52 Cr* and ₹2.60 Cr*, depending on floor height and riverfront orientation."
   },
   {
     question: "How does a Sky Duplex differ from a standard single-floor 3 BHK apartment?",
@@ -58,21 +58,22 @@ const duplexSchema = {
   "@graph": [
     {
       "@type": ["Product", "SingleFamilyResidence", "Apartment", "RealEstateListing"],
-      "@id": "https://mantrameridianriverside.com/duplex/#product",
-      "name": "3 BHK Signature Sky Duplex — Mantra Meridian Riverside Balewadi",
-      "description": "Exclusive two-tier luxury sky duplex featuring 20-foot double-height ceilings, 1,660 sq.ft. carpet area, internal architectural staircase, and permanent Mula riverfront views. MahaRERA No. P52100045688.",
+      "@id": "https://mantrameridianriverside.com/duplex/#residence",
+      "name": "3 BHK Signature Sky Duplex - Mantra Meridian Riverside Balewadi",
+      "description": "Exclusive two-tier Sky Duplex featuring 20ft double-height living salon, 1,660 sq.ft carpet area, internal architectural staircase, and direct Mula river views. MahaRERA P52100045688.",
       "url": "https://mantrameridianriverside.com/duplex/",
       "image": [
         "https://mantrameridianriverside.com/assets/images/properties/mantra-meridian-slider-1322045233.webp",
-        "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp"
+        "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
+        "https://mantrameridianriverside.com/assets/mantra-meridian-rera-qr.webp"
       ],
-      "sku": "MMR-DUPLEX-2026",
-      "mpn": "MMR-RES-3BHK-DUPLEX",
+      "sku": "MMR-DUPLEX-3BHK-2026",
+      "mpn": "MMR-P52100045688-DUP",
       "brand": {
         "@type": "Brand",
         "name": "Mantra Properties"
       },
-      "category": "Real Estate > Residential Apartments > Sky Duplexes",
+      "category": "Real Estate > Residential > Sky Duplexes",
       "aggregateRating": {
         "@type": "AggregateRating",
         "ratingValue": aggregateRatingData.ratingValue,
@@ -96,7 +97,7 @@ const duplexSchema = {
       "offers": {
         "@type": "Offer",
         "url": "https://mantrameridianriverside.com/duplex/",
-        "price": "18500000",
+        "price": "22500000",
         "priceCurrency": "INR",
         "availability": "https://schema.org/InStock",
         "itemCondition": "https://schema.org/NewCondition",
