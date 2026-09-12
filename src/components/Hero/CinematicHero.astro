@@ -7,8 +7,13 @@ import { projectData } from '../../data/project';
   {/* Cinematic Ambient Background Image / Video Backdrop */}
   <div class="absolute inset-0 z-0 select-none overflow-hidden">
     <img
-      src={projectData.heroSliderImages[0]}
+      src="/assets/mantra-meridian-hero.webp"
       alt="Mantra Meridian Riverside Balewadi Architecture"
+      width="1920"
+      height="1080"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
       class="w-full h-full object-cover object-center filter brightness-[0.72] contrast-[1.06] animate-hero-kenburns will-change-transform"
     />
     {/* Cinematic Multi-layered Vignette & Dark Veil */}

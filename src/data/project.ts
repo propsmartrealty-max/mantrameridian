@@ -82,12 +82,12 @@ export const projectData: ProjectData = {
   disclaimer: "All the designs, images, specifications and other details are purely indicative in nature and the intended recipient should note that these are to be treated as purely provisional and informative. We reserve the right to modify / amend / alter any of the aforesaid in the best interest of the development and as per RERA regulations. The contents herein should not be construed as an offer / invitation to offer / contract. Any party desirous / interested in the project needs to enter into an Agreement to Sale. MahaRERA No. P52100045688.",
   ogImage: "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
   heroSliderImages: [
-    "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-215259293.webp",
+    "/assets/mantra-meridian-hero.webp",
     "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-slider-467045184.webp",
     "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp"
   ],
-  introImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-intro-317592911.webp",
-  logoImage: "https://www.mantraproperties.in/assets/images/properties/mantra-meridian-logo-386275043.webp",
+  introImage: "/assets/mantra-meridian-hero.webp",
+  logoImage: "/assets/mantra-logo.svg",
   developer: {
     name: "Mantra Properties",
     legacy: "Continuous Innovation Brings Continuous Success",
