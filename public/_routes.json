@@ -21,6 +21,8 @@
     "/video-sitemap.xml",
     "/google-products.xml",
     "/google-realestate.xml",
+    "/news-sitemap.xml",
+    "/.well-known/*",
     "/llms.txt",
     "/llms-full.txt",
     "/offline.html",
