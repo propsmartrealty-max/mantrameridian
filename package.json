@@ -20,7 +20,9 @@
     "index:broadcast": "node scripts/broadcast-indexing.mjs",
     "index:google": "node scripts/google-indexing.mjs",
     "cache:purge": "node scripts/purge-edge-cache.mjs",
-    "force:index": "node scripts/force-index.mjs"
+    "force:index": "node scripts/force-index.mjs",
+    "syndicate:backlinks": "node scripts/syndicate-backlinks.mjs",
+    "citations:generate": "node scripts/generate-directory-citations.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

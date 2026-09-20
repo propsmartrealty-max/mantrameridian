@@ -1,0 +1,83 @@
+{
+  "timestamp": "2026-09-20T12:52:30.460Z",
+  "wayback": [
+    {
+      "url": "https://mantrameridianriverside.com/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price/",
+      "status": 429,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/location/",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/",
+      "status": 429,
+      "ok": false
+    }
+  ],
+  "pingServices": [
+    {
+      "name": "Ping-O-Matic",
+      "status": 200
+    }
+  ],
+  "indexNowMesh": [
+    {
+      "name": "IndexNow Central",
+      "status": 200
+    },
+    {
+      "name": "Microsoft Bing",
+      "status": 200
+    },
+    {
+      "name": "Yandex IndexNow",
+      "status": 202
+    },
+    {
+      "name": "Seznam IndexNow",
+      "status": 404
+    },
+    {
+      "name": "Naver IndexNow",
+      "status": 200
+    }
+  ],
+  "sitemapPings": [
+    {
+      "name": "Google Sitemap Ping",
+      "status": 404
+    },
+    {
+      "name": "Bing Sitemap Ping",
+      "status": 410
+    }
+  ]
+}
