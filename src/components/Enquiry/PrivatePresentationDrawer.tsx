@@ -46,6 +46,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
     { label: '3 BEDROOM', sub: '1,120 – 1,240 sq.ft. Riverside' },
     { label: '3 BEDROOM DUPLEX', sub: '1,580 – 1,740 sq.ft. Two-Level' },
     { label: '4 BEDROOM', sub: '1,920 – 2,180 sq.ft. Grand Estate' },
+    { label: 'PENTHOUSE / SKY VILLA', sub: '2,250 – 3,500 sq.ft. Top-Tier Riverfront' },
     { label: 'NOT SURE YET', sub: 'Explore all configurations' }
   ];
 

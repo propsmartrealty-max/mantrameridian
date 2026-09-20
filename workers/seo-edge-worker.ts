@@ -496,8 +496,8 @@ export default {
           element(head: any) {
             const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
             const botMeta = botInfo.isWhiteBot ? `<meta name="cf-bot-type" content="${botInfo.botType}" />\n` : '';
-            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, luxury 2 3 4 bhk flats pune';
-            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi';
+            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, mantra maridian, mantra river side, mantra meridian pune, mantra riverside pune, mantra balewadi duplex, luxury 2 3 4 bhk flats balewadi pune';
+            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Mantra Maridian, Mantra River Side Balewadi, Mantra Meridian Pune';
 
             // Googlebot & Bingbot crawler directives & Search Console directives
             const crawlerMeta = 

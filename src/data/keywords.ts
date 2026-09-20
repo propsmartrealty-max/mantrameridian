@@ -111,7 +111,87 @@ export const brandPermutations: string[] = [
   "Riverside by Mantra Properties",
   "Mantra Properties Ongoing Projects Balewadi",
   "Mantra Properties New Launch Balewadi",
-  "Mantra Properties Balewadi Village Road"
+  "Mantra Properties Balewadi Village Road",
+
+  // High-Intent Search Query Permutations & Combinations
+  "Mantra Meridian Balewadi Pune",
+  "Mantra Riverside Balewadi Pune",
+  "Mantra Meridian Riverside Balewadi Pune",
+  "Mantra Balewadi Riverside Pune",
+  "Mantra Meridian Pune Balewadi",
+  "Mantra Riverside Pune Balewadi",
+  "Mantra Meridian Riverside West Pune",
+  "Mantra Meridian Project Balewadi",
+  "Mantra Riverside Project Balewadi",
+  "Mantra Meridian Riverside Project",
+  "Mantra Meridian Official Website",
+  "Mantra Riverside Official Website",
+  "Mantra Meridian Balewadi Official Website",
+  "Mantra Riverside Balewadi Official Website",
+  "Mantra Meridian Riverside Official Website",
+
+  // Phonetic, Spacing & Common Query Variations
+  "Mantra Riverride",
+  "Mantra Riverride Balewadi",
+  "Mantra Riverride Riverside",
+  "Mantra Maridian",
+  "Mantra Maridian Balewadi",
+  "Mantra Maridian Riverside",
+  "Mantra Maridian Riverside Balewadi",
+  "Mantra River Side",
+  "Mantra River Side Balewadi",
+  "Mantra Meridian River Side",
+  "Mantra Meridian River Side Balewadi",
+  "Meridian Mantra",
+  "Meridian Mantra Pune",
+  "Riverside Mantra",
+  "Riverside Mantra Pune",
+
+  // Intent: Price, Cost Sheet & Payment
+  "Mantra Meridian Balewadi Price",
+  "Mantra Riverside Balewadi Price",
+  "Mantra Meridian Riverside Price",
+  "Mantra Balewadi Price List",
+  "Mantra Meridian Cost Sheet",
+  "Mantra Riverside Cost Sheet",
+  "Mantra Meridian Balewadi Cost Sheet",
+  "Mantra Riverside Balewadi Cost Sheet",
+  "Mantra Meridian Balewadi Payment Plan",
+
+  // Intent: Floor Plans, Layout & Masterplan
+  "Mantra Meridian Balewadi Floor Plans",
+  "Mantra Riverside Balewadi Floor Plans",
+  "Mantra Meridian Riverside Floor Plan",
+  "Mantra Balewadi Floor Plan PDF",
+  "Mantra Meridian 8 Acre Masterplan",
+  "Mantra Riverside Masterplan Balewadi",
+
+  // Intent: Location & Landmarks
+  "Mantra Meridian Balewadi Location",
+  "Mantra Riverside Balewadi Location",
+  "Mantra Meridian Balewadi Site Address",
+  "Mantra Riverside Balewadi Site Address",
+  "Mantra Meridian near Balewadi High Street",
+  "Mantra Riverside near Balewadi High Street",
+  "Mantra Balewadi near Hinjewadi IT Park",
+  "Mantra Meridian near Mula River",
+  "Mantra Riverside Mula River Promenade",
+
+  // Intent: Trust, RERA & Contact
+  "Mantra Meridian Balewadi RERA Number",
+  "Mantra Riverside Balewadi RERA",
+  "Mantra Meridian Balewadi MahaRERA P52100045688",
+  "Mantra Meridian Balewadi Contact Number",
+  "Mantra Riverside Balewadi Phone Number",
+  "Mantra Meridian Balewadi Sales Office",
+  "Mantra Meridian Balewadi Experience Centre",
+  "Mantra Meridian Balewadi Sample Flat",
+  "Mantra Riverside Balewadi Sample Flat Video",
+  "Mantra Meridian Balewadi Possession Date",
+  "Mantra Riverside Balewadi Possession Date",
+  "Mantra Meridian Balewadi Construction Update",
+  "Mantra Riverside Balewadi Reviews",
+  "Mantra Meridian Balewadi Reviews"
 ];
 
 // 02. Configuration & Typology Search Permutations
