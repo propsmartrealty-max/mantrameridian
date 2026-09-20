@@ -1002,8 +1002,8 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
     <meta name="twitter:image" content={absoluteOgImage} />
     <meta name="twitter:image:alt" content="Mantra Meridian Riverside Balewadi Architecture" />
 
-    {/* Structured Data Schema */}
-    <script type="application/ld+json" is:inline set:html={JSON.stringify(unifiedSchema)} />
+    {/* Structured Data Schema — minified for page weight */}
+    <script type="application/ld+json" is:inline set:html={JSON.stringify(unifiedSchema, null, 0)} />
 
     {/* DNS Prefetching & Preconnect for Core Web Vitals */}
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />

@@ -1,176 +1,116 @@
-# ==============================================================================
-# CLOUDFLARE EDGE PERFORMANCE & GOOGLE ECOSYSTEM HARDENING HEADERS
-# Cloudflare Pages Global Edge Deployment
-# ==============================================================================
+# Cloudflare Pages — Edge Cache & Compression Headers
+# https://developers.cloudflare.com/pages/configuration/headers/
 
-# 1. Universal Security & Performance Directives (Applied to All Paths)
-/*
-  X-Frame-Options: SAMEORIGIN
-  X-Content-Type-Options: nosniff
-  X-DNS-Prefetch-Control: on
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: accelerometer=(), camera=(), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://api.indexnow.org https://www.bing.com https://cloudflareinsights.com; frame-src 'self' https://www.google.com https://maps.google.com https://www.youtube.com https://www.youtube-nocookie.com https://my.matterport.com; object-src 'none'; base-uri 'self'; form-action 'self';
-  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  Cross-Origin-Opener-Policy: same-origin-allow-popups
-  Timing-Allow-Origin: *
-  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
-  Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
-  Link: </assets/mantra-meridian-hero.webp>; rel=preload; as=image; type="image/webp"; fetchpriority=high, <https://fonts.googleapis.com>; rel=preconnect, <https://fonts.gstatic.com>; rel=preconnect; crossorigin
-
-# 2. Immutable Long-Term Edge Cache for Hashed Astro Assets
-/_astro/*
-  Cache-Control: public, max-age=31536000, immutable
-  Access-Control-Allow-Origin: *
-  Timing-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
-
-# 3. Static Media Assets (WebP, SVGs, Images)
+# ============================================================
+# STATIC ASSETS — Long-lived cache (1 year, immutable)
+# ============================================================
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
-  Access-Control-Allow-Origin: *
-  Timing-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
+  X-Content-Type-Options: nosniff
 
-# 4. Typography & Font Files
-/fonts/*
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
   Cache-Control: public, max-age=31536000, immutable
   Access-Control-Allow-Origin: *
-  Timing-Allow-Origin: *
-  Cross-Origin-Resource-Policy: cross-origin
 
-# 5. Search Engine Sitemaps & XML Feeds
-/sitemap-index.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, sitemaps
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
 
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+# ============================================================
+# FEEDS & SITEMAPS — Short-lived cache (1 hour)
+# ============================================================
 /sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, sitemaps
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: application/xml; charset=utf-8
 
 /image-sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, sitemaps
 
 /video-sitemap.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, sitemaps
 
 /rss.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, sitemaps, rss-feed
-
-/google-products.xml
-  Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, google-products, sitemaps
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: application/rss+xml; charset=utf-8
 
 /google-realestate.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, google-realestate, sitemaps
 
+/google-products.xml
+  Cache-Control: public, max-age=3600, s-maxage=3600
+  Content-Type: application/xml; charset=utf-8
 
-
-# 6. Web Bot Discovery & LLM Monograph
 /robots.txt
+  Cache-Control: public, max-age=86400, s-maxage=86400
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Cache-Tag: mantra-meridian, discovery
 
 /llms.txt
-  Content-Type: text/markdown; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Access-Control-Allow-Origin: *
-  Cache-Tag: mantra-meridian, discovery
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  Content-Type: text/plain; charset=utf-8
 
 /llms-full.txt
-  Content-Type: text/markdown; charset=utf-8
-  Cache-Control: public, max-age=86400, s-maxage=86400, stale-while-revalidate=604800
-  Access-Control-Allow-Origin: *
-  Cache-Tag: mantra-meridian, discovery
-
-# 7. Brand Icons & Manifest
-/favicon.svg
-  Content-Type: image/svg+xml
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/favicon.ico
-  Content-Type: image/x-icon
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/apple-touch-icon.png
-  Content-Type: image/png
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/favicon-48x48.png
-  Content-Type: image/png
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/favicon-96x96.png
-  Content-Type: image/png
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/icon-192.png
-  Content-Type: image/png
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/icon-512.png
-  Content-Type: image/png
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
-
-/site.webmanifest
-  Content-Type: application/manifest+json; charset=utf-8
   Cache-Control: public, max-age=86400, s-maxage=86400
-  Access-Control-Allow-Origin: *
-
-# 7B. Progressive Web App Service Worker (Strict Immediate Revalidation)
-/sw.js
-  Content-Type: application/javascript; charset=utf-8
-  Cache-Control: public, max-age=0, must-revalidate
-  Service-Worker-Allowed: /
-
-# 7C. RFC 9116 Standard Security Disclosure Policy
-/.well-known/security.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=604800, s-maxage=604800
-  Access-Control-Allow-Origin: *
 
-# 8. Edge Verification Verification Token
-/4c7e6b0a9f1248a881335b2e3a1d95c2.txt
-  Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=604800, s-maxage=604800
+# ============================================================
+# HTML PAGES — Edge-cached, revalidate on change (1 day CDN)
+# Cloudflare will serve from edge, revalidate daily
+# This converts cf-cache-status: DYNAMIC → HIT
+# ============================================================
+/
+  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=3600
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-DNS-Prefetch-Control: on
+  Timing-Allow-Origin: *
+  Accept-CH: Sec-CH-UA, Sec-CH-UA-Mobile, Sec-CH-UA-Platform, Sec-CH-DPR, Sec-CH-Width, Sec-CH-Viewport-Width
 
-# 9. Dynamic Edge Telemetry & Property Status APIs
-/api/property-status
-  Content-Type: application/json; charset=utf-8
-  Cache-Control: public, max-age=60, s-maxage=300, stale-while-revalidate=600
-  Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
+/mantra-meridian-riverside/
+  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=3600
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
   X-Content-Type-Options: nosniff
 
-/api/edge-telemetry
-  Content-Type: application/json; charset=utf-8
-  Cache-Control: no-store, no-cache, must-revalidate
-  Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, HEAD, OPTIONS
-  X-Content-Type-Options: nosniff
+/mantra-meridian-riverside-balewadi/
+  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=3600
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
 
-# 10. Dynamic API Catch-All (Strict No-Cache)
-/api/*
-  Cache-Control: no-store, no-cache, must-revalidate
+# All HTML pages — CDN cached for 24h, browser revalidates
+/*
+  Cache-Control: public, max-age=0, s-maxage=86400, stale-while-revalidate=3600
+  X-Robots-Tag: index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Timing-Allow-Origin: *
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
   Access-Control-Allow-Origin: *
-  Access-Control-Allow-Methods: GET, POST, OPTIONS
-  Access-Control-Allow-Headers: Content-Type, Authorization
