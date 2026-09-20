@@ -1,5 +1,6 @@
 import type { APIRoute } from 'astro';
 import { getGoogleEdgeAccessToken } from '../../lib/google-auth-edge';
+import serviceAccountFallback from '../../../service-account.json' with { type: 'json' };
 
 export const prerender = false; // Cloudflare Workers Edge Execution
 
@@ -92,6 +93,9 @@ async function handleGoogleIndexing(request: Request, locals?: any) {
         // Continue with individual vars
       }
     }
+
+    clientEmail = clientEmail || (serviceAccountFallback as any)?.client_email;
+    privateKey = privateKey || (serviceAccountFallback as any)?.private_key;
 
     if (!clientEmail || !privateKey) {
       return new Response(

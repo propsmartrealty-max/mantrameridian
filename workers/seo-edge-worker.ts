@@ -20,6 +20,8 @@
  */
 
 import { identifyWhiteBot, type WhiteBotInfo } from '../src/utils/bot-detection.ts';
+import { getGoogleEdgeAccessToken } from '../src/lib/google-auth-edge.ts';
+import serviceAccountFallback from '../service-account.json' with { type: 'json' };
 
 export interface ExecutionContext {
   waitUntil: (promise: Promise<unknown>) => void;
@@ -35,6 +37,9 @@ export interface Env {
   PROJECT_LOCATION?: string;
   CANONICAL_URL?: string;
   ORIGIN_URL?: string;
+  GOOGLE_CLIENT_EMAIL?: string;
+  GOOGLE_PRIVATE_KEY?: string;
+  GOOGLE_SERVICE_ACCOUNT_JSON?: string;
 }
 
 // 1. Edge WAF Lite Blocklist
@@ -840,6 +845,31 @@ async function broadcastAutonomousIndexing(_env: Env): Promise<void> {
       body: JSON.stringify(indexNowPayload)
     })
   ];
+
+  // Autonomous Google Indexing API push directly from Cloudflare Edge via Web Crypto
+  try {
+    const clientEmail = _env.GOOGLE_CLIENT_EMAIL || (serviceAccountFallback as any)?.client_email;
+    const privateKey = _env.GOOGLE_PRIVATE_KEY || (serviceAccountFallback as any)?.private_key;
+    if (clientEmail && privateKey) {
+      const googleAccessToken = await getGoogleEdgeAccessToken(clientEmail, privateKey);
+      if (googleAccessToken) {
+        for (const url of ALL_CANONICAL_INDEX_URLS) {
+          dispatches.push(
+            fetch('https://indexing.googleapis.com/v3/urlNotifications:publish', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${googleAccessToken}`
+              },
+              body: JSON.stringify({ url, type: 'URL_UPDATED' })
+            })
+          );
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Edge Google Indexing dispatch exception:', err);
+  }
 
   await Promise.allSettled(dispatches);
 }

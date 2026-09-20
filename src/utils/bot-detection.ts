@@ -36,8 +36,8 @@ const GLOBAL_SEARCH_REGEX = /DuckDuckBot|YandexBot|Baiduspider|NaverBot|Sogou/i;
  * Evaluates whether an incoming request originates from a verified White Bot.
  */
 export function identifyWhiteBot(userAgent: string, cf?: any): WhiteBotInfo {
-  // Cloudflare Bot Management verified bot signal (Enterprise / Pro edge feature)
-  if (cf?.botManagement?.verifiedBot === true) {
+  // Cloudflare native verified bot signal (works across Free, Pro, Business, and Enterprise)
+  if (cf?.verifiedBot === true || cf?.botManagement?.verifiedBot === true) {
     const isGoogle = GOOGLE_BOT_REGEX.test(userAgent);
     return {
       isWhiteBot: true,
