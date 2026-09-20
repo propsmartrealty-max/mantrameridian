@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-09-20T12:56:01.752Z",
+  "directories": [
+    {
+      "name": "CuteStat",
+      "url": "https://mantrameridianriverside.com.cutestat.com",
+      "status": 403,
+      "ok": false
+    },
+    {
+      "name": "HypeStat",
+      "url": "https://hypestat.com/info/mantrameridianriverside.com",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "SiteIndices",
+      "url": "https://mantrameridianriverside.com.siteindices.com",
+      "status": 404,
+      "ok": false
+    },
+    {
+      "name": "StatsCrop",
+      "url": "https://www.statscrop.com/www/mantrameridianriverside.com",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "SiteRankData",
+      "url": "https://siterankdata.com/mantrameridianriverside.com",
+      "status": 500,
+      "ok": false
+    },
+    {
+      "name": "WebsiteInformative",
+      "url": "https://websiteinformative.com/site/mantrameridianriverside.com",
+      "status": "dispatched",
+      "error": "fetch failed"
+    },
+    {
+      "name": "WorthOfWeb",
+      "url": "https://www.worthofweb.com/website-value/mantrameridianriverside.com/",
+      "status": 403,
+      "ok": false
+    },
+    {
+      "name": "WebsiteOutlook",
+      "url": "https://mantrameridianriverside.com.websiteoutlook.com",
+      "status": "dispatched",
+      "error": "This operation was aborted"
+    },
+    {
+      "name": "TopAlternative",
+      "url": "https://topalternative.net/site/mantrameridianriverside.com",
+      "status": 404,
+      "ok": false
+    },
+    {
+      "name": "WebWiki",
+      "url": "https://www.webwiki.com/mantrameridianriverside.com",
+      "status": 403,
+      "ok": false
+    },
+    {
+      "name": "ArchiveToday",
+      "url": "https://archive.ph/submit/?url=https%3A%2F%2Fmantrameridianriverside.com",
+      "status": 429,
+      "ok": false
+    },
+    {
+      "name": "WaybackSave",
+      "url": "https://web.archive.org/save/https://mantrameridianriverside.com",
+      "status": 500,
+      "ok": false
+    }
+  ],
+  "rpcPings": [
+    {
+      "name": "Ping-O-Matic Multi-Hub",
+      "url": "http://rpc.pingomatic.com/ping/?title=Mantra%20Meridian%20Riverside%20Balewadi%20Pune&blogurl=https%3A%2F%2Fmantrameridianriverside.com&rssurl=https%3A%2F%2Fmantrameridianriverside.com%2Frss.xml&chk_weblogscom=on&chk_blogs=on&chk_feedburner=on&chk_syndic8=on&chk_newsgator=on&chk_myyahoo=on&chk_pubsubcom=on&chk_blogdigger=on",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Twingly Ping Gateway",
+      "url": "https://rpc.twingly.com/ping?url=https%3A%2F%2Fmantrameridianriverside.com",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "Google Feedburner Ping",
+      "url": "https://feedburner.google.com/fb/a/pingSubmit?blogUrl=https%3A%2F%2Fmantrameridianriverside.com",
+      "status": 404,
+      "ok": false
+    }
+  ],
+  "rssAggregators": [
+    {
+      "name": "FeedSearch",
+      "url": "https://feedsearch.dev/api/v1/search?url=https%3A%2F%2Fmantrameridianriverside.com",
+      "status": 200,
+      "ok": true
+    },
+    {
+      "name": "RSSMicro",
+      "url": "http://www.rssmicro.com/search?q=mantrameridianriverside.com",
+      "status": "dispatched",
+      "error": "fetch failed"
+    },
+    {
+      "name": "Feedly Feed Discovery",
+      "url": "https://feedly.com/v3/search/feeds?query=https%3A%2F%2Fmantrameridianriverside.com",
+      "status": 200,
+      "ok": true
+    }
+  ]
+}
