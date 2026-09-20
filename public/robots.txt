@@ -9,7 +9,9 @@
 # ── UNIVERSAL DEFAULT ──────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
-Disallow: /api/
+Allow: /api/oembed.json
+Disallow: /api/enquiry
+Disallow: /api/edge-telemetry
 Disallow: /_worker.js
 Disallow: /cdn-cgi/
 Crawl-delay: 2
@@ -17,6 +19,7 @@ Crawl-delay: 2
 # ── GOOGLE PRIMARY SEARCH ──────────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
+Allow: /api/oembed.json
 Allow: /assets/
 Allow: /*.webp
 Allow: /*.png
@@ -24,7 +27,8 @@ Allow: /*.jpg
 Allow: /*.svg
 Allow: /*.xml
 Allow: /*.json
-Disallow: /api/
+Disallow: /api/enquiry
+Disallow: /api/edge-telemetry
 Disallow: /cdn-cgi/
 
 User-agent: Googlebot-Image

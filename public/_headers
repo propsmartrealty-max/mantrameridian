@@ -81,6 +81,11 @@
   Cache-Control: public, max-age=86400, s-maxage=86400
   Content-Type: text/plain; charset=utf-8
 
+/api/oembed.json
+  Cache-Control: public, max-age=86400, s-maxage=86400
+  Content-Type: application/json+oembed; charset=utf-8
+  Access-Control-Allow-Origin: *
+
 # ============================================================
 # HTML PAGES — Edge-cached, revalidate on change (1 day CDN)
 # Cloudflare will serve from edge, revalidate daily
