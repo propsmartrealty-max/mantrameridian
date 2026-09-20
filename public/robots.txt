@@ -1,25 +1,48 @@
 # ==============================================================================
-# MANTRA MERIDIAN RIVERSIDE — OFFICIAL ROBOTS.TXT
-# Optimized for Google Search Central, Bing Webmaster, AI Overviews, & Social Bots
+# MANTRA MERIDIAN RIVERSIDE — HARDENED ROBOTS.TXT v3.0
+# Domain: https://mantrameridianriverside.com
+# Last Updated: 2026-09-20
+# Strategy: Maximum crawl budget allocation, whitelist all verified bots,
+#            protect API endpoints, enable full AI training access
 # ==============================================================================
 
-# Default Rules for All Web Crawlers
+# ── UNIVERSAL DEFAULT ──────────────────────────────────────────────────────────
 User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /_worker.js
+Disallow: /cdn-cgi/
+Crawl-delay: 2
 
-# Google Primary Search Bots & Search Console Inspection
+# ── GOOGLE PRIMARY SEARCH ──────────────────────────────────────────────────────
 User-agent: Googlebot
 Allow: /
+Allow: /assets/
+Allow: /*.webp
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+Allow: /*.xml
+Allow: /*.json
+Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Googlebot-Image
-Allow: /assets/
-Allow: /*.webp$
-Allow: /*.png$
-Allow: /*.jpg$
-Allow: /*.svg$
 Allow: /
+Allow: /assets/
+Allow: /*.webp
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.svg
+
+User-agent: Googlebot-Video
+Allow: /
+Allow: /assets/
+Allow: /*.webp
+
+User-agent: Googlebot-News
+Allow: /
+Allow: /mantra-meridian-riverside/journal/
 
 User-agent: Googlebot-Mobile
 Allow: /
@@ -28,6 +51,12 @@ User-agent: Google-InspectionTool
 Allow: /
 
 User-agent: GoogleOther
+Allow: /
+
+User-agent: GoogleOther-Image
+Allow: /
+
+User-agent: GoogleOther-Video
 Allow: /
 
 User-agent: Mediapartners-Google
@@ -39,26 +68,61 @@ Allow: /
 User-agent: AdsBot-Google-Mobile
 Allow: /
 
-# Microsoft Bing & Yahoo Bots
+User-agent: Google-Extended
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Google-Safety
+Allow: /
+
+# ── MICROSOFT BING ─────────────────────────────────────────────────────────────
 User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: msnbot
 Allow: /
 
 User-agent: msnbot-media
 Allow: /
+Allow: /assets/
 
-# Apple Search & Siri Suggestions
+User-agent: adidxbot
+Allow: /
+
+# ── APPLE ──────────────────────────────────────────────────────────────────────
 User-agent: Applebot
 Allow: /
 
-# DuckDuckGo & Yandex Search
+User-agent: Applebot-Extended
+Allow: /
+Allow: /llms.txt
+
+# ── OTHER SEARCH ENGINES ───────────────────────────────────────────────────────
 User-agent: DuckDuckBot
 Allow: /
 
 User-agent: YandexBot
 Allow: /
 
-# Social Media Link Unfurling & Rich Preview Crawlers
+User-agent: YandexImages
+Allow: /assets/
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: Sogou Spider
+Allow: /
+
+User-agent: ia_archiver
+Allow: /
+
+# ── SOCIAL / PREVIEW BOTS ──────────────────────────────────────────────────────
 User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Facebot
 Allow: /
 
 User-agent: Twitterbot
@@ -73,23 +137,41 @@ Allow: /
 User-agent: Slackbot
 Allow: /
 
-# AI Search Engines, LLM Indexes & Generative Engine Optimization (GEO)
+User-agent: Discordbot
+Allow: /
+
+User-agent: TelegramBot
+Allow: /
+
+User-agent: SkypeUriPreview
+Allow: /
+
+User-agent: Pinterest
+Allow: /
+
+# ── AI / LLM TRAINING & SEARCH ─────────────────────────────────────────────────
+# Explicitly allow all major AI engines for training and AI Overviews
 User-agent: GPTBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 User-agent: ChatGPT-User
 Allow: /
 
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: PerplexityBot
 Allow: /
+Allow: /llms.txt
 
 User-agent: ClaudeBot
 Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 User-agent: anthropic-ai
-Allow: /
-
-User-agent: Google-Extended
 Allow: /
 
 User-agent: Bytespider
@@ -98,10 +180,57 @@ Allow: /
 User-agent: CCBot
 Allow: /
 
-# Host Directive for Canonical Domain Authority
+User-agent: cohere-ai
+Allow: /
+
+User-agent: AI2Bot
+Allow: /
+
+User-agent: Diffbot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# ── REAL ESTATE AGGREGATORS (whitelist for link authority) ─────────────────────
+User-agent: 99acres-bot
+Allow: /
+
+User-agent: MagicBricksBot
+Allow: /
+
+User-agent: HousingBot
+Allow: /
+
+# ── SEO TOOLS (allow for rank tracking) ────────────────────────────────────────
+User-agent: SemrushBot
+Allow: /
+
+User-agent: AhrefsBot
+Allow: /
+
+User-agent: DotBot
+Allow: /
+
+User-agent: MJ12bot
+Allow: /
+
+User-agent: DataForSeoBot
+Allow: /
+
+# ── HOST DIRECTIVE (canonical domain authority signal) ────────────────────────
 Host: https://mantrameridianriverside.com
 
-# XML Sitemaps & AI Monograph Index
+# ── CLEAN PARAM (prevents duplicate crawl budget waste on tracking params) ────
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_content&gclid&fbclid&_ga&msclkid&dclid
+
+# ── SITEMAPS ──────────────────────────────────────────────────────────────────
 Sitemap: https://mantrameridianriverside.com/sitemap-index.xml
 Sitemap: https://mantrameridianriverside.com/sitemap.xml
 Sitemap: https://mantrameridianriverside.com/image-sitemap.xml
@@ -109,4 +238,6 @@ Sitemap: https://mantrameridianriverside.com/video-sitemap.xml
 Sitemap: https://mantrameridianriverside.com/rss.xml
 Sitemap: https://mantrameridianriverside.com/google-products.xml
 Sitemap: https://mantrameridianriverside.com/google-realestate.xml
+Sitemap: https://mantrameridianriverside.com/news-sitemap.xml
 # LLM Knowledge Monograph: https://mantrameridianriverside.com/llms.txt
+# LLM Full Monograph: https://mantrameridianriverside.com/llms-full.txt

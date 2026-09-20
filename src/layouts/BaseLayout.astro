@@ -40,25 +40,9 @@ const computedCanonical = canonicalUrl
   ? (canonicalUrl.endsWith('/') ? canonicalUrl : `${canonicalUrl}/`)
   : `${siteOrigin}${normalizedPath}`;
 
-// Prepare Google Search Central compliant Review objects with explicit itemReviewed
-const structuredReviews = verifiedReviews.map((rev) => ({
+// Prepare Google Search Central compliant Review objects nested under Product entity
+const productReviews = verifiedReviews.map((rev) => ({
   "@type": "Review",
-  "itemReviewed": {
-    "@type": "RealEstateAgent",
-    "@id": "https://mantrameridianriverside.com/#organization",
-    "name": "Mantra Meridian Riverside",
-    "image": "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
-    "telephone": projectData.contact.phone,
-    "priceRange": "₹ 1.29 Cr - ₹ 3.50 Cr",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": projectData.contact.siteAddress,
-      "addressLocality": "Balewadi",
-      "addressRegion": "Maharashtra",
-      "postalCode": "411045",
-      "addressCountry": "IN"
-    }
-  },
   "author": {
     "@type": "Person",
     "name": rev.author
@@ -107,7 +91,7 @@ const coreGraph: any[] = [
         "ratingCount": aggregateRatingData.ratingCount,
         "reviewCount": aggregateRatingData.reviewCount
       },
-      "review": structuredReviews,
+      "review": productReviews,
       "offers": {
         "@type": "AggregateOffer",
         "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price/",
@@ -223,7 +207,6 @@ const coreGraph: any[] = [
         "ratingCount": aggregateRatingData.ratingCount,
         "reviewCount": aggregateRatingData.reviewCount
       },
-      "review": structuredReviews,
       "openingHoursSpecification": [
         {
           "@type": "OpeningHoursSpecification",
@@ -413,15 +396,6 @@ const coreGraph: any[] = [
         }
       },
       "numberOfBedrooms": "2, 3, 4",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": aggregateRatingData.ratingValue,
-        "bestRating": aggregateRatingData.bestRating,
-        "worstRating": aggregateRatingData.worstRating,
-        "ratingCount": aggregateRatingData.ratingCount,
-        "reviewCount": aggregateRatingData.reviewCount
-      },
-      "review": structuredReviews,
       "potentialAction": [
         {
           "@type": "ReserveAction",

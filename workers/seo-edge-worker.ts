@@ -701,14 +701,6 @@ export default {
       );
     }
 
-    // Cookies: strictly only for human visitors (never pollute white bots with cookies)
-    if (!botInfo.isWhiteBot) {
-      response.headers.set(
-        'Set-Cookie',
-        `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
-      );
-    }
-
     // White Bot explicit indexing directives
     if (botInfo.isWhiteBot) {
       response.headers.set(
@@ -722,6 +714,9 @@ export default {
 
       if (botInfo.isGooglebot) {
         response.headers.set('X-Googlebot-Status', 'Authorized-Optimized-Crawl');
+        response.headers.set('X-Googlebot-Crawl-Budget', 'unlimited');
+        response.headers.set('X-Googlebot-Index-Priority', 'high');
+        response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
       }
     }
 
@@ -746,11 +741,20 @@ export default {
     }
 
     // Asynchronously store into caches.default with Set-Cookie stripped!
+    // CRITICAL: responseToCache must have NO Set-Cookie so CF Cache API stores it (avoids DYNAMIC status)
     if (cache && cacheKey && isHtml && !bypassCache && response.status === 200) {
       const responseToCache = new Response(response.body, response);
-      // CRITICAL: Strip Set-Cookie from cached copy so Cloudflare Cache API stores it!
       responseToCache.headers.delete('Set-Cookie');
       ctx.waitUntil(cache.put(cacheKey, responseToCache));
+    }
+
+    // Cookies: strictly only for human visitors, set AFTER cache.put() on final response only
+    // Bots never receive Set-Cookie, ensuring clean cacheable responses
+    if (!botInfo.isWhiteBot) {
+      response.headers.set(
+        'Set-Cookie',
+        `cf_geo_market=${marketTag}; Path=/; Max-Age=86400; SameSite=Lax; Secure`
+      );
     }
 
     return response;
@@ -798,7 +802,22 @@ const ALL_CANONICAL_INDEX_URLS: readonly string[] = [
   'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/',
   'https://mantrameridianriverside.com/privacy-policy/',
   'https://mantrameridianriverside.com/terms/',
-  'https://mantrameridianriverside.com/disclaimer/'
+  'https://mantrameridianriverside.com/disclaimer/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/',
+  'https://mantrameridianriverside.com/hinjewadi/',
+  'https://mantrameridianriverside.com/mahalunge/',
+  'https://mantrameridianriverside.com/baner/',
+  'https://mantrameridianriverside.com/compare/',
+  'https://mantrameridianriverside.com/duplex/',
+  'https://mantrameridianriverside.com/penthouse/',
+  'https://mantrameridianriverside.com/nri-desk/',
+  'https://mantrameridianriverside.com/home-loan/',
+  'https://mantrameridianriverside.com/explore/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/hinjewadi-it-corridor-balewadi-luxury-housing-guide/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/baner-vs-balewadi-vs-mahalunge-real-estate-investment-2026/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/sky-duplex-vs-penthouse-luxury-living-pune/',
+  'https://mantrameridianriverside.com/mantra-meridian-riverside/journal/kumar-magnacity-vs-mantra-meridian-riverside-comparison/'
 ];
 
 async function broadcastAutonomousIndexing(_env: Env): Promise<void> {

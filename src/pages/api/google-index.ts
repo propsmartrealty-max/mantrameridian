@@ -35,7 +35,27 @@ const ALL_CANONICAL_URLS = [
   `https://${HOST}/mantra-meridian-riverside/journal/architecture-of-light-riverside-living-meridian/`,
   `https://${HOST}/mantra-meridian-riverside/journal/rise-of-sky-duplex-living-pune/`,
   `https://${HOST}/mantra-meridian-riverside/journal/hinjewadi-balewadi-connectivity-corridor/`,
-  `https://${HOST}/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/`
+  `https://${HOST}/mantra-meridian-riverside/journal/pune-real-estate-market-outlook-2026-luxury-investment-guide/`,
+  `https://${HOST}/mantra-meridian-riverside/`,
+  `https://${HOST}/mantra-meridian-riverside-balewadi/`,
+  `https://${HOST}/hinjewadi/`,
+  `https://${HOST}/mahalunge/`,
+  `https://${HOST}/baner/`,
+  `https://${HOST}/compare/`,
+  `https://${HOST}/duplex/`,
+  `https://${HOST}/penthouse/`,
+  `https://${HOST}/nri-desk/`,
+  `https://${HOST}/home-loan/`,
+  `https://${HOST}/explore/`,
+  `https://${HOST}/mantra-meridian-riverside/journal/hinjewadi-it-corridor-balewadi-luxury-housing-guide/`,
+  `https://${HOST}/mantra-meridian-riverside/journal/baner-vs-balewadi-vs-mahalunge-real-estate-investment-2026/`,
+  `https://${HOST}/mantra-meridian-riverside/journal/sky-duplex-vs-penthouse-luxury-living-pune/`,
+  `https://${HOST}/mantra-meridian-riverside/journal/kumar-magnacity-vs-mantra-meridian-riverside-comparison/`,
+  `https://${HOST}/privacy-policy/`,
+  `https://${HOST}/terms/`,
+  `https://${HOST}/disclaimer/`,
+  `https://${HOST}/directions/`,
+  `https://${HOST}/construction-status/`
 ];
 
 async function handleGoogleIndexing(request: Request, locals?: any) {

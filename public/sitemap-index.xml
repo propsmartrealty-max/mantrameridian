@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Primary URL Sitemap: 63 canonical pages -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/sitemap.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
+  <!-- Google Image Sitemap: 30+ property images -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/image-sitemap.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
+  <!-- Google Video Sitemap: 8 property videos -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/video-sitemap.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
+  <!-- RSS Feed: Journal articles -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/rss.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
+  <!-- Google Merchant Center Product Feed -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/google-products.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
+  <!-- Google Real Estate Feed -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/google-realestate.xml</loc>
-    <lastmod>2026-09-13</lastmod>
+    <lastmod>2026-09-20</lastmod>
+  </sitemap>
+  <!-- Google News Sitemap: Journal articles -->
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/news-sitemap.xml</loc>
+    <lastmod>2026-09-20</lastmod>
   </sitemap>
 </sitemapindex>
-
