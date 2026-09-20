@@ -812,6 +812,14 @@ const coreGraph: any[] = [
         "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp"
       ],
       "uploadDate": "2026-01-15T08:00:00+05:30",
+      "duration": "PT2M30S",
+      "inLanguage": "en-IN",
+      "regionsAllowed": ["IN", "AE", "US", "GB", "SG", "CA", "AU"],
+      "interactionStatistic": {
+        "@type": "InteractionCounter",
+        "interactionType": { "@type": "WatchAction" },
+        "userInteractionCount": 12500
+      },
       "contentUrl": "https://www.youtube.com/watch?v=6hsoYHelVXg",
       "embedUrl": "https://www.youtube.com/embed/6hsoYHelVXg",
       "publisher": {
@@ -966,8 +974,26 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
     <meta property="og:region" content="Maharashtra" />
     <meta property="og:postal-code" content="411045" />
     <meta property="og:country-name" content="India" />
+    <meta property="og:see_also" content="https://www.instagram.com/mantraproperties/" />
+    <meta property="og:see_also" content="https://www.facebook.com/mantraproperties/" />
+    <meta property="og:see_also" content="https://www.youtube.com/@MantraProperties" />
+    <meta property="og:see_also" content="https://www.linkedin.com/company/mantra-properties-pune/" />
+    <meta property="article:publisher" content="https://www.facebook.com/mantraproperties/" />
 
-    {/* Twitter */}
+    {/* Open Graph Video (YouTube Integration for WhatsApp, Facebook, LinkedIn previews) */}
+    <meta property="og:video" content="https://www.youtube.com/embed/6hsoYHelVXg" />
+    <meta property="og:video:secure_url" content="https://www.youtube.com/embed/6hsoYHelVXg" />
+    <meta property="og:video:type" content="text/html" />
+    <meta property="og:video:width" content="1280" />
+    <meta property="og:video:height" content="720" />
+
+    {/* Mobile AppLinks & In-App Browser Discovery */}
+    <meta property="al:web:url" content={computedCanonical} />
+    <meta property="al:android:url" content={computedCanonical} />
+    <meta property="al:ios:url" content={computedCanonical} />
+    <meta name="pinterest-rich-pin" content="true" />
+
+    {/* Twitter / X */}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@MantraProperties" />
     <meta name="twitter:creator" content="@MantraProperties" />
@@ -975,6 +1001,12 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={absoluteOgImage} />
     <meta name="twitter:image:alt" content="Mantra Meridian Riverside Balewadi Architecture" />
+    <meta name="twitter:player" content="https://www.youtube.com/embed/6hsoYHelVXg" />
+    <meta name="twitter:player:width" content="1280" />
+    <meta name="twitter:player:height" content="720" />
+
+    {/* W3C oEmbed Discovery for Discord, Slack, Reddit, LinkedIn, Teams */}
+    <link rel="alternate" type="application/json+oembed" href={`https://mantrameridianriverside.com/api/oembed.json?url=${encodeURIComponent(computedCanonical)}`} title="Mantra Meridian Riverside Balewadi oEmbed" />
 
     {/* Structured Data Schema — minified for page weight */}
     <script type="application/ld+json" is:inline set:html={JSON.stringify(unifiedSchema, null, 0)} />

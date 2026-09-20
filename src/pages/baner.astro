@@ -48,6 +48,32 @@ const banerSchema = {
         "latitude": 18.5848136,
         "longitude": 73.7751313
       }
+    },
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://mantrameridianriverside.com/baner/#listing",
+      "name": "Luxury Residences & Sky Duplexes — Mantra Meridian Riverside Baner-Balewadi",
+      "description": "Premium 2, 3, 4 BHK apartments and signature 3 BHK Sky Duplexes offering 8-acre sanctuary living 3 minutes from Balewadi High Street.",
+      "url": "https://mantrameridianriverside.com/baner/",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": 12900000,
+        "highPrice": 35000000,
+        "priceCurrency": "INR",
+        "offerCount": 4
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://mantrameridianriverside.com/baner/#faq",
+      "mainEntity": banerFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
     }
   ]
 };

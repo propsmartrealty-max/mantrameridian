@@ -339,15 +339,28 @@ export const hinjewadiKeywords: string[] = [
 // 10. Baner Luxury Corridor & Link Road Permutations
 export const banerKeywords: string[] = [
   "Baner luxury apartments Pune",
+  "flats in Baner Pune",
+  "apartments in Baner Pune",
+  "luxury flats in Baner",
+  "2 BHK flats in Baner Pune",
+  "3 BHK flats in Baner Pune",
+  "4 BHK luxury apartments Baner",
   "flats near Baner Balewadi link road",
   "luxury homes near Balewadi High Street Baner",
   "Mantra Meridian Baner connectivity",
+  "Mantra Properties Baner",
+  "Mantra Meridian Baner",
   "Baner vs Balewadi real estate comparison",
   "new residential projects in Baner Balewadi 2026",
+  "upcoming projects in Baner Pune",
   "Pancard Club Road luxury flats Pune",
   "premium 3 BHK 4 BHK Baner Balewadi corridor",
   "apartments near Jupiter Hospital Baner",
-  "gated community Baner Balewadi border"
+  "gated community Baner Balewadi border",
+  "Baner road luxury properties",
+  "flats near Mumbai Pune Expressway Baner",
+  "ready possession flats in Baner Balewadi",
+  "under construction luxury flats Baner"
 ];
 
 // 11. Mahalunge Hi-Tech City & Bridge Corridor Permutations
@@ -551,36 +564,57 @@ export const statutoryKeywordsList = [
 
 // Balewadi Micromarket Authority keyword builder
 export const balewadiKeywordsList = [
-  ...locationPermutations.slice(0, 6),
-  ...brandPermutations.slice(0, 6),
-  ...reputationPermutations.slice(0, 4),
+  ...brandPermutations.slice(0, 10),
+  ...locationPermutations.slice(0, 8),
+  ...reputationPermutations.slice(0, 6),
+  ...typologyPermutations.slice(0, 8),
   "Balewadi real estate",
   "flats in Balewadi Pune",
+  "apartments in Balewadi",
+  "2 BHK flats in Balewadi",
+  "3 BHK flats in Balewadi",
+  "4 BHK flats in Balewadi",
+  "luxury flats in Balewadi",
   "Balewadi High Street luxury apartments",
-  "best residential projects in Balewadi"
+  "best residential projects in Balewadi",
+  "flats near Balewadi sports complex",
+  "Mula riverfront apartments Balewadi",
+  "new launch in Balewadi 2026",
+  "Mantra Meridian Balewadi"
 ].join(", ");
 
 // West Pune Regional Intelligence keyword builder
 export const westPuneKeywordsList = [
-  ...reputationPermutations.slice(0, 4),
-  ...locationPermutations.slice(0, 6),
-  ...brandPermutations.slice(0, 6),
+  ...reputationPermutations.slice(0, 6),
+  ...locationPermutations.slice(0, 8),
+  ...brandPermutations.slice(0, 10),
+  "West Pune real estate",
   "West Pune luxury real estate corridor",
+  "best luxury projects in West Pune 2026",
+  "luxury apartments West Pune",
   "Balewadi vs Baner real estate",
   "flats near Hinjewadi Phase 1",
-  "luxury corridor West Pune"
+  "luxury corridor West Pune",
+  "Mantra Meridian West Pune",
+  "flats near Mumbai Pune Highway West Pune"
 ].join(", ");
 
 // Pune Real Estate Macro Market keyword builder
 export const puneRealEstateKeywordsList = [
   ...meridianKeywordEcosystem.investmentKeywords,
-  ...reputationPermutations.slice(0, 4),
-  ...pricingPermutations.slice(0, 4),
-  ...brandPermutations.slice(0, 6),
+  ...reputationPermutations.slice(0, 6),
+  ...pricingPermutations.slice(0, 6),
+  ...brandPermutations.slice(0, 10),
+  "Pune real estate",
   "Pune real estate market 2026",
   "luxury flats in Pune",
   "property investment Pune",
-  "riverfront property appreciation Pune"
+  "riverfront property appreciation Pune",
+  "top luxury projects in Pune",
+  "best builders in Pune",
+  "3 BHK luxury apartments Pune",
+  "4 BHK apartments Pune",
+  "Mantra Meridian Riverside Pune"
 ].join(", ");
 
 // All Residences Portfolio keyword builder
@@ -624,9 +658,12 @@ export const hinjewadiKeywordsList = [
 // Baner Luxury Corridor keyword builder
 export const banerKeywordsList = [
   ...banerKeywords,
-  ...brandPermutations.slice(0, 5),
+  ...brandPermutations.slice(0, 10),
+  "Baner real estate",
   "Baner Balewadi luxury apartments",
-  "Balewadi High Street Baner residences"
+  "Balewadi High Street Baner residences",
+  "luxury flats Baner Pune",
+  "Mantra Meridian Riverside Baner"
 ].join(", ");
 
 // Mahalunge Hi-Tech City Corridor keyword builder

@@ -135,12 +135,65 @@ const puneFaqs = [
     answer: "Yes. Mantra Meridian Riverside is fully approved for retail home mortgages by leading financial institutions including State Bank of India (SBI), HDFC Bank, ICICI Bank, Axis Bank, and Bank of Baroda with competitive rates starting from 8.5% p.a."
   }
 ];
+const puneRealEstateSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Report",
+      "@id": "https://mantrameridianriverside.com/pune-real-estate/#report",
+      "name": "Pune Real Estate Market Report & Luxury Investment Index (2026–2030)",
+      "headline": "The Pune Luxury Real Estate Benchmark & Market Index",
+      "description": "An exhaustive citywide analysis comparing micro-market yields, capital appreciation, infrastructure catalysts, and why Mantra Meridian Riverside in Balewadi has emerged as Pune’s definitive luxury residential asset.",
+      "url": "https://mantrameridianriverside.com/pune-real-estate/",
+      "about": {
+        "@type": "City",
+        "name": "Pune",
+        "sameAs": "https://en.wikipedia.org/wiki/Pune"
+      },
+      "author": {
+        "@id": "https://mantrameridianriverside.com/#organization"
+      },
+      "publisher": {
+        "@id": "https://mantrameridianriverside.com/#organization"
+      },
+      "datePublished": "2026-01-15T08:00:00+05:30",
+      "dateModified": "2026-09-20T20:00:00+05:30"
+    },
+    {
+      "@type": "RealEstateListing",
+      "@id": "https://mantrameridianriverside.com/pune-real-estate/#listing",
+      "name": "Mantra Meridian Riverside Luxury Apartments Pune",
+      "description": "2, 3, 4 BHK residences & 3 BHK Sky Duplexes along the Mula River in Balewadi, Pune.",
+      "url": "https://mantrameridianriverside.com/pune-real-estate/",
+      "offers": {
+        "@type": "AggregateOffer",
+        "lowPrice": 12900000,
+        "highPrice": 35000000,
+        "priceCurrency": "INR",
+        "offerCount": 4
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://mantrameridianriverside.com/pune-real-estate/#faq",
+      "mainEntity": puneFaqs.map((faq) => ({
+        "@type": "Question",
+        "name": faq.question,
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": faq.answer
+        }
+      }))
+    }
+  ]
+};
 ---
 
 <BaseLayout
   title="Pune Real Estate Market Report & Luxury Investment Index 2026–2030 | Mantra Meridian Riverside Balewadi"
   description="Authoritative Pune real estate market intelligence 2026–2030. Compare Balewadi, Baner, Kharadi, Hinjewadi & Koregaon Park. Why Mantra Meridian Riverside leads Pune luxury real estate."
   keywords={puneRealEstateKeywordsList}
+  customSchema={puneRealEstateSchema}
 >
   <div class="pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto space-y-16">
     

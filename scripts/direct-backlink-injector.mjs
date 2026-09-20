@@ -52,6 +52,14 @@ const RPC_PING_ENDPOINTS = [
   {
     name: 'Google Feedburner Ping',
     url: `https://feedburner.google.com/fb/a/pingSubmit?blogUrl=${encodeURIComponent(BASE_URL)}`
+  },
+  {
+    name: 'Google Sitemap Gateway',
+    url: `https://www.google.com/ping?sitemap=${encodeURIComponent(SITEMAP_INDEX)}`
+  },
+  {
+    name: 'Bing Sitemap Gateway',
+    url: `https://www.bing.com/ping?sitemap=${encodeURIComponent(SITEMAP_INDEX)}`
   }
 ];
 

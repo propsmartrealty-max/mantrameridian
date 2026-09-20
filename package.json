@@ -23,7 +23,8 @@
     "force:index": "node scripts/force-index.mjs",
     "syndicate:backlinks": "node scripts/syndicate-backlinks.mjs",
     "citations:generate": "node scripts/generate-directory-citations.mjs",
-    "inject:backlinks": "node scripts/direct-backlink-injector.mjs"
+    "inject:backlinks": "node scripts/direct-backlink-injector.mjs",
+    "broadcast:omnichannel": "node scripts/broadcast-omnichannel.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",

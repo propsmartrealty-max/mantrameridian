@@ -35,6 +35,8 @@ export const GET: APIRoute = async () => {
     <title><![CDATA[The Meridian Journal | Mantra Meridian Riverside Balewadi]]></title>
     <link>${siteUrl}/mantra-meridian-riverside/journal/</link>
     <atom:link href="${siteUrl}/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://pubsubhubbub.appspot.com/" rel="hub" />
+    <atom:link href="https://pubsubhubbub.superfeedr.com/" rel="hub" />
     <description><![CDATA[Architectural intelligence, Pune real estate market trends, micro-market analyses, and riparian luxury living guides from Mantra Meridian Riverside Balewadi.]]></description>
     <language>en-in</language>
     <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
