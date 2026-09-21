@@ -48,6 +48,7 @@ const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 // Core priority URLs representing the micro-markets and key typologies
 const HIGH_PRIORITY_URLS = [
   `${BASE_URL}/`,
+  `${BASE_URL}/properties/`,
   `${BASE_URL}/mantra-meridian-riverside/`,
   `${BASE_URL}/mantra-meridian-riverside-balewadi/`,
   `${BASE_URL}/balewadi/`,
@@ -168,6 +169,9 @@ async function broadcastGoogleIndexing() {
         });
         if (pubRes.ok || pubRes.status === 200) {
           acceptedCount++;
+        } else if (pubRes.status === 429) {
+          console.log(`   ℹ️ Google Indexing API daily quota (200 requests/day) reached for today.`);
+          break;
         }
         await sleep(150); // Respect Google API quotas
       } catch {}

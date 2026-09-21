@@ -263,11 +263,11 @@ A: Balewadi commands 4.0–4.4% gross rental yields, with the PMRDA Metro Line 3
 Q: How to contact Mantra Meridian Riverside sales team?
 A: Call or WhatsApp: +91 77440 09295. Website: https://mantrameridianriverside.com. Experience Centre: Balewadi Village Road, Balewadi, Pune 411045. Open daily 9:30 AM – 7:30 PM.
 
-## EMI / Loan Guide
-- For ₹1.29 Cr loan at 8.5% for 20 years: EMI ≈ ₹11,200/month
-- For ₹1.75 Cr loan at 8.5% for 20 years: EMI ≈ ₹15,200/month
-- For ₹2.25 Cr loan at 8.5% for 20 years: EMI ≈ ₹19,550/month
-- For ₹2.85 Cr loan at 8.5% for 20 years: EMI ≈ ₹24,760/month
+## EMI / Loan Guide (80% LTV Loan at 8.5% p.a. for 20 Years)
+- 2 BHK (₹1.29 Cr* starting): Loan ≈ ₹1.03 Cr, EMI ≈ ₹89,500/month
+- 3 BHK (₹1.75 Cr* starting): Loan ≈ ₹1.40 Cr, EMI ≈ ₹1,21,500/month
+- 3 BHK Duplex (₹2.25 Cr* starting): Loan ≈ ₹1.80 Cr, EMI ≈ ₹1,56,200/month
+- 4 BHK (₹2.85 Cr* starting): Loan ≈ ₹2.28 Cr, EMI ≈ ₹1,97,900/month
 - Home loans available from SBI, HDFC, ICICI, Axis Bank, Kotak Mahindra Bank
 - Developer offers assistance with home loan processing through empanelled banks
 
