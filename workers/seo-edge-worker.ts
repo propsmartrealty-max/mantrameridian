@@ -344,9 +344,6 @@ export default {
       const healedPath = pathname.replace(/riverride/g, 'riverside');
       return Response.redirect(`${url.origin}${healedPath}${url.search}`, 301);
     }
-    if (!isStatic && (pathname === '/mantra-meridian-riverside-balewadi' || pathname === '/mantra-meridian-riverside-balewadi/')) {
-      return Response.redirect(`${url.origin}/${url.search}`, 301);
-    }
     if (!isStatic && (pathname === '/meridian-mantra-balewadi' || pathname === '/meridian-mantra-balewadi/')) {
       return Response.redirect(`${url.origin}/mantra-meridian-balewadi/${url.search}`, 301);
     }

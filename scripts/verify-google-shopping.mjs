@@ -84,22 +84,26 @@ const duplexContent = fs.readFileSync(DUPLEX_PAGE, 'utf8');
 assert(duplexContent.includes('"Product"'), 'duplex.astro declares Product schema');
 assert(duplexContent.includes('aggregateRatingData.ratingValue'), 'duplex.astro binds 5-star aggregateRating');
 assert(duplexContent.includes('"shippingDetails"'), 'duplex.astro includes OfferShippingDetails');
+assert(duplexContent.includes('"deliveryTime"'), 'duplex.astro includes deliveryTime under shippingDetails');
 assert(duplexContent.includes('"validFrom": "2025-01-01"'), 'duplex.astro includes validFrom in offers');
 
 const penthouseContent = fs.readFileSync(PENTHOUSE_PAGE, 'utf8');
 assert(penthouseContent.includes('"Product"'), 'penthouse.astro declares Product schema');
 assert(penthouseContent.includes('aggregateRatingData.ratingValue'), 'penthouse.astro binds 5-star aggregateRating');
 assert(penthouseContent.includes('"shippingDetails"'), 'penthouse.astro includes OfferShippingDetails');
+assert(penthouseContent.includes('"deliveryTime"'), 'penthouse.astro includes deliveryTime under shippingDetails');
 assert(penthouseContent.includes('"validFrom": "2025-01-01"'), 'penthouse.astro includes validFrom in offers');
 
 const priceContent = fs.readFileSync(PRICE_PAGE, 'utf8');
 assert(priceContent.includes('"Product"'), 'price.astro declares Product pricing schema');
 assert(priceContent.includes('aggregateRatingData.ratingValue'), 'price.astro binds 5-star aggregateRating');
 assert(priceContent.includes('"shippingDetails"'), 'price.astro includes OfferShippingDetails');
+assert(priceContent.includes('"deliveryTime"'), 'price.astro includes deliveryTime under shippingDetails');
 assert(priceContent.includes('"validFrom": "2025-01-01"'), 'price.astro includes validFrom in offers');
 
 const detailContent = fs.readFileSync(DETAIL_VIEW, 'utf8');
 assert(detailContent.includes('"shippingDetails"'), 'ResidenceDetailView includes OfferShippingDetails');
+assert(detailContent.includes('"deliveryTime"'), 'ResidenceDetailView includes deliveryTime under shippingDetails');
 assert(detailContent.includes('"hasMerchantReturnPolicy"'), 'ResidenceDetailView includes MerchantReturnPolicy');
 assert(detailContent.includes('"validFrom": "2025-01-01"'), 'ResidenceDetailView includes validFrom in offers');
 
