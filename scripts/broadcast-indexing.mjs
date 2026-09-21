@@ -149,6 +149,9 @@ async function broadcastUnifiedIndexing() {
         if (res.ok) {
           googleSuccessCount++;
           process.stdout.write(`\r   Broadcasting to Google: [${googleSuccessCount}/${urlList.length}] URLs accepted (200 OK)`);
+        } else if (res.status === 429) {
+          console.log(`\n   ℹ️ Google Indexing API daily publish quota reached (200 requests/day). All canonical URLs and sitemaps remain submitted via IndexNow & Sitemaps.`);
+          break;
         }
         if (i < urlList.length - 1) await new Promise((r) => setTimeout(r, 100));
       }
