@@ -334,15 +334,11 @@ export default {
       return Response.redirect(`${url.origin}${targetPath}${url.search}`, 301);
     }
 
-    // 2C. Trailing slash enforcement for directory routes
-    if (!isStatic && !pathname.endsWith('/')) {
-      return Response.redirect(`${url.origin}${pathname}/${url.search}`, 301);
-    }
-
-    // 2D. Major Search Query Permutation & Phonetic Typo Normalizer (301 Permanent Redirects)
+    // 2C. Major Search Query Permutation & Phonetic Typo Normalizer (301 Permanent Redirects)
     if (!isStatic && pathname.includes('riverride')) {
       const healedPath = pathname.replace(/riverride/g, 'riverside');
-      return Response.redirect(`${url.origin}${healedPath}${url.search}`, 301);
+      const targetPath = healedPath.endsWith('/') ? healedPath : `${healedPath}/`;
+      return Response.redirect(`${url.origin}${targetPath}${url.search}`, 301);
     }
     if (!isStatic && (pathname === '/meridian-mantra-balewadi' || pathname === '/meridian-mantra-balewadi/')) {
       return Response.redirect(`${url.origin}/mantra-meridian-balewadi/${url.search}`, 301);
@@ -364,6 +360,11 @@ export default {
     }
     if (!isStatic && (pathname === '/balewadi-mantra' || pathname === '/balewadi-mantra/')) {
       return Response.redirect(`${url.origin}/mantra-balewadi/${url.search}`, 301);
+    }
+
+    // 2D. Trailing slash enforcement for directory routes
+    if (!isStatic && !pathname.endsWith('/')) {
+      return Response.redirect(`${url.origin}${pathname}/${url.search}`, 301);
     }
 
     // 2E. Dynamic Googlebot & Verified Search Crawler Crawl Budget Protection

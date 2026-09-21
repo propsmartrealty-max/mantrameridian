@@ -221,6 +221,24 @@ await runAsyncTest('Edge Canonical 301 enforces trailing slash on directory rout
   assert.equal(res.headers.get('Location'), 'https://mantrameridianriverside.com/balewadi/');
 });
 
+await runAsyncTest('Edge Permutation 301 redirects brand queries in 1 single hop with trailing slash', async () => {
+  // Test both with and without trailing slash
+  const req1 = new Request('https://mantrameridianriverside.com/meridian-mantra-balewadi');
+  const res1 = await worker.fetch(req1, {}, mockCtx);
+  assert.equal(res1.status, 301);
+  assert.equal(res1.headers.get('Location'), 'https://mantrameridianriverside.com/mantra-meridian-balewadi/');
+
+  const req2 = new Request('https://mantrameridianriverside.com/meridian-mantra-balewadi/');
+  const res2 = await worker.fetch(req2, {}, mockCtx);
+  assert.equal(res2.status, 301);
+  assert.equal(res2.headers.get('Location'), 'https://mantrameridianriverside.com/mantra-meridian-balewadi/');
+
+  const reqTypo = new Request('https://mantrameridianriverside.com/mantra-meridian-riverride-balewadi');
+  const resTypo = await worker.fetch(reqTypo, {}, mockCtx);
+  assert.equal(resTypo.status, 301);
+  assert.equal(resTypo.headers.get('Location'), 'https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/');
+});
+
 // -----------------------------------------------------------------------------
 // 6. White Bot Optimization & Cookie Isolation Tests
 // -----------------------------------------------------------------------------
