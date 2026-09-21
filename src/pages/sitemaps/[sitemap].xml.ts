@@ -1,7 +1,17 @@
 import type { APIRoute } from 'astro';
 import { getAllProgrammaticSlugs } from '../../data/programmatic-seo-matrix';
 
-export const prerender = false;
+export const prerender = true;
+
+export function getStaticPaths() {
+  return [
+    { params: { sitemap: 'properties-1' } },
+    { params: { sitemap: 'properties-2' } },
+    { params: { sitemap: 'properties-3' } },
+    { params: { sitemap: 'properties-4' } },
+    { params: { sitemap: 'properties-5' } },
+  ];
+}
 
 const PAGE_SIZE = 1000;
 

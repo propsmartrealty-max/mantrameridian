@@ -330,7 +330,8 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
           'price': foundTyp.numericPrice,
           'priceCurrency': 'INR',
           'availability': 'https://schema.org/InStock',
-          'validFrom': '2026-01-01',
+          'validFrom': '2025-01-01',
+          'priceValidUntil': '2028-06-30',
           'priceSpecification': {
             '@type': 'PriceSpecification',
             'price': foundTyp.numericPrice,
@@ -356,10 +357,34 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
         },
         'offers': {
           '@type': 'Offer',
+          'url': canonicalUrl,
           'price': foundTyp.numericPrice,
           'priceCurrency': 'INR',
           'availability': 'https://schema.org/InStock',
-          'url': canonicalUrl
+          'itemCondition': 'https://schema.org/NewCondition',
+          'validFrom': '2025-01-01',
+          'priceValidUntil': '2028-06-30',
+          'seller': {
+            '@type': 'RealEstateAgent',
+            'name': 'Mantra Meridian Riverside',
+            'url': 'https://mantrameridianriverside.com/'
+          },
+          'hasMerchantReturnPolicy': {
+            '@type': 'MerchantReturnPolicy',
+            'applicableCountry': 'IN',
+            'returnPolicyCategory': 'https://schema.org/MerchantReturnNotPermitted',
+            'merchantReturnLink': 'https://mantrameridianriverside.com/terms/'
+          },
+          'shippingDetails': {
+            '@type': 'OfferShippingDetails',
+            'shippingRate': { '@type': 'MonetaryAmount', 'value': '0', 'currency': 'INR' },
+            'shippingDestination': { '@type': 'DefinedRegion', 'addressCountry': 'IN' },
+            'deliveryTime': {
+              '@type': 'ShippingDeliveryTime',
+              'handlingTime': { '@type': 'QuantitativeValue', 'minValue': 0, 'maxValue': 0, 'unitCode': 'DAY' },
+              'transitTime': { '@type': 'QuantitativeValue', 'minValue': 0, 'maxValue': 0, 'unitCode': 'DAY' }
+            }
+          }
         }
       },
       {

@@ -22,6 +22,7 @@
     "/google-products.xml",
     "/google-realestate.xml",
     "/news-sitemap.xml",
+    "/sitemaps/*",
     "/.well-known/*",
     "/llms.txt",
     "/llms-full.txt",
