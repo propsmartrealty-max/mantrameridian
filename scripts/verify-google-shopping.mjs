@@ -77,26 +77,31 @@ assert(baseLayoutContent.includes('"@type": "AggregateRating"'), 'BaseLayout inc
 assert(baseLayoutContent.includes('"ratingValue": aggregateRatingData.ratingValue'), 'BaseLayout binds 4.9 star ratingValue');
 assert(baseLayoutContent.includes('"hasMerchantReturnPolicy"'), 'BaseLayout Product offer has MerchantReturnPolicy');
 assert(baseLayoutContent.includes('"shippingDetails"'), 'BaseLayout Product offer has OfferShippingDetails');
+assert(baseLayoutContent.includes('"validFrom": "2025-01-01"'), 'BaseLayout Product offer has validFrom');
 
 // 6. Typology Pages Rich Snippet & Product Hardening
 const duplexContent = fs.readFileSync(DUPLEX_PAGE, 'utf8');
 assert(duplexContent.includes('"Product"'), 'duplex.astro declares Product schema');
 assert(duplexContent.includes('aggregateRatingData.ratingValue'), 'duplex.astro binds 5-star aggregateRating');
 assert(duplexContent.includes('"shippingDetails"'), 'duplex.astro includes OfferShippingDetails');
+assert(duplexContent.includes('"validFrom": "2025-01-01"'), 'duplex.astro includes validFrom in offers');
 
 const penthouseContent = fs.readFileSync(PENTHOUSE_PAGE, 'utf8');
 assert(penthouseContent.includes('"Product"'), 'penthouse.astro declares Product schema');
 assert(penthouseContent.includes('aggregateRatingData.ratingValue'), 'penthouse.astro binds 5-star aggregateRating');
 assert(penthouseContent.includes('"shippingDetails"'), 'penthouse.astro includes OfferShippingDetails');
+assert(penthouseContent.includes('"validFrom": "2025-01-01"'), 'penthouse.astro includes validFrom in offers');
 
 const priceContent = fs.readFileSync(PRICE_PAGE, 'utf8');
 assert(priceContent.includes('"Product"'), 'price.astro declares Product pricing schema');
 assert(priceContent.includes('aggregateRatingData.ratingValue'), 'price.astro binds 5-star aggregateRating');
 assert(priceContent.includes('"shippingDetails"'), 'price.astro includes OfferShippingDetails');
+assert(priceContent.includes('"validFrom": "2025-01-01"'), 'price.astro includes validFrom in offers');
 
 const detailContent = fs.readFileSync(DETAIL_VIEW, 'utf8');
 assert(detailContent.includes('"shippingDetails"'), 'ResidenceDetailView includes OfferShippingDetails');
 assert(detailContent.includes('"hasMerchantReturnPolicy"'), 'ResidenceDetailView includes MerchantReturnPolicy');
+assert(detailContent.includes('"validFrom": "2025-01-01"'), 'ResidenceDetailView includes validFrom in offers');
 
 console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
 console.log(`🏁 GOOGLE SHOPPING & 5-STAR SNIPPET VALIDATION: ${passedTests}/${totalTests} TESTS PASSED`);

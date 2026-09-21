@@ -39,6 +39,8 @@ const residencesCatalogSchema = {
             "@type": "Offer",
             "price": res.slug === '2-bhk' ? '12900000' : res.slug === '3-bhk' ? '17500000' : res.slug === '3-bhk-duplex' ? '22500000' : '28500000',
             "priceCurrency": "INR",
+            "validFrom": "2025-01-01",
+            "priceValidUntil": "2028-06-30",
             "availability": "https://schema.org/InStock",
             "url": `https://mantrameridianriverside.com/mantra-meridian-riverside/${res.slug}/`
           }
