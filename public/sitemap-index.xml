@@ -33,6 +33,27 @@
   <!-- Google News Sitemap: Journal articles -->
   <sitemap>
     <loc>https://mantrameridianriverside.com/news-sitemap.xml</loc>
-    <lastmod>2026-09-20</lastmod>
+    <lastmod>2026-09-21</lastmod>
+  </sitemap>
+  <!-- Programmatic Real Estate Sitemaps: 5,000 Micro-Market Pages -->
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/sitemaps/properties-1.xml</loc>
+    <lastmod>2026-09-21</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/sitemaps/properties-2.xml</loc>
+    <lastmod>2026-09-21</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/sitemaps/properties-3.xml</loc>
+    <lastmod>2026-09-21</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/sitemaps/properties-4.xml</loc>
+    <lastmod>2026-09-21</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://mantrameridianriverside.com/sitemaps/properties-5.xml</loc>
+    <lastmod>2026-09-21</lastmod>
   </sitemap>
 </sitemapindex>

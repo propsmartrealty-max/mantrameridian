@@ -36,6 +36,25 @@ if (!locMatches || locMatches.length === 0) {
 
 const urlList = locMatches.map((loc) => loc.replace(/<\/?loc>/g, '').trim());
 
+const PROGRAMMATIC_PRIORITY_URLS = [
+  'https://mantrameridianriverside.com/properties/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-2-bhk-flats-balewadi-price-cost-sheet/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-3-bhk-apartments-balewadi-high-street-price-cost-sheet/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-3-bhk-sky-duplex-balewadi-floor-plans-carpet-area/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-4-bhk-luxury-estates-baner-price-cost-sheet/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-penthouse-sky-villas-west-pune-8-acre-masterplan-amenities/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-riverfront-apartments-mula-river-promenade-riverfront-view-apartments/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-double-height-living-balewadi-sample-flat-video-tour/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-2-bhk-flats-hinjewadi-phase-1-rental-yield-tech-executives/',
+  'https://mantrameridianriverside.com/properties/mantra-meridian-riverside-3-bhk-apartments-mahalunge-capital-appreciation-forecast/'
+];
+
+for (const pUrl of PROGRAMMATIC_PRIORITY_URLS) {
+  if (!urlList.includes(pUrl)) {
+    urlList.push(pUrl);
+  }
+}
+
 function base64UrlEncode(str) {
   return Buffer.from(str)
     .toString('base64')

@@ -144,6 +144,7 @@ export function generateBreadcrumbJsonLd(pathname: string): string {
     'mantra-riverside-balewadi': 'Mantra Riverside Balewadi',
     'mantra-meridian-balewadi': 'Mantra Meridian Balewadi',
     'mantra-meridian-riverside': 'Mantra Meridian Riverside',
+    'properties': 'Residences Directory',
     'residences': 'Residences & Typologies',
     '2-bhk': '2 BHK Residences',
     '3-bhk': '3 BHK Residences',
@@ -735,6 +736,7 @@ export default {
       if (pathname.includes('riverside')) routeTag = 'mantra-riverside';
       else if (pathname.includes('balewadi')) routeTag = 'mantra-balewadi';
       else if (pathname.includes('meridian')) routeTag = 'mantra-meridian';
+      else if (pathname.includes('properties')) routeTag = 'mantra-properties-programmatic';
       else if (pathname.includes('price')) routeTag = 'mantra-pricing';
 
       response.headers.set(

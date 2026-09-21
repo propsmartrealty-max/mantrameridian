@@ -243,5 +243,10 @@ Sitemap: https://mantrameridianriverside.com/rss.xml
 Sitemap: https://mantrameridianriverside.com/google-products.xml
 Sitemap: https://mantrameridianriverside.com/google-realestate.xml
 Sitemap: https://mantrameridianriverside.com/news-sitemap.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-1.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-2.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-3.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-4.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-5.xml
 # LLM Knowledge Monograph: https://mantrameridianriverside.com/llms.txt
 # LLM Full Monograph: https://mantrameridianriverside.com/llms-full.txt
