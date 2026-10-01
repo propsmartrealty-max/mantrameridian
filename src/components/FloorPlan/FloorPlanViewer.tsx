@@ -116,7 +116,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-0">
         
         {/* Blueprint/Image Canvas (Cols 1-8) */}
-        <div className="lg:col-span-8 p-6 md:p-10 bg-[#090a09] relative flex flex-col items-center justify-center min-h-[480px] md:min-h-[580px] border-b lg:border-b-0 lg:border-r border-white/10">
+        <div className="lg:col-span-8 p-6 md:p-10 bg-[#F5F0EB] relative flex flex-col items-center justify-center min-h-[480px] md:min-h-[580px] border-b lg:border-b-0 lg:border-r border-white/10">
           
           {/* Compass and Watermark */}
           <div className="absolute top-6 left-6 flex items-center gap-2 text-concrete/50 text-xs tracking-widest font-mono uppercase">

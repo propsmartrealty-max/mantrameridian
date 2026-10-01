@@ -49,7 +49,7 @@ export default function MasterplanExplorer() {
       <div className="grid grid-cols-1 lg:grid-cols-12">
         
         {/* SVG Masterplan Blueprint Canvas (Cols 1-8) */}
-        <div className="lg:col-span-8 p-6 md:p-10 bg-[#090b09] relative flex flex-col items-center justify-center min-h-[460px] md:min-h-[560px] border-b lg:border-b-0 lg:border-r border-white/10">
+        <div className="lg:col-span-8 p-6 md:p-10 bg-[#F5F0EB] relative flex flex-col items-center justify-center min-h-[460px] md:min-h-[560px] border-b lg:border-b-0 lg:border-r border-white/10">
           
           {/* River Buffer Direction Indicator at Top */}
           <div className="w-full max-w-2xl bg-gradient-to-r from-blue-950/30 via-emerald-950/40 to-blue-950/30 border border-champagne/20 py-2.5 px-4 mb-4 flex items-center justify-between text-xs text-champagne tracking-widest font-mono">

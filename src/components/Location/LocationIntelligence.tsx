@@ -75,8 +75,8 @@ export default function LocationIntelligence() {
       {activeTab === 'map' ? (
         <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[560px]">
           
-          {/* Dark Schematic Radar Map (Cols 1-7) */}
-          <div className="lg:col-span-7 p-6 md:p-8 bg-[#090a09] relative flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
+          {/* Radar Map (Cols 1-7) */}
+          <div className="lg:col-span-7 p-6 md:p-8 bg-[#F5F0EB] relative flex flex-col items-center justify-center border-b lg:border-b-0 lg:border-r border-white/10">
             
             {/* Compass / Watermark */}
             <div className="absolute top-6 left-6 text-[10px] text-concrete/50 font-mono tracking-widest uppercase">

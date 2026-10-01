@@ -113,23 +113,23 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
     <div className="fixed inset-0 z-50 flex items-center justify-end">
       {/* Dimmed backdrop with blur */}
       <div 
-        className="fixed inset-0 bg-black/80 backdrop-blur-md transition-opacity duration-500"
+        className="fixed inset-0 bg-black/45 backdrop-blur-sm transition-opacity duration-500"
         onClick={closeDrawer}
       />
 
       {/* Slide-in luxury drawer panel */}
-      <div className="relative z-10 h-full w-full max-w-lg bg-obsidian-deep/98 backdrop-blur-3xl border-l border-champagne/35 p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-[0_0_60px_rgba(0,0,0,0.95),-10px_0_30px_rgba(223,183,90,0.12)]">
+      <div className="relative z-10 h-full w-full max-w-lg bg-[#FAF7F2] border-l border-[#DDD2C2] p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-[0_0_60px_rgba(40,30,20,0.2)]">
         
         {/* Header */}
         <div>
-          <div className="flex items-center justify-between pb-4 border-b border-white/10">
+          <div className="flex items-center justify-between pb-4 border-b border-[#E5DACB]">
             <div>
               <span className="label-architectural text-[10px] tracking-luxury text-champagne">PRIVATE CONCIERGE</span>
               <h2 className="font-serif text-xl md:text-2xl text-architectural-white mt-1">Request a Presentation</h2>
             </div>
             <button 
               onClick={closeDrawer}
-              className="p-2 rounded-full border border-white/10 text-concrete hover:text-architectural-white hover:border-champagne/40 transition-colors"
+              className="p-2 rounded-full border border-[#DDD2C2] text-concrete hover:text-architectural-white hover:border-champagne/60 transition-colors"
               aria-label="Close presentation drawer"
             >
               <X className="w-4 h-4" />
@@ -143,7 +143,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                 <div 
                   key={idx} 
                   className={`h-0.5 flex-1 transition-all duration-500 ${
-                    step >= idx ? 'bg-champagne shadow-[0_0_8px_rgba(223,183,90,0.6)]' : 'bg-white/10'
+                    step >= idx ? 'bg-champagne shadow-[0_0_8px_rgba(160,122,37,0.4)]' : 'bg-[#DDD2C2]'
                   }`}
                 />
               ))}
@@ -167,8 +167,8 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     onClick={() => setSelectedResidence(res.label)}
                     className={`w-full text-left py-2.5 px-3.5 rounded border transition-all duration-300 flex items-center justify-between ${
                       selectedResidence === res.label
-                        ? 'border-champagne bg-champagne/20 text-architectural-white shadow-[0_0_15px_rgba(223,183,90,0.25)] scale-[1.01]'
-                        : 'border-white/10 bg-obsidian-card/60 text-concrete hover:border-champagne/40 hover:text-architectural-white'
+                        ? 'border-champagne bg-champagne/15 text-[#161412] shadow-sm scale-[1.01]'
+                        : 'border-[#E0D5C5] bg-white text-[#464038] hover:border-champagne/60 hover:bg-[#FBF8F4]'
                     }`}
                   >
                     <div>
@@ -210,8 +210,8 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     onClick={() => setSelectedIntent(intent.label)}
                     className={`w-full text-left py-2.5 px-3.5 rounded border transition-all duration-300 flex items-center justify-between ${
                       selectedIntent === intent.label
-                        ? 'border-champagne bg-champagne/20 text-architectural-white shadow-[0_0_15px_rgba(223,183,90,0.25)] scale-[1.01]'
-                        : 'border-white/10 bg-obsidian-card/60 text-concrete hover:border-champagne/40 hover:text-architectural-white'
+                        ? 'border-champagne bg-champagne/15 text-[#161412] shadow-sm scale-[1.01]'
+                        : 'border-[#E0D5C5] bg-white text-[#464038] hover:border-champagne/60 hover:bg-[#FBF8F4]'
                     }`}
                   >
                     <div>
@@ -229,7 +229,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="py-2.5 px-4 text-xs tracking-wider uppercase font-medium border border-champagne/40 text-architectural-white hover:bg-champagne/10 flex-1 transition-colors rounded"
+                  className="py-2.5 px-4 text-xs tracking-wider uppercase font-medium border border-[#DDD2C2] text-[#161412] hover:bg-[#F2ECE1] flex-1 transition-colors rounded"
                 >
                   PREVIOUS
                 </button>
@@ -254,14 +254,14 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                   <button 
                     type="button" 
                     onClick={() => setStep(2)} 
-                    className="text-xs text-champagne hover:underline tracking-widest uppercase"
+                    className="text-xs text-champagne hover:underline tracking-widest uppercase font-semibold"
                   >
                     Back
                   </button>
                 </div>
                 <h3 className="font-serif text-xl md:text-2xl text-architectural-white mt-1">Confidential Information</h3>
                 <p className="text-xs text-concrete mt-1">
-                  Selected: <span className="text-champagne font-medium">{selectedResidence}</span> • <span className="text-champagne font-medium">{selectedIntent}</span>
+                  Selected: <span className="text-champagne font-semibold">{selectedResidence}</span> • <span className="text-champagne font-semibold">{selectedIntent}</span>
                 </p>
               </div>
 
@@ -287,7 +287,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     value={fullName}
                     onChange={(e) => setFullName(e.target.value)}
                     placeholder="e.g. Vikram Malhotra"
-                    className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
+                    className="w-full bg-white border border-[#DDD2C2] px-3.5 py-2 text-[#161412] text-xs focus:outline-none focus:border-champagne transition-colors rounded"
                   />
                 </div>
 
@@ -296,7 +296,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     Mobile Number *
                   </label>
                   <div className="flex">
-                    <span className="inline-flex items-center px-2.5 border border-r-0 border-white/10 bg-obsidian text-concrete text-xs font-mono">
+                    <span className="inline-flex items-center px-2.5 border border-r-0 border-[#DDD2C2] bg-[#F2ECE1] text-[#464038] text-xs font-mono rounded-l">
                       +91
                     </span>
                     <input
@@ -305,7 +305,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="98230 12345"
-                      className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
+                      className="w-full bg-white border border-[#DDD2C2] px-3.5 py-2 text-[#161412] text-xs focus:outline-none focus:border-champagne transition-colors rounded-r"
                     />
                   </div>
                 </div>
@@ -319,7 +319,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="Enter email address (optional)"
-                    className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
+                    className="w-full bg-white border border-[#DDD2C2] px-3.5 py-2 text-[#161412] text-xs focus:outline-none focus:border-champagne transition-colors rounded"
                   />
                 </div>
 
@@ -330,7 +330,7 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                   <select
                     value={preferredSlot}
                     onChange={(e) => setPreferredSlot(e.target.value)}
-                    className="w-full bg-obsidian-surface border border-white/10 px-3.5 py-2 text-architectural-white text-xs focus:outline-none focus:border-champagne transition-colors"
+                    className="w-full bg-white border border-[#DDD2C2] px-3.5 py-2 text-[#161412] text-xs focus:outline-none focus:border-champagne transition-colors rounded"
                   >
                     <option value="Morning (10am – 1pm)">Morning (10:00 AM – 01:00 PM)</option>
                     <option value="Afternoon (1pm – 5pm)">Afternoon (01:00 PM – 05:00 PM)</option>
