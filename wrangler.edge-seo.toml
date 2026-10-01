@@ -1,0 +1,32 @@
+# Standalone Cloudflare Edge SEO Worker Configuration
+# Deploy via: npx wrangler deploy -c wrangler.edge-seo.toml
+
+name = "mantra-meridian-edge-seo"
+main = "./workers/seo-edge-worker.ts"
+compatibility_date = "2025-02-01"
+compatibility_flags = ["nodejs_compat"]
+
+routes = [
+  { pattern = "mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" },
+  { pattern = "www.mantrameridianriverside.com/*", zone_name = "mantrameridianriverside.com" }
+]
+
+[assets]
+binding = "ASSETS"
+directory = "./dist"
+
+[observability]
+enabled = true
+
+[placement]
+mode = "smart"
+
+[triggers]
+crons = ["0 2 * * *"]
+
+[vars]
+PROJECT_NAME = "Mantra Meridian Riverside"
+PROJECT_RERA = "P52100045688"
+PROJECT_LOCATION = "Balewadi, Pune"
+CANONICAL_URL = "https://mantrameridianriverside.com"
+ORIGIN_URL = "https://mantrameridianriverside.com"
