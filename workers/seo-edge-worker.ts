@@ -435,7 +435,13 @@ export default {
       return Response.redirect(`${url.origin}/mantra-balewadi/${url.search}`, 301);
     }
 
-    // 2D. Trailing slash enforcement for directory routes
+    // 2D. File extension trailing slash stripper (e.g. .xml/, .json/, .txt/ -> .xml, .json, .txt)
+    if (/\.[a-zA-Z0-9]+\/$/.test(pathname)) {
+      const stripped = pathname.slice(0, -1);
+      return Response.redirect(`${url.origin}${stripped}${url.search}`, 301);
+    }
+
+    // 2E. Trailing slash enforcement for directory routes
     if (!isStatic && !pathname.endsWith('/')) {
       return Response.redirect(`${url.origin}${pathname}/${url.search}`, 301);
     }

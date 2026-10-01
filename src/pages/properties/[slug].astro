@@ -17,8 +17,8 @@ if (!data) {
   return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
-// Edge caching headers for Cloudflare Cache API (caches.default)
-Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800');
+// Edge caching headers for Cloudflare Cache API (caches.default) with 30-day resilience
+Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800, stale-if-error=2592000');
 Astro.response.headers.set('Cache-Tag', 'mantra-properties-programmatic, html-pages, mantra-meridian');
 Astro.response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1');
 ---

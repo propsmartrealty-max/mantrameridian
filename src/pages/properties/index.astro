@@ -1,12 +1,51 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Breadcrumbs from '../../components/Navigation/Breadcrumbs.astro';
-import { TYPOLOGIES, LOCATIONS, TOTAL_PROGRAMMATIC_PAGES } from '../../data/programmatic-seo-matrix';
+import { TYPOLOGIES, LOCATIONS, INTENTS, TOTAL_PROGRAMMATIC_PAGES, buildProgrammaticSlug } from '../../data/programmatic-seo-matrix';
 
 export const prerender = true;
 
 const title = "Mantra Meridian Riverside Residences Directory | 5,000 Verified Real Estate Intelligence Portals";
 const description = `Access the complete real estate intelligence directory for Mantra Meridian Riverside Balewadi. Explore 5,000 verified configurations, cost sheets, floor plans, and micro-market transit guides across West Pune.`;
+
+// Curated high-intent featured micro-market portals for immediate search crawl discovery
+const featuredPortals = [
+  // 2 BHK Hubs
+  { typIdx: 0, locIdx: 0, intIdx: 0, label: '2 BHK in Balewadi — Price Breakdown & Cost Sheet' },
+  { typIdx: 0, locIdx: 1, intIdx: 1, label: '2 BHK near Balewadi High Street — Floor Plans & Carpet' },
+  { typIdx: 0, locIdx: 6, intIdx: 5, label: '2 BHK near Hinjewadi Phase 1 — Payment Schedule & Bank Loan' },
+  { typIdx: 0, locIdx: 9, intIdx: 8, label: '2 BHK near Mahalunge Hi-Tech City — Investment Forecast' },
+  { typIdx: 0, locIdx: 11, intIdx: 0, label: '2 BHK near Wakad Millennium Corridor — Price Cost Sheet' },
+  
+  // 3 BHK Hubs
+  { typIdx: 1, locIdx: 0, intIdx: 0, label: '3 BHK in Balewadi — Price Breakdown & Cost Sheet' },
+  { typIdx: 1, locIdx: 1, intIdx: 1, label: '3 BHK near Balewadi High Street — Floor Plans & Carpet' },
+  { typIdx: 1, locIdx: 3, intIdx: 2, label: '3 BHK near Baner Luxury Enclave — MahaRERA & Possession' },
+  { typIdx: 1, locIdx: 6, intIdx: 7, label: '3 BHK near Hinjewadi IT Park — Booking Concierge Desk' },
+  { typIdx: 1, locIdx: 19, intIdx: 12, label: '3 BHK along Mula River Boardwalk — River-Facing Units' },
+
+  // 3 BHK Sky Duplex Hubs
+  { typIdx: 2, locIdx: 0, intIdx: 3, label: '3 BHK Sky Duplex in Balewadi — Sample Flat 3D Video Tour' },
+  { typIdx: 2, locIdx: 1, intIdx: 11, label: '3 BHK Sky Duplex near Balewadi High Street — Italian Marble Specs' },
+  { typIdx: 2, locIdx: 3, intIdx: 0, label: '3 BHK Sky Duplex near Baner — Pricing & Cost Sheet' },
+  { typIdx: 2, locIdx: 11, intIdx: 13, label: '3 BHK Sky Duplex near Wakad — Vastu Sanctioned Layouts' },
+  { typIdx: 2, locIdx: 19, intIdx: 12, label: '3 BHK Sky Duplex with River Promenade Deck — 20ft Ceilings' },
+
+  // 4 BHK Grand Estates Hubs
+  { typIdx: 3, locIdx: 0, intIdx: 0, label: '4 BHK Grand Estates in Balewadi — Pricing Schedule' },
+  { typIdx: 3, locIdx: 1, intIdx: 14, label: '4 BHK Grand Estates near High Street — Biometric Security & Private Foyer' },
+  { typIdx: 3, locIdx: 3, intIdx: 1, label: '4 BHK Grand Estates near Baner — Sanctioned Blueprints' },
+  { typIdx: 3, locIdx: 17, intIdx: 8, label: '4 BHK Grand Estates in West Pune — Capital Appreciation 2026-2030' },
+
+  // Penthouse & Sky Villa Hubs
+  { typIdx: 4, locIdx: 0, intIdx: 12, label: 'Penthouse & Sky Villas in Balewadi — 270° Riparian River Views' },
+  { typIdx: 4, locIdx: 3, intIdx: 11, label: 'Penthouse & Sky Villas near Baner — Ultra-Luxury Marble & Decks' },
+  { typIdx: 4, locIdx: 16, intIdx: 16, label: 'Penthouse Collection for NRI Investors — Dual-Currency Wealth Desk' },
+  { typIdx: 4, locIdx: 17, intIdx: 0, label: 'West Pune Crown Sky Villas — Launch Pricing & Allocations' }
+].map((item) => ({
+  slug: buildProgrammaticSlug(item.typIdx, item.locIdx, item.intIdx),
+  label: item.label
+}));
 
 const propertiesSchema = {
   "@context": "https://schema.org",
@@ -80,6 +119,31 @@ const propertiesSchema = {
             <div class="text-[11px] font-mono text-champagne">{loc.distanceFromSite}</div>
             <div class="text-[10px] text-concrete/60 font-mono">{loc.travelTime} drive</div>
           </div>
+        ))}
+      </div>
+    </section>
+
+    {/* Featured High-Intent Micro-Market Portals */}
+    <section class="space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">FEATURED INTELLIGENCE RADARS</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Featured Micro-Market Portals</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {featuredPortals.map((portal) => (
+          <a
+            href={`/properties/${portal.slug}/`}
+            class="p-4 bg-obsidian-surface border border-white/10 hover:border-champagne/60 rounded transition-all group flex flex-col justify-between"
+          >
+            <span class="font-serif text-sm text-architectural-white group-hover:text-champagne transition-colors">
+              {portal.label}
+            </span>
+            <span class="text-[10px] font-mono text-champagne/80 mt-3 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+              <span>View Portal Specifications</span>
+              <span>→</span>
+            </span>
+          </a>
         ))}
       </div>
     </section>

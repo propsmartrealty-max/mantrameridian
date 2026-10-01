@@ -241,6 +241,18 @@ await runAsyncTest('Edge Permutation 301 redirects brand queries in 1 single hop
   assert.equal(resTypo.headers.get('Location'), 'https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/');
 });
 
+await runAsyncTest('Edge Canonical 301 strips trailing slash from static file extension requests', async () => {
+  const reqXml = new Request('https://mantrameridianriverside.com/sitemaps/properties-1.xml/');
+  const resXml = await worker.fetch(reqXml, {}, mockCtx);
+  assert.equal(resXml.status, 301);
+  assert.equal(resXml.headers.get('Location'), 'https://mantrameridianriverside.com/sitemaps/properties-1.xml');
+
+  const reqRobots = new Request('https://mantrameridianriverside.com/robots.txt/');
+  const resRobots = await worker.fetch(reqRobots, {}, mockCtx);
+  assert.equal(resRobots.status, 301);
+  assert.equal(resRobots.headers.get('Location'), 'https://mantrameridianriverside.com/robots.txt');
+});
+
 // -----------------------------------------------------------------------------
 // 6. White Bot Optimization & Cookie Isolation Tests
 // -----------------------------------------------------------------------------
