@@ -74,11 +74,19 @@ export default {
         'mesh-drift-1': 'meshDrift1 22s ease-in-out infinite alternate',
         'mesh-drift-2': 'meshDrift2 26s ease-in-out infinite alternate',
         'mesh-drift-3': 'meshDrift3 20s ease-in-out infinite alternate',
+        'mesh-drift-4': 'meshDrift4 24s ease-in-out infinite alternate',
         'border-beam': 'borderBeam 7s linear infinite',
         'glass-pulse': 'glassPulse 3.5s ease-in-out infinite',
         'hero-kenburns': 'heroKenBurns 24s ease-in-out infinite alternate',
         'shimmer-sweep': 'shimmerSweep 4s cubic-bezier(0.16, 1, 0.3, 1) infinite',
         'spin-slow': 'spin 25s linear infinite',
+        'apple-caustic': 'causticDrift 16s cubic-bezier(0.25, 1, 0.5, 1) infinite alternate',
+        'specular-glint': 'specularGlint 5s cubic-bezier(0.16, 1, 0.3, 1) infinite',
+      },
+      transitionTimingFunction: {
+        'apple-spring': 'cubic-bezier(0.16, 1, 0.3, 1)',
+        'apple-bounce': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+        'apple-fluid': 'cubic-bezier(0.25, 1, 0.5, 1)',
       },
       keyframes: {
         float: {
@@ -121,6 +129,21 @@ export default {
           '50%': { transform: 'translate3d(40px, -60px, 0) scale(1.1)' },
           '100%': { transform: 'translate3d(-50px, 30px, 0) scale(1.05)' },
         },
+        meshDrift4: {
+          '0%': { transform: 'translate3d(0, 0, 0) scale(0.9)' },
+          '50%': { transform: 'translate3d(-50px, 50px, 0) scale(1.18)' },
+          '100%': { transform: 'translate3d(60px, -40px, 0) scale(1)' },
+        },
+        causticDrift: {
+          '0%': { transform: 'translate3d(0, 0, 0) rotate(0deg) scale(1)' },
+          '50%': { transform: 'translate3d(30px, -20px, 0) rotate(5deg) scale(1.08)' },
+          '100%': { transform: 'translate3d(-25px, 25px, 0) rotate(-4deg) scale(0.96)' },
+        },
+        specularGlint: {
+          '0%': { opacity: '0.15', transform: 'translateX(-120%) skewX(-20deg)' },
+          '35%': { opacity: '0.7', transform: 'translateX(120%) skewX(-20deg)' },
+          '100%': { opacity: '0.15', transform: 'translateX(120%) skewX(-20deg)' },
+        },
         borderBeam: {
           '0%': { offsetDistance: '0%' },
           '100%': { offsetDistance: '100%' },
@@ -153,6 +176,9 @@ export default {
         glow: '0 0 35px rgba(160, 122, 37, 0.15)',
         'glow-emerald': '0 0 35px rgba(31, 74, 37, 0.15)',
         card: '0 10px 30px -10px rgba(40, 30, 20, 0.08)',
+        'apple-glass': 'inset 0 1px 1px 0 rgba(255, 255, 255, 0.92), inset 0 0 0 1px rgba(255, 255, 255, 0.25), 0 20px 45px -10px rgba(40, 30, 20, 0.10)',
+        'apple-island': 'inset 0 1px 1.5px 0 #FFFFFF, inset 0 0 0 1px rgba(255, 255, 255, 0.4), 0 20px 50px -10px rgba(40, 30, 20, 0.14)',
+        'apple-pill': 'inset 0 1px 1px 0 #FFFFFF, inset 0 -1px 1px 0 rgba(0, 0, 0, 0.03), 0 6px 20px -3px rgba(40, 30, 20, 0.08)',
       },
     },
   },

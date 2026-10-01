@@ -117,8 +117,8 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
         onClick={closeDrawer}
       />
 
-      {/* Slide-in luxury drawer panel */}
-      <div className="relative z-10 h-full w-full max-w-lg bg-[#FAF7F2] border-l border-[#DDD2C2] p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-[0_0_60px_rgba(40,30,20,0.2)]">
+      {/* Slide-in luxury drawer panel (Apple Frosted Glass) */}
+      <div className="relative z-10 h-full w-full max-w-lg bg-[#FAF7F2]/96 backdrop-blur-3xl border-l border-[#DDD2C2] p-5 md:p-8 overflow-y-auto flex flex-col justify-between shadow-[0_0_80px_rgba(40,30,20,0.22),inset_1px_0_1.5px_#FFFFFF] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
         
         {/* Header */}
         <div>

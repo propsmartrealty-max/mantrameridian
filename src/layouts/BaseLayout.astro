@@ -1167,6 +1167,7 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
       <div class="ambient-mesh-orb-1"></div>
       <div class="ambient-mesh-orb-2"></div>
       <div class="ambient-mesh-orb-3"></div>
+      <div class="ambient-mesh-orb-4"></div>
     </div>
 
     {/* Global Luxury Navigation */}
@@ -1194,7 +1195,7 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
       (function() {
         const isBot = /bot|crawl|spider|slurp|googlebot|bingbot|yandex|mediapartners|google-inspectiontool/i.test(navigator.userAgent);
 
-        // 1. Scroll-Driven Glass Entrance Reveal System
+        // 1. Scroll-Driven Glass Entrance Reveal System (Apple Spring Decay)
         function initGlassReveals() {
           const elements = document.querySelectorAll('.reveal-glass');
           if (!elements.length) return;
@@ -1213,16 +1214,16 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
             });
           }, {
             root: null,
-            rootMargin: '0px 0px -60px 0px',
-            threshold: 0.12
+            rootMargin: '0px 0px -50px 0px',
+            threshold: 0.1
           });
 
           elements.forEach(el => observer.observe(el));
         }
 
-        // 2. Interactive Specular Spotlight (GPU-accelerated mouse tracking)
+        // 2. Interactive Specular Spotlight & Apple 3D Spring Tilt
         function initGlassSpotlights() {
-          if (window.matchMedia('(pointer: coarse)').matches) return; // Skip touch screens
+          if (window.matchMedia('(pointer: coarse)').matches) return; // Skip touch devices
 
           const cards = document.querySelectorAll('.glass-spotlight, .glass-card-luxury, .card-beige-luxury');
           if (!cards.length) return;
@@ -1237,12 +1238,22 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
                 const y = e.clientY - rect.top;
                 card.style.setProperty('--mouse-x', `${x}px`);
                 card.style.setProperty('--mouse-y', `${y}px`);
+
+                // Subtle Apple 3D glass perspective tilt
+                const rotX = ((y / rect.height) - 0.5) * -5;
+                const rotY = ((x / rect.width) - 0.5) * 5;
+                card.style.transform = `perspective(1000px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) translateY(-4px)`;
               });
+            }, { passive: true });
+
+            card.addEventListener('mouseleave', () => {
+              if (rafId) cancelAnimationFrame(rafId);
+              card.style.transform = '';
             }, { passive: true });
           });
         }
 
-        // 3. Dynamic Navbar Glass Compaction on Scroll
+        // 3. Dynamic Navbar Glass Compaction on Scroll (Apple Floating Island)
         function initNavbarScroll() {
           const navbar = document.getElementById('luxury-navbar');
           if (!navbar) return;
@@ -1250,7 +1261,7 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
           let ticking = false;
 
           function updateNavbar() {
-            if (window.scrollY > 25) {
+            if (window.scrollY > 30) {
               navbar.classList.add('scrolled');
             } else {
               navbar.classList.remove('scrolled');

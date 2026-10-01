@@ -40,10 +40,10 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
                 setSelectedOfficialIndex(0);
                 setActiveRoomId(null);
               }}
-              className={`px-4 py-2.5 text-xs font-semibold tracking-wider transition-all duration-300 uppercase rounded ${
+              className={`px-4 py-2 text-xs font-semibold tracking-wider transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] uppercase rounded-full active:scale-95 ${
                 selectedConfigId === res.id
-                  ? 'bg-champagne text-obsidian shadow-[0_0_20px_rgba(223,183,90,0.4)] scale-[1.02]'
-                  : 'bg-obsidian-card/70 text-concrete border border-white/10 hover:border-champagne/40 hover:text-architectural-white hover:bg-obsidian-surface'
+                  ? 'bg-champagne text-white shadow-[0_4px_16px_rgba(160,122,37,0.35)] scale-[1.02]'
+                  : 'bg-white/80 text-[#524C44] border border-[#DDD2C2] hover:border-champagne/60 hover:text-[#161412] hover:bg-white'
               }`}
             >
               {res.type}
@@ -51,29 +51,29 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
           ))}
         </div>
 
-        {/* View Mode & Metrics */}
+        {/* View Mode & Metrics (Apple Segmented Control) */}
         <div className="flex items-center gap-3 self-end lg:self-auto">
-          <div className="flex bg-obsidian-deep/80 backdrop-blur-md border border-champagne/30 p-1 rounded-full">
+          <div className="flex bg-white/85 backdrop-blur-2xl border border-[#DDD2C2] p-1 rounded-full shadow-[inset_0_1px_1px_#FFFFFF,0_4px_15px_rgba(40,30,20,0.06)]">
             <button
               onClick={() => setViewMode('official')}
-              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
-                viewMode === 'official' ? 'bg-champagne text-obsidian font-bold shadow-glow' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 ${
+                viewMode === 'official' ? 'bg-white text-[#161412] font-bold shadow-[0_2px_8px_rgba(40,30,20,0.12),inset_0_1px_0_#FFFFFF]' : 'text-[#6B6155] hover:text-[#161412]'
               }`}
             >
               Official RERA Layout
             </button>
             <button
               onClick={() => setViewMode('2d')}
-              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
-                viewMode === '2d' ? 'bg-white/20 text-architectural-white font-medium' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 ${
+                viewMode === '2d' ? 'bg-white text-[#161412] font-bold shadow-[0_2px_8px_rgba(40,30,20,0.12),inset_0_1px_0_#FFFFFF]' : 'text-[#6B6155] hover:text-[#161412]'
               }`}
             >
               Interactive 2D
             </button>
             <button
               onClick={() => setViewMode('3d')}
-              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 rounded-full ${
-                viewMode === '3d' ? 'bg-champagne/30 text-champagne font-medium' : 'text-concrete hover:text-white'
+              className={`px-3.5 py-1.5 text-xs tracking-wider uppercase transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 ${
+                viewMode === '3d' ? 'bg-white text-[#161412] font-bold shadow-[0_2px_8px_rgba(40,30,20,0.12),inset_0_1px_0_#FFFFFF]' : 'text-[#6B6155] hover:text-[#161412]'
               }`}
             >
               3D Spatial
@@ -82,7 +82,7 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
 
           <button
             onClick={() => handleOpenConcierge('DOWNLOAD VERIFIED PLAN')}
-            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 border border-champagne/40 text-champagne hover:bg-champagne hover:text-obsidian transition-all duration-300 text-xs tracking-wider uppercase rounded font-medium glass-sheen"
+            className="hidden sm:inline-flex items-center gap-1.5 px-4 py-2 border border-champagne/40 text-champagne bg-white/80 hover:bg-champagne hover:text-white transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-95 text-xs tracking-wider uppercase rounded-full font-medium shadow-sm"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Plan</span>

@@ -28,40 +28,41 @@ export default function LocationIntelligence() {
       {/* View Mode Toggle & Category Filters */}
       <div className="border-b border-white/10 p-4 md:p-6 bg-obsidian-deep/80 flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         
-        <div className="flex items-center gap-3">
+        {/* Navigation Tabs (Apple Segmented Control) */}
+        <div className="flex bg-white/85 backdrop-blur-2xl border border-[#DDD2C2] p-1 rounded-full shadow-[inset_0_1px_1px_#FFFFFF,0_4px_15px_rgba(40,30,20,0.06)]">
           <button
             onClick={() => setActiveTab('map')}
-            className={`px-4 py-2 text-xs uppercase tracking-wider transition-colors border ${
+            className={`px-4 py-2 text-xs uppercase tracking-wider transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 ${
               activeTab === 'map'
-                ? 'bg-champagne text-obsidian border-champagne font-semibold'
-                : 'bg-obsidian-card text-concrete border-white/10 hover:text-white'
+                ? 'bg-white text-[#161412] font-bold shadow-[0_2px_8px_rgba(40,30,20,0.12),inset_0_1px_0_#FFFFFF]'
+                : 'text-[#6B6155] hover:text-[#161412]'
             }`}
           >
             Location Intelligence Map
           </button>
           <button
             onClick={() => setActiveTab('lifestyle')}
-            className={`px-4 py-2 text-xs uppercase tracking-wider transition-colors border ${
+            className={`px-4 py-2 text-xs uppercase tracking-wider transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 ${
               activeTab === 'lifestyle'
-                ? 'bg-champagne text-obsidian border-champagne font-semibold'
-                : 'bg-obsidian-card text-concrete border-white/10 hover:text-white'
+                ? 'bg-white text-[#161412] font-bold shadow-[0_2px_8px_rgba(40,30,20,0.12),inset_0_1px_0_#FFFFFF]'
+                : 'text-[#6B6155] hover:text-[#161412]'
             }`}
           >
             A Day at Meridian (Lifestyle)
           </button>
         </div>
 
-        {/* Categories (active only in map mode) */}
+        {/* Categories (active only in map mode - Apple Glass Capsules) */}
         {activeTab === 'map' && (
           <div className="flex flex-wrap gap-1.5">
             {locationCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3 py-1.5 text-[11px] uppercase tracking-wider transition-all border ${
+                className={`px-3 py-1.5 text-[11px] uppercase tracking-wider transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full active:scale-95 border ${
                   selectedCategory === cat.id
-                    ? 'border-champagne/60 text-champagne bg-champagne/10'
-                    : 'border-white/5 text-concrete/70 hover:border-white/20 hover:text-concrete'
+                    ? 'border-champagne bg-champagne text-white font-semibold shadow-sm'
+                    : 'border-[#DDD2C2] bg-white/80 text-[#524C44] hover:border-champagne/60 hover:text-[#161412]'
                 }`}
               >
                 {cat.label}

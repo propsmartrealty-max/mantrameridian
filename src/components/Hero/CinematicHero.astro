@@ -26,7 +26,7 @@ import { aggregateRatingData } from '../../data/reviews';
   <div class="relative z-10 max-w-5xl mx-auto px-6 text-center flex flex-col items-center justify-center space-y-6 md:space-y-8 pt-20">
     
     {/* Architectural Location & Accreditation Tag */}
-    <div class="glass-pill glass-sheen inline-flex items-center gap-3 px-5 py-2.5 border border-champagne/40 text-champagne shadow-glow reveal-glass is-revealed">
+    <div class="apple-glass-pill glass-caustic-sheen inline-flex items-center gap-3 px-5 py-2.5 border border-champagne/40 text-champagne shadow-apple-pill reveal-glass is-revealed fluid-spring">
       <span class="w-2 h-2 rounded-full bg-champagne animate-pulse" />
       <span class="label-architectural text-[10px] sm:text-xs tracking-[0.24em] text-champagne">
         MANTRA BALEWADI • MANTRA RIVERSIDE • MANTRA MERIDIAN
@@ -64,30 +64,30 @@ import { aggregateRatingData } from '../../data/reviews';
       An 8-acre contemporary architectural address at Mantra Meridian Balewadi by Mantra Properties. Experience Mantra Riverside offering luxury 2, 3, 4 BHK apartments and signature sky duplexes beside the permanent serenity of the Mula river.
     </p>
 
-    {/* Hero Actions with Glassmorphism */}
+    {/* Hero Actions with Apple Glassmorphism & Fluidic Spring Physics */}
     <div class="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto reveal-glass is-revealed reveal-delay-3">
       <a
         href="#experience-manifesto"
-        class="btn-luxury w-full sm:w-auto text-xs glass-sheen"
+        class="btn-luxury w-full sm:w-auto text-xs glass-caustic-sheen fluid-spring fluid-press rounded-full shadow-apple-pill"
       >
         <span>DISCOVER MERIDIAN</span>
-        <span>↓</span>
+        <span class="transition-transform group-hover:translate-y-0.5">↓</span>
       </a>
 
       <button
         id="hero-presentation-btn"
-        class="btn-luxury-outline w-full sm:w-auto text-xs glass-sheen"
+        class="btn-luxury-outline w-full sm:w-auto text-xs glass-caustic-sheen fluid-spring fluid-press rounded-full shadow-apple-pill"
       >
         <span>PRIVATE PRESENTATION</span>
-        <span class="text-champagne">↗</span>
+        <span class="text-champagne transition-transform group-hover:translate-x-0.5">↗</span>
       </button>
     </div>
 
     {/* MahaRERA Statutory Pill & Google 5-Star Rating Trust Badge */}
     <div class="pt-6 flex flex-wrap items-center justify-center gap-3 reveal-glass is-revealed reveal-delay-4">
-      <div class="inline-flex items-center gap-2 px-4 py-2 glass-pill text-xs text-concrete/90 font-sans shadow-md">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-[11px] tracking-wider uppercase text-concrete/70">MahaRERA:</span>
+      <div class="inline-flex items-center gap-2 px-4 py-2 apple-glass-pill text-xs text-concrete/90 font-sans shadow-apple-pill border border-[#DDD2C2]">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-[11px] tracking-wider uppercase text-concrete/70 font-mono">MahaRERA:</span>
         <a 
           href={projectData.reraRegistrationUrl} 
           target="_blank" 
@@ -96,17 +96,17 @@ import { aggregateRatingData } from '../../data/reviews';
         >
           {projectData.reraNumber}
         </a>
-        <span class="text-white/20 mx-1">•</span>
-        <span class="text-[11px] tracking-wider uppercase text-concrete/70">8-Acre Riverside Estate</span>
+        <span class="text-[#DDD2C2] mx-1">•</span>
+        <span class="text-[11px] tracking-wider uppercase text-concrete/70 font-mono">8-Acre Riverside Estate</span>
       </div>
 
-      <div class="inline-flex items-center gap-2 px-4 py-2 glass-pill text-xs text-concrete/90 font-sans shadow-md border border-champagne/30">
+      <div class="inline-flex items-center gap-2 px-4 py-2 apple-glass-pill text-xs text-concrete/90 font-sans shadow-apple-pill border border-champagne/40">
         <span class="text-champagne text-xs font-semibold tracking-wide flex items-center gap-1">
-          <span class="text-amber-400 font-serif">★★★★★</span>
-          <span class="font-mono text-white font-bold">{aggregateRatingData.ratingValue}</span>
+          <span class="text-amber-500 font-serif">★★★★★</span>
+          <span class="font-mono text-[#161412] font-bold">{aggregateRatingData.ratingValue}</span>
           <span class="text-concrete/60 text-[10px]">/{aggregateRatingData.bestRating}</span>
         </span>
-        <span class="text-white/20 mx-0.5">•</span>
+        <span class="text-[#DDD2C2] mx-0.5">•</span>
         <span class="text-[10px] sm:text-[11px] tracking-wider uppercase text-concrete/80 font-mono">
           {aggregateRatingData.ratingCount} Ratings
         </span>
