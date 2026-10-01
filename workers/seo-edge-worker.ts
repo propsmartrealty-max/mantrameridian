@@ -42,25 +42,77 @@ export interface Env {
   GOOGLE_SERVICE_ACCOUNT_JSON?: string;
 }
 
-// 1. Edge WAF Lite Blocklist
+// 1. Digital Fortress Edge WAF Threat Blocklist & Scanner Signatures
 const BLOCKED_PROBES: readonly string[] = [
   '/wp-admin',
-  '/wp-login.php',
+  '/wp-login',
   '/wp-content',
   '/wp-includes',
+  '/wp-config',
   '/xmlrpc.php',
   '/.env',
   '/.git',
-  '/phpmyadmin',
-  '/config.json',
+  '/.svn',
+  '/.hg',
+  '/.bzr',
+  '/.ssh',
   '/.aws',
+  '/phpmyadmin',
+  '/pma',
+  '/admin.php',
+  '/eval-stdin.php',
+  '/setup.php',
+  '/install.php',
+  '/config.json',
+  '/web.config',
+  '/.ds_store',
+  '/id_rsa',
+  '/credentials',
+  '/secrets',
   '/cgi-bin/',
+  '/shell',
+  '/cmd.php',
+  '/backdoor',
+  '/alfa.php',
   '/solr/',
   '/actuator/',
   '/v2/_catalog',
   '/telescope/',
-  '/debug/default/view'
+  '/debug/default/view',
+  '/server-status',
+  '/server-info',
+  '/elmah.axd',
+  '/etc/',
+  '/proc/',
+  '/var/',
+  '/sys/',
+  '/windows/',
+  '/secret'
 ];
+
+// Malicious Vulnerability Scanner User-Agents (active reconnaissance block)
+const MALICIOUS_SCANNER_UA_REGEX = /\b(nikto|sqlmap|acunetix|gobuster|dirbuster|wpscan|masscan|zgrab|nmap|openvas|nessus|havij|netsparker|commix)\b/i;
+
+// SQL Injection & Remote Exploit Pattern Regex
+const MALICIOUS_PAYLOAD_REGEX = /(union(\s|\+)+select|information_schema|benchmark\(|waitfor(\s|\+)+delay|<script|<\/script>|\bexec(\s|\+)+(xp_|sp_))/i;
+
+// Digital Fortress Content Security Policy (strict yet fully supporting fonts, analytics, maps & Astro hydration)
+export const FORTRESS_CSP: string = "default-src 'self' https://mantrameridianriverside.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://formsubmit.co https://api.mailchannels.net https://cloudflareinsights.com https://maps.googleapis.com; frame-src 'self' https://www.google.com https://maps.google.com; object-src 'none'; base-uri 'self'; form-action 'self' https://formsubmit.co; upgrade-insecure-requests;";
+
+// Bulletproof Edge Fortress Security Headers applied to every response
+export const FORTRESS_SECURITY_HEADERS: Readonly<Record<string, string>> = {
+  'Content-Security-Policy': FORTRESS_CSP,
+  'Strict-Transport-Security': 'max-age=63072000; includeSubDomains; preload',
+  'X-Frame-Options': 'SAMEORIGIN',
+  'X-Content-Type-Options': 'nosniff',
+  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  'Permissions-Policy': 'accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(self), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(self), publickey-credentials-get=(self), usb=(), xr-spatial-tracking=()',
+  'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+  'Cross-Origin-Resource-Policy': 'same-origin',
+  'X-Permitted-Cross-Domain-Policies': 'none',
+  'Origin-Agent-Cluster': '?1',
+  'X-DNS-Prefetch-Control': 'on'
+};
 
 // Tracking parameters stripped from Edge Cache Key (ensures 100% cache hit rate during ad campaigns)
 const TRACKING_PARAMS: readonly string[] = [
@@ -298,16 +350,37 @@ export default {
     const botInfo: WhiteBotInfo = identifyWhiteBot(userAgent, cfData);
 
     // =========================================================================
-    // STAGE 1: Edge WAF Lite - Drop malicious probes in < 1ms
+    // STAGE 1: Edge Digital Fortress WAF - Drop malicious probes, scanners & injection
     // =========================================================================
     const lowerPath = pathname.toLowerCase();
-    if (BLOCKED_PROBES.some((probe) => lowerPath.startsWith(probe))) {
-      return new Response('Forbidden: Access Denied by Cloudflare Edge Security Layer', {
+    const rawUrl = request.url.toLowerCase();
+
+    // 1A. Check for Path Traversal, Null Bytes, and Known Attack Probes
+    const isPathTraversal = pathname.includes('..') || rawUrl.includes('%2e%2e') || rawUrl.includes('..%2f');
+    const isNullByte = rawUrl.includes('%00');
+    const isKnownProbe = BLOCKED_PROBES.some((probe) => lowerPath.startsWith(probe) || lowerPath.includes(probe));
+
+    // 1B. Scanner & Exploiter User-Agents (Strictly non-whitebot)
+    const isMaliciousScanner = !botInfo.isWhiteBot && MALICIOUS_SCANNER_UA_REGEX.test(userAgent);
+
+    // 1C. SQL Injection / Exploit String in Query Parameters
+    let isExploitPayload = false;
+    try {
+      const decodedSearch = decodeURIComponent(url.search);
+      isExploitPayload = Boolean(url.search && MALICIOUS_PAYLOAD_REGEX.test(decodedSearch));
+    } catch {
+      isExploitPayload = true; // Malformed percent-encoding is treated as hostile
+    }
+
+    if (isPathTraversal || isNullByte || isKnownProbe || isMaliciousScanner || isExploitPayload) {
+      return new Response('Forbidden: Access Denied by Cloudflare Edge Security Fortress', {
         status: 403,
         headers: {
           'Content-Type': 'text/plain; charset=utf-8',
           'X-Edge-Defense': 'Active-WAF-Drop',
-          'Cache-Control': 'public, max-age=86400'
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'Cache-Control': 'no-store, private'
         }
       });
     }
@@ -420,6 +493,11 @@ export default {
           if (cachedResponse) {
             const res = new Response(cachedResponse.body, cachedResponse);
             const duration = (performance.now() - startTime).toFixed(2);
+
+            // Re-apply digital fortress security headers on edge cached responses
+            for (const [headerName, headerValue] of Object.entries(FORTRESS_SECURITY_HEADERS)) {
+              res.headers.set(headerName, headerValue);
+            }
 
             // Re-apply visitor-specific cookie only for humans (never pollute bots with cookies)
             if (!botInfo.isWhiteBot) {
@@ -688,6 +766,10 @@ export default {
     response.headers.set('X-Edge-Duration', `${duration}ms`);
     response.headers.set('X-Edge-Rendering', 'Cloudflare-Worker-HTMLRewriter-Dynamic');
     response.headers.set('X-Content-Type-Options', 'nosniff');
+    response.headers.set('X-Frame-Options', 'SAMEORIGIN');
+    response.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+    response.headers.set('Strict-Transport-Security', 'max-age=63072000; includeSubDomains; preload');
+    response.headers.set('X-Permitted-Cross-Domain-Policies', 'none');
     response.headers.set('Vary', 'Accept-Encoding, User-Agent');
 
     // Real Estate Geospatial headers for Google Maps & Local search spiders
@@ -724,11 +806,11 @@ export default {
       }
     }
 
-    // Clean Edge Caching headers with Stale-While-Revalidate and Granular Cache-Tag
+    // Clean Edge Caching headers with Stale-While-Revalidate, Stale-If-Error longevity and Granular Cache-Tag
     if (isHtml && !bypassCache) {
       response.headers.set(
         'Cache-Control',
-        'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800'
+        'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800, stale-if-error=2592000'
       );
       let routeTag = 'mantra-core';
       if (pathname.includes('riverside')) routeTag = 'mantra-riverside';
@@ -741,6 +823,11 @@ export default {
         'Cache-Tag',
         `mantra-meridian, mantra-balewadi, mantra-riverside, html-pages, ${routeTag}`
       );
+
+      // Digital Fortress HTTP Security Headers
+      for (const [headerName, headerValue] of Object.entries(FORTRESS_SECURITY_HEADERS)) {
+        response.headers.set(headerName, headerValue);
+      }
       response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
       response.headers.set('X-Edge-Keywords-Permutations', 'mantra balewadi, mantra meridian, mantra meridian balewadi, mantra riverside balewadi, mantra riverride balewadi, mantra meridian riverside balewadi');
     }

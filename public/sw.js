@@ -10,11 +10,13 @@
  * 5. Safe offline resilience
  */
 
-const CACHE_NAME = 'mantra-meridian-v3';
+const CACHE_NAME = 'mantra-meridian-v4-fortress';
 
-// Critical core assets to precache on install
+// Critical core assets to precache on install for permanent offline resilience
 const PRECACHE_ASSETS = [
   '/',
+  '/mantra-meridian-riverside/',
+  '/mantra-meridian-riverside-balewadi/',
   '/offline.html',
   '/favicon.svg',
   '/favicon.ico',

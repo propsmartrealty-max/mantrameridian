@@ -56,12 +56,15 @@ function isRateLimited(clientKey: string): boolean {
 }
 
 /**
- * Sanitizes arbitrary string inputs: strips control characters, trims, and truncates length
+ * Sanitizes arbitrary string inputs: strips control characters, HTML tags, script protocols, trims, and truncates length
  */
 function sanitizeString(val: unknown, maxLen = 100): string {
   if (typeof val !== 'string') return '';
   return val
     .replace(/[\x00-\x1F\x7F]/g, '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/javascript:/gi, '')
+    .replace(/data:/gi, '')
     .trim()
     .slice(0, maxLen);
 }
@@ -273,6 +276,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
+    // Payload size guard: Drop payloads > 32KB immediately (413 Payload Too Large)
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength, 10) > 32768) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Payload Too Large: Maximum allowed size is 32KB.' }),
+        { status: 413, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     // 0. Cloudflare Workers Edge Rate Limiting: Max 5 submissions per 10 minutes per IP
     const clientIp = request.headers.get('cf-connecting-ip') || request.headers.get('x-real-ip') || 'unknown';
     if (clientIp !== 'unknown' && isRateLimited(clientIp)) {
@@ -291,7 +303,16 @@ export const POST: APIRoute = async ({ request, locals }) => {
       );
     }
 
-    const body = await request.json();
+    let body: any;
+    try {
+      body = await request.json();
+    } catch {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Malformed JSON payload.' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
     const {
       fullName,
       phone,
@@ -301,11 +322,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
       preferredSlot,
       landingPage,
       referrer,
-      honeypot
-    } = body;
+      honeypot,
+      website,
+      fax,
+      bot_trap,
+      address_line2
+    } = body || {};
 
-    // Honeypot spam trap
-    if (honeypot) {
+    // Digital Fortress Honeypot spam trap
+    if (honeypot || website || fax || bot_trap || address_line2) {
       return new Response(
         JSON.stringify({ success: true, message: 'Enquiry registered.' }),
         { status: 200, headers: { 'Content-Type': 'application/json' } }
@@ -335,6 +360,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
     if (rawDigits.length < 10 || rawDigits.length > 15) {
       return new Response(
         JSON.stringify({ success: false, error: 'Please provide a valid contact number (at least 10 digits).' }),
+        { status: 400, headers: { 'Content-Type': 'application/json' } }
+      );
+    }
+
+    // Reject repeated-digit dummy numbers (e.g. 0000000000, 1111111111, 1234567890)
+    const isDummyPhone = /^(\d)\1{9,}$/.test(rawDigits) || rawDigits === '1234567890';
+    if (isDummyPhone) {
+      return new Response(
+        JSON.stringify({ success: false, error: 'Please provide a valid active contact number.' }),
         { status: 400, headers: { 'Content-Type': 'application/json' } }
       );
     }
@@ -391,7 +425,9 @@ export const POST: APIRoute = async ({ request, locals }) => {
       userAgent: userAgent.substring(0, 120)
     };
 
-    console.log(`[LEAD RECEIVED] Dispatching to ${targetNotificationEmail}:`, JSON.stringify(leadRecord));
+    // Compliant masked logging for Indian DPDP Act 2023 & privacy safety
+    const maskedPhone = cleanRawPhone.length > 4 ? `${cleanRawPhone.slice(0, 2)}******${cleanRawPhone.slice(-2)}` : '****';
+    console.log(`[LEAD RECEIVED] Dispatching to ${targetNotificationEmail}: MMR Lead ID ${leadRecord.leadId}, Name: ${cleanFullName.slice(0, 3)}***, Phone: ${maskedPhone}, Intent: ${leadRecord.intent}`);
 
     // Dispatch email notification to propsmartrealty@gmail.com
     const emailSubject = `🔥 [NEW LEAD] ${leadRecord.fullName} - ${leadRecord.configuration} | Mantra Meridian Riverside`;

@@ -22,7 +22,9 @@ import worker, {
   isStaticAssetPath,
   generateBreadcrumbJsonLd,
   generateSitelinksSearchBoxJsonLd,
-  NOSCRIPT_GOOGLEBOT_FALLBACK
+  NOSCRIPT_GOOGLEBOT_FALLBACK,
+  FORTRESS_CSP,
+  FORTRESS_SECURITY_HEADERS
 } from '../workers/seo-edge-worker.ts';
 import { identifyWhiteBot } from '../src/utils/bot-detection.ts';
 import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords } from '../src/data/keywords.ts';
@@ -502,6 +504,108 @@ runTest('generateBreadcrumbJsonLd and generateSitelinksSearchBoxJsonLd create va
 
   assert.ok(NOSCRIPT_GOOGLEBOT_FALLBACK.includes('P52100045688'));
   assert.ok(NOSCRIPT_GOOGLEBOT_FALLBACK.includes('Mantra Meridian Riverside Balewadi'));
+});
+
+// -----------------------------------------------------------------------------
+// 12. Digital Fortress WAF, Security Headers & Edge Longevity Tests
+// -----------------------------------------------------------------------------
+await runAsyncTest('Edge WAF drops vulnerability scanner User-Agents (Nikto, SQLMap, Gobuster) with 403 Forbidden', async () => {
+  const scanners = ['Nikto/2.1.6', 'sqlmap/1.7#stable', 'gobuster/3.5', 'Acunetix', 'DirBuster-1.0-RC1'];
+  for (const ua of scanners) {
+    const req = new Request('https://mantrameridianriverside.com/', {
+      headers: { 'User-Agent': ua }
+    });
+    const res = await worker.fetch(req, {}, mockCtx);
+    assert.equal(res.status, 403, `Scanner UA "${ua}" should receive 403 Forbidden`);
+    assert.equal(res.headers.get('X-Edge-Defense'), 'Active-WAF-Drop');
+    assert.equal(res.headers.get('X-Frame-Options'), 'DENY');
+  }
+});
+
+await runAsyncTest('Edge WAF drops path traversal and null-byte injection attempts with 403 Forbidden', async () => {
+  const hostileUrls = [
+    'https://mantrameridianriverside.com/../../etc/passwd',
+    'https://mantrameridianriverside.com/%2e%2e/%2e%2e/secret',
+    'https://mantrameridianriverside.com/images/hero.webp%00.php'
+  ];
+  for (const url of hostileUrls) {
+    const req = new Request(url);
+    const res = await worker.fetch(req, {}, mockCtx);
+    assert.equal(res.status, 403, `Hostile URL "${url}" should receive 403 Forbidden`);
+    assert.equal(res.headers.get('X-Edge-Defense'), 'Active-WAF-Drop');
+  }
+});
+
+await runAsyncTest('Edge WAF drops SQL injection and XSS exploit patterns in query string with 403 Forbidden', async () => {
+  const exploitUrls = [
+    'https://mantrameridianriverside.com/?id=1+union+select+1,2,3',
+    'https://mantrameridianriverside.com/?search=%3Cscript%3Ealert(1)%3C/script%3E',
+    'https://mantrameridianriverside.com/?ref=benchmark(5000000,MD5(1))'
+  ];
+  for (const url of exploitUrls) {
+    const req = new Request(url);
+    const res = await worker.fetch(req, {}, mockCtx);
+    assert.equal(res.status, 403, `Exploit probe "${url}" should receive 403 Forbidden`);
+    assert.equal(res.headers.get('X-Edge-Defense'), 'Active-WAF-Drop');
+  }
+});
+
+await runAsyncTest('Edge Worker returns strict Content-Security-Policy, HSTS preload, and permissions headers', async () => {
+  const mockHtml = '<!DOCTYPE html><html><head></head><body><h1>Fortress</h1></body></html>';
+  const env = {
+    ASSETS: {
+      fetch: async () => new Response(mockHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      })
+    }
+  };
+
+  const req = new Request('https://mantrameridianriverside.com/mantra-meridian-riverside/');
+  const res = await worker.fetch(req, env, mockCtx);
+  assert.equal(res.status, 200);
+
+  // Validate Digital Fortress Security Headers against declared dictionary
+  for (const [key, value] of Object.entries(FORTRESS_SECURITY_HEADERS)) {
+    assert.equal(res.headers.get(key), value, `Header "${key}" must match fortress definition`);
+  }
+  assert.equal(res.headers.get('Content-Security-Policy'), FORTRESS_CSP);
+  assert.ok(res.headers.get('Permissions-Policy')?.includes('camera=()'));
+  assert.ok(res.headers.get('Permissions-Policy')?.includes('microphone=()'));
+});
+
+await runAsyncTest('Edge Worker serves stale-if-error 30-day resilience and stale-while-revalidate longevity', async () => {
+  const mockHtml = '<!DOCTYPE html><html><head></head><body><h1>Forever</h1></body></html>';
+  const env = {
+    ASSETS: {
+      fetch: async () => new Response(mockHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      })
+    }
+  };
+
+  const req = new Request('https://mantrameridianriverside.com/');
+  const res = await worker.fetch(req, env, mockCtx);
+  assert.equal(res.status, 200);
+
+  const cacheControl = res.headers.get('Cache-Control');
+  assert.ok(cacheControl, 'Cache-Control header must exist');
+  assert.ok(cacheControl.includes('stale-while-revalidate=604800'), 'Should include 7-day stale-while-revalidate');
+  assert.ok(cacheControl.includes('stale-if-error=2592000'), 'Should include 30-day stale-if-error for permanent resilience');
+});
+
+runTest('Digital Fortress Service Worker v4 caches essential offline shell and RFC 9116 security policy is valid through 2028', () => {
+  const swPath = path.resolve('public/sw.js');
+  const sw = fs.readFileSync(swPath, 'utf8');
+  assert.ok(sw.includes('mantra-meridian-v4-fortress'), 'Service Worker must use v4 fortress cache name');
+  assert.ok(sw.includes('/offline.html'), 'Service worker must cache offline.html');
+  assert.ok(sw.includes('/mantra-meridian-riverside/'), 'Service worker must precache flagship landing page');
+
+  const securityPath = path.resolve('public/.well-known/security.txt');
+  const security = fs.readFileSync(securityPath, 'utf8');
+  assert.ok(security.includes('security@mantrameridianriverside.com'), 'security.txt must list security email');
+  assert.ok(security.includes('2028-12-31'), 'security.txt expiration must be extended through 2028');
 });
 
 // -----------------------------------------------------------------------------
