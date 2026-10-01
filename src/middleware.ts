@@ -1,6 +1,30 @@
 import { defineMiddleware } from 'astro:middleware';
 import { identifyWhiteBot } from './utils/bot-detection';
 
+// Edge runtime resilience: ensure MessageChannel exists on global scope
+if (typeof (globalThis as any).MessageChannel === 'undefined') {
+  (globalThis as any).MessageChannel = class MessageChannel {
+    port1: any;
+    port2: any;
+    constructor() {
+      let p1Msg: ((e: any) => void) | null = null;
+      let p2Msg: ((e: any) => void) | null = null;
+      this.port1 = {
+        set onmessage(fn: (e: any) => void) { p1Msg = fn; },
+        get onmessage(): any { return p1Msg ?? (() => {}); },
+        postMessage: (data: any) => { queueMicrotask(() => { if (p2Msg) p2Msg({ data }); }); },
+        close: () => {}
+      };
+      this.port2 = {
+        set onmessage(fn: (e: any) => void) { p2Msg = fn; },
+        get onmessage(): any { return p2Msg ?? (() => {}); },
+        postMessage: (data: any) => { queueMicrotask(() => { if (p1Msg) p1Msg({ data }); }); },
+        close: () => {}
+      };
+    }
+  };
+}
+
 /**
  * ULTRA-ADVANCED CLOUDFLARE EDGE MIDDLEWARE
  * Executed on Cloudflare Edge PoPs globally (Mumbai, Pune, Delhi, Singapore, Dubai, London, Frankfurt)

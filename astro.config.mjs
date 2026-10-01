@@ -27,5 +27,13 @@ export default defineConfig({
       applyBaseStyles: false
     }),
     react()
-  ]
+  ],
+  vite: {
+    resolve: {
+      exportConditions: ['workerd', 'worker', 'browser'],
+      alias: {
+        'react-dom/server': 'react-dom/server.edge'
+      }
+    }
+  }
 });
