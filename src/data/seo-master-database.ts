@@ -669,6 +669,102 @@ export const masterKeywordDatabase: MasterKeywordRecord[] = [
     recommendedTitleTag: "Distance from Mantra Meridian to Balewadi High Street | 5 Mins",
     schemaType: "FAQPage",
     conversionCta: "VIEW INTERACTIVE RADAR"
+  },
+  {
+    keyword: "Mantra Meridian Balewadi kaisa hai",
+    universe: "15. AI, Voice & Conversational Search",
+    intent: "Informational",
+    funnelStage: "Top (Awareness)",
+    priority: "Tier A (Immediate)",
+    landingPageUrl: "/explore/",
+    primaryH1: "Mantra Meridian Balewadi Project Overview & Review",
+    recommendedTitleTag: "Mantra Meridian Balewadi Kaisa Hai? | Full Project Analysis & Price",
+    schemaType: "FAQPage",
+    conversionCta: "WATCH VIDEO WALKTHROUGH"
+  },
+  {
+    keyword: "Balewadi Wakad bridge connectivity",
+    universe: "09. Location Connectivity & Transit",
+    intent: "Informational",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier B (Commercial)",
+    landingPageUrl: "/location/",
+    primaryH1: "Balewadi-Wakad Bridge Transit Corridor",
+    recommendedTitleTag: "Balewadi Wakad River Bridge Connectivity | Fast Hinjewadi Bypass",
+    schemaType: "Place",
+    conversionCta: "VIEW CONNECTIVITY MAP"
+  },
+  {
+    keyword: "PMRDA Metro Line 3 Balewadi",
+    universe: "09. Location Connectivity & Transit",
+    intent: "Informational",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier B (Commercial)",
+    landingPageUrl: "/location/",
+    primaryH1: "Upcoming Balewadi Metro Station Line 3",
+    recommendedTitleTag: "PMRDA Metro Line 3 Balewadi Station | 5 Mins from Mantra Meridian",
+    schemaType: "Place",
+    conversionCta: "DOWNLOAD TRANSIT DOSSIER"
+  },
+  {
+    keyword: "Schools near Mantra Meridian Balewadi",
+    universe: "03. Location — Balewadi",
+    intent: "Informational",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier B (Commercial)",
+    landingPageUrl: "/location/",
+    primaryH1: "Top International Schools Near Balewadi",
+    recommendedTitleTag: "Schools Near Mantra Meridian Balewadi | GIIS & MITCON",
+    schemaType: "EducationalOrganization",
+    conversionCta: "VIEW SCHOOL PROXIMITY"
+  },
+  {
+    keyword: "Hospitals near Mantra Meridian Balewadi",
+    universe: "03. Location — Balewadi",
+    intent: "Informational",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier B (Commercial)",
+    landingPageUrl: "/location/",
+    primaryH1: "Multi-Specialty Healthcare Near Balewadi",
+    recommendedTitleTag: "Hospitals Near Mantra Meridian Balewadi | Jupiter & Surya Hospital",
+    schemaType: "Hospital",
+    conversionCta: "VIEW HEALTHCARE DIRECTORY"
+  },
+  {
+    keyword: "Mantra Meridian sample flat walkthrough video",
+    universe: "08. Luxury / Architectural Heritage",
+    intent: "Informational",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier A (Immediate)",
+    landingPageUrl: "/gallery/",
+    primaryH1: "4K Architectural Sample Flat Walkthrough",
+    recommendedTitleTag: "Mantra Meridian Sample Flat Video Tour | PunePropertyVlog 4K",
+    schemaType: "VideoObject",
+    conversionCta: "PLAY VIDEO TOUR"
+  },
+  {
+    keyword: "Mantra Meridian NRI investment desk",
+    universe: "12. Buyer & Investment Intent",
+    intent: "Transactional",
+    funnelStage: "Bottom (Conversion)",
+    priority: "Tier A (Immediate)",
+    landingPageUrl: "/nri-desk/",
+    primaryH1: "Global NRI Real Estate Desk Pune",
+    recommendedTitleTag: "Mantra Meridian NRI Investment Desk | UAE Dubai Advisory",
+    schemaType: "RealEstateAgent",
+    conversionCta: "CONNECT WITH NRI DESK"
+  },
+  {
+    keyword: "Mantra Meridian vs VTP",
+    universe: "13. Competitor & Locality Comparisons",
+    intent: "Commercial",
+    funnelStage: "Middle (Evaluation)",
+    priority: "Tier B (Commercial)",
+    landingPageUrl: "/compare/",
+    primaryH1: "Mantra Meridian vs VTP & West Pune Comparison",
+    recommendedTitleTag: "Mantra Meridian vs VTP Balewadi & Mahalunge Comparison 2026",
+    schemaType: "ItemPage",
+    conversionCta: "COMPARE METRICS"
   }
 ];
 

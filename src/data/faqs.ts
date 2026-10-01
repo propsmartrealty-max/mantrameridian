@@ -113,5 +113,42 @@ export const faqsData: FAQItem[] = [
     category: "location",
     question: "What is the official contact number and sales gallery address for Mantra Meridian Balewadi?",
     answer: "The official concierge and sales enquiry desk for Mantra Meridian Riverside Balewadi can be reached directly via the verified WhatsApp concierge button on this website or by submitting a private presentation request. The on-site experience center and sales office is located at Sr. No. 45, 13, Balewadi Village Road, near Mamta Dining Hall, Balewadi, Pune 411045."
+  },
+  {
+    id: "mantra-meridian-balewadi-kaisa-hai",
+    category: "overview",
+    question: "Mantra Meridian Balewadi kaisa project hai aur iski price kya hai?",
+    answer: "Mantra Meridian Balewadi ek ultra-luxury 8-acre riverside masterplanned residential project hai jise Mantra Properties develop kar rahi hai. Ye project Mula River ke kinare Balewadi Village Road par sthit hai, jaha se Balewadi High Street sirf 3 minute ki doori par hai. Yaha 2 BHK, 3 BHK, 3 BHK Signature Sky Duplex, aur 4 BHK grand residences available hain. Starting prices 2 BHK ke liye lagbhag ₹1.29 Cr* aur 3 BHK ke liye ₹1.75 Cr* se shuru hoti hain. Project MahaRERA registered hai (P52100045688) with targeted possession June 2028."
+  },
+  {
+    id: "schools-and-education-near-meridian",
+    category: "location",
+    question: "Which top international schools and colleges are near Mantra Meridian Balewadi?",
+    answer: "Mantra Meridian enjoys immediate proximity to premier educational institutions in West Pune: Global Indian International School (GIIS Balewadi) is just 4 minutes away, MITCON Institute of Management is 5 minutes away, The Orchid School Baner is 8 minutes away, and Bharati Vidyapeeth English Medium School is within a 7-minute drive."
+  },
+  {
+    id: "hospitals-and-healthcare-near-meridian",
+    category: "location",
+    question: "What multispeciality hospitals and healthcare facilities are near the project?",
+    answer: "Residents have rapid 24/7 access to leading healthcare facilities: Jupiter Super Specialty Hospital on Baner Road is just 8 minutes away, Surya Mother & Child Super Speciality Hospital is 7 minutes away, Manipal Hospital Baner is 9 minutes away, and Lifepoint Multispecialty Hospital Wakad is reachable in under 10 minutes."
+  },
+  {
+    id: "it-corridor-commute-hinjewadi",
+    category: "location",
+    question: "How long is the commute from Mantra Meridian to Hinjewadi IT Park and Cummins?",
+    answer: "Mantra Meridian offers exceptional connectivity for corporate leaders and IT executives: Cummins India Balewadi campus is under 5 minutes away, while Rajiv Gandhi Infotech Park (Hinjewadi Phase 1 - Infosys, Wipro, TCS) is approximately 14 minutes away via the arterial bypass and the upcoming Balewadi–Wakad river bridge."
+  },
+  {
+    id: "nri-investment-process-meridian",
+    category: "pricing",
+    question: "How does the NRI investment process work for Mantra Meridian Riverside?",
+    answer: "Mantra Meridian offers a dedicated Global NRI Concierge facilitating 100% remote property acquisition. Overseas buyers in UAE/Dubai, USA, Singapore, and Europe can complete KYC, inspect 4K video walkthroughs, execute digitally registered agreements, and manage payments via NRE/NRO banking channels under full FEMA and MahaRERA compliance."
+  },
+  {
+    id: "punepropertyvlog-youtube-walkthrough",
+    category: "overview",
+    question: "Where can I watch sample flat walkthroughs and PunePropertyVlog project tours?",
+    answer: "Comprehensive 4K drone cinematography, sample flat interior tours (2 BHK, 3 BHK, and Sky Duplex), and site progress updates curated by PunePropertyVlog and the architectural team are accessible in the Visual Archive section of this website and via our private presentation digital kit."
   }
 ];
+
