@@ -21,7 +21,7 @@
 
 import { identifyWhiteBot, type WhiteBotInfo } from '../src/utils/bot-detection.ts';
 import { getGoogleEdgeAccessToken } from '../src/lib/google-auth-edge.ts';
-import serviceAccountFallback from '../service-account.json' with { type: 'json' };
+const serviceAccountFallback: { client_email?: string; private_key?: string } = {};
 
 export interface ExecutionContext {
   waitUntil: (promise: Promise<unknown>) => void;

@@ -1,6 +1,8 @@
 import type { APIRoute } from 'astro';
 import { getGoogleEdgeAccessToken } from '../../lib/google-auth-edge';
-import serviceAccountFallback from '../../../service-account.json' with { type: 'json' };
+
+// Fallback container (credentials loaded dynamically via environment variables in production)
+const serviceAccountFallback: { client_email?: string; private_key?: string } = {};
 
 export const prerender = false; // Cloudflare Workers Edge Execution
 
