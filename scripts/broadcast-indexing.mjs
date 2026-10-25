@@ -55,6 +55,23 @@ for (const pUrl of PROGRAMMATIC_PRIORITY_URLS) {
   }
 }
 
+// Programmatic URL Generator for 5,000 Long-Tail Matrix
+const isFullMatrix = process.argv.includes('--all') || process.argv.includes('--programmatic');
+let programmaticUrls = [];
+if (isFullMatrix) {
+  const TYPOLOGIES_IDS = ['2-bhk-flats', '3-bhk-apartments', '3-bhk-sky-duplex', '4-bhk-luxury-estates', 'penthouse-sky-villas', 'riverfront-apartments', 'double-height-living', 'luxury-residences', 'under-construction-flats', 'ready-possession-estates'];
+  const LOCATIONS_IDS = ['balewadi', 'balewadi-high-street', 'balewadi-sports-complex', 'baner', 'baner-road', 'pancard-club-road', 'hinjewadi-phase-1', 'hinjewadi-phase-2', 'hinjewadi-phase-3', 'mahalunge', 'mahalunge-maan-bridge', 'wakad', 'aundh', 'bavdhan', 'pashan', 'punawale', 'tathawade', 'west-pune', 'mumbai-pune-expressway', 'mula-river-promenade', 'cummins-india-balewadi', 'jupiter-hospital-baner', 'orchid-school-balewadi', 'symbiosis-sbup-hinjewadi', 'phoenix-mall-wakad'];
+  const INTENTS_IDS = ['price-cost-sheet', 'floor-plans-carpet-area', 'maharera-possession-date', 'sample-flat-video-tour', 'site-visit-booking', 'bank-loan-emi-approval', 'amenities-clubhouse-access', 'location-connectivity-advantage', 'investor-rental-yield', 'sky-duplex-architecture', 'penthouse-luxury-specifications', 'resale-vs-direct-developer', 'construction-update-milestones', 'brochure-pdf-download', 'walkthrough-presentation-deck', 'nri-investment-guidance', 'vastu-direction-sanction', 'luxury-interior-finishes', 'balewadi-high-street-lifestyle', 'riverfront-deck-residences'];
+
+  for (const t of TYPOLOGIES_IDS) {
+    for (const l of LOCATIONS_IDS) {
+      for (const i of INTENTS_IDS) {
+        programmaticUrls.push(`https://${HOST}/properties/mantra-meridian-riverside-${t}-${l}-${i}/`);
+      }
+    }
+  }
+}
+
 function base64UrlEncode(str) {
   return Buffer.from(str)
     .toString('base64')
@@ -199,6 +216,31 @@ async function broadcastUnifiedIndexing() {
   } catch (err) {
     console.error(`   ⚠️ Microsoft Bing Error:`, err.message);
     summary.push({ engine: 'Microsoft Bing IndexNow', status: 'error', message: err.message });
+  }
+
+  // 3b. Programmatic Matrix Batch Dispatch (5,000 Long-Tail URLs)
+  if (programmaticUrls.length > 0) {
+    console.log(`\n🚀 Broadcasting ${programmaticUrls.length} Programmatic Real Estate Matrix URLs in batches of 1,000...`);
+    const BATCH_SIZE = 1000;
+    for (let b = 0; b < programmaticUrls.length; b += BATCH_SIZE) {
+      const batchUrls = programmaticUrls.slice(b, b + BATCH_SIZE);
+      const batchPayload = {
+        host: HOST,
+        key: INDEXNOW_KEY,
+        keyLocation: KEY_LOCATION,
+        urlList: batchUrls
+      };
+      try {
+        const batchRes = await fetch('https://api.indexnow.org/indexnow', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json; charset=utf-8' },
+          body: JSON.stringify(batchPayload)
+        });
+        console.log(`   ✅ Programmatic Batch [${b + 1}–${Math.min(b + BATCH_SIZE, programmaticUrls.length)}]: Status ${batchRes.status}`);
+      } catch (err) {
+        // Non-fatal
+      }
+    }
   }
 
   // 4. Ping Search Engine Sitemap Discovery Gateways

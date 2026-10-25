@@ -18,6 +18,7 @@
     "worker:dry-run": "wrangler deploy -c wrangler.edge-seo.toml --dry-run",
     "worker:deploy": "wrangler deploy -c wrangler.edge-seo.toml",
     "index:broadcast": "node scripts/broadcast-indexing.mjs",
+    "index:all": "node scripts/broadcast-indexing.mjs --all",
     "index:google": "node scripts/google-indexing.mjs",
     "cache:purge": "node scripts/purge-edge-cache.mjs",
     "force:index": "node scripts/force-index.mjs",
