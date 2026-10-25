@@ -24,6 +24,9 @@ export interface ProgrammaticPageData {
   faqs: Array<{ question: string; answer: string }>;
   breadcrumbs: Array<{ name: string; url?: string }>;
   schema: Record<string, any>;
+  relatedTypologies: Array<{ slug: string; name: string; carpet: string; price: string }>;
+  relatedLocations: Array<{ slug: string; name: string; distance: string }>;
+  relatedIntents: Array<{ slug: string; name: string }>;
 }
 
 export interface TypologyMeta {
@@ -272,10 +275,46 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
 
   if (!foundTyp || !foundLoc || !foundInt) return null;
 
-  // Assemble full programmatic page payload
+  const typIdx = TYPOLOGIES.findIndex((t) => t.id === foundTyp!.id);
+  const locIdx = LOCATIONS.findIndex((l) => l.id === foundLoc!.id);
+  const intIdx = INTENTS.findIndex((i) => i.id === foundInt!.id);
+
+  // High-CTR Front-Loaded Title Tag & Meta Description for Google SERP Domination
   const canonicalUrl = `https://mantrameridianriverside.com/properties/${slug}/`;
-  const pageTitle = `${foundTyp.name} in ${foundLoc.name} | ${foundInt.name} | Mantra Meridian Riverside`;
-  const metaDescription = `Explore ${foundTyp.name} (${foundTyp.carpet}) at Mantra Meridian Riverside, ${foundLoc.name}. Starting ${foundTyp.price}. ${foundInt.primaryFocus} MahaRERA P52100045688.`;
+  const locShortName = foundLoc.name.replace(/,.*$/, '').replace(/ Corridor| Enclave| District| Belt| Zone/g, '');
+  const pageTitle = `${foundTyp.name} ${locShortName} [From ${foundTyp.price}] | Mantra Meridian`;
+  const metaDescription = `✓ Official Portal: ${foundTyp.name} (${foundTyp.carpet}) from ${foundTyp.price} in ${locShortName}. ${foundInt.primaryFocus} MahaRERA P52100045688. Download 2026 Cost Sheet.`;
+
+  // Compute 12 contextual sibling graph links (mesh network connecting all 5,000 pages)
+  const relatedTypologies = [1, 2, 3, 4].map((offset) => {
+    const nextTypIdx = (typIdx + offset) % TYPOLOGIES.length;
+    const t = TYPOLOGIES[nextTypIdx];
+    return {
+      slug: buildProgrammaticSlug(nextTypIdx, locIdx, intIdx),
+      name: t.name,
+      carpet: t.carpet,
+      price: t.price
+    };
+  });
+
+  const relatedLocations = [1, 2, 3, 4].map((offset) => {
+    const nextLocIdx = (locIdx + offset) % LOCATIONS.length;
+    const l = LOCATIONS[nextLocIdx];
+    return {
+      slug: buildProgrammaticSlug(typIdx, nextLocIdx, intIdx),
+      name: l.name,
+      distance: l.distanceFromSite
+    };
+  });
+
+  const relatedIntents = [1, 2, 3, 4].map((offset) => {
+    const nextIntIdx = (intIdx + offset) % INTENTS.length;
+    const i = INTENTS[nextIntIdx];
+    return {
+      slug: buildProgrammaticSlug(typIdx, locIdx, nextIntIdx),
+      name: i.name
+    };
+  });
   const h1Title = `${foundTyp.name} near ${foundLoc.name}`;
   const heroHeadline = `${foundInt.name} — Luxury Living along the Mula River`;
   const summaryText = `Mantra Meridian Riverside introduces an unparalleled residential standard in ${foundLoc.name}. Featuring ${foundTyp.descriptor} Strategically positioned ${foundLoc.distanceFromSite} (${foundLoc.travelTime}) from ${foundLoc.name}, this 8-acre sanctuary delivers 75%+ green space, immediate access to Balewadi High Street, and premier connectivity to the Hinjewadi IT Corridor.`;
@@ -421,6 +460,9 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
     highlights,
     faqs,
     breadcrumbs,
-    schema
+    schema,
+    relatedTypologies,
+    relatedLocations,
+    relatedIntents
   };
 }

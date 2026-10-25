@@ -5,8 +5,8 @@ import { TYPOLOGIES, LOCATIONS, INTENTS, TOTAL_PROGRAMMATIC_PAGES, buildProgramm
 
 export const prerender = true;
 
-const title = "Mantra Meridian Riverside Residences Directory | 5,000 Verified Real Estate Intelligence Portals";
-const description = `Access the complete real estate intelligence directory for Mantra Meridian Riverside Balewadi. Explore 5,000 verified configurations, cost sheets, floor plans, and micro-market transit guides across West Pune.`;
+const title = "Mantra Meridian Residences Directory [5,000 Portals] Balewadi";
+const description = `✓ Official Directory: 5,000 Verified Real Estate Intelligence Portals for Mantra Meridian Riverside Balewadi. 2, 3, 4 BHK & Duplexes from ₹1.29 Cr*. MahaRERA P52100045688.`;
 
 // Curated high-intent featured micro-market portals for immediate search crawl discovery
 const featuredPortals = [
@@ -84,7 +84,7 @@ const propertiesSchema = {
       </p>
     </header>
 
-    {/* Typologies Section */}
+    {/* Typologies Section with Deep-Link Graph */}
     <section class="space-y-6">
       <div class="border-b border-white/10 pb-4">
         <span class="label-architectural text-xs text-champagne">RESIDENCE FORMATS</span>
@@ -92,32 +92,60 @@ const propertiesSchema = {
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {TYPOLOGIES.map((t) => (
-          <div class="p-6 bg-obsidian-card border border-white/10 space-y-3">
-            <h3 class="font-serif text-xl text-architectural-white">{t.name}</h3>
-            <div class="flex justify-between items-center text-xs font-mono text-champagne">
-              <span>Carpet: {t.carpet}</span>
-              <span>{t.price}</span>
+        {TYPOLOGIES.map((t, tIdx) => (
+          <div class="p-6 bg-obsidian-card border border-white/10 space-y-4 rounded flex flex-col justify-between">
+            <div class="space-y-2">
+              <h3 class="font-serif text-xl text-architectural-white">{t.name}</h3>
+              <div class="flex justify-between items-center text-xs font-mono text-champagne">
+                <span>Carpet: {t.carpet}</span>
+                <span>{t.price}</span>
+              </div>
+              <p class="text-xs text-concrete/80 leading-relaxed">{t.descriptor}</p>
             </div>
-            <p class="text-xs text-concrete/80 leading-relaxed">{t.descriptor}</p>
+            
+            <div class="pt-2 border-t border-white/5 space-y-1">
+              <span class="text-[10px] font-mono uppercase tracking-widest text-champagne/80">Explore in Top Hubs:</span>
+              <div class="flex flex-wrap gap-1.5 pt-1">
+                {[0, 1, 6, 9].map((lIdx) => (
+                  <a
+                    href={`/properties/${buildProgrammaticSlug(tIdx, lIdx, 0)}/`}
+                    class="px-2 py-1 bg-obsidian-surface border border-white/5 hover:border-champagne/40 rounded text-[11px] text-concrete hover:text-champagne transition-colors"
+                  >
+                    {LOCATIONS[lIdx].name.split(',')[0]}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         ))}
       </div>
     </section>
 
-    {/* Micro-Market Corridors Section */}
+    {/* Micro-Market Corridors Section with Deep-Link Graph */}
     <section class="space-y-6">
       <div class="border-b border-white/10 pb-4">
         <span class="label-architectural text-xs text-champagne">CONNECTIVITY & TRANSIT RADAR</span>
         <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Key Micro-Markets & Distances</h2>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4">
-        {LOCATIONS.map((loc) => (
-          <div class="p-4 bg-obsidian-surface border border-white/5 space-y-1">
-            <div class="text-xs font-medium text-architectural-white">{loc.name}</div>
-            <div class="text-[11px] font-mono text-champagne">{loc.distanceFromSite}</div>
-            <div class="text-[10px] text-concrete/60 font-mono">{loc.travelTime} drive</div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        {LOCATIONS.map((loc, lIdx) => (
+          <div class="p-4 bg-obsidian-surface border border-white/5 hover:border-champagne/30 rounded space-y-2 flex flex-col justify-between transition-colors">
+            <div>
+              <div class="text-xs font-medium text-architectural-white">{loc.name}</div>
+              <div class="text-[11px] font-mono text-champagne mt-0.5">{loc.distanceFromSite}</div>
+              <div class="text-[10px] text-concrete/60 font-mono">{loc.travelTime} drive</div>
+            </div>
+            <div class="flex flex-wrap gap-1 pt-1 border-t border-white/5">
+              {[0, 1, 2].map((tIdx) => (
+                <a
+                  href={`/properties/${buildProgrammaticSlug(tIdx, lIdx, 0)}/`}
+                  class="text-[10px] font-mono px-1.5 py-0.5 bg-white/5 hover:bg-champagne/20 text-concrete hover:text-champagne rounded transition-colors"
+                >
+                  {tIdx === 0 ? '2BHK' : tIdx === 1 ? '3BHK' : 'Duplex'}
+                </a>
+              ))}
+            </div>
           </div>
         ))}
       </div>
@@ -142,6 +170,30 @@ const propertiesSchema = {
             <span class="text-[10px] font-mono text-champagne/80 mt-3 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
               <span>View Portal Specifications</span>
               <span>→</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {/* Strategic Buyer Planning Tools & Intent Portals */}
+    <section class="space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">VERIFIED BUYER TOOLS</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Intelligence & Planning Formats</h2>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+        {INTENTS.slice(0, 12).map((intent, iIdx) => (
+          <a
+            href={`/properties/${buildProgrammaticSlug(1, 0, iIdx)}/`}
+            class="p-3 bg-obsidian-surface border border-white/5 hover:border-champagne/40 rounded transition-all group flex flex-col justify-between"
+          >
+            <span class="text-xs text-architectural-white group-hover:text-champagne transition-colors line-clamp-1">
+              {intent.name}
+            </span>
+            <span class="text-[10px] font-mono text-champagne/70 mt-2">
+              {intent.actionHook} →
             </span>
           </a>
         ))}

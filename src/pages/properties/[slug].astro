@@ -143,6 +143,84 @@ Astro.response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:lar
     {/* Statutory RERA Verification Card */}
     <ReraVerificationCard />
 
+    {/* Contextual Programmatic Mesh: 12 Direct Reciprocal Graph Links */}
+    <section class="space-y-8 p-8 bg-obsidian-card border border-champagne/20 rounded">
+      <div class="border-b border-white/10 pb-4">
+        <span class="label-architectural text-xs text-champagne">RECIPROCAL REAL ESTATE NETWORK</span>
+        <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Explore Related Configurations & Locations</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Sibling Typologies */}
+        <div class="space-y-3">
+          <h3 class="text-xs font-mono uppercase tracking-widest text-champagne">
+            Other Typologies in {data.locationName.split(',')[0]}
+          </h3>
+          <div class="space-y-2">
+            {data.relatedTypologies?.map((item) => (
+              <a
+                href={`/properties/${item.slug}/`}
+                class="block p-3 bg-obsidian-surface border border-white/5 hover:border-champagne/50 rounded transition-all group"
+              >
+                <div class="text-xs font-medium text-architectural-white group-hover:text-champagne transition-colors">
+                  {item.name}
+                </div>
+                <div class="flex justify-between items-center text-[11px] font-mono text-concrete/70 mt-1">
+                  <span>{item.carpet}</span>
+                  <span class="text-champagne">{item.price}</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Sibling Locations */}
+        <div class="space-y-3">
+          <h3 class="text-xs font-mono uppercase tracking-widest text-champagne">
+            {data.typologyName} Across West Pune
+          </h3>
+          <div class="space-y-2">
+            {data.relatedLocations?.map((item) => (
+              <a
+                href={`/properties/${item.slug}/`}
+                class="block p-3 bg-obsidian-surface border border-white/5 hover:border-champagne/50 rounded transition-all group"
+              >
+                <div class="text-xs font-medium text-architectural-white group-hover:text-champagne transition-colors">
+                  {item.name}
+                </div>
+                <div class="text-[11px] font-mono text-concrete/70 mt-1">
+                  Distance: {item.distance}
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Sibling Intents */}
+        <div class="space-y-3">
+          <h3 class="text-xs font-mono uppercase tracking-widest text-champagne">
+            Planning & Verification Portals
+          </h3>
+          <div class="space-y-2">
+            {data.relatedIntents?.map((item) => (
+              <a
+                href={`/properties/${item.slug}/`}
+                class="block p-3 bg-obsidian-surface border border-white/5 hover:border-champagne/50 rounded transition-all group"
+              >
+                <div class="text-xs font-medium text-architectural-white group-hover:text-champagne transition-colors">
+                  {item.name}
+                </div>
+                <div class="text-[10px] font-mono text-champagne/80 mt-1 flex items-center gap-1">
+                  <span>Access Verified Data</span>
+                  <span>→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
     {/* Contextual Real Estate Interlinking Hub */}
     <nav class="p-8 bg-obsidian-card border border-white/10 space-y-6" aria-label="Related Real Estate Pages">
       <div class="text-xs font-mono uppercase tracking-widest text-champagne">

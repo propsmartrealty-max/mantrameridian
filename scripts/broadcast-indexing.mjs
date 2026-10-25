@@ -201,6 +201,28 @@ async function broadcastUnifiedIndexing() {
     summary.push({ engine: 'Microsoft Bing IndexNow', status: 'error', message: err.message });
   }
 
+  // 4. Ping Search Engine Sitemap Discovery Gateways
+  const sitemapsToPing = [
+    'https://mantrameridianriverside.com/sitemap-index.xml',
+    'https://mantrameridianriverside.com/sitemap.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-1.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-2.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-3.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-4.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-5.xml'
+  ];
+
+  console.log('🗺️  [4/4] Pinging Search Engine Sitemap Endpoints...');
+  for (const smUrl of sitemapsToPing) {
+    try {
+      const pingUrl = `https://www.bing.com/ping?sitemap=${encodeURIComponent(smUrl)}`;
+      const pRes = await fetch(pingUrl);
+      console.log(`   ✅ Sitemap Ping (${smUrl.split('/').pop()}): Status ${pRes.status}`);
+    } catch (pErr) {
+      // Non-fatal ping notice
+    }
+  }
+
   console.log('\n━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log('✨ Unified Search Engine Indexing Broadcast Completed!');
   console.log(JSON.stringify({ timestamp: new Date().toISOString(), totalUrls: urlList.length, results: summary }, null, 2));

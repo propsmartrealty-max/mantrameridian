@@ -7,6 +7,7 @@ import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentation
 import { projectData } from '../data/project';
 import { defaultMetaKeywords, meridianKeywordEcosystem } from '../data/keywords';
 import { aggregateRatingData, verifiedReviews } from '../data/reviews';
+import { faqsData } from '../data/faqs';
 import '../styles/global.css';
 
 interface Props {
@@ -21,8 +22,8 @@ interface Props {
 }
 
 const {
-  title = "Mantra Meridian Balewadi | Mantra Riverside Balewadi | Luxury 2, 3, 4 BHK & Duplexes Pune",
-  description = "Official portal of Mantra Meridian Balewadi and Mantra Riverside Balewadi by Mantra Properties. 8-acre luxury riverside development offering 2, 3, 4 BHK homes & 3 BHK Duplexes along the Mula River. MahaRERA P52100045688.",
+  title = "Mantra Meridian Balewadi [₹1.29 Cr*] Official Site | 2, 3, 4 BHK & Duplex",
+  description = "✓ Official Portal: Mantra Meridian Riverside Balewadi by Mantra Properties. 2, 3, 4 BHK & Sky Duplexes from ₹1.29 Cr*. 8-Acre Riverfront Living, 20,000 sq.ft Clubhouse. Download 2026 Cost Sheet & Sanctioned Plans. MahaRERA P52100045688.",
   keywords: rawKeywords = defaultMetaKeywords,
   ogImage = projectData.ogImage,
   canonicalUrl,
@@ -911,6 +912,58 @@ if (customSchema) {
     const { '@context': _context, ...schemaObj } = customSchema as any;
     coreGraph.push(schemaObj);
   }
+}
+
+// 1. Dynamic BreadcrumbList Schema for Google SERP Visual Breadcrumbs
+const hasBreadcrumbs = coreGraph.some((node: any) => node['@type'] === 'BreadcrumbList');
+if (!hasBreadcrumbs) {
+  const pathSegments = normalizedPath.split('/').filter(Boolean);
+  const breadcrumbItems = [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": `${siteOrigin}/`
+    }
+  ];
+
+  let accumulatedPath = siteOrigin;
+  pathSegments.forEach((segment, idx) => {
+    accumulatedPath += `/${segment}`;
+    const segmentName = segment
+      .split('-')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+    breadcrumbItems.push({
+      "@type": "ListItem",
+      "position": idx + 2,
+      "name": segmentName,
+      "item": idx === pathSegments.length - 1 ? computedCanonical : `${accumulatedPath}/`
+    });
+  });
+
+  coreGraph.push({
+    "@type": "BreadcrumbList",
+    "@id": `${computedCanonical}#breadcrumb`,
+    "itemListElement": breadcrumbItems
+  });
+}
+
+// 2. High-Authority FAQPage Schema for Google SERP Rich FAQ Dropdowns (boosting SERP CTR > 50%)
+const hasFAQPage = coreGraph.some((node: any) => node['@type'] === 'FAQPage');
+if (!hasFAQPage) {
+  coreGraph.push({
+    "@type": "FAQPage",
+    "@id": `${computedCanonical}#faq`,
+    "mainEntity": faqsData.slice(0, 6).map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  });
 }
 
 const unifiedSchema = {
