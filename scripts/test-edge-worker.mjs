@@ -620,6 +620,58 @@ runTest('Digital Fortress Service Worker v4 caches essential offline shell and R
   assert.ok(security.includes('2028-12-31'), 'security.txt expiration must be extended through 2028');
 });
 
+await runAsyncTest('Edge Worker instantly satisfies Google Search Console dynamic verification and Bing/IndexNow global keys', async () => {
+  const env = {};
+
+  // 1. Test Google Site Verification Wildcard
+  const gReq = new Request('https://mantrameridianriverside.com/google4c7e6b0a9f1248a881335b2e3a1d95c2.html');
+  const gRes = await worker.fetch(gReq, env, mockCtx);
+  assert.equal(gRes.status, 200);
+  assert.equal(gRes.headers.get('Content-Type'), 'text/html; charset=utf-8');
+  const gText = await gRes.text();
+  assert.equal(gText, 'google-site-verification: google4c7e6b0a9f1248a881335b2e3a1d95c2.html');
+
+  // Test dynamic arbitrary Google code
+  const gAnyReq = new Request('https://mantrameridianriverside.com/google9988776655443322.html');
+  const gAnyRes = await worker.fetch(gAnyReq, env, mockCtx);
+  assert.equal(gAnyRes.status, 200);
+  const gAnyText = await gAnyRes.text();
+  assert.equal(gAnyText, 'google-site-verification: google9988776655443322.html');
+
+  // 2. Test Microsoft BingSiteAuth.xml
+  const bReq = new Request('https://mantrameridianriverside.com/BingSiteAuth.xml');
+  const bRes = await worker.fetch(bReq, env, mockCtx);
+  assert.equal(bRes.status, 200);
+  assert.equal(bRes.headers.get('Content-Type'), 'application/xml; charset=utf-8');
+  const bText = await bRes.text();
+  assert.ok(bText.includes('<user>4c7e6b0a9f1248a881335b2e3a1d95c2</user>'));
+
+  // 3. Test IndexNow key verification text endpoint
+  const kReq = new Request('https://mantrameridianriverside.com/4c7e6b0a9f1248a881335b2e3a1d95c2.txt');
+  const kRes = await worker.fetch(kReq, env, mockCtx);
+  assert.equal(kRes.status, 200);
+  assert.equal(kRes.headers.get('Content-Type'), 'text/plain; charset=utf-8');
+  const kText = await kRes.text();
+  assert.equal(kText, '4c7e6b0a9f1248a881335b2e3a1d95c2');
+});
+
+runTest('Global verification static files exist in public directory with exact cryptographic keys', () => {
+  const bingPath = path.resolve('public/BingSiteAuth.xml');
+  assert.ok(fs.existsSync(bingPath), 'public/BingSiteAuth.xml must exist');
+  const bingContent = fs.readFileSync(bingPath, 'utf8');
+  assert.ok(bingContent.includes('<user>4c7e6b0a9f1248a881335b2e3a1d95c2</user>'));
+
+  const googleHtmlPath = path.resolve('public/google4c7e6b0a9f1248a881335b2e3a1d95c2.html');
+  assert.ok(fs.existsSync(googleHtmlPath), 'public/google4c7e6b0a9f1248a881335b2e3a1d95c2.html must exist');
+  const googleHtmlContent = fs.readFileSync(googleHtmlPath, 'utf8');
+  assert.equal(googleHtmlContent.trim(), 'google-site-verification: google4c7e6b0a9f1248a881335b2e3a1d95c2.html');
+
+  const indexNowPath = path.resolve('public/4c7e6b0a9f1248a881335b2e3a1d95c2.txt');
+  assert.ok(fs.existsSync(indexNowPath), 'public/4c7e6b0a9f1248a881335b2e3a1d95c2.txt must exist');
+  const indexNowContent = fs.readFileSync(indexNowPath, 'utf8');
+  assert.equal(indexNowContent.trim(), '4c7e6b0a9f1248a881335b2e3a1d95c2');
+});
+
 // -----------------------------------------------------------------------------
 // Test Summary
 // -----------------------------------------------------------------------------

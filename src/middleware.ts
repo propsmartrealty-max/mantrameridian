@@ -79,6 +79,44 @@ export const onRequest = defineMiddleware(async (context, next) => {
     });
   }
 
+  // 1B. Dynamic Search Engine Verification & Global Key Interceptors
+  // Universal Google Search Console HTML Verification Interceptor (matches ANY google*.html file request)
+  const googleMatch = pathname.match(/^\/google([a-z0-9_-]+)\.html$/i);
+  if (googleMatch) {
+    return new Response(`google-site-verification: google${googleMatch[1]}.html`, {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400',
+        'X-Robots-Tag': 'noindex'
+      }
+    });
+  }
+
+  // Universal IndexNow / Search Engine Verification Key Interceptor (matches /<32-hex-key>.txt)
+  const keyTxtMatch = pathname.match(/^\/([a-f0-9]{32})\.txt$/i);
+  if (keyTxtMatch) {
+    return new Response(keyTxtMatch[1], {
+      status: 200,
+      headers: {
+        'Content-Type': 'text/plain; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400',
+        'X-Robots-Tag': 'noindex'
+      }
+    });
+  }
+
+  // Microsoft Bing Webmaster Tools Auth XML Interceptor
+  if (pathname === '/BingSiteAuth.xml') {
+    return new Response(`<?xml version="1.0"?>\n<users>\n  <user>4c7e6b0a9f1248a881335b2e3a1d95c2</user>\n</users>`, {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/xml; charset=utf-8',
+        'Cache-Control': 'public, max-age=86400'
+      }
+    });
+  }
+
   // 2. Edge Canonical URL Normalization: Prevent Duplicate Content & Fragmented Equity in Google Index
   // A. Apex Domain Enforcement: Redirect www to apex canonical domain
   if (url.hostname === 'www.mantrameridianriverside.com') {
