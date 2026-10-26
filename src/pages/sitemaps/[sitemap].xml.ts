@@ -33,7 +33,7 @@ export const GET: APIRoute = async ({ params }) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, allSlugs.length);
   const pageSlugs = allSlugs.slice(startIndex, endIndex);
 
-  const lastMod = '2026-09-21';
+  const lastMod = '2026-10-25';
   const siteUrl = 'https://mantrameridianriverside.com';
 
   const urlsXml = pageSlugs

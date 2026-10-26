@@ -14,7 +14,6 @@ Disallow: /api/enquiry
 Disallow: /api/edge-telemetry
 Disallow: /_worker.js
 Disallow: /cdn-cgi/
-Crawl-delay: 2
 
 # ── GOOGLE PRIMARY SEARCH ──────────────────────────────────────────────────────
 User-agent: Googlebot
@@ -83,7 +82,6 @@ Allow: /
 # ── MICROSOFT BING ─────────────────────────────────────────────────────────────
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 1
 
 User-agent: msnbot
 Allow: /
