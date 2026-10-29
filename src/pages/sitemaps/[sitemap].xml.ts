@@ -10,6 +10,12 @@ export function getStaticPaths() {
     { params: { sitemap: 'properties-3' } },
     { params: { sitemap: 'properties-4' } },
     { params: { sitemap: 'properties-5' } },
+    { params: { sitemap: 'properties-6' } },
+    { params: { sitemap: 'properties-7' } },
+    { params: { sitemap: 'properties-8' } },
+    { params: { sitemap: 'properties-9' } },
+    { params: { sitemap: 'properties-10' } },
+    { params: { sitemap: 'properties-11' } },
   ];
 }
 
@@ -24,7 +30,7 @@ export const GET: APIRoute = async ({ params }) => {
   }
 
   const pageNumber = parseInt(match[1], 10);
-  if (pageNumber < 1 || pageNumber > 5) {
+  if (pageNumber < 1 || pageNumber > 11) {
     return new Response('Sitemap Page Out of Bounds', { status: 404 });
   }
 
@@ -33,7 +39,7 @@ export const GET: APIRoute = async ({ params }) => {
   const endIndex = Math.min(startIndex + PAGE_SIZE, allSlugs.length);
   const pageSlugs = allSlugs.slice(startIndex, endIndex);
 
-  const lastMod = '2026-10-25';
+  const lastMod = '2026-10-29';
   const siteUrl = 'https://mantrameridianriverside.com';
 
   const urlsXml = pageSlugs

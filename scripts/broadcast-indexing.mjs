@@ -55,13 +55,34 @@ for (const pUrl of PROGRAMMATIC_PRIORITY_URLS) {
   }
 }
 
-// Programmatic URL Generator for 5,000 Long-Tail Matrix
+// Programmatic URL Generator for 10,400 Long-Tail Matrix
 const isFullMatrix = process.argv.includes('--all') || process.argv.includes('--programmatic');
 let programmaticUrls = [];
 if (isFullMatrix) {
-  const TYPOLOGIES_IDS = ['2-bhk-flats', '3-bhk-apartments', '3-bhk-sky-duplex', '4-bhk-luxury-estates', 'penthouse-sky-villas', 'riverfront-apartments', 'double-height-living', 'luxury-residences', 'under-construction-flats', 'ready-possession-estates'];
-  const LOCATIONS_IDS = ['balewadi', 'balewadi-high-street', 'balewadi-sports-complex', 'baner', 'baner-road', 'pancard-club-road', 'hinjewadi-phase-1', 'hinjewadi-phase-2', 'hinjewadi-phase-3', 'mahalunge', 'mahalunge-maan-bridge', 'wakad', 'aundh', 'bavdhan', 'pashan', 'punawale', 'tathawade', 'west-pune', 'mumbai-pune-expressway', 'mula-river-promenade', 'cummins-india-balewadi', 'jupiter-hospital-baner', 'orchid-school-balewadi', 'symbiosis-sbup-hinjewadi', 'phoenix-mall-wakad'];
-  const INTENTS_IDS = ['price-cost-sheet', 'floor-plans-carpet-area', 'maharera-possession-date', 'sample-flat-video-tour', 'site-visit-booking', 'bank-loan-emi-approval', 'amenities-clubhouse-access', 'location-connectivity-advantage', 'investor-rental-yield', 'sky-duplex-architecture', 'penthouse-luxury-specifications', 'resale-vs-direct-developer', 'construction-update-milestones', 'brochure-pdf-download', 'walkthrough-presentation-deck', 'nri-investment-guidance', 'vastu-direction-sanction', 'luxury-interior-finishes', 'balewadi-high-street-lifestyle', 'riverfront-deck-residences'];
+  const TYPOLOGIES_IDS = [
+    '2-bhk-flats', '2-5-bhk-apartments', '3-bhk-apartments', '3-5-bhk-apartments',
+    '3-bhk-sky-duplex', '4-bhk-luxury-estates', 'penthouse-sky-villas', 'luxury-penthouses-balewadi',
+    'riverfront-apartments', 'river-facing-flats', 'double-height-living', 'duplex-apartments-balewadi',
+    'luxury-residences', 'smart-home-residences', 'under-construction-flats', 'ready-possession-estates'
+  ];
+  const LOCATIONS_IDS = [
+    'balewadi', 'balewadi-high-street', 'balewadi-sports-complex', 'baner', 'baner-road',
+    'pancard-club-road', 'baner-pashan-link-road', 'hinjewadi-phase-1', 'hinjewadi-phase-2',
+    'hinjewadi-phase-3', 'mahalunge', 'mahalunge-maan-bridge', 'wakad', 'aundh',
+    'bavdhan', 'pashan', 'punawale', 'tathawade', 'west-pune', 'mumbai-pune-expressway',
+    'mula-river-promenade', 'cummins-india-balewadi', 'jupiter-hospital-baner',
+    'orchid-school-balewadi', 'metro-line-3-balewadi', 'balewadi-village-road'
+  ];
+  const INTENTS_IDS = [
+    'price-cost-sheet', 'floor-plans-carpet-area', 'rera-possession-date', 'sample-flat-video-tour',
+    '8-acre-masterplan-amenities', 'payment-schedule-bank-loan', 'buyer-reviews-ratings',
+    'booking-enquiry-concierge', 'capital-appreciation-forecast', 'rental-yield-tech-executives',
+    'all-inclusive-price-breakdown', 'specifications-finishes', 'riverfront-view-apartments',
+    'vastu-compliant-layouts', 'gated-community-security', 'clubhouse-infinity-pool',
+    'nri-investment-portfolio', 'construction-status-milestone', 'resale-vs-new-launch',
+    'brochure-pdf-download', 'price-trend-2026', 'emi-calculator-loan-rates',
+    'maintenance-charges-breakdown', 'compare-with-competitors', 'site-visit-cab-booking'
+  ];
 
   for (const t of TYPOLOGIES_IDS) {
     for (const l of LOCATIONS_IDS) {
@@ -251,7 +272,13 @@ async function broadcastUnifiedIndexing() {
     'https://mantrameridianriverside.com/sitemaps/properties-2.xml',
     'https://mantrameridianriverside.com/sitemaps/properties-3.xml',
     'https://mantrameridianriverside.com/sitemaps/properties-4.xml',
-    'https://mantrameridianriverside.com/sitemaps/properties-5.xml'
+    'https://mantrameridianriverside.com/sitemaps/properties-5.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-6.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-7.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-8.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-9.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-10.xml',
+    'https://mantrameridianriverside.com/sitemaps/properties-11.xml'
   ];
 
   console.log('🗺️  [4/4] Pinging Search Engine Sitemap Endpoints...');

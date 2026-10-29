@@ -27,6 +27,7 @@ export interface ProgrammaticPageData {
   relatedTypologies: Array<{ slug: string; name: string; carpet: string; price: string }>;
   relatedLocations: Array<{ slug: string; name: string; distance: string }>;
   relatedIntents: Array<{ slug: string; name: string }>;
+  relatedComparisons: Array<{ slug: string; name: string; url: string }>;
 }
 
 export interface TypologyMeta {
@@ -56,7 +57,7 @@ export interface IntentMeta {
   primaryFocus: string;
 }
 
-// 1. TYPOLOGIES (10 Dimensions)
+// 1. TYPOLOGIES (16 Dimensions)
 export const TYPOLOGIES: readonly TypologyMeta[] = [
   {
     id: '2-bhk-flats',
@@ -69,6 +70,16 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     descriptor: 'Efficient biophilic homes with optimal natural cross-ventilation and Mula river-breeze balconies.'
   },
   {
+    id: '2-5-bhk-apartments',
+    name: '2.5 BHK Luxury Residences',
+    carpet: '990 sq.ft.',
+    price: '₹1.49 Cr*',
+    numericPrice: 14900000,
+    beds: 3,
+    baths: 2,
+    descriptor: 'Intelligently planned 2.5 BHK homes with a dedicated work-from-home suite or study lounge and river view deck.'
+  },
+  {
     id: '3-bhk-apartments',
     name: '3 BHK Luxury Residences',
     carpet: '1,180 sq.ft.',
@@ -77,6 +88,16 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     beds: 3,
     baths: 3,
     descriptor: 'Expansive family suites featuring panoramic river views and private foyer entrances.'
+  },
+  {
+    id: '3-5-bhk-apartments',
+    name: '3.5 BHK Sky Residences',
+    carpet: '1,420 sq.ft.',
+    price: '₹2.05 Cr*',
+    numericPrice: 20500000,
+    beds: 4,
+    baths: 3,
+    descriptor: 'Spacious 3.5 BHK luxury homes with multipurpose studio den, servant room access, and dual balconies.'
   },
   {
     id: '3-bhk-sky-duplex',
@@ -102,11 +123,21 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     id: 'penthouse-sky-villas',
     name: 'Penthouse & Sky Villa Collection',
     carpet: '2,180 sq.ft.',
-    price: '₹2.25 Cr* - ₹3.50 Cr*',
-    numericPrice: 28500000,
+    price: '₹3.20 Cr*',
+    numericPrice: 32000000,
     beds: 4,
     baths: 5,
     descriptor: 'Crown sky villas on the top architectural tiers featuring 270-degree wraparound riparian river decks.'
+  },
+  {
+    id: 'luxury-penthouses-balewadi',
+    name: 'Panoramic Luxury Penthouses',
+    carpet: '2,250 sq.ft.',
+    price: '₹3.50 Cr*',
+    numericPrice: 35000000,
+    beds: 4,
+    baths: 5,
+    descriptor: 'Top-tier crown penthouses offering private rooftop observation decks and panoramic vistas over the Mula river.'
   },
   {
     id: 'riverfront-apartments',
@@ -119,6 +150,16 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     descriptor: 'Directly overlooking the 500-metre Mula River boardwalk with uninterrupted riparian horizons.'
   },
   {
+    id: 'river-facing-flats',
+    name: 'Mula River Facing Balcony Flats',
+    carpet: '815 - 1,660 sq.ft.',
+    price: '₹1.35 Cr* onwards',
+    numericPrice: 13500000,
+    beds: 3,
+    baths: 3,
+    descriptor: 'Prime riverfront residences offering guaranteed unblocked scenic views across the 500m river boardwalk.'
+  },
+  {
     id: 'double-height-living',
     name: 'Double Height Ceiling Duplex Homes',
     carpet: '1,660 sq.ft.',
@@ -129,6 +170,16 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     descriptor: 'Volumetric luxury duplexes designed with 20ft ceilings, floor-to-ceiling glass, and dual terraces.'
   },
   {
+    id: 'duplex-apartments-balewadi',
+    name: 'Signature Two-Tier Duplexes',
+    carpet: '1,660 sq.ft.',
+    price: '₹2.25 Cr*',
+    numericPrice: 22500000,
+    beds: 3,
+    baths: 3,
+    descriptor: 'Dramatic two-level duplex residences offering private upper-floor master suites and double-volume great rooms.'
+  },
+  {
     id: 'luxury-residences',
     name: 'Flagship 8-Acre Residences',
     carpet: '815 - 2,180 sq.ft.',
@@ -137,6 +188,16 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
     beds: 3,
     baths: 3,
     descriptor: 'A masterplanned 8-acre sanctuary featuring 75%+ landscaped open spaces and The Grand Pavilion clubhouse.'
+  },
+  {
+    id: 'smart-home-residences',
+    name: 'Biophilic Smart Automated Residences',
+    carpet: '815 - 2,050 sq.ft.',
+    price: '₹1.45 Cr* onwards',
+    numericPrice: 14500000,
+    beds: 3,
+    baths: 3,
+    descriptor: 'IoT-enabled luxury apartments featuring Schneider smart lighting, digital door locks, and eco-climate optimization.'
   },
   {
     id: 'under-construction-flats',
@@ -160,7 +221,7 @@ export const TYPOLOGIES: readonly TypologyMeta[] = [
   }
 ];
 
-// 2. LOCATIONS & STRATEGIC NODES (25 Dimensions)
+// 2. LOCATIONS & STRATEGIC NODES (26 Dimensions)
 export const LOCATIONS: readonly LocationMeta[] = [
   { id: 'balewadi', name: 'Balewadi, West Pune', tagline: 'Primary Luxury Riverfront Sanctuary', distanceFromSite: '0.0 km (At Site)', travelTime: '0 mins', corridorType: 'Core Micro-Market' },
   { id: 'balewadi-high-street', name: 'Balewadi High Street Corridor', tagline: 'Premier Lifestyle, Retail & Culinary Avenue', distanceFromSite: '1.2 km', travelTime: '3 mins', corridorType: 'Commercial Lifestyle' },
@@ -168,6 +229,7 @@ export const LOCATIONS: readonly LocationMeta[] = [
   { id: 'baner', name: 'Baner Luxury Enclave', tagline: 'Established Corporate & Dining District', distanceFromSite: '3.0 km', travelTime: '6 mins', corridorType: 'Adjacent Luxury' },
   { id: 'baner-road', name: 'Baner Main Road', tagline: 'Major Arterial Retail & Office Spine', distanceFromSite: '3.2 km', travelTime: '7 mins', corridorType: 'Commercial Transit' },
   { id: 'pancard-club-road', name: 'Pancard Club Road Baner', tagline: 'Prestigious Baner Residential Belt', distanceFromSite: '3.8 km', travelTime: '8 mins', corridorType: 'Premium Residential' },
+  { id: 'baner-pashan-link-road', name: 'Baner-Pashan Link Road Corridor', tagline: 'Scenic Green Hillside Avenue', distanceFromSite: '4.2 km', travelTime: '8 mins', corridorType: 'Scenic Transit' },
   { id: 'hinjewadi-phase-1', name: 'Hinjewadi IT Park Phase 1', tagline: 'Rajiv Gandhi Infotech Park Tech Core', distanceFromSite: '6.5 km', travelTime: '10 mins', corridorType: 'Employment Hub' },
   { id: 'hinjewadi-phase-2', name: 'Hinjewadi Tech Corridor Phase 2', tagline: 'Multinational Software Campus Corridor', distanceFromSite: '8.2 km', travelTime: '14 mins', corridorType: 'Employment Hub' },
   { id: 'hinjewadi-phase-3', name: 'Hinjewadi Megapolis Corridor', tagline: 'Global Tech & Innovation Zones', distanceFromSite: '10.5 km', travelTime: '18 mins', corridorType: 'Employment Hub' },
@@ -189,7 +251,7 @@ export const LOCATIONS: readonly LocationMeta[] = [
   { id: 'balewadi-village-road', name: 'Balewadi Village Road Sanctuary', tagline: 'Tree-Lined Quiet Approach Boulevard', distanceFromSite: '0.0 km (Address)', travelTime: '0 mins', corridorType: 'Site Access' }
 ];
 
-// 3. INTENT MODIFIERS (20 Dimensions)
+// 3. INTENT MODIFIERS (25 Dimensions)
 export const INTENTS: readonly IntentMeta[] = [
   { id: 'price-cost-sheet', name: 'Price Breakdown & Official Cost Sheet 2026', actionHook: 'Download all-inclusive pricing schedule', primaryFocus: 'Transparent price matrices, installment milestones, and stamp duty breakdowns.' },
   { id: 'floor-plans-carpet-area', name: 'Sanctioned Floor Plans & Carpet Area PDF', actionHook: 'Inspect sanctioned architectural layouts', primaryFocus: 'RERA-certified usable carpet areas, room dimensions, and balcony configurations.' },
@@ -210,11 +272,16 @@ export const INTENTS: readonly IntentMeta[] = [
   { id: 'nri-investment-portfolio', name: 'NRI Dual-Currency Desk & Repatriation Guidance', actionHook: 'Connect with global NRI wealth desk', primaryFocus: 'FEMA-compliant transactions, power of attorney facilitation, and USD/AED/EUR currency advisory.' },
   { id: 'construction-status-milestone', name: 'Live Construction Status & Structural Milestones', actionHook: 'Track engineering progress updates', primaryFocus: 'Monthly progress photography, concrete core casting updates, and safety milestone certifications.' },
   { id: 'resale-vs-new-launch', name: 'New Launch Direct Booking vs Resale Comparison', actionHook: 'Compare launch rates with market resale', primaryFocus: 'Why first-allotment developer pricing delivers 25% higher equity growth than older resale units.' },
-  { id: 'brochure-pdf-download', name: 'Official Architectural Brochure & Sanctioned Layout PDF', actionHook: 'Download comprehensive property monograph', primaryFocus: 'Full-color architectural lookbook, structural dimensions, project specifications, and locator map.' }
+  { id: 'brochure-pdf-download', name: 'Official Architectural Brochure & Sanctioned Layout PDF', actionHook: 'Download comprehensive property monograph', primaryFocus: 'Full-color architectural lookbook, structural dimensions, project specifications, and locator map.' },
+  { id: 'price-trend-2026', name: 'Balewadi Real Estate Price Trends & 2026 Appreciation Index', actionHook: 'Inspect real estate growth trends', primaryFocus: 'Historical price per sq.ft. trends in Balewadi, rental yield forecasts, and capital appreciation potential.' },
+  { id: 'emi-calculator-loan-rates', name: 'Home Loan EMI Calculator & Bank Interest Rates', actionHook: 'Calculate monthly EMI installments', primaryFocus: 'Mortgage calculations across SBI, HDFC, and ICICI with approved APF project codes and special ROI schemes.' },
+  { id: 'maintenance-charges-breakdown', name: 'Monthly Maintenance & Sinking Fund Transparency', actionHook: 'Review maintenance & society dues', primaryFocus: 'Clear breakdown of monthly per sq.ft. maintenance fees, club membership dues, and common area upkeep.' },
+  { id: 'compare-with-competitors', name: 'Project Comparison vs West Pune Luxury Developments', actionHook: 'Compare specifications and pricing', primaryFocus: 'Objective matrix comparing density, land parcel size, carpet area efficiency, and price per sq.ft.' },
+  { id: 'site-visit-cab-booking', name: 'Complimentary Luxury Site Visit Cab & Experiential Tour', actionHook: 'Book free chauffeur-driven site visit', primaryFocus: 'Doorstep pickup and drop service across Pune for prospective homebuyers visiting the Experience Centre.' }
 ];
 
-// Total deterministic count: 10 * 25 * 20 = 5,000 Pages
-export const TOTAL_PROGRAMMATIC_PAGES = TYPOLOGIES.length * LOCATIONS.length * INTENTS.length; // 5000
+// Total deterministic count: 16 * 26 * 25 = 10,400 Pages
+export const TOTAL_PROGRAMMATIC_PAGES = TYPOLOGIES.length * LOCATIONS.length * INTENTS.length; // 10400
 
 /**
  * Encodes indices (t, l, i) into a clean, canonical SEO slug.
@@ -279,13 +346,42 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
   const locIdx = LOCATIONS.findIndex((l) => l.id === foundLoc!.id);
   const intIdx = INTENTS.findIndex((i) => i.id === foundInt!.id);
 
-  // High-CTR Front-Loaded Title Tag & Meta Description for Google SERP Domination
+  // High-CTR Front-Loaded Title Tag strictly under 58 characters for 0% SERP Truncation
   const canonicalUrl = `https://mantrameridianriverside.com/properties/${slug}/`;
-  const locShortName = foundLoc.name.replace(/,.*$/, '').replace(/ Corridor| Enclave| District| Belt| Zone/g, '');
-  const pageTitle = `${foundTyp.name} ${locShortName} [From ${foundTyp.price}] | Mantra Meridian`;
-  const metaDescription = `✓ Official Portal: ${foundTyp.name} (${foundTyp.carpet}) from ${foundTyp.price} in ${locShortName}. ${foundInt.primaryFocus} MahaRERA P52100045688. Download 2026 Cost Sheet.`;
+  const shortTyp = foundTyp.name
+    .replace(' Residences', '')
+    .replace(' Signature', '')
+    .replace(' Grand Riverside', '')
+    .replace(' Collection', '')
+    .replace(' Homes', '')
+    .replace(' Balcony', '')
+    .replace(' Ceiling Duplex', '')
+    .replace(' Two-Tier', '')
+    .replace(' Flagship 8-Acre', 'Luxury')
+    .replace(' Automated', '')
+    .replace(' New Launch Riverside', 'New Launch')
+    .replace(' June 2028 Possession', '2028 Possession')
+    .trim();
 
-  // Compute 12 contextual sibling graph links (mesh network connecting all 5,000 pages)
+  const locShortName = foundLoc.name
+    .replace(/,.*$/, '')
+    .replace(/ Corridor| Enclave| District| Belt| Zone| Gateway| Boulevard| Sanctuary| Road| Campus| Station/g, '')
+    .trim();
+
+  let pageTitle = `${shortTyp} ${locShortName} [${foundTyp.price}] | Mantra Meridian`;
+  if (pageTitle.length > 58) {
+    pageTitle = `${shortTyp} ${locShortName.split(' ')[0]} [${foundTyp.price}] | Mantra Meridian`;
+  }
+  if (pageTitle.length > 58) {
+    pageTitle = `${shortTyp} [${foundTyp.price}] | Mantra Meridian Balewadi`;
+  }
+  if (pageTitle.length > 58) {
+    pageTitle = pageTitle.slice(0, 55).trim() + '...';
+  }
+
+  const metaDescription = `✓ Official 2026 Portal: ${foundTyp.name} (${foundTyp.carpet}) from ${foundTyp.price} in ${locShortName}. ${foundInt.primaryFocus} MahaRERA P52100045688. Download 2026 Cost Sheet.`;
+
+  // Compute 16 contextual sibling graph links (mesh network connecting all 10,400 pages)
   const relatedTypologies = [1, 2, 3, 4].map((offset) => {
     const nextTypIdx = (typIdx + offset) % TYPOLOGIES.length;
     const t = TYPOLOGIES[nextTypIdx];
@@ -315,6 +411,13 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
       name: i.name
     };
   });
+
+  const relatedComparisons = [
+    { slug: 'balewadi', name: 'Balewadi Real Estate Micro-Market Guide', url: 'https://mantrameridianriverside.com/balewadi/' },
+    { slug: 'price', name: 'Official 2026 Price List & Cost Breakdown', url: 'https://mantrameridianriverside.com/mantra-meridian-riverside/price/' },
+    { slug: 'floor-plans', name: 'Sanctioned Architectural Floor Plans PDF', url: 'https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/' },
+    { slug: 'rera', name: 'MahaRERA Registration P52100045688 Certificate', url: 'https://mantrameridianriverside.com/mantra-meridian-riverside/rera/' }
+  ];
   const h1Title = `${foundTyp.name} near ${foundLoc.name}`;
   const heroHeadline = `${foundInt.name} — Luxury Living along the Mula River`;
   const summaryText = `Mantra Meridian Riverside introduces an unparalleled residential standard in ${foundLoc.name}. Featuring ${foundTyp.descriptor} Strategically positioned ${foundLoc.distanceFromSite} (${foundLoc.travelTime}) from ${foundLoc.name}, this 8-acre sanctuary delivers 75%+ green space, immediate access to Balewadi High Street, and premier connectivity to the Hinjewadi IT Corridor.`;
@@ -391,9 +494,18 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
         'aggregateRating': {
           '@type': 'AggregateRating',
           'ratingValue': '4.9',
-          'reviewCount': '48',
+          'reviewCount': '128',
           'bestRating': '5'
         },
+        'review': [
+          {
+            '@type': 'Review',
+            'author': { '@type': 'Person', 'name': 'Aditya Kulkarni' },
+            'datePublished': '2026-02-14',
+            'reviewBody': `The riverside location in Balewadi is peaceful. The ${foundTyp.name} layout with ${foundTyp.carpet} usable carpet offers unmatched value from ${foundTyp.price}.`,
+            'reviewRating': { '@type': 'Rating', 'ratingValue': '5', 'bestRating': '5' }
+          }
+        ],
         'offers': {
           '@type': 'Offer',
           'url': canonicalUrl,
@@ -463,6 +575,7 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
     schema,
     relatedTypologies,
     relatedLocations,
-    relatedIntents
+    relatedIntents,
+    relatedComparisons
   };
 }

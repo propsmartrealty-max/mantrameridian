@@ -246,5 +246,11 @@ Sitemap: https://mantrameridianriverside.com/sitemaps/properties-2.xml
 Sitemap: https://mantrameridianriverside.com/sitemaps/properties-3.xml
 Sitemap: https://mantrameridianriverside.com/sitemaps/properties-4.xml
 Sitemap: https://mantrameridianriverside.com/sitemaps/properties-5.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-6.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-7.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-8.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-9.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-10.xml
+Sitemap: https://mantrameridianriverside.com/sitemaps/properties-11.xml
 # LLM Knowledge Monograph: https://mantrameridianriverside.com/llms.txt
 # LLM Full Monograph: https://mantrameridianriverside.com/llms-full.txt

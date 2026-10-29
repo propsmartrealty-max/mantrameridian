@@ -150,7 +150,7 @@ Astro.response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:lar
         <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Explore Related Configurations & Locations</h2>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Sibling Typologies */}
         <div class="space-y-3">
           <h3 class="text-xs font-mono uppercase tracking-widest text-champagne">
@@ -213,6 +213,29 @@ Astro.response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:lar
                 <div class="text-[10px] font-mono text-champagne/80 mt-1 flex items-center gap-1">
                   <span>Access Verified Data</span>
                   <span>→</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        {/* Authoritative Resource Hubs */}
+        <div class="space-y-3">
+          <h3 class="text-xs font-mono uppercase tracking-widest text-champagne">
+            Project Authority Hubs
+          </h3>
+          <div class="space-y-2">
+            {data.relatedComparisons?.map((item) => (
+              <a
+                href={item.url}
+                class="block p-3 bg-obsidian-surface border border-white/5 hover:border-champagne/50 rounded transition-all group"
+              >
+                <div class="text-xs font-medium text-architectural-white group-hover:text-champagne transition-colors">
+                  {item.name}
+                </div>
+                <div class="text-[10px] font-mono text-emerald-400/90 mt-1 flex items-center gap-1">
+                  <span>Official Verified</span>
+                  <span>✓</span>
                 </div>
               </a>
             ))}
