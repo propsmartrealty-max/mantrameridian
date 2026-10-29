@@ -17,6 +17,34 @@ if (!data) {
   return new Response(null, { status: 404, statusText: 'Not Found' });
 }
 
+// Dynamic Financial Calculations for Information Gain
+const numericPrice = data.priceNumeric || 12900000;
+const downPaymentAmount = Math.round(numericPrice * 0.20);
+const loanAmount = Math.round(numericPrice * 0.80);
+// EMI calculation at 8.5% annual interest over 20 years (240 months)
+const monthlyRate = 0.085 / 12;
+const totalMonths = 240;
+const emiFactor = Math.pow(1 + monthlyRate, totalMonths);
+const estimatedEmiMonthly = Math.round((loanAmount * monthlyRate * emiFactor) / (emiFactor - 1));
+
+const formatIndianCurrency = (amount: number) => {
+  return '₹' + amount.toLocaleString('en-IN');
+};
+
+const downPaymentDisplay = formatIndianCurrency(downPaymentAmount);
+const loanAmountDisplay = formatIndianCurrency(loanAmount);
+const estimatedEmiDisplay = formatIndianCurrency(estimatedEmiMonthly) + '/month*';
+
+// Commute & Transit Radar Data
+const transitDestinations = [
+  { destination: 'Balewadi High Street', distance: '1.2 km', driveTime: '3-4 mins', transitType: 'Prime Lifestyle & Commercial Hub' },
+  { destination: 'Hinjewadi Rajiv Gandhi IT Park (Phase 1)', distance: '5.8 km', driveTime: '10-12 mins', transitType: 'Tech Employment Center' },
+  { destination: 'Pune Metro Line 3 (Balewadi Stadium Station)', distance: '1.5 km', driveTime: '4 mins', transitType: 'Rapid Mass Transit' },
+  { destination: 'Mumbai-Pune Expressway (Dehu Road Plaza)', distance: '9.2 km', driveTime: '12-14 mins', transitType: 'Inter-City Expressway' },
+  { destination: 'The Orchid School / Bharati Vidyapeeth', distance: '2.1 km', driveTime: '5 mins', transitType: 'Premier Education Hub' },
+  { destination: 'Jupiter Hospital & Multi-Specialty Baner', distance: '3.4 km', driveTime: '7-8 mins', transitType: 'Healthcare Corridor' },
+];
+
 // Edge caching headers for Cloudflare Cache API (caches.default) with 30-day resilience
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, s-maxage=86400, stale-while-revalidate=604800, stale-if-error=2592000');
 Astro.response.headers.set('Cache-Tag', 'mantra-properties-programmatic, html-pages, mantra-meridian');
@@ -94,6 +122,109 @@ Astro.response.headers.set('X-Robots-Tag', 'index, follow, max-image-preview:lar
             <span class="text-xs sm:text-sm text-concrete leading-relaxed">{item}</span>
           </div>
         ))}
+      </div>
+    </section>
+
+    {/* Dynamic Financial Snapshot & Indicative EMI Matrix */}
+    <section class="p-8 md:p-12 bg-obsidian-surface border border-champagne/20 space-y-8">
+      <div class="border-b border-white/10 pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <span class="label-architectural text-xs text-champagne">FINANCIAL ARCHITECTURE</span>
+          <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Indicative Investment & EMI Breakdown</h2>
+        </div>
+        <div class="text-xs font-mono text-champagne/90 bg-champagne/10 border border-champagne/30 px-3 py-1.5 self-start md:self-auto">
+          MahaRERA Sanctioned Milestones
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-5 bg-obsidian-card border border-white/5 space-y-1">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-concrete/70">BASE PRICING</span>
+          <div class="font-serif text-2xl text-architectural-white font-medium">{data.priceDisplay}</div>
+          <p class="text-[11px] text-concrete/80">Inclusive of designated car parking space.</p>
+        </div>
+
+        <div class="p-5 bg-obsidian-card border border-white/5 space-y-1">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-concrete/70">EST. DOWN PAYMENT (20%)</span>
+          <div class="font-serif text-2xl text-architectural-white font-medium">{downPaymentDisplay}*</div>
+          <p class="text-[11px] text-concrete/80">Staggered milestone construction-linked plan.</p>
+        </div>
+
+        <div class="p-5 bg-obsidian-card border border-white/5 space-y-1">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-concrete/70">EST. BANK LOAN (80%)</span>
+          <div class="font-serif text-2xl text-architectural-white font-medium">{loanAmountDisplay}*</div>
+          <p class="text-[11px] text-concrete/80">Pre-approved by SBI, HDFC, ICICI, Axis Bank.</p>
+        </div>
+
+        <div class="p-5 bg-obsidian-card border border-champagne/30 space-y-1">
+          <span class="text-[10px] font-mono uppercase tracking-widest text-champagne">EST. MONTHLY EMI</span>
+          <div class="font-serif text-2xl text-champagne font-medium">{estimatedEmiDisplay}</div>
+          <p class="text-[11px] text-concrete/80">Computed @ 8.5% p.a. over 20-year tenure.</p>
+        </div>
+      </div>
+
+      <div class="pt-2 flex flex-wrap items-center justify-between gap-4 border-t border-white/5">
+        <p class="text-xs text-concrete/70 max-w-2xl leading-relaxed">
+          *Indicative calculations for financial planning. Applicable stamp duty (6%), registration charges, and GST are calculated at actuals per government norms.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/mantra-meridian-riverside/price/" class="btn-luxury text-xs">
+            VIEW COST SHEET →
+          </a>
+          <a href="/home-loan/" class="px-5 py-2.5 border border-white/20 text-xs text-architectural-white hover:border-champagne hover:text-champagne transition-colors font-mono">
+            BANK PRE-APPROVALS
+          </a>
+        </div>
+      </div>
+    </section>
+
+    {/* Localized Transit & Commute Radar Matrix */}
+    <section class="p-8 md:p-12 bg-obsidian-surface border border-white/10 space-y-8">
+      <div class="border-b border-white/10 pb-4 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <div>
+          <span class="label-architectural text-xs text-champagne">TRANSIT CORRIDOR INTELLIGENCE</span>
+          <h2 class="font-serif text-2xl sm:text-3xl text-architectural-white mt-1">Commute Radar from Mantra Meridian Balewadi</h2>
+        </div>
+        <div class="text-xs font-mono text-concrete/80">
+          GPS Coordinates: 18.5775° N, 73.7667° E
+        </div>
+      </div>
+
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 text-[11px] font-mono uppercase tracking-wider text-champagne">
+              <th class="py-3 px-4">Strategic Landmark / Hub</th>
+              <th class="py-3 px-4">Distance</th>
+              <th class="py-3 px-4">Typical Drive Time</th>
+              <th class="py-3 px-4">Corridor Function</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 text-xs text-concrete">
+            {transitDestinations.map((node) => (
+              <tr class="hover:bg-white/[0.02] transition-colors">
+                <td class="py-3.5 px-4 font-medium text-architectural-white">{node.destination}</td>
+                <td class="py-3.5 px-4 font-mono text-champagne">{node.distance}</td>
+                <td class="py-3.5 px-4 font-mono">{node.driveTime}</td>
+                <td class="py-3.5 px-4 text-concrete/80">{node.transitType}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-white/5">
+        <p class="text-xs text-concrete/70">
+          Direct signal-free arterial connectivity via Balewadi High Street Link Road and Mahalunge Mula River Bridge.
+        </p>
+        <div class="flex flex-wrap gap-3">
+          <a href="/mantra-meridian-riverside/location/" class="px-5 py-2.5 bg-obsidian-card border border-white/10 hover:border-champagne text-xs text-architectural-white hover:text-champagne transition-colors font-mono">
+            EXPLORE LOCATION MAP
+          </a>
+          <a href="/directions/" class="px-5 py-2.5 bg-obsidian-card border border-white/10 hover:border-champagne text-xs text-architectural-white hover:text-champagne transition-colors font-mono">
+            GET 1-CLICK GPS DIRECTIONS →
+          </a>
+        </div>
       </div>
     </section>
 
