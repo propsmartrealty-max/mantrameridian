@@ -481,36 +481,36 @@ const exploreSchema = {
 
   <script is:inline>
     // Client-side instant live filtering across directory cards
-    const searchInput = document.getElementById('directory-search-input');
-    const cards = document.querySelectorAll('.directory-item-card');
-    const groups = document.querySelectorAll('.directory-category-group');
+    function initDirectorySearch() {
+      const searchInput = document.getElementById('directory-search-input');
+      const cards = document.querySelectorAll('.directory-item-card');
+      const groups = document.querySelectorAll('.directory-category-group');
 
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        
-        cards.forEach((card) => {
-          const title = card.getAttribute('data-item-title') || '';
-          const desc = card.getAttribute('data-item-desc') || '';
-          const isMatch = !query || title.includes(query) || desc.includes(query);
+      if (searchInput && !searchInput.dataset.liveSearchBound) {
+        searchInput.dataset.liveSearchBound = 'true';
+        searchInput.addEventListener('input', (e) => {
+          const query = (e.target?.value || '').toLowerCase().trim();
           
-          if (isMatch) {
-            card.style.display = 'block';
-          } else {
-            card.style.display = 'none';
-          }
-        });
+          cards.forEach((card) => {
+            const title = card.getAttribute('data-item-title') || '';
+            const desc = card.getAttribute('data-item-desc') || '';
+            const isMatch = !query || title.includes(query) || desc.includes(query);
+            card.style.display = isMatch ? 'block' : 'none';
+          });
 
-        // Hide empty category groups
-        groups.forEach((group) => {
-          const visibleCards = group.querySelectorAll('.directory-item-card:not([style*="display: none"])');
-          if (query && visibleCards.length === 0) {
-            group.style.display = 'none';
-          } else {
-            group.style.display = 'block';
-          }
+          // Hide empty category groups
+          groups.forEach((group) => {
+            const visibleCards = group.querySelectorAll('.directory-item-card:not([style*="display: none"])');
+            group.style.display = (query && visibleCards.length === 0) ? 'none' : 'block';
+          });
         });
-      });
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initDirectorySearch);
+    } else {
+      initDirectorySearch();
     }
   </script>
 </BaseLayout>

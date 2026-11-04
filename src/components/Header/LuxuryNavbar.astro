@@ -8,27 +8,25 @@ interface Props {
 
 const { currentPath = '/' } = Astro.props;
 
-// Secondary exploration links housed in an elegant luxury dropdown
-const exploreDropdownLinks = [
+// Secondary exploration links organized into 2 curated luxury columns (Living Spaces vs Corridors & Due Diligence)
+const exploreColLiving = [
   { label: 'Explore Master Directory', href: '/explore/', desc: 'Master programmatic topic & knowledge graph' },
   { label: 'Balewadi Real Estate Hub', href: '/balewadi/', desc: 'Micromarket price trends, yields & High Street' },
   { label: 'Signature Sky Duplexes', href: '/duplex/', desc: '20-ft ceiling living salon from ₹2.25 Cr*' },
   { label: 'Penthouse & Sky Villas', href: '/penthouse/', desc: '4 BHK Grand Estates with wrap-around decks' },
+  { label: 'Sanctioned Floor Plans', href: '/mantra-meridian-riverside/floor-plans/', desc: '2, 3, 3 Duplex & 4 BHK layouts' },
+  { label: '8-Acre Masterplan', href: '/mantra-meridian-riverside/masterplan/', desc: 'Podium layout, towers & 500m promenade' },
+  { label: 'The Riverside Story', href: '/mantra-meridian-riverside/riverside/', desc: '500m river boardwalk & biophilic calm' },
+];
+
+const exploreColCorridors = [
   { label: 'GPS Driving Directions', href: '/directions/', desc: 'Turn-by-turn routes & in-car GPS links' },
   { label: 'Project Comparison Hub', href: '/compare/', desc: 'Mantra Meridian vs 24K Altura & Balmoral' },
-  { label: 'Construction Milestones', href: '/construction-status/', desc: 'June 2028 RERA progress tracker' },
-  { label: 'Home Loan & Bank APF', href: '/home-loan/', desc: 'SBI & HDFC APF & EMI calculator' },
+  { label: 'Construction Milestones', href: '/construction-status/', desc: 'June 2028 RERA Mivan progress tracker' },
+  { label: 'Home Loan & Bank APF', href: '/home-loan/', desc: 'SBI & HDFC APF & instant EMI calculator' },
   { label: 'Global NRI Desk', href: '/nri-desk/', desc: 'Multi-currency converter & FEMA guide' },
   { label: 'Hinjewadi Tech Corridor', href: '/hinjewadi/', desc: '12 mins to Phase 1 & Metro Line 3' },
   { label: 'Baner Luxury Corridor', href: '/baner/', desc: 'Upgrade to 8-acre estate from Baner' },
-  { label: 'Mahalunge Hi-Tech Hub', href: '/mahalunge/', desc: 'Boutique riverfront vs mega townships' },
-  { label: 'The Riverside Story', href: '/mantra-meridian-riverside/riverside/', desc: '500m river boardwalk & biophilic calm' },
-  { label: '8-Acre Masterplan', href: '/mantra-meridian-riverside/masterplan/', desc: 'Podium layout & tower zoning' },
-  { label: 'Pune Real Estate Index', href: '/pune-real-estate/', desc: 'Citywide luxury benchmark & yields' },
-  { label: 'West Pune Luxury Guide', href: '/west-pune/', desc: 'Baner & Hinjewadi corridor analysis' },
-  { label: 'The Meridian Journal', href: '/mantra-meridian-riverside/journal/', desc: 'Architectural essays & market insights' },
-  { label: 'MahaRERA Compliance', href: '/mantra-meridian-riverside/rera/', desc: 'Registration P52100045688 & filings' },
-  { label: 'Document Library', href: '/mantra-meridian-riverside/documents/', desc: 'Download official brochure PDF' },
 ];
 ---
 
@@ -110,38 +108,88 @@ const exploreDropdownLinks = [
       </a>
 
       {/* Discover Dropdown */}
-      <div class="relative group py-1.5">
+      <div id="discover-menu-container" class="relative group py-1.5">
         <button
           id="discover-menu-trigger"
-          class="flex items-center gap-1.5 text-[#161412] hover:text-champagne hover:bg-black/[0.04] active:scale-95 px-3 py-1.5 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] uppercase focus:outline-none text-[13px] font-semibold whitespace-nowrap"
+          class="flex items-center gap-1.5 text-[#161412] hover:text-champagne hover:bg-black/[0.04] active:scale-95 px-3 py-1.5 rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] uppercase focus:outline-none text-[13px] font-semibold whitespace-nowrap cursor-pointer select-none"
           aria-haspopup="true"
           aria-expanded="false"
+          aria-controls="discover-menu-dropdown"
         >
           <span>EXPLORE</span>
-          <span class="text-xs text-champagne transition-transform duration-300 group-hover:rotate-180">▾</span>
+          <span id="discover-chevron" class="text-xs text-champagne transition-transform duration-300 group-hover:rotate-180">▾</span>
         </button>
 
-        {/* Dropdown Menu Apple Frosted Panel (Zero text bleed-through, 100% opaque, specular rim) */}
-        <div class="absolute top-full right-0 mt-3 w-96 max-h-[75vh] overflow-y-auto bg-white/98 backdrop-blur-3xl border border-[#DDD2C2] shadow-[0_25px_60px_rgba(40,30,20,0.16),inset_0_1px_1.5px_#FFFFFF] p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] z-50 rounded-2xl custom-scrollbar">
-          <div class="text-[10px] uppercase tracking-[0.22em] text-champagne font-mono px-3 py-2 border-b border-[#EADFCF] font-bold flex items-center justify-between">
-            <span>ESTATE DIRECTORY</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-champagne animate-pulse"></span>
-          </div>
-          <div class="py-2 space-y-1">
-            {exploreDropdownLinks.map((item) => (
-              <a
-                href={item.href}
-                class="block px-3 py-2.5 rounded-xl hover:bg-[#F5EFE6] transition-all duration-200 group/item active:scale-[0.98]"
-              >
-                <div class="text-sm text-[#161412] group-hover/item:text-champagne transition-colors font-medium flex items-center justify-between">
-                  <span>{item.label}</span>
-                  <span class="text-xs text-champagne opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all">→</span>
-                </div>
-                <div class="text-xs text-[#6B6155] font-sans line-clamp-1 mt-0.5">
-                  {item.desc}
-                </div>
+        {/* Dropdown Menu - 100% Solid Opaque White Panel, Zero Hover Gap Bridge, 2-Column Luxury Directory */}
+        <div
+          id="discover-menu-dropdown"
+          class="absolute top-full right-0 pt-2 w-[620px] max-w-[94vw] opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto transition-all duration-200 ease-out z-[100] before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4 before:block"
+        >
+          <div
+            class="bg-white border border-[#DDD2C2] shadow-[0_25px_70px_rgba(30,20,10,0.22),0_4px_16px_rgba(0,0,0,0.06)] rounded-2xl p-4 sm:p-5 text-[#161412]"
+            style="background-color: #FFFFFF !important;"
+          >
+            {/* Header */}
+            <div class="text-[11px] uppercase tracking-[0.2em] text-champagne font-mono pb-3 border-b border-[#EADFCF] font-bold flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>ESTATE DIRECTORY &amp; KNOWLEDGE GRAPH</span>
+              </div>
+              <span class="text-[10px] text-[#6B6155] font-normal font-sans">MahaRERA P52100045688</span>
+            </div>
+
+            {/* 2-Column Luxury Directory Grid */}
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 py-3 max-h-[62vh] overflow-y-auto custom-scrollbar">
+              {/* Column 1: Living Formats & Master Architecture */}
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono tracking-wider uppercase text-[#8A7A68] px-2.5 font-bold block pb-1">Residences &amp; Architecture</span>
+                {exploreColLiving.map((item) => (
+                  <a
+                    href={item.href}
+                    class="block px-2.5 py-2 rounded-xl hover:bg-[#F5EFE6] transition-all duration-200 group/item active:scale-[0.98]"
+                  >
+                    <div class="text-[13px] text-[#161412] group-hover/item:text-champagne transition-colors font-medium flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-xs text-champagne opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all">→</span>
+                    </div>
+                    <div class="text-[11px] text-[#6B6155] font-sans mt-0.5 leading-snug">
+                      {item.desc}
+                    </div>
+                  </a>
+                ))}
+              </div>
+
+              {/* Column 2: Corridors, Advisory & Legal */}
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono tracking-wider uppercase text-[#8A7A68] px-2.5 font-bold block pb-1">Corridors &amp; Due Diligence</span>
+                {exploreColCorridors.map((item) => (
+                  <a
+                    href={item.href}
+                    class="block px-2.5 py-2 rounded-xl hover:bg-[#F5EFE6] transition-all duration-200 group/item active:scale-[0.98]"
+                  >
+                    <div class="text-[13px] text-[#161412] group-hover/item:text-champagne transition-colors font-medium flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <span class="text-xs text-champagne opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-0.5 transition-all">→</span>
+                    </div>
+                    <div class="text-[11px] text-[#6B6155] font-sans mt-0.5 leading-snug">
+                      {item.desc}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Footer Quick Links */}
+            <div class="pt-3 border-t border-[#EADFCF] flex items-center justify-between text-xs text-[#6B6155] font-mono">
+              <a href="/mantra-meridian-riverside/rera/" class="hover:text-champagne transition-colors flex items-center gap-1 text-[11px]">
+                <span>Verified MahaRERA Docs</span>
+                <span>→</span>
               </a>
-            ))}
+              <a href="/mantra-meridian-riverside/documents/" class="hover:text-champagne transition-colors text-champagne font-semibold flex items-center gap-1 text-[11px]">
+                <span>Official Brochure PDF</span>
+                <span>↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -346,7 +394,7 @@ const exploreDropdownLinks = [
 </header>
 
 <script>
-  // Dynamic scroll glassmorphism
+  // Dynamic scroll glassmorphism & subtle elevation without dark background collision
   const navbar = document.getElementById('luxury-navbar');
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -354,17 +402,68 @@ const exploreDropdownLinks = [
   const mobileEnquire = document.getElementById('mobile-enquire-trigger');
 
   const onScroll = () => {
-    if (window.scrollY > 30) {
-      navbar?.classList.add('bg-obsidian/95', 'backdrop-blur-xl', 'py-3', 'border-b', 'border-champagne/20', 'shadow-luxury');
-      navbar?.classList.remove('py-4', 'sm:py-5');
+    if (window.scrollY > 20) {
+      navbar?.classList.add('shadow-[0_12px_40px_rgba(40,30,20,0.12)]', 'border-[#D9CFC1]', 'bg-[#FAF7F2]/98');
+      navbar?.classList.remove('bg-[#FAF7F2]/95');
     } else {
-      navbar?.classList.remove('bg-obsidian/95', 'backdrop-blur-xl', 'py-3', 'border-b', 'border-champagne/20', 'shadow-luxury');
-      navbar?.classList.add('py-4', 'sm:py-5');
+      navbar?.classList.remove('shadow-[0_12px_40px_rgba(40,30,20,0.12)]', 'border-[#D9CFC1]', 'bg-[#FAF7F2]/98');
+      navbar?.classList.add('bg-[#FAF7F2]/95');
     }
   };
 
-  window.addEventListener('scroll', onScroll);
+  window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  // Robust Explore Mega Dropdown Interactive Controller (Hover + Click Toggle + Outside Click)
+  const discoverContainer = document.getElementById('discover-menu-container');
+  const discoverTrigger = document.getElementById('discover-menu-trigger');
+  const discoverDropdown = document.getElementById('discover-menu-dropdown');
+  const discoverChevron = document.getElementById('discover-chevron');
+
+  let isDropdownOpen = false;
+
+  const setDropdownState = (open: boolean) => {
+    isDropdownOpen = open;
+    discoverTrigger?.setAttribute('aria-expanded', String(open));
+    if (open) {
+      discoverDropdown?.classList.remove('opacity-0', 'invisible', 'pointer-events-none');
+      discoverDropdown?.classList.add('opacity-100', 'visible', 'pointer-events-auto');
+      discoverChevron?.classList.add('rotate-180');
+      discoverTrigger?.classList.add('text-champagne', 'bg-black/[0.04]');
+    } else {
+      discoverDropdown?.classList.add('opacity-0', 'invisible', 'pointer-events-none');
+      discoverDropdown?.classList.remove('opacity-100', 'visible', 'pointer-events-auto');
+      discoverChevron?.classList.remove('rotate-180');
+      discoverTrigger?.classList.remove('text-champagne', 'bg-black/[0.04]');
+    }
+  };
+
+  discoverTrigger?.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setDropdownState(!isDropdownOpen);
+  });
+
+  discoverContainer?.addEventListener('mouseenter', () => {
+    setDropdownState(true);
+  });
+
+  discoverContainer?.addEventListener('mouseleave', () => {
+    setDropdownState(false);
+  });
+
+  document.addEventListener('click', (e) => {
+    if (isDropdownOpen && discoverContainer && !discoverContainer.contains(e.target as Node)) {
+      setDropdownState(false);
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && isDropdownOpen) {
+      setDropdownState(false);
+      discoverTrigger?.focus();
+    }
+  });
 
   // Mobile menu toggle with body scroll locking
   mobileToggle?.addEventListener('click', () => {
