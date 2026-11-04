@@ -108,10 +108,18 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
             <div class="flex items-center gap-2">
               <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
               <span class="text-architectural-white font-semibold tracking-wider font-mono uppercase text-sm">
-                MAHARERA: {projectData.reraNumber}
+                PROJECT MAHARERA: {projectData.reraNumber}
               </span>
             </div>
             <p class="text-xs text-concrete/80">Scan QR or verify project details on the Maharashtra Real Estate Regulatory Authority portal.</p>
+            <div class="pt-1.5 flex flex-wrap items-center gap-2 text-xs">
+              <span class="px-2 py-0.5 bg-champagne/10 border border-champagne/30 text-champagne text-[11px] font-mono tracking-wider uppercase">
+                Authorized Channel Partner
+              </span>
+              <strong class="text-architectural-white font-medium">{projectData.channelPartner.name}</strong>
+              <span class="text-concrete/40">•</span>
+              <span class="text-champagne font-mono font-semibold">MahaRERA Reg. No.: {projectData.channelPartner.reraNumber}</span>
+            </div>
           </div>
         </div>
 
@@ -236,7 +244,7 @@ import DualBrandLockup from '../Brand/DualBrandLockup.astro';
     {/* Bottom Copyright & Colophon */}
     <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-concrete/50">
       <div>
-        © {new Date().getFullYear()} Mantra Properties. All Rights Reserved. Mantra Meridian Riverside (`MMR-BL-001`).
+        © {new Date().getFullYear()} Mantra Properties. Marketed by Authorized Channel Partner: <strong class="text-architectural-white/90 font-medium">PropSmart Realty</strong> (MahaRERA: <span class="text-champagne font-mono">{projectData.channelPartner.reraNumber}</span>). Project MahaRERA: <span class="text-champagne font-mono">{projectData.reraNumber}</span>. All Rights Reserved.
       </div>
       <nav aria-label="Legal and Compliance Links" class="flex flex-wrap items-center gap-6">
         <a href="/privacy-policy/" class="hover:text-champagne transition-colors">Privacy Policy</a>

@@ -30,7 +30,7 @@ export const prerender = true;
       <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
         <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">1. Data Controller &amp; Scope</h2>
         <p>
-          This website (<strong class="text-architectural-white">mantrameridianriverside.com</strong>) is an authorized marketing and discovery portal for <strong class="text-architectural-white">{projectData.name}</strong> (MahaRERA: <strong class="text-champagne font-mono">{projectData.reraNumber}</strong>), developed by Mantra Properties. This Privacy Policy applies to all interactions across this domain, including lead capture forms, WhatsApp concierge desks, and downloadable collateral requests.
+          This website (<strong class="text-architectural-white">mantrameridianriverside.com</strong>) is an authorized marketing and discovery portal operated by <strong class="text-architectural-white">{projectData.channelPartner.name}</strong> (MahaRERA Agent Reg. No.: <strong class="text-champagne font-mono">{projectData.channelPartner.reraNumber}</strong>) on behalf of Mantra Properties for <strong class="text-architectural-white">{projectData.name}</strong> (Project MahaRERA: <strong class="text-champagne font-mono">{projectData.reraNumber}</strong>). This Privacy Policy applies to all interactions across this domain, including lead capture forms, WhatsApp concierge desks, and downloadable collateral requests.
         </p>
       </section>
 
@@ -85,11 +85,12 @@ export const prerender = true;
         <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">7. Contact &amp; Grievance Redressal</h2>
         <p>For data protection questions, compliance verifications, or consent revocation, please reach our administrative desk:</p>
         <div class="p-4 bg-obsidian border border-white/5 space-y-1.5 font-mono text-xs">
-          <p class="text-architectural-white font-medium">{projectData.developer.name}</p>
+          <p class="text-architectural-white font-medium">{projectData.developer.name} (Promoter / Developer)</p>
+          <p class="text-champagne font-medium">Authorized Channel Partner: {projectData.channelPartner.name} (MahaRERA: {projectData.channelPartner.reraNumber})</p>
           <p class="text-concrete/70">{projectData.contact.siteAddress}</p>
           <p class="text-concrete/80">Telephone: <a href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`} class="text-champagne hover:underline">{projectData.contact.phone}</a></p>
           <p class="text-concrete/80">Grievance Desk: <a href="mailto:propsmartrealty@gmail.com" class="text-champagne hover:underline">propsmartrealty@gmail.com</a></p>
-          <p class="text-champagne">MahaRERA: {projectData.reraNumber}</p>
+          <p class="text-champagne">Project MahaRERA: {projectData.reraNumber}</p>
         </div>
       </section>
 

@@ -5,6 +5,12 @@ export interface OfficeLocation {
   mapUrl: string;
 }
 
+export interface ChannelPartnerData {
+  name: string;
+  reraNumber: string;
+  reraRegistrationUrl: string;
+}
+
 export interface ProjectData {
   name: string;
   tagline: string;
@@ -12,6 +18,7 @@ export interface ProjectData {
   locationTag: string;
   reraNumber: string;
   reraRegistrationUrl: string;
+  channelPartner: ChannelPartnerData;
   officialPropertyUrl: string;
   googleMapsUrl: string;
   googleMapsCid: string;
@@ -64,6 +71,11 @@ export const projectData: ProjectData = {
   locationTag: "Balewadi • Pune",
   reraNumber: "P52100045688",
   reraRegistrationUrl: "https://maharera.mahaonline.gov.in/",
+  channelPartner: {
+    name: "PropSmart Realty",
+    reraNumber: "A031262401295",
+    reraRegistrationUrl: "https://maharera.mahaonline.gov.in/"
+  },
   officialPropertyUrl: "https://mantrameridianriverside.com/",
   googleMapsUrl: "https://www.google.com/maps/place/Meridian+Mantra+balewadi/@18.5848136,73.7725564,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b9006ffb408f:0x2c6aa34db7020b81!8m2!3d18.5848136!4d73.7751313!16s%2Fg%2F11zwwkvm2z",
   googleMapsCid: "3200550039378332545",
@@ -79,7 +91,7 @@ export const projectData: ProjectData = {
   openSpacePercentage: "75%+",
   towers: "Iconic High-Rise Towers",
   floors: "G + Podium + 28 Floors",
-  disclaimer: "All the designs, images, specifications and other details are purely indicative in nature and the intended recipient should note that these are to be treated as purely provisional and informative. We reserve the right to modify / amend / alter any of the aforesaid in the best interest of the development and as per RERA regulations. The contents herein should not be construed as an offer / invitation to offer / contract. Any party desirous / interested in the project needs to enter into an Agreement to Sale. MahaRERA No. P52100045688.",
+  disclaimer: "All the designs, images, specifications and other details are purely indicative in nature and the intended recipient should note that these are to be treated as purely provisional and informative. We reserve the right to modify / amend / alter any of the aforesaid in the best interest of the development and as per RERA regulations. The contents herein should not be construed as an offer / invitation to offer / contract. Any party desirous / interested in the project needs to enter into an Agreement to Sale. Marketed & Promoted by Authorized Channel Partner: PropSmart Realty (MahaRERA Reg. No. A031262401295). Project MahaRERA No. P52100045688.",
   ogImage: "https://mantrameridianriverside.com/assets/mantra-meridian-hero.webp",
   heroSliderImages: [
     "/assets/mantra-meridian-hero.webp",
