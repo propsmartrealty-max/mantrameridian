@@ -363,9 +363,24 @@ export default function PrivatePresentationDrawer({ initialConfig }: PrivatePres
                 </button>
               </div>
 
-              <div className="flex items-center gap-2 text-[11px] text-concrete/70 pt-2">
-                <ShieldCheck className="w-4 h-4 text-champagne shrink-0" />
-                <span>Zero spam guarantee. Your contact details remain confidential and managed exclusively by Mantra Properties.</span>
+              <div className="space-y-2 pt-2">
+                <div className="flex items-start gap-2 text-[11px] text-concrete/70">
+                  <ShieldCheck className="w-4 h-4 text-champagne shrink-0 mt-0.5" />
+                  <span>
+                    Zero spam guarantee. By confirming, you authorize authorized representatives of Mantra Properties to contact you via Call, SMS, or WhatsApp regarding Mantra Meridian Riverside.
+                  </span>
+                </div>
+                <p className="text-[10px] text-concrete/60 leading-normal pl-6">
+                  You can opt out at any time. Review our{' '}
+                  <a href="/privacy-policy/" target="_blank" rel="noopener noreferrer" className="text-champagne underline hover:text-[#B38E3F]">
+                    Privacy Policy
+                  </a>{' '}
+                  and{' '}
+                  <a href="/terms/" target="_blank" rel="noopener noreferrer" className="text-champagne underline hover:text-[#B38E3F]">
+                    Terms of Use
+                  </a>
+                  . MahaRERA: P52100045688.
+                </p>
               </div>
             </form>
           )}

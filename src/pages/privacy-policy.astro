@@ -62,9 +62,12 @@ export const prerender = true;
       </section>
 
       <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
-        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">5. Cookies &amp; Edge Caching Directives</h2>
+        <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">5. Cookies, Google Ads &amp; Conversion Measurement</h2>
         <p>
           Our infrastructure prioritizes privacy-first performance. Verified search crawlers (Googlebot, Bingbot) receive 100% cookie-free responses. Human visitors receive lightweight, privacy-preserving session cookies (<code class="font-mono text-champagne bg-obsidian px-1.5 py-0.5">cf_geo_market</code>) solely to present localized currency and regional concierge options (Domestic vs NRI).
+        </p>
+        <p class="pt-2 text-concrete/75">
+          When visiting our portal through authorized digital advertising campaigns on Google Search or partner networks, Google Ads measurement tags (incorporating Google Consent Mode v2) may track aggregated conversion actions (such as brochure downloads or private tour requests) using ephemeral click identifiers (<code class="font-mono text-champagne bg-obsidian px-1.5 py-0.5">gclid</code>). These tags operate under strict security protocols and do not store personally identifiable profiles without explicit user form submission.
         </p>
       </section>
 
@@ -81,9 +84,11 @@ export const prerender = true;
       <section class="space-y-3 bg-obsidian-card p-6 md:p-8 border border-white/10">
         <h2 class="font-serif text-xl sm:text-2xl text-architectural-white">7. Contact &amp; Grievance Redressal</h2>
         <p>For data protection questions, compliance verifications, or consent revocation, please reach our administrative desk:</p>
-        <div class="p-4 bg-obsidian border border-white/5 space-y-1 font-mono text-xs">
-          <p class="text-architectural-white font-medium">{projectData.developer}</p>
+        <div class="p-4 bg-obsidian border border-white/5 space-y-1.5 font-mono text-xs">
+          <p class="text-architectural-white font-medium">{projectData.developer.name}</p>
           <p class="text-concrete/70">{projectData.contact.siteAddress}</p>
+          <p class="text-concrete/80">Telephone: <a href={`tel:${projectData.contact.phone.replace(/\s+/g, '')}`} class="text-champagne hover:underline">{projectData.contact.phone}</a></p>
+          <p class="text-concrete/80">Grievance Desk: <a href="mailto:propsmartrealty@gmail.com" class="text-champagne hover:underline">propsmartrealty@gmail.com</a></p>
           <p class="text-champagne">MahaRERA: {projectData.reraNumber}</p>
         </div>
       </section>

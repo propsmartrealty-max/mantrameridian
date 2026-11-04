@@ -487,9 +487,12 @@ export default {
     }
 
     // 2E. Dynamic Googlebot & Verified Search Crawler Crawl Budget Protection
-    // If a verified crawler visits a URL containing marketing/tracking query parameters,
+    // If a verified search crawler visits a URL containing marketing/tracking query parameters,
     // immediately 301 redirect to the clean canonical path to preserve crawl budget and avoid duplicate parameter indexation.
-    if (botInfo.isWhiteBot && !isStatic && Array.from(url.searchParams.keys()).some((k) => TRACKING_PARAMS.includes(k))) {
+    // NOTE: AdsBot-Google and Mediapartners-Google audit Google Ads landing page destinations with tracking parameters (gclid)
+    // and must NOT be redirected, guaranteeing 100% compliance with Google Ads Destination Requirements (HTTP 200 direct).
+    const isAdsAuditBot = /AdsBot-Google|Mediapartners-Google/i.test(userAgent);
+    if (!isAdsAuditBot && botInfo.isWhiteBot && !isStatic && Array.from(url.searchParams.keys()).some((k) => TRACKING_PARAMS.includes(k))) {
       const canonicalPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
       return Response.redirect(`${url.origin}${canonicalPath}`, 301);
     }

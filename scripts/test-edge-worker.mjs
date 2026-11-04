@@ -444,6 +444,28 @@ await runAsyncTest('Googlebot parameter requests are instantly 301 redirected to
   assert.equal(res.headers.get('Location'), 'https://mantrameridianriverside.com/balewadi/');
 });
 
+await runAsyncTest('AdsBot-Google with ad tracking parameters receives 200 OK without redirect', async () => {
+  const mockHtml = '<!DOCTYPE html><html><head></head><body><h1>AdsBot Test</h1></body></html>';
+  const env = {
+    ASSETS: {
+      fetch: async () => new Response(mockHtml, {
+        status: 200,
+        headers: { 'Content-Type': 'text/html; charset=utf-8' }
+      })
+    }
+  };
+
+  const adsBotReq = new Request('https://mantrameridianriverside.com/balewadi/?gclid=test_gclid_ads_123', {
+    headers: {
+      'User-Agent': 'Mozilla/5.0 (Linux; Android 5.0; en-us; Nexus 5 Build/JRA78Y) AppleWebKit/537.36 (KHTML, like Gecko; Google-Adwords-Instant) Chrome/38.0.1025.166 Mobile Safari/537.36 (compatible; AdsBot-Google-Mobile; +http://www.google.com/mobile/adsbot.html)',
+      'cf-ipcountry': 'US'
+    }
+  });
+
+  const res = await worker.fetch(adsBotReq, env, mockCtx);
+  assert.equal(res.status, 200, 'AdsBot-Google must receive 200 OK directly for Google Ads compliance');
+});
+
 // -----------------------------------------------------------------------------
 // 10. Googlebot Optimized Crawl Status & HTMLRewriter Dynamic Headers
 // -----------------------------------------------------------------------------
