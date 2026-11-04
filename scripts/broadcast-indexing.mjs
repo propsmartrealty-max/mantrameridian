@@ -239,7 +239,7 @@ async function broadcastUnifiedIndexing() {
     summary.push({ engine: 'Microsoft Bing IndexNow', status: 'error', message: err.message });
   }
 
-  // 3b. Programmatic Matrix Batch Dispatch (5,000 Long-Tail URLs)
+  // 3b. Programmatic Matrix Batch Dispatch (10,400 Long-Tail URLs)
   if (programmaticUrls.length > 0) {
     console.log(`\n🚀 Broadcasting ${programmaticUrls.length} Programmatic Real Estate Matrix URLs in batches of 1,000...`);
     const BATCH_SIZE = 1000;
