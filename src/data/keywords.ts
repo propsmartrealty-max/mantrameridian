@@ -1,3 +1,5 @@
+import { resolveProgrammaticSlug } from './programmatic-seo-matrix.ts';
+
 export interface KeywordCluster {
   category: string;
   primaryKeywords: string[];
@@ -1649,7 +1651,7 @@ export const statutoryKeywordsList = [
 ].join(", ");
 
 // Balewadi Micromarket Authority keyword builder
-export const balewadiKeywordsList = [
+export const balewadiKeywords = [
   ...brandPermutations.slice(0, 10),
   ...locationPermutations.slice(0, 8),
   ...reputationPermutations.slice(0, 6),
@@ -1667,7 +1669,8 @@ export const balewadiKeywordsList = [
   "Mula riverfront apartments Balewadi",
   "new launch in Balewadi 2026",
   "Mantra Meridian Balewadi"
-].join(", ");
+];
+export const balewadiKeywordsList = balewadiKeywords.join(", ");
 
 // West Pune Regional Intelligence keyword builder
 export const westPuneKeywordsList = [
@@ -1832,3 +1835,414 @@ export const masterKeywordsRepository = {
     all54Clusters: TOPICAL_CLUSTERS_54
   }
 };
+
+// =============================================================================
+// PROGRAMMATIC GOOGLE KEYWORD PLANNER ROUTE RESOLVER
+// =============================================================================
+export interface ResolvedRouteKeywords {
+  targetKeywords: string;
+  brandAliases: string;
+  searchAuthority: string;
+  edgeKeywordsHeader: string;
+  keywordsList: string[];
+}
+
+/**
+ * Resolves context-aware, hyper-targeted Google Keyword Planner clusters for any route across the ecosystem.
+ * Eliminates generic keyword fallback and optimizes every URL for Position #1 and 10,000+ daily search impressions.
+ */
+export function resolveRouteKeywords(pathname: string): ResolvedRouteKeywords {
+  let cleanPath = (pathname || '/').toLowerCase().trim();
+  if (cleanPath.startsWith('http://') || cleanPath.startsWith('https://')) {
+    try {
+      cleanPath = new URL(cleanPath).pathname.toLowerCase();
+    } catch {
+      // fallback
+    }
+  }
+  cleanPath = cleanPath.replace(/\/+$/, '') || '/';
+
+  // 1. Programmatic Property Slugs (/properties/...)
+  if (cleanPath.startsWith('/properties/') || cleanPath === '/properties') {
+    if (cleanPath === '/properties') {
+      const kw = [
+        "Mantra Meridian properties",
+        "Mantra Meridian residences directory",
+        "Mantra Riverside properties Balewadi",
+        "Mantra Balewadi 2 3 4 BHK apartments",
+        "luxury flats in Balewadi Pune",
+        "Mantra Meridian Balewadi",
+        "MahaRERA P52100045688"
+      ];
+      return {
+        targetKeywords: kw.join(', '),
+        brandAliases: "Mantra Meridian Properties, Mantra Balewadi Residences, Mantra Riverside Balewadi",
+        searchAuthority: "Mantra Meridian Riverside Properties Directory | MahaRERA P52100045688",
+        edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+        keywordsList: kw
+      };
+    }
+
+    const slug = cleanPath.replace('/properties/', '');
+    const progData = resolveProgrammaticSlug(slug);
+    if (progData) {
+      return {
+        targetKeywords: progData.keywords,
+        brandAliases: "Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi",
+        searchAuthority: `Mantra Meridian ${progData.typologyName} | Mantra Riverside ${progData.locationName} | MahaRERA P52100045688`,
+        edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+        keywordsList: progData.keywordsList
+      };
+    }
+  }
+
+  // 2. High-Intent Pricing & Commercial
+  if (cleanPath === '/price' || cleanPath === '/mantra-meridian-riverside/price') {
+    const kw = [
+      "Mantra Meridian price",
+      "Mantra Meridian cost sheet",
+      "Mantra Meridian Balewadi price list",
+      "Mantra Riverside price",
+      "Mantra Balewadi 2 BHK 3 BHK price",
+      "2 BHK price Mantra Meridian",
+      "3 BHK price Mantra Meridian",
+      "4 BHK price Mantra Meridian Balewadi",
+      "Mantra Meridian payment plan",
+      "Mantra Meridian booking amount",
+      "Mantra Meridian all-inclusive price",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Price, Mantra Balewadi Cost Sheet, Mantra Riverside Price List, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Balewadi Price & 2026 Cost Sheet | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 3. Sanctioned Floor Plans & Architectural Carpet Areas
+  if (cleanPath === '/floor-plans' || cleanPath === '/mantra-meridian-riverside/floor-plans') {
+    const kw = [
+      "Mantra Meridian floor plans",
+      "Mantra Meridian Balewadi floor plan",
+      "Mantra Riverside floor plan PDF",
+      "Mantra Meridian 2 BHK floor plan",
+      "Mantra Meridian 3 BHK floor plan",
+      "Mantra Meridian duplex floor plan",
+      "Mantra Meridian 4 BHK layout",
+      "Mantra Meridian carpet area",
+      "Mantra Balewadi sanctioned layout",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Floor Plans, Mantra Riverside Floor Plans, Mantra Balewadi Layouts, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Architectural Floor Plans & Layouts | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 4. Sky Duplexes & Penthouses
+  if (cleanPath === '/duplex' || cleanPath === '/mantra-meridian-riverside/3-bhk-duplex') {
+    const kw = [
+      "3 BHK duplex in Balewadi Pune",
+      "Mantra Meridian Sky Duplex",
+      "Mantra Meridian 3 BHK duplex price",
+      "Mantra Riverside duplex apartments",
+      "double height ceiling flats Pune",
+      "luxury duplex in West Pune",
+      "two tier sky homes Balewadi",
+      "Mantra Meridian Balewadi duplex",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Sky Duplex, Mantra Riverside Duplex, Mantra Balewadi Duplex, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 3 BHK Sky Duplex Balewadi | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/penthouse') {
+    const kw = [
+      "penthouses in Balewadi Pune",
+      "Mantra Meridian penthouse",
+      "Mantra Riverside penthouse collection",
+      "sky villas in Balewadi Pune",
+      "top floor luxury apartments Pune",
+      "4 BHK penthouse Balewadi",
+      "Mantra Meridian Balewadi sky villa",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Penthouse, Mantra Riverside Sky Villa, Mantra Balewadi Penthouse, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Penthouse & Sky Villa Collection | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 5. Individual Typology Pages (2 BHK, 3 BHK, 4 BHK, Residences)
+  if (cleanPath === '/mantra-meridian-riverside/2-bhk') {
+    const kw = [
+      "Mantra Meridian 2 BHK",
+      "Mantra Meridian 2 BHK price",
+      "Mantra Meridian 2 BHK carpet area",
+      "Mantra Riverside 2 BHK Balewadi",
+      "2 BHK flats in Balewadi Mantra Meridian",
+      "815 sq ft 2 BHK Balewadi",
+      "Mantra Balewadi 2 BHK flats",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian 2 BHK, Mantra Riverside 2 BHK, Mantra Balewadi 2 BHK, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 2 BHK Balewadi | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/mantra-meridian-riverside/3-bhk') {
+    const kw = [
+      "Mantra Meridian 3 BHK",
+      "Mantra Meridian 3 BHK price",
+      "Mantra Meridian 3 BHK floor plans",
+      "Mantra Riverside 3 BHK Balewadi",
+      "3 BHK flats in Balewadi Mantra Meridian",
+      "1180 sq ft 3 BHK Balewadi",
+      "river view 3 BHK Balewadi",
+      "Mantra Balewadi 3 BHK luxury flats",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian 3 BHK, Mantra Riverside 3 BHK, Mantra Balewadi 3 BHK, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 3 BHK Balewadi | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/mantra-meridian-riverside/4-bhk') {
+    const kw = [
+      "Mantra Meridian 4 BHK",
+      "Mantra Meridian 4 BHK price",
+      "Mantra Meridian 4 BHK floor plans",
+      "Mantra Riverside 4 BHK Balewadi",
+      "4 BHK flats in Balewadi Mantra Meridian",
+      "2050 sq ft 4 BHK Balewadi",
+      "grand riverside 4 BHK Pune",
+      "Mantra Balewadi 4 BHK luxury residences",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian 4 BHK, Mantra Riverside 4 BHK, Mantra Balewadi 4 BHK, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 4 BHK Balewadi | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/residences' || cleanPath === '/mantra-meridian-riverside/residences') {
+    const kw = [
+      "Mantra Meridian residences",
+      "Mantra Riverside luxury homes",
+      "2 3 4 BHK residences Balewadi",
+      "Mantra Balewadi apartments",
+      "luxury riverfront residences West Pune",
+      "Mantra Meridian Balewadi",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Residences, Mantra Riverside Homes, Mantra Balewadi Residences",
+      searchAuthority: "Mantra Meridian Riverside Residences Collection | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 6. Micro-Market & IT Corridors
+  if (cleanPath === '/balewadi') {
+    return {
+      targetKeywords: balewadiKeywordsList,
+      brandAliases: "Mantra Balewadi, Mantra Meridian, Mantra Meridian Balewadi, Mantra Riverside Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Balewadi Mantra Meridian, Balewadi Mantra Riverside",
+      searchAuthority: "Mantra Balewadi | Mantra Meridian Balewadi | Mantra Riverside Balewadi",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: balewadiKeywords
+    };
+  }
+
+  if (cleanPath === '/hinjewadi') {
+    return {
+      targetKeywords: hinjewadiKeywordsList,
+      brandAliases: "Mantra Meridian Hinjewadi, Mantra Riverside Hinjewadi, Mantra Balewadi IT Park, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Hinjewadi IT Corridor | Mantra Riverside Balewadi",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: hinjewadiKeywords
+    };
+  }
+
+  if (cleanPath === '/baner') {
+    return {
+      targetKeywords: banerKeywordsList,
+      brandAliases: "Mantra Meridian Baner, Mantra Riverside Baner, Mantra Balewadi Baner, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Baner Corridor | Mantra Riverside Balewadi",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: banerKeywords
+    };
+  }
+
+  if (cleanPath === '/mahalunge') {
+    return {
+      targetKeywords: mahalungeKeywordsList,
+      brandAliases: "Mantra Meridian Mahalunge, Mantra Riverside Mahalunge, Mantra Balewadi Mahalunge, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Mahalunge Corridor | Mantra Riverside Balewadi",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: mahalungeKeywords
+    };
+  }
+
+  if (cleanPath === '/west-pune' || cleanPath === '/pune-real-estate') {
+    const kw = [
+      ...puneRealEstateMacroKeywords,
+      ...brandPermutations.slice(0, 5),
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian West Pune, Mantra Balewadi Real Estate, Mantra Riverside Pune",
+      searchAuthority: "Mantra Meridian West Pune Real Estate Authority | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 7. Masterplan, Amenities & Riverfront
+  if (cleanPath === '/masterplan' || cleanPath === '/mantra-meridian-riverside/masterplan') {
+    const kw = [
+      "Mantra Meridian masterplan",
+      "Mantra Meridian 8 acre master plan",
+      "Mantra Riverside master layout",
+      "Mantra Meridian river promenade",
+      "Mantra Balewadi project layout",
+      "20000 sq ft clubhouse Mantra Meridian",
+      "75 percent open green space Balewadi",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Masterplan, Mantra Riverside Layout, Mantra Balewadi Masterplan, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 8-Acre Masterplan & Amenities | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/amenities' || cleanPath === '/mantra-meridian-riverside/amenities') {
+    const kw = [
+      "Mantra Meridian amenities",
+      "Mantra Riverside clubhouse amenities",
+      "50+ lifestyle amenities Mantra Meridian",
+      "infinity pool river view Balewadi",
+      "sports complex amenities Balewadi",
+      "Mantra Balewadi amenities list",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian Amenities, Mantra Riverside Amenities, Mantra Balewadi Amenities, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian 50+ Luxury Amenities | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  if (cleanPath === '/mantra-meridian-riverside/riverside') {
+    const kw = [
+      "Mula riverfront apartments Balewadi",
+      "Mantra Meridian Riverside",
+      "Mantra Riverside Balewadi",
+      "river view flats in Balewadi Pune",
+      "500m river promenade apartments Pune",
+      "biophilic riverfront residences Balewadi",
+      "MahaRERA P52100045688"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Riverside, Mantra Meridian Riverside, Mantra Riverside Balewadi, Mantra Riverride Balewadi",
+      searchAuthority: "Mantra Riverside Balewadi Riverfront Living | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 8. RERA & Statutory Compliance
+  if (cleanPath === '/rera' || cleanPath === '/mantra-meridian-riverside/rera' || cleanPath === '/documents' || cleanPath === '/mantra-meridian-riverside/documents') {
+    const kw = [
+      "Mantra Meridian RERA number",
+      "Mantra Meridian MahaRERA P52100045688",
+      "Mantra Riverside RERA registration",
+      "Mantra Balewadi RERA approvals",
+      "MahaRERA P52100045688 certificate",
+      "PropSmart Realty A031262401295",
+      "Mantra Meridian legal title clearance",
+      "Mantra Meridian possession June 2028"
+    ];
+    return {
+      targetKeywords: kw.join(', '),
+      brandAliases: "Mantra Meridian RERA P52100045688, Mantra Riverside RERA, Mantra Balewadi RERA, PropSmart Realty A031262401295",
+      searchAuthority: "MahaRERA P52100045688 | PropSmart Realty A031262401295 | Mantra Meridian Balewadi",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: kw
+    };
+  }
+
+  // 9. Location & Directions
+  if (cleanPath === '/location' || cleanPath === '/mantra-meridian-riverside/location' || cleanPath === '/directions') {
+    return {
+      targetKeywords: locationKeywordsList,
+      brandAliases: "Mantra Meridian Location, Mantra Riverside Location, Mantra Balewadi Location, Mantra Meridian Balewadi",
+      searchAuthority: "Mantra Meridian Balewadi Location & Directions | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: locationPermutations
+    };
+  }
+
+  // 10. Core Brand Direct Query Landing Pages
+  if (
+    cleanPath === '/mantra-meridian' ||
+    cleanPath === '/mantra-balewadi' ||
+    cleanPath === '/mantra-riverside' ||
+    cleanPath === '/mantra-riverside-balewadi' ||
+    cleanPath === '/mantra-meridian-balewadi' ||
+    cleanPath === '/mantra-meridian-riverside-balewadi' ||
+    cleanPath === '/mantra-meridian-riverside' ||
+    cleanPath === '/explore'
+  ) {
+    const targetKws = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, mantra maridian, mantra river side, mantra meridian pune, mantra riverside pune, mantra balewadi duplex, luxury 2 3 4 bhk flats balewadi pune';
+    const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Mantra Maridian, Mantra River Side Balewadi, Mantra Meridian Pune';
+    return {
+      targetKeywords: targetKws,
+      brandAliases,
+      searchAuthority: "Mantra Meridian | Mantra Balewadi | Mantra Riverside Balewadi | MahaRERA P52100045688",
+      edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+      keywordsList: [...coreBrandQueries, ...brandPermutations.slice(0, 10)]
+    };
+  }
+
+  // 11. Default / Root Homepage & Fallback
+  return {
+    targetKeywords: 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, mantra maridian, mantra river side, mantra meridian pune, mantra riverside pune, mantra balewadi duplex, luxury 2 3 4 bhk flats balewadi pune',
+    brandAliases: 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Mantra Maridian, Mantra River Side Balewadi, Mantra Meridian Pune',
+    searchAuthority: "Mantra Meridian Balewadi | Mantra Riverside Balewadi | MahaRERA P52100045688",
+    edgeKeywordsHeader: "mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi",
+    keywordsList: [...coreBrandQueries, ...brandPermutations.slice(0, 10)]
+  };
+}

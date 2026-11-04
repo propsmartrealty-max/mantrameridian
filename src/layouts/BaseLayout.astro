@@ -5,7 +5,7 @@ import PersistentMobileBar from '../components/Mobile/PersistentMobileBar.astro'
 import FloatingWhatsApp from '../components/Navigation/FloatingWhatsApp.astro';
 import PrivatePresentationDrawer from '../components/Enquiry/PrivatePresentationDrawer';
 import { projectData } from '../data/project';
-import { defaultMetaKeywords, meridianKeywordEcosystem } from '../data/keywords';
+import { defaultMetaKeywords, meridianKeywordEcosystem, resolveRouteKeywords } from '../data/keywords';
 import { aggregateRatingData, verifiedReviews } from '../data/reviews';
 import { faqsData } from '../data/faqs';
 import '../styles/global.css';
@@ -31,7 +31,17 @@ const {
   noindex = false
 } = Astro.props;
 
-const keywords = Array.isArray(rawKeywords) ? rawKeywords.join(', ') : rawKeywords;
+// Resolve route-specific Google Keyword Planner cluster and metadata
+const routeKeywordProfile = resolveRouteKeywords(Astro.url.pathname);
+
+// If the page provided a specific custom keywords string or array (different from defaultMetaKeywords), use that, otherwise use routeKeywordProfile.targetKeywords
+const finalKeywords = (rawKeywords && rawKeywords !== defaultMetaKeywords)
+  ? (Array.isArray(rawKeywords) ? rawKeywords.join(', ') : rawKeywords)
+  : routeKeywordProfile.targetKeywords;
+
+const finalBrandAliases = routeKeywordProfile.brandAliases;
+const finalSearchAuthority = routeKeywordProfile.searchAuthority;
+const keywords = finalKeywords;
 
 // Authoritative canonical URL normalization strictly matching trailing-slash routing
 const siteOrigin = "https://mantrameridianriverside.com";
@@ -1067,9 +1077,9 @@ const bingSiteVerification = (import.meta.env.PUBLIC_BING_SITE_VERIFICATION || i
     {/* Primary SEO Meta Tags */}
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="keywords" content={keywords} />
-    <meta name="brand-aliases" content="Mantra Balewadi, Mantra Meridian, Mantra Meridian Balewadi, Mantra Riverside Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Meridian Mantra Balewadi, Riverside Mantra Balewadi, Balewadi Mantra Meridian, Balewadi Mantra Riverside" />
-    <meta name="search-authority" content="Mantra Balewadi | Mantra Meridian | Mantra Meridian Balewadi | Mantra Riverside Balewadi | Mantra Riverride Balewadi | Mantra Meridian Riverside Balewadi" />
+    <meta name="keywords" content={finalKeywords} />
+    <meta name="brand-aliases" content={finalBrandAliases} />
+    <meta name="search-authority" content={finalSearchAuthority} />
     <link rel="canonical" href={computedCanonical} />
     <link rel="alternate" hreflang="en" href={computedCanonical} />
     <link rel="alternate" hreflang="en-IN" href={computedCanonical} />

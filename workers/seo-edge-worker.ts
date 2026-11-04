@@ -21,6 +21,7 @@
 
 import { identifyWhiteBot, type WhiteBotInfo } from '../src/utils/bot-detection.ts';
 import { getGoogleEdgeAccessToken } from '../src/lib/google-auth-edge.ts';
+import { resolveRouteKeywords } from '../src/data/keywords.ts';
 const serviceAccountFallback: { client_email?: string; private_key?: string } = {};
 
 export interface ExecutionContext {
@@ -596,6 +597,8 @@ export default {
       return response;
     }
 
+    const routeKeywords = resolveRouteKeywords(pathname);
+
     // =========================================================================
     // STAGE 6: Cloudflare HTMLRewriter Zero-Buffer Streaming DOM Engine
     // =========================================================================
@@ -622,8 +625,9 @@ export default {
           element(head: any) {
             const nriMeta = isNRI ? '<meta name="target-market" content="NRI Luxury Property Investment" />\n' : '';
             const botMeta = botInfo.isWhiteBot ? `<meta name="cf-bot-type" content="${botInfo.botType}" />\n` : '';
-            const targetKeywords = 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi, mantra riverride balewadi, mantra meridian riverside balewadi, mantra maridian, mantra river side, mantra meridian pune, mantra riverside pune, mantra balewadi duplex, luxury 2 3 4 bhk flats balewadi pune';
-            const brandAliases = 'Mantra Meridian, Mantra Balewadi, Mantra Riverside, Mantra Riverside Balewadi, Mantra Meridian Balewadi, Mantra Riverride Balewadi, Mantra Meridian Riverside Balewadi, Mantra Maridian, Mantra River Side Balewadi, Mantra Meridian Pune';
+            const targetKeywords = routeKeywords.targetKeywords;
+            const brandAliases = routeKeywords.brandAliases;
+            const searchAuthority = routeKeywords.searchAuthority;
 
             // Googlebot & Bingbot crawler directives & Search Console directives
             const crawlerMeta = 
@@ -642,7 +646,7 @@ export default {
             head.append(
               `<meta name="keywords" content="${targetKeywords}" />\n` +
               `<meta name="brand-aliases" content="${brandAliases}" />\n` +
-              `<meta name="search-authority" content="Mantra Meridian Balewadi | Mantra Riverside Balewadi" />\n` +
+              `<meta name="search-authority" content="${searchAuthority}" />\n` +
               crawlerMeta +
               `<meta name="cf-edge-pop" content="${cfColo}" />\n` +
               `<meta name="cf-edge-speed" content="sub-15ms" />\n` +
@@ -877,7 +881,7 @@ export default {
       for (const [headerName, headerValue] of Object.entries(FORTRESS_SECURITY_HEADERS)) {
         response.headers.set(headerName, headerValue);
       }
-      response.headers.set('X-Edge-Keywords', 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
+      response.headers.set('X-Edge-Keywords', routeKeywords.edgeKeywordsHeader);
       response.headers.set('X-Edge-Keywords-Permutations', 'mantra balewadi, mantra meridian, mantra meridian balewadi, mantra riverside balewadi, mantra riverride balewadi, mantra meridian riverside balewadi');
     }
 

@@ -9,6 +9,8 @@ export interface ProgrammaticPageData {
   url: string;
   title: string;
   metaDescription: string;
+  keywords: string;
+  keywordsList: string[];
   h1Title: string;
   typologyName: string;
   carpetArea: string;
@@ -553,11 +555,32 @@ export function resolveProgrammaticSlug(slug: string): ProgrammaticPageData | nu
     ]
   };
 
+  const programmaticKeywordsList = [
+    `${foundTyp.name} ${foundLoc.name}`,
+    `${foundTyp.name} in ${foundLoc.name}`,
+    `Mantra Meridian ${foundTyp.name}`,
+    `Mantra Riverside ${foundTyp.name}`,
+    `Mantra Meridian Balewadi ${foundTyp.name}`,
+    `${foundTyp.name} price ${foundLoc.name}`,
+    `${foundTyp.name} floor plans ${foundLoc.name}`,
+    `${foundInt.name} Mantra Meridian`,
+    `luxury flats in ${foundLoc.name} Mantra Meridian`,
+    `apartments near ${foundLoc.name} Balewadi`,
+    'Mantra Meridian Balewadi',
+    'Mantra Riverside Balewadi',
+    'Mantra Meridian Riverside Balewadi',
+    'MahaRERA P52100045688',
+    'Mantra Properties Pune'
+  ];
+  const programmaticKeywords = programmaticKeywordsList.join(', ');
+
   return {
     slug,
     url: canonicalUrl,
     title: pageTitle,
     metaDescription,
+    keywords: programmaticKeywords,
+    keywordsList: programmaticKeywordsList,
     h1Title,
     typologyName: foundTyp.name,
     carpetArea: foundTyp.carpet,

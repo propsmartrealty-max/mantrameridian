@@ -27,7 +27,8 @@ import worker, {
   FORTRESS_SECURITY_HEADERS
 } from '../workers/seo-edge-worker.ts';
 import { identifyWhiteBot } from '../src/utils/bot-detection.ts';
-import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords } from '../src/data/keywords.ts';
+import { coreBrandQueries, coreBrandQueriesLower, brandPermutations, defaultMetaKeywords, resolveRouteKeywords } from '../src/data/keywords.ts';
+import { resolveProgrammaticSlug } from '../src/data/programmatic-seo-matrix.ts';
 
 console.log('🧪 Starting Cloudflare Edge SEO Worker & White Bot Test Suite...\n');
 
@@ -692,6 +693,46 @@ runTest('Global verification static files exist in public directory with exact c
   assert.ok(fs.existsSync(indexNowPath), 'public/4c7e6b0a9f1248a881335b2e3a1d95c2.txt must exist');
   const indexNowContent = fs.readFileSync(indexNowPath, 'utf8');
   assert.equal(indexNowContent.trim(), '4c7e6b0a9f1248a881335b2e3a1d95c2');
+});
+
+// -----------------------------------------------------------------------------
+// 19. Google Keyword Planner Programmatic Route Resolver Tests
+// -----------------------------------------------------------------------------
+runTest('resolveRouteKeywords dynamically resolves Google Keyword Planner clusters per route', () => {
+  // Homepage & Core Brand
+  const homeKw = resolveRouteKeywords('/');
+  assert.ok(homeKw.targetKeywords.includes('mantra meridian'));
+  assert.ok(homeKw.targetKeywords.includes('mantra balewadi'));
+  assert.ok(homeKw.brandAliases.includes('Mantra Meridian'));
+  assert.equal(homeKw.edgeKeywordsHeader, 'mantra meridian, mantra balewadi, mantra riverside, mantra riverside balewadi, mantra meridian balewadi');
+
+  // Balewadi corridor
+  const balewadiKw = resolveRouteKeywords('/balewadi/');
+  assert.ok(balewadiKw.targetKeywords.includes('flats in Balewadi'));
+  assert.ok(balewadiKw.searchAuthority.includes('Mantra Balewadi'));
+
+  // Price & commercial
+  const priceKw = resolveRouteKeywords('/price/');
+  assert.ok(priceKw.targetKeywords.includes('Mantra Meridian price'));
+  assert.ok(priceKw.searchAuthority.includes('Cost Sheet'));
+
+  // Sky Duplex
+  const duplexKw = resolveRouteKeywords('/duplex/');
+  assert.ok(duplexKw.targetKeywords.includes('3 BHK duplex in Balewadi'));
+  assert.ok(duplexKw.searchAuthority.includes('Sky Duplex'));
+
+  // Programmatic portal
+  const progSlug = 'mantra-meridian-riverside-2-bhk-flats-balewadi-price-cost-sheet';
+  const progKw = resolveRouteKeywords(`/properties/${progSlug}/`);
+  assert.ok(progKw.targetKeywords.includes('2 BHK Riverside Residences'));
+  assert.ok(progKw.targetKeywords.includes('Balewadi'));
+  assert.ok(progKw.searchAuthority.includes('2 BHK Riverside Residences'));
+
+  // Programmatic Page Data keywords verification
+  const progData = resolveProgrammaticSlug(progSlug);
+  assert.ok(progData);
+  assert.ok(progData.keywords.includes('2 BHK Riverside Residences'));
+  assert.ok(progData.keywordsList.length >= 10);
 });
 
 // -----------------------------------------------------------------------------
