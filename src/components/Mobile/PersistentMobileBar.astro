@@ -1,5 +1,8 @@
 ---
 import { projectData } from '../../data/project';
+import { getWhatsAppUrl } from '../../utils/whatsapp';
+
+const whatsappHref = getWhatsAppUrl(Astro.url.pathname);
 ---
 
 <aside class="fixed bottom-3 left-3 right-3 z-40 lg:hidden bg-white/92 backdrop-blur-3xl border border-white/80 rounded-2xl px-2.5 pt-2 pb-[calc(0.6rem+env(safe-area-inset-bottom))] shadow-[0_12px_40px_rgba(40,30,20,0.14),inset_0_1px_1.5px_#FFFFFF] fluid-spring">
@@ -18,7 +21,7 @@ import { projectData } from '../../data/project';
 
     {/* WhatsApp Concierge */}
     <a
-      href={`https://wa.me/${projectData.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(projectData.contact.whatsappEnquiryText)}`}
+      href={whatsappHref}
       target="_blank"
       rel="noopener noreferrer"
       class="flex flex-col items-center justify-center min-h-[50px] py-1.5 px-1 text-center bg-white/90 border border-emerald-600/35 text-[#161412] hover:border-emerald-600 active:scale-[0.94] transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-xl shadow-sm"
