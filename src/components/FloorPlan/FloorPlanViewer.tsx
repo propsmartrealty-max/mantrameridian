@@ -1,6 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef, type MouseEvent, type WheelEvent, type TouchEvent } from 'react';
 import { residencesData, type ResidenceConfig, type RoomDetail, type OfficialFloorPlan } from '../../data/residences';
-import { Layers, Download, Compass, Info, ArrowUpRight, Eye, CheckCircle2 } from 'lucide-react';
+import { 
+  Layers, Download, Compass, Info, ArrowUpRight, Eye, CheckCircle2,
+  Maximize2, ZoomIn, ZoomOut, RotateCcw, X, ChevronLeft, ChevronRight
+} from 'lucide-react';
 
 interface FloorPlanViewerProps {
   defaultResidenceId?: string;
@@ -11,6 +14,14 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
   const [viewMode, setViewMode] = useState<'official' | '2d' | '3d'>('official');
   const [selectedOfficialIndex, setSelectedOfficialIndex] = useState<number>(0);
   const [activeRoomId, setActiveRoomId] = useState<string | null>(null);
+
+  // Fullscreen Interactive Lightbox State
+  const [isLightboxOpen, setIsLightboxOpen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState<number>(1);
+  const [panPosition, setPanPosition] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
+  const touchStartRef = useRef<{ dist: number }>({ dist: 0 });
 
   const currentConfig: ResidenceConfig = residencesData.find(r => r.id === selectedConfigId) || residencesData[1];
   const activeRoom: RoomDetail | undefined = currentConfig.rooms.find(r => r.id === activeRoomId) || currentConfig.rooms[1];
@@ -23,6 +34,152 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
       })
     );
   };
+
+  const openLightbox = () => {
+    setIsLightboxOpen(true);
+    setZoomLevel(1);
+    setPanPosition({ x: 0, y: 0 });
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeLightbox = () => {
+    setIsLightboxOpen(false);
+    setZoomLevel(1);
+    setPanPosition({ x: 0, y: 0 });
+    document.body.style.overflow = '';
+  };
+
+  const handleZoomIn = () => {
+    setZoomLevel(prev => Math.min(Number((prev + 0.35).toFixed(2)), 3.5));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel(prev => {
+      const next = Math.max(Number((prev - 0.35).toFixed(2)), 1);
+      if (next === 1) setPanPosition({ x: 0, y: 0 });
+      return next;
+    });
+  };
+
+  const handleResetZoom = () => {
+    setZoomLevel(1);
+    setPanPosition({ x: 0, y: 0 });
+  };
+
+  const handleToggleZoom = () => {
+    if (zoomLevel > 1) {
+      handleResetZoom();
+    } else {
+      setZoomLevel(2);
+    }
+  };
+
+  const handleMouseDown = (e: MouseEvent) => {
+    if (zoomLevel <= 1) return;
+    setIsDragging(true);
+    dragStartRef.current = { x: e.clientX - panPosition.x, y: e.clientY - panPosition.y };
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging || zoomLevel <= 1) return;
+    setPanPosition({
+      x: e.clientX - dragStartRef.current.x,
+      y: e.clientY - dragStartRef.current.y
+    });
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleWheel = (e: WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      handleZoomIn();
+    } else {
+      handleZoomOut();
+    }
+  };
+
+  const handleTouchStart = (e: TouchEvent) => {
+    if (e.touches.length === 1 && zoomLevel > 1) {
+      const touch = e.touches[0];
+      dragStartRef.current = { x: touch.clientX - panPosition.x, y: touch.clientY - panPosition.y };
+      setIsDragging(true);
+    } else if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      touchStartRef.current = { dist };
+    }
+  };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    if (e.touches.length === 1 && isDragging && zoomLevel > 1) {
+      const touch = e.touches[0];
+      setPanPosition({
+        x: touch.clientX - dragStartRef.current.x,
+        y: touch.clientY - dragStartRef.current.y
+      });
+    } else if (e.touches.length === 2) {
+      const dist = Math.hypot(
+        e.touches[0].clientX - e.touches[1].clientX,
+        e.touches[0].clientY - e.touches[1].clientY
+      );
+      const factor = dist / (touchStartRef.current.dist || dist);
+      if (factor > 1.08) {
+        handleZoomIn();
+        touchStartRef.current.dist = dist;
+      } else if (factor < 0.92) {
+        handleZoomOut();
+        touchStartRef.current.dist = dist;
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
+  const handleNextPlan = () => {
+    if (selectedOfficialIndex < currentConfig.officialFloorPlans.length - 1) {
+      setSelectedOfficialIndex(prev => prev + 1);
+    } else {
+      const currentIdx = residencesData.findIndex(r => r.id === selectedConfigId);
+      const nextIdx = (currentIdx + 1) % residencesData.length;
+      setSelectedConfigId(residencesData[nextIdx].id);
+      setSelectedOfficialIndex(0);
+    }
+    handleResetZoom();
+  };
+
+  const handlePrevPlan = () => {
+    if (selectedOfficialIndex > 0) {
+      setSelectedOfficialIndex(prev => prev - 1);
+    } else {
+      const currentIdx = residencesData.findIndex(r => r.id === selectedConfigId);
+      const prevIdx = (currentIdx - 1 + residencesData.length) % residencesData.length;
+      setSelectedConfigId(residencesData[prevIdx].id);
+      setSelectedOfficialIndex(residencesData[prevIdx].officialFloorPlans.length - 1);
+    }
+    handleResetZoom();
+  };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!isLightboxOpen) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === '+' || e.key === '=') handleZoomIn();
+      if (e.key === '-' || e.key === '_') handleZoomOut();
+      if (e.key === '0') handleResetZoom();
+      if (e.key === 'ArrowRight') handleNextPlan();
+      if (e.key === 'ArrowLeft') handlePrevPlan();
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isLightboxOpen, selectedOfficialIndex, selectedConfigId, currentConfig]);
 
   return (
     <div className="w-full glass-card-luxury glass-spotlight border border-champagne/30 overflow-hidden shadow-2xl">
@@ -131,22 +288,42 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
           {/* VIEW MODE 1: Official Sanctioned Image */}
           {viewMode === 'official' && (
             <div className="w-full max-w-2xl relative my-6 flex flex-col items-center justify-center">
-              <div className="relative group overflow-hidden border border-white/10 bg-white/5 p-4 rounded-none">
+              <div 
+                onClick={openLightbox}
+                className="relative group overflow-hidden border border-[#DDD2C2] bg-white p-4 rounded-xl cursor-zoom-in shadow-xl hover:border-champagne/80 hover:shadow-2xl transition-all duration-300"
+              >
                 <img
                   src={activeOfficialPlan.imageUrl}
                   alt={`${currentConfig.name} - ${activeOfficialPlan.title}`}
-                  className="max-h-[500px] w-auto object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-500"
+                  className="max-h-[500px] w-auto object-contain filter contrast-105 group-hover:scale-[1.03] transition-transform duration-500"
                 />
+
+                {/* Floating Fullscreen Action Trigger */}
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openLightbox();
+                  }}
+                  className="absolute top-4 right-4 z-10 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#161412]/85 hover:bg-champagne hover:text-[#161412] text-white border border-champagne/40 text-xs font-mono tracking-wider transition-all duration-300 backdrop-blur-md shadow-lg group-hover:scale-105"
+                  title="Inspect Fullscreen (Zoom & Pan)"
+                >
+                  <Maximize2 className="w-3.5 h-3.5 text-champagne group-hover:text-[#161412]" />
+                  <span>FULLSCREEN ZOOM</span>
+                </button>
                 
                 {/* Floating Unit Plan Code Stamp */}
-                <div className="absolute bottom-4 left-4 glass-dark px-3 py-1.5 border border-champagne/30 text-xs font-mono text-champagne">
+                <div className="absolute bottom-4 left-4 bg-[#161412]/85 backdrop-blur-md px-3 py-1.5 border border-champagne/40 text-xs font-mono text-champagne rounded">
                   {activeOfficialPlan.unitPlanCode}
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-[11px] text-concrete/60 mt-4">
+              <div 
+                className="flex items-center gap-2 text-[11px] text-[#6B6155] mt-4 cursor-pointer hover:text-champagne transition-colors"
+                onClick={openLightbox}
+              >
                 <Eye className="w-3.5 h-3.5 text-champagne" />
-                <span>Official sanctioned unit plan for Mantra Meridian Riverside Balewadi (MahaRERA: P52100045688).</span>
+                <span>Click image to open interactive full-screen zoom &amp; pan lightbox (MahaRERA: P52100045688).</span>
               </div>
             </div>
           )}
@@ -357,6 +534,221 @@ export default function FloorPlanViewer({ defaultResidenceId = '3bhk' }: FloorPl
 
       </div>
 
+      {/* Fullscreen Interactive Architectural Lightbox Modal */}
+      {isLightboxOpen && (
+        <div 
+          className="fixed inset-0 z-[150] bg-[#0E0F13]/98 backdrop-blur-3xl flex flex-col select-none text-white animate-in fade-in duration-200"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Fullscreen Floor Plan Viewer"
+        >
+          {/* Top Header Bar */}
+          <header className="h-16 px-4 md:px-8 border-b border-white/10 flex items-center justify-between shrink-0 bg-[#161412]/90">
+            <div className="flex items-center gap-3">
+              <div className="hidden sm:block">
+                <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-champagne font-semibold block">
+                  MANTRA MERIDIAN RIVERSIDE • BALEWADI
+                </span>
+                <span className="text-xs text-concrete/70 font-sans">
+                  MahaRERA Reg. P52100045688
+                </span>
+              </div>
+              <div className="h-6 w-[1px] bg-white/15 hidden sm:block" />
+              <div>
+                <h3 className="font-serif text-sm sm:text-base text-architectural-white font-medium flex items-center gap-2">
+                  <span>{currentConfig.name}</span>
+                  <span className="text-champagne font-mono text-xs font-normal">({activeOfficialPlan.title})</span>
+                </h3>
+                <span className="text-[11px] font-mono text-champagne/80 block sm:hidden">
+                  {activeOfficialPlan.unitPlanCode}
+                </span>
+              </div>
+            </div>
+
+            {/* Toolbar Controls */}
+            <div className="flex items-center gap-2 sm:gap-3">
+              <div className="flex items-center bg-white/10 border border-white/15 rounded-full p-1 backdrop-blur-md">
+                <button
+                  type="button"
+                  onClick={handleZoomOut}
+                  disabled={zoomLevel <= 1}
+                  className="p-1.5 rounded-full hover:bg-white/15 text-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                  title="Zoom Out (-)"
+                  aria-label="Zoom Out"
+                >
+                  <ZoomOut className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleToggleZoom}
+                  className="px-2.5 py-1 text-xs font-mono font-medium text-champagne hover:text-white transition-colors"
+                  title="Toggle Zoom (Double Click)"
+                >
+                  {Math.round(zoomLevel * 100)}%
+                </button>
+                <button
+                  type="button"
+                  onClick={handleZoomIn}
+                  disabled={zoomLevel >= 3.5}
+                  className="p-1.5 rounded-full hover:bg-white/15 text-white disabled:opacity-30 disabled:hover:bg-transparent transition-colors"
+                  title="Zoom In (+)"
+                  aria-label="Zoom In"
+                >
+                  <ZoomIn className="w-4 h-4" />
+                </button>
+                <button
+                  type="button"
+                  onClick={handleResetZoom}
+                  className="p-1.5 rounded-full hover:bg-white/15 text-white/80 hover:text-white transition-colors ml-0.5"
+                  title="Reset Zoom (0)"
+                  aria-label="Reset Zoom"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
+              <button
+                type="button"
+                onClick={closeLightbox}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/10 hover:bg-champagne hover:text-obsidian border border-white/20 text-xs font-mono transition-all ml-1"
+                title="Close Lightbox (Esc)"
+              >
+                <X className="w-4 h-4" />
+                <span className="hidden sm:inline">ESC</span>
+              </button>
+            </div>
+          </header>
+
+          {/* Central Interactive Blueprint Canvas */}
+          <main 
+            className={`flex-1 relative overflow-hidden flex items-center justify-center p-4 md:p-8 ${
+              zoomLevel > 1 ? (isDragging ? 'cursor-grabbing' : 'cursor-grab') : 'cursor-zoom-in'
+            }`}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onDoubleClick={handleToggleZoom}
+            onWheel={handleWheel}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+          >
+            {/* Compass Orientation Indicator */}
+            <div className="absolute top-4 left-4 z-20 flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-white/10 text-[10px] font-mono text-concrete/80 tracking-widest backdrop-blur-md">
+              <Compass className="w-3.5 h-3.5 text-champagne animate-spin-slow" />
+              <span>MULA RIVER ORIENTATION</span>
+            </div>
+
+            {/* Hint Chip */}
+            <div className="hidden md:flex absolute top-4 right-4 z-20 items-center gap-2 px-3 py-1 rounded-full bg-black/50 border border-white/10 text-[10px] font-mono text-concrete/60 backdrop-blur-md">
+              <span>Scroll / Pinch to zoom • Drag to pan</span>
+            </div>
+
+            {/* Left Nav Arrow */}
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); handlePrevPlan(); }}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/70 hover:bg-champagne hover:text-obsidian text-white border border-white/20 flex items-center justify-center transition-all backdrop-blur-md shadow-2xl active:scale-95"
+              title="Previous Floor Plan (←)"
+              aria-label="Previous Floor Plan"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Right Nav Arrow */}
+            <button
+              type="button"
+              onClick={(e) => { e.stopPropagation(); handleNextPlan(); }}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-black/70 hover:bg-champagne hover:text-obsidian text-white border border-white/20 flex items-center justify-center transition-all backdrop-blur-md shadow-2xl active:scale-95"
+              title="Next Floor Plan (→)"
+              aria-label="Next Floor Plan"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+
+            {/* Transformed Blueprint Image */}
+            <div
+              className="relative max-w-full max-h-full transition-transform"
+              style={{
+                transform: `translate(${panPosition.x}px, ${panPosition.y}px) scale(${zoomLevel})`,
+                transformOrigin: 'center center',
+                transition: isDragging ? 'none' : 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <img
+                src={activeOfficialPlan.imageUrl}
+                alt={`${currentConfig.name} - ${activeOfficialPlan.title}`}
+                className="max-h-[75vh] w-auto object-contain filter contrast-105 drop-shadow-[0_25px_60px_rgba(0,0,0,0.95)] pointer-events-none"
+                draggable={false}
+              />
+            </div>
+          </main>
+
+          {/* Bottom Control & Quick Action Bar */}
+          <footer className="px-4 md:px-8 py-3.5 border-t border-white/10 bg-[#161412]/95 shrink-0 flex flex-col md:flex-row items-center justify-between gap-3">
+            {/* Quick Residence Selector Pills */}
+            <div className="flex items-center gap-1.5 overflow-x-auto max-w-full py-1">
+              {residencesData.map((res) => (
+                <button
+                  key={res.id}
+                  type="button"
+                  onClick={() => {
+                    setSelectedConfigId(res.id);
+                    setSelectedOfficialIndex(0);
+                    handleResetZoom();
+                  }}
+                  className={`px-3 py-1 text-xs font-mono uppercase tracking-wider rounded-full transition-all shrink-0 ${
+                    selectedConfigId === res.id
+                      ? 'bg-champagne text-obsidian font-bold shadow-md'
+                      : 'bg-white/10 text-concrete hover:text-white hover:bg-white/20'
+                  }`}
+                >
+                  {res.type}
+                </button>
+              ))}
+            </div>
+
+            {/* Spec strip */}
+            <div className="hidden lg:flex items-center gap-4 text-xs font-mono text-concrete/80">
+              <span>Carpet: <strong className="text-white">{currentConfig.carpetAreaRange}</strong></span>
+              <span>•</span>
+              <span>Bathrooms: <strong className="text-white">{currentConfig.bathrooms} Ensuites</strong></span>
+              <span>•</span>
+              <span className="text-champagne font-medium">{activeOfficialPlan.unitPlanCode}</span>
+            </div>
+
+            {/* High-Intent CTAs */}
+            <div className="flex items-center gap-2.5 w-full md:w-auto justify-end">
+              <a
+                href={`https://wa.me/917387747807?text=${encodeURIComponent(
+                  `Hello Mantra Meridian Concierge, I am inspecting the ${currentConfig.name} (${activeOfficialPlan.title} - ${activeOfficialPlan.unitPlanCode}) in the high-res floor plan viewer. Please share sanctioned floor-wise availability and payment schedule.`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 md:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-full text-xs font-mono font-semibold tracking-wider transition-all shadow-md active:scale-95"
+              >
+                <svg className="w-3.5 h-3.5 fill-current shrink-0" viewBox="0 0 24 24">
+                  <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/>
+                </svg>
+                <span>ENQUIRE ON WHATSAPP</span>
+              </a>
+
+              <button
+                type="button"
+                onClick={() => {
+                  closeLightbox();
+                  handleOpenConcierge('REQUEST SANCTIONED CAD / PDF');
+                }}
+                className="flex-1 md:flex-initial inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-champagne hover:bg-[#B38E3F] text-obsidian rounded-full text-xs font-mono font-bold tracking-wider transition-all shadow-md active:scale-95"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span>DOWNLOAD PDF</span>
+              </button>
+            </div>
+          </footer>
+        </div>
+      )}
     </div>
   );
 }
