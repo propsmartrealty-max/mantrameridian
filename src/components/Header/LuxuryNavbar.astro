@@ -123,11 +123,12 @@ const exploreColCorridors = [
         {/* Dropdown Menu - 100% Solid Opaque White Panel, Zero Hover Gap Bridge, 2-Column Luxury Directory */}
         <div
           id="discover-menu-dropdown"
-          class="absolute top-full right-0 pt-2 w-[620px] max-w-[94vw] opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto transition-all duration-200 ease-out z-[100] before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4 before:block"
+          class="absolute top-full right-0 pt-2 w-[620px] max-w-[94vw] opacity-0 invisible pointer-events-none group-hover:opacity-100 group-hover:visible group-hover:pointer-events-auto transition-all duration-200 ease-out z-[100] isolate before:content-[''] before:absolute before:-top-3 before:left-0 before:right-0 before:h-4 before:block"
+          style="isolation: isolate;"
         >
           <div
-            class="bg-white border border-[#DDD2C2] shadow-[0_25px_70px_rgba(30,20,10,0.22),0_4px_16px_rgba(0,0,0,0.06)] rounded-2xl p-4 sm:p-5 text-[#161412]"
-            style="background-color: #FFFFFF !important;"
+            class="bg-[#FFFFFF] border border-[#DDD2C2] shadow-[0_25px_70px_rgba(30,20,10,0.22),0_4px_16px_rgba(0,0,0,0.06)] rounded-2xl p-4 sm:p-5 text-[#161412] isolate"
+            style="background-color: #FFFFFF !important; opacity: 1 !important; isolation: isolate;"
           >
             {/* Header */}
             <div class="text-[11px] uppercase tracking-[0.2em] text-champagne font-mono pb-3 border-b border-[#EADFCF] font-bold flex items-center justify-between">
