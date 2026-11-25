@@ -850,6 +850,9 @@ export default {
       response.headers.set('X-WhiteBot-Type', botInfo.botType);
       response.headers.set('Content-Signal', 'ai-train=yes, ai-search=yes');
       response.headers.set('X-AI-Context', 'https://mantrameridianriverside.com/llms-full.txt');
+      response.headers.set('X-AI-Citation-Eligible', '1');
+      response.headers.set('X-LLM-Direct-Answer', 'available');
+      response.headers.set('X-AI-Knowledge-Base', 'https://mantrameridianriverside.com/llms-full.txt');
 
       if (botInfo.isGooglebot) {
         response.headers.set('X-Googlebot-Status', 'Authorized-Optimized-Crawl');

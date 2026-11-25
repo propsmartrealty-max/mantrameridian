@@ -23,8 +23,8 @@ const BING_BOT_REGEX = /Bingbot|msnbot|BingPreview|AdIdxBot/i;
 // 3. Apple Ecosystem
 const APPLE_BOT_REGEX = /Applebot|Applebot-Extended/i;
 
-// 4. Frontier AI Foundation Crawlers
-const AI_BOT_REGEX = /GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|anthropic-ai|Claude-Web|PerplexityBot|Bytespider|CCBot/i;
+// 4. Frontier AI Foundation Crawlers (ChatGPT, Claude, Perplexity, DeepSeek, Mistral, Gemini, Meta)
+const AI_BOT_REGEX = /GPTBot|ChatGPT-User|OAI-SearchBot|ClaudeBot|anthropic-ai|Claude-Web|PerplexityBot|Bytespider|CCBot|cohere-ai|Diffbot|DeepSeekBot|MistralBot|DuckAssistBot|Google-CloudVertexBot|Meta-ExternalAgent|Meta-ExternalFetcher|Amazonbot/i;
 
 // 5. Social Link Previewers & Unfurlers
 const SOCIAL_BOT_REGEX = /facebookexternalhit|meta-externalagent|Meta-ExternalFetcher|Twitterbot|LinkedInBot|WhatsApp|TelegramBot|Slackbot|SkypeUriPreview/i;

@@ -1,45 +1,45 @@
 {
-  "timestamp": "2026-09-20T12:52:30.460Z",
+  "timestamp": "2026-11-18T10:56:41.022Z",
   "wayback": [
     {
       "url": "https://mantrameridianriverside.com/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside-balewadi/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/price/",
-      "status": 429,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/floor-plans/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/residences/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/location/",
-      "status": 500,
-      "ok": false
+      "status": 200,
+      "ok": true
     },
     {
       "url": "https://mantrameridianriverside.com/mantra-meridian-riverside/gallery/",
-      "status": 429,
-      "ok": false
+      "status": 200,
+      "ok": true
     }
   ],
   "pingServices": [

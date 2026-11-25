@@ -1,17 +1,17 @@
 {
-  "timestamp": "2026-09-20T12:56:01.752Z",
+  "timestamp": "2026-11-18T11:04:47.442Z",
   "directories": [
     {
       "name": "CuteStat",
       "url": "https://mantrameridianriverside.com.cutestat.com",
-      "status": 403,
+      "status": 404,
       "ok": false
     },
     {
       "name": "HypeStat",
       "url": "https://hypestat.com/info/mantrameridianriverside.com",
-      "status": 200,
-      "ok": true
+      "status": 403,
+      "ok": false
     },
     {
       "name": "SiteIndices",
@@ -52,8 +52,8 @@
     {
       "name": "TopAlternative",
       "url": "https://topalternative.net/site/mantrameridianriverside.com",
-      "status": 404,
-      "ok": false
+      "status": "dispatched",
+      "error": "This operation was aborted"
     },
     {
       "name": "WebWiki",
@@ -64,14 +64,14 @@
     {
       "name": "ArchiveToday",
       "url": "https://archive.ph/submit/?url=https%3A%2F%2Fmantrameridianriverside.com",
-      "status": 429,
-      "ok": false
+      "status": "dispatched",
+      "error": "This operation was aborted"
     },
     {
       "name": "WaybackSave",
       "url": "https://web.archive.org/save/https://mantrameridianriverside.com",
-      "status": 500,
-      "ok": false
+      "status": "dispatched",
+      "error": "This operation was aborted"
     }
   ],
   "rpcPings": [
@@ -91,6 +91,18 @@
       "name": "Google Feedburner Ping",
       "url": "https://feedburner.google.com/fb/a/pingSubmit?blogUrl=https%3A%2F%2Fmantrameridianriverside.com",
       "status": 404,
+      "ok": false
+    },
+    {
+      "name": "Google Sitemap Gateway",
+      "url": "https://www.google.com/ping?sitemap=https%3A%2F%2Fmantrameridianriverside.com%2Fsitemap-index.xml",
+      "status": 404,
+      "ok": false
+    },
+    {
+      "name": "Bing Sitemap Gateway",
+      "url": "https://www.bing.com/ping?sitemap=https%3A%2F%2Fmantrameridianriverside.com%2Fsitemap-index.xml",
+      "status": 410,
       "ok": false
     }
   ],

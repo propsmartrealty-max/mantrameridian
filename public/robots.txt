@@ -200,6 +200,24 @@ Allow: /
 User-agent: Meta-ExternalFetcher
 Allow: /
 
+User-agent: DeepSeekBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: MistralBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Google-CloudVertexBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: DuckAssistBot
+Allow: /
+
 # ── REAL ESTATE AGGREGATORS (whitelist for link authority) ─────────────────────
 User-agent: 99acres-bot
 Allow: /
